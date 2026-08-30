@@ -6,6 +6,8 @@
 void InitForkEncounterRandomizerSeed(void);
 u16 GetForkMaxNationalDex(void);
 enum Species ResolveForkRandomizedEncounterSpecies(u8 mapGroup, u8 mapNum, enum WildPokemonArea area, u8 slot, enum Species fallback);
+enum Species ResolveForkRandomizedEggSpecies(enum Species fallback);
+enum Species ResolveForkRandomizedStaticEncounterSpecies(enum Species fallback);
 u16 GetForkEncounterRandomizerBstCap(u8 mapGroup, u8 mapNum, enum WildPokemonArea area);
 u16 GetForkEncounterRandomizerBstMin(u8 mapGroup, u8 mapNum, enum WildPokemonArea area);
 

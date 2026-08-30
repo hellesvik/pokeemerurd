@@ -2,13 +2,8 @@
 #include "pokemon.h"
 #include "test/test.h"
 #include "wild_encounter.h"
+#include "fork_encounter_randomizer.h"
 #include "constants/map_groups.h"
-
-// The public encounter-randomizer API is deliberately declared here before
-// its production header exists. These tests specify the feature contract.
-enum Species ResolveForkRandomizedEncounterSpecies(u8 mapGroup, u8 mapNum, enum WildPokemonArea area, u8 slot, enum Species fallback);
-u16 GetForkEncounterRandomizerBstCap(u8 mapGroup, u8 mapNum, enum WildPokemonArea area);
-u16 GetForkEncounterRandomizerBstMin(u8 mapGroup, u8 mapNum, enum WildPokemonArea area);
 
 static u16 GetSpeciesBst(enum Species species)
 {
@@ -88,4 +83,42 @@ TEST("Biome encounter randomizer defaults to Generation 3 species")
 
         EXPECT_LE((u16)gSpeciesInfo[species].natDexNum, NATIONAL_DEX_DEOXYS);
     }
+}
+
+TEST("Egg randomizer selects a non-restricted species within the egg BST range")
+{
+    enum Species species;
+
+    gSaveBlock3Ptr->forkEncounterRandomizerSeed = 0x55667788;
+    species = ResolveForkRandomizedEggSpecies(SPECIES_WYNAUT);
+
+    EXPECT_GE(GetSpeciesBst(species), 100);
+    EXPECT_LE(GetSpeciesBst(species), 550);
+    EXPECT(!gSpeciesInfo[species].isRestrictedLegendary);
+    EXPECT(!gSpeciesInfo[species].isSubLegendary);
+    EXPECT(!gSpeciesInfo[species].isMythical);
+}
+
+TEST("Static encounter randomizer uses its route BST range")
+{
+    enum Species species;
+
+    gSaveBlock1Ptr->location.mapGroup = MAP_GROUP(MAP_ROUTE120);
+    gSaveBlock1Ptr->location.mapNum = MAP_NUM(MAP_ROUTE120);
+    gSaveBlock3Ptr->forkEncounterRandomizerSeed = 0x99AABBCC;
+    species = ResolveForkRandomizedStaticEncounterSpecies(SPECIES_KECLEON);
+
+    EXPECT_GE(GetSpeciesBst(species), 330);
+    EXPECT_LE(GetSpeciesBst(species), 430);
+}
+
+TEST("Special static encounter randomizer permits legendary BST range")
+{
+    enum Species species;
+
+    gSaveBlock3Ptr->forkEncounterRandomizerSeed = 0xDDEEFF00;
+    species = ResolveForkRandomizedStaticEncounterSpecies(SPECIES_REGIROCK);
+
+    EXPECT_GE(GetSpeciesBst(species), 550);
+    EXPECT_LE(GetSpeciesBst(species), 600);
 }

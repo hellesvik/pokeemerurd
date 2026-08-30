@@ -127,6 +127,18 @@ static bool8 IsWithinForkMaxGeneration(enum Species species)
     return gSpeciesInfo[species].natDexNum <= GetForkMaxNationalDexForGen(maxGen);
 }
 
+static bool8 IsRegularEncounterSpecies(enum Species species)
+{
+    const struct SpeciesInfo *speciesInfo = &gSpeciesInfo[species];
+
+    return IsWithinForkMaxGeneration(species)
+        && !speciesInfo->isRestrictedLegendary
+        && !speciesInfo->isSubLegendary
+        && !speciesInfo->isMythical
+        && !speciesInfo->isUltraBeast
+        && !speciesInfo->isParadox;
+}
+
 u16 GetForkMaxNationalDex(void)
 {
     return GetForkMaxNationalDexForGen(FORK_MAX_GEN_MONS);
@@ -146,7 +158,7 @@ static enum Species SelectEncounterSpecies(const struct ForkEncounterAssignment 
     for (i = 0; i < count; i++)
     {
         enum Species species = pool[(start + i) % count];
-        if (IsWithinForkMaxGeneration(species)
+        if (IsRegularEncounterSpecies(species)
          && GetSpeciesBst(species) >= assignment->minBst
          && GetSpeciesBst(species) <= assignment->maxBst
          && IsMethodCompatible(species, area)
@@ -154,6 +166,57 @@ static enum Species SelectEncounterSpecies(const struct ForkEncounterAssignment 
             return species;
     }
     return fallback;
+}
+
+static enum Species SelectSpeciesFromBstRange(u16 minBst, u16 maxBst, bool8 allowSpecial, u32 salt, enum Species fallback)
+{
+    enum Species selected = fallback;
+    rng_value_t rng = LocalRandomSeed(gSaveBlock3Ptr->forkEncounterRandomizerSeed ^ salt);
+    u16 candidateCount = 0;
+    u16 candidateIndex;
+
+    for (enum Species species = SPECIES_BULBASAUR; species < NUM_SPECIES; species++)
+    {
+        if (species != GET_BASE_SPECIES_ID(species)
+         || !IsSpeciesEnabled(species)
+         || !IsWithinForkMaxGeneration(species)
+         || GetSpeciesBst(species) < minBst
+         || GetSpeciesBst(species) > maxBst)
+            continue;
+        if (!allowSpecial && !IsRegularEncounterSpecies(species))
+            continue;
+        candidateCount++;
+    }
+
+    if (candidateCount == 0)
+        return fallback;
+    candidateIndex = LocalRandom(&rng) % candidateCount;
+    for (enum Species species = SPECIES_BULBASAUR; species < NUM_SPECIES; species++)
+    {
+        if (species != GET_BASE_SPECIES_ID(species)
+         || !IsSpeciesEnabled(species)
+         || !IsWithinForkMaxGeneration(species)
+         || GetSpeciesBst(species) < minBst
+         || GetSpeciesBst(species) > maxBst
+         || (!allowSpecial && !IsRegularEncounterSpecies(species)))
+            continue;
+        if (candidateIndex-- == 0)
+        {
+            selected = species;
+            break;
+        }
+    }
+    return selected;
+}
+
+static bool8 IsSpecialStaticEncounter(enum Species species)
+{
+    return species == SPECIES_REGIROCK
+        || species == SPECIES_REGICE
+        || species == SPECIES_REGISTEEL
+        || species == SPECIES_GROUDON
+        || species == SPECIES_KYOGRE
+        || species == SPECIES_RAYQUAZA;
 }
 
 void InitForkEncounterRandomizerSeed(void)
@@ -187,4 +250,35 @@ enum Species ResolveForkRandomizedEncounterSpecies(u8 mapGroup, u8 mapNum, enum 
     for (i = 0; i <= slot; i++)
         selected[i] = SelectEncounterSpecies(assignment, mapGroup, mapNum, area, i, selected, i, fallback);
     return selected[slot];
+}
+
+enum Species ResolveForkRandomizedEggSpecies(enum Species fallback)
+{
+    if (!ForkAreRandomEncountersEnabled())
+        return fallback;
+    return SelectSpeciesFromBstRange(100, 550, FALSE, 0x45474700 ^ fallback, fallback);
+}
+
+enum Species ResolveForkRandomizedStaticEncounterSpecies(enum Species fallback)
+{
+    const struct ForkEncounterAssignment *assignment;
+    enum Species species;
+
+    if (!ForkAreRandomEncountersEnabled())
+        return fallback;
+    if (IsSpecialStaticEncounter(fallback))
+        return SelectSpeciesFromBstRange(550, 600, TRUE, 0x53544154 ^ fallback, fallback);
+
+    assignment = FindAssignment(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, WILD_AREA_LAND);
+    if (assignment == NULL)
+        return fallback;
+    species = SelectEncounterSpecies(assignment,
+        gSaveBlock1Ptr->location.mapGroup,
+        gSaveBlock1Ptr->location.mapNum,
+        WILD_AREA_LAND,
+        0x80,
+        NULL,
+        0,
+        fallback);
+    return species;
 }

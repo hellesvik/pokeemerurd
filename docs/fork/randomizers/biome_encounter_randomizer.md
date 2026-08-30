@@ -27,8 +27,19 @@ The feature applies to ordinary wild encounters:
 - Old Rod, Good Rod, and Super Rod fishing encounters.
 - Rock Smash encounters.
 
-Static encounters, gifts, trainer parties, scripted battles, eggs, and raid- or
-overworld-specific encounter systems are outside this first version.
+Static encounters and eggs are also randomized when random encounters are
+enabled. Gifts, trainer parties, and raid- or overworld-specific encounter
+systems remain outside this feature.
+
+Eggs are resolved when they hatch, regardless of whether they came from the
+Day Care, a scripted gift, a trade, or another source. Egg results use a
+100–550 BST range and exclude Legendary, Mythical, Ultra Beast, and Paradox
+species.
+
+Static encounters use the current map's route/place BST range. Kecleon,
+Electrode, and Voltorb therefore follow the same range as the route where they
+appear. The Regi trio, Groudon, Kyogre, and Rayquaza instead use a 550–600 BST
+range and may resolve to Legendary or Mythical species.
 
 ## Biomes
 
@@ -162,8 +173,10 @@ which species may be selected; it does not raise their level.
 
 ## Eligibility and coverage
 
-Legendary, Mythical, Ultra Beast, and Paradox Pokémon are excluded from this
-randomizer. The generated species catalog is the source for the biome pools.
+Legendary, Mythical, Ultra Beast, and Paradox Pokémon are excluded from
+ordinary encounters and eggs. The generated species catalog is the source for
+ordinary biome pools. The designated high-tier static encounters are the
+exception and may select from those categories.
 The current runtime implementation does not perform a global per-save coverage
 audit or repair pass; it independently derives each table from its assigned
 biome pool and BST cap.
@@ -205,7 +218,8 @@ rates, and available methods. The randomizer replaces species entries only.
   identical species tables.
 - A save reload produces the same encounter tables.
 - A new save can produce different tables.
-- No Legendary, Mythical, Ultra Beast, or Paradox species is selected.
+- No Legendary, Mythical, Ultra Beast, or Paradox species is selected for
+  ordinary encounters or eggs.
 - No species above a place's configured BST cap is selected.
 - Weak species remain eligible in later places.
 

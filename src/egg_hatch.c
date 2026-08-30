@@ -38,6 +38,7 @@
 #include "battle.h" // to get rid of later
 #include "constants/rgb.h"
 #include "party_menu.h"
+#include "fork_encounter_randomizer.h"
 
 #define GFXTAG_EGG       12345
 #define GFXTAG_EGG_SHARD 23456
@@ -315,7 +316,7 @@ static void CreateHatchedMon(struct Pokemon *egg, struct Pokemon *temp)
     enum Move moves[MAX_MON_MOVES];
     u32 ivs[NUM_STATS];
 
-    species = GetMonData(egg, MON_DATA_SPECIES);
+    species = ResolveForkRandomizedEggSpecies(GetMonData(egg, MON_DATA_SPECIES));
 
     for (i = 0; i < MAX_MON_MOVES; i++)
         moves[i] = GetMonData(egg, MON_DATA_MOVE1 + i);

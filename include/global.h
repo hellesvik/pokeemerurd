@@ -302,6 +302,7 @@ struct SaveBlock3
     u8 forkRandomizerMaxGen;
     u8 forkRandomAbilitiesEnabled;
     u8 forkMegaEvolutionEnabled;
+    u8 forkBattleStyleLocked;
 }; /* max size 1624 bytes */
 
 extern struct SaveBlock3 *gSaveBlock3Ptr;

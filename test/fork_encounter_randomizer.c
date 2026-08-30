@@ -8,6 +8,7 @@
 // its production header exists. These tests specify the feature contract.
 enum Species ResolveForkRandomizedEncounterSpecies(u8 mapGroup, u8 mapNum, enum WildPokemonArea area, u8 slot, enum Species fallback);
 u16 GetForkEncounterRandomizerBstCap(u8 mapGroup, u8 mapNum, enum WildPokemonArea area);
+u16 GetForkEncounterRandomizerBstMin(u8 mapGroup, u8 mapNum, enum WildPokemonArea area);
 
 static u16 GetSpeciesBst(enum Species species)
 {
@@ -42,6 +43,14 @@ TEST("Biome encounter randomizer obeys the configured place BST cap")
 
     EXPECT_NE(cap, 0);
     EXPECT_LE(GetSpeciesBst(species), cap);
+}
+
+TEST("Biome encounter randomizer uses route-specific BST ranges")
+{
+    EXPECT_EQ(GetForkEncounterRandomizerBstMin(MAP_GROUP(MAP_ROUTE101), MAP_NUM(MAP_ROUTE101), WILD_AREA_LAND), 150);
+    EXPECT_EQ(GetForkEncounterRandomizerBstCap(MAP_GROUP(MAP_ROUTE101), MAP_NUM(MAP_ROUTE101), WILD_AREA_LAND), 250);
+    EXPECT_EQ(GetForkEncounterRandomizerBstMin(MAP_GROUP(MAP_VICTORY_ROAD_1F), MAP_NUM(MAP_VICTORY_ROAD_1F), WILD_AREA_LAND), 490);
+    EXPECT_EQ(GetForkEncounterRandomizerBstCap(MAP_GROUP(MAP_VICTORY_ROAD_1F), MAP_NUM(MAP_VICTORY_ROAD_1F), WILD_AREA_LAND), 560);
 }
 
 TEST("Biome encounter randomizer makes water tables water-compatible")

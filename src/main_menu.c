@@ -1753,6 +1753,7 @@ static void Task_NewGameBirchSpeech_FeatureOptions(u8 taskId)
     if (ForkNewGameOptionsShouldContinue(gMain.newKeys))
     {
         PlaySE(SE_SELECT);
+        ForkSetBattleStyleLocked(ForkNewGameOptionsLocksBattleStyle(settings));
         ForkConfigureGameplayOptions(values & 1, (values >> 1) & 1, (values >> 2) & 3, (values >> 4) & 1, (values >> 5) & 1, (values >> 6) & 1, (values >> 7) & 1, (values >> 8) & 1, (values >> 9) & 1, (values >> 14) & 1, (values >> 10) & 0xF, (values >> 15) & 1);
         NewGameBirchSpeech_ClearFeatureOptions();
         FreeAllWindowBuffers();

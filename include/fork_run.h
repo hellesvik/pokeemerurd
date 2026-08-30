@@ -12,6 +12,8 @@ enum ForkFaintRule
 };
 
 void ForkResetAreaEncounterState(void);
+bool32 ForkIsBattleStyleLocked(void);
+void ForkSetBattleStyleLocked(bool32 locked);
 bool32 ForkIsAreaEncounterRuleActive(void);
 bool32 ForkIsCatchLimitEnabled(void);
 bool32 ForkIsLevelCapEnabled(void);

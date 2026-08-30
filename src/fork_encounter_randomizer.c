@@ -27,6 +27,7 @@ struct ForkEncounterAssignment
     u8 mapNum;
     u8 area;
     u8 biome;
+    u16 minBst;
     u16 maxBst;
     u8 slots;
 };
@@ -146,6 +147,7 @@ static enum Species SelectEncounterSpecies(const struct ForkEncounterAssignment 
     {
         enum Species species = pool[(start + i) % count];
         if (IsWithinForkMaxGeneration(species)
+         && GetSpeciesBst(species) >= assignment->minBst
          && GetSpeciesBst(species) <= assignment->maxBst
          && IsMethodCompatible(species, area)
          && !IsAlreadySelected(species, selected, selectedCount))
@@ -164,6 +166,12 @@ u16 GetForkEncounterRandomizerBstCap(u8 mapGroup, u8 mapNum, enum WildPokemonAre
 {
     const struct ForkEncounterAssignment *assignment = FindAssignment(mapGroup, mapNum, area);
     return assignment == NULL ? 0 : assignment->maxBst;
+}
+
+u16 GetForkEncounterRandomizerBstMin(u8 mapGroup, u8 mapNum, enum WildPokemonArea area)
+{
+    const struct ForkEncounterAssignment *assignment = FindAssignment(mapGroup, mapNum, area);
+    return assignment == NULL ? 0 : assignment->minBst;
 }
 
 enum Species ResolveForkRandomizedEncounterSpecies(u8 mapGroup, u8 mapNum, enum WildPokemonArea area, u8 slot, enum Species fallback)

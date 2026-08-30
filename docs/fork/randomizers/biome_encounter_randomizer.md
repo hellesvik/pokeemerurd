@@ -102,13 +102,60 @@ an explicit maximum BST in its encounter configuration. The cap depends on how
 far along that place is intended to be in the game; it does not depend on the
 badges currently owned by the player.
 
-There is no lower cap. Therefore, later areas can still produce weak Pokémon,
-while progressively stronger Pokémon become possible in later places.
+Each route/place has both a minimum and maximum BST. The minimum is normally
+100 below the maximum, so later areas expand the available power range without
+making every encounter equally strong. Neighboring areas intentionally overlap.
 
-The implementation includes a complete explicit map/place-to-maximum-BST
-assignment. Starting locations use a low cap, midgame routes a higher cap, and
-late-game routes can allow the full eligible range. The values are reviewed in
+The implementation includes a complete explicit map/place-to-BST-range
+assignment. Starting locations use a low range, midgame routes progressively
+increase it, and late-game routes reach the 450–550 range. Victory Road is the
+intentional exception, using 490–560. The values are reviewed in
 [`biome_encounter_assignments.csv`](../reference/biome_encounter_assignments.csv).
+
+### BST limits by route and place
+
+The following is the route-facing summary of the current limits. A limit applies
+to every encounter method configured for that route or place (land, water,
+fishing, or Rock Smash). Areas with multiple floors are grouped together where
+they share the same limit.
+
+| BST range | Routes and places |
+| ---: | --- |
+| 150–250 | Route 101, Petalburg City |
+| 160–260 | Route 102 |
+| 170–270 | Route 103 |
+| 180–280 | Route 104, Petalburg Woods |
+| 190–290 | Route 105 |
+| 200–300 | Route 106, Dewford Town |
+| 210–310 | Routes 107–109 |
+| 220–320 | Granite Cave |
+| 230–330 | Route 110 |
+| 240–340 | Route 111 |
+| 250–350 | Route 112, Fiery Path, Jagged Pass |
+| 260–360 | Route 113, Mirage Tower, Desert Underpass |
+| 270–370 | Route 114, Rusturf Tunnel |
+| 280–380 | Route 115 |
+| 290–390 | Route 116 |
+| 300–400 | Route 117, New Mauville |
+| 310–410 | Route 118 |
+| 320–420 | Route 119, Safari Zone |
+| 330–430 | Route 120, Mt. Pyre |
+| 340–440 | Routes 121–122 |
+| 350–450 | Route 123, Lilycove City |
+| 360–460 | Abandoned Ship, Slateport City, Pacifidlog Town |
+| 370–470 | Routes 124–125, Underwater Route 124 |
+| 380–480 | Shoal Cave |
+| 390–490 | Route 126, Underwater Route 126, Mossdeep City |
+| 400–500 | Meteor Falls, Magma Hideout |
+| 410–510 | Route 127 |
+| 420–520 | Route 128, Seafloor Cavern |
+| 430–530 | Route 129 |
+| 440–540 | Route 130 |
+| 450–550 | Routes 131–134, Cave of Origin, Ever Grande City, Sky Pillar, Sootopolis City, Artisan Cave, Altering Cave |
+| 490–560 | Victory Road |
+
+The bounds are inclusive. The exact map/method rows are defined in the CSV
+linked above.
 
 The map's ordinary encounter level rules remain in effect. BST gating controls
 which species may be selected; it does not raise their level.

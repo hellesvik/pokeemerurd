@@ -73,3 +73,11 @@ TEST("New game settings cycles through four modes")
     EXPECT_EQ(ForkNewGameOptionsNextSetting(3, DPAD_RIGHT), 0);
     EXPECT_EQ(ForkNewGameOptionsNextSetting(0, DPAD_LEFT), 3);
 }
+
+TEST("Nuzlite and Nuzlocke lock battle style to Set")
+{
+    EXPECT_EQ(ForkNewGameOptionsLocksBattleStyle(0), TRUE);
+    EXPECT_EQ(ForkNewGameOptionsLocksBattleStyle(1), TRUE);
+    EXPECT_EQ(ForkNewGameOptionsLocksBattleStyle(2), FALSE);
+    EXPECT_EQ(ForkNewGameOptionsLocksBattleStyle(3), FALSE);
+}

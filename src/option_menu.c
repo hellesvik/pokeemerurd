@@ -1,4 +1,5 @@
 #include "global.h"
+#include "fork_run.h"
 #include "option_menu.h"
 #include "bg.h"
 #include "gpu_regs.h"
@@ -246,7 +247,7 @@ void CB2_InitOptionMenu(void)
         gTasks[taskId].tMenuSelection = 0;
         gTasks[taskId].tTextSpeed = gSaveBlock2Ptr->optionsTextSpeed;
         gTasks[taskId].tBattleSceneOff = gSaveBlock2Ptr->optionsBattleSceneOff;
-        gTasks[taskId].tBattleStyle = OPTIONS_BATTLE_STYLE_SET;
+        gTasks[taskId].tBattleStyle = gSaveBlock2Ptr->optionsBattleStyle;
         gTasks[taskId].tSound = gSaveBlock2Ptr->optionsSound;
         gTasks[taskId].tButtonMode = gSaveBlock2Ptr->optionsButtonMode;
         gTasks[taskId].tWindowFrameType = gSaveBlock2Ptr->optionsWindowFrameType;
@@ -325,7 +326,7 @@ static void Task_OptionMenuProcessInput(u8 taskId)
                 BattleScene_DrawChoices(gTasks[taskId].tBattleSceneOff);
             break;
         case MENUITEM_BATTLESTYLE:
-            if (gTasks[taskId].tBattleStyle != OPTIONS_BATTLE_STYLE_SET)
+            if (ForkIsBattleStyleLocked())
             {
                 gTasks[taskId].tBattleStyle = OPTIONS_BATTLE_STYLE_SET;
                 BattleStyle_DrawChoices(gTasks[taskId].tBattleStyle);
@@ -374,7 +375,7 @@ static void Task_OptionMenuSave(u8 taskId)
 {
     gSaveBlock2Ptr->optionsTextSpeed = gTasks[taskId].tTextSpeed;
     gSaveBlock2Ptr->optionsBattleSceneOff = gTasks[taskId].tBattleSceneOff;
-    gSaveBlock2Ptr->optionsBattleStyle = OPTIONS_BATTLE_STYLE_SET;
+    gSaveBlock2Ptr->optionsBattleStyle = ForkIsBattleStyleLocked() ? OPTIONS_BATTLE_STYLE_SET : gTasks[taskId].tBattleStyle;
     gSaveBlock2Ptr->optionsSound = gTasks[taskId].tSound;
     gSaveBlock2Ptr->optionsButtonMode = gTasks[taskId].tButtonMode;
     gSaveBlock2Ptr->optionsWindowFrameType = gTasks[taskId].tWindowFrameType;

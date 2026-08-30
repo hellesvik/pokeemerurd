@@ -72,6 +72,11 @@ u16 ForkNewGameOptionsPresetValues(u8 settings)
     return settings == 2 ? 0x810 : 0x800; // NORMAL keeps battle items enabled; generation defaults to Gen 3.
 }
 
+bool8 ForkNewGameOptionsLocksBattleStyle(u8 settings)
+{
+    return settings == 0 || settings == 1;
+}
+
 bool8 ForkNewGameOptionsShouldContinue(u16 newKeys)
 {
     return (newKeys & START_BUTTON) != 0;

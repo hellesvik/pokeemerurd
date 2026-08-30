@@ -9157,12 +9157,8 @@ void TryRestoreHeldItems(void)
         {
             u16 lostItem = gBattleStruct->itemLost[B_SIDE_PLAYER][i].originalItem;
 
-            // Check if the lost item is a berry and the mon is not holding it
-            if (GetItemPocket(lostItem) == POCKET_BERRIES && GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_HELD_ITEM) != lostItem)
-                lostItem = ITEM_NONE;
-
-            // Check if the lost item should be restored
-            if ((lostItem != ITEM_NONE || returnNPCItems) && GetItemPocket(lostItem) != POCKET_BERRIES)
+            // Restore every held item that was consumed, knocked off, or stolen.
+            if (lostItem != ITEM_NONE || returnNPCItems)
                 SetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_HELD_ITEM, &lostItem);
         }
     }

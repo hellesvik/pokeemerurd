@@ -61,6 +61,18 @@ bool32 ForkIsAreaEncounterRuleActive(void)
     return FlagGet(FLAG_ADVENTURE_STARTED) && ForkIsCatchLimitEnabled();
 }
 
+bool32 ForkIsBattleStyleLocked(void)
+{
+    return gSaveBlock3Ptr->forkGameplayOptionsConfigured && gSaveBlock3Ptr->forkBattleStyleLocked;
+}
+
+void ForkSetBattleStyleLocked(bool32 locked)
+{
+    gSaveBlock3Ptr->forkBattleStyleLocked = locked;
+    if (locked)
+        gSaveBlock2Ptr->optionsBattleStyle = OPTIONS_BATTLE_STYLE_SET;
+}
+
 bool32 ForkIsCatchLimitEnabled(void)
 {
     return !gSaveBlock3Ptr->forkGameplayOptionsConfigured || gSaveBlock3Ptr->forkCatchLimitEnabled;

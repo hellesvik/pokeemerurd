@@ -36,7 +36,7 @@ TEST("New game options presets lock custom rules")
     EXPECT_EQ(ForkNewGameOptionsCanEdit(1), FALSE);
     EXPECT_EQ(ForkNewGameOptionsCanEdit(2), FALSE);
     EXPECT_EQ(ForkNewGameOptionsCanEdit(3), TRUE);
-    EXPECT_EQ(ForkNewGameOptionsPresetValues(0), 52215);
+    EXPECT_EQ(ForkNewGameOptionsPresetValues(0), 52199);
     EXPECT_EQ(ForkNewGameOptionsPresetValues(1), 52203);
     EXPECT_EQ(ForkNewGameOptionsPresetValues(2), 2064);
 }
@@ -48,6 +48,16 @@ TEST("Randomizer max generation remains editable in every mode")
     EXPECT_EQ(ForkNewGameOptionsCanEditIndex(2, 10), TRUE);
     EXPECT_EQ(ForkNewGameOptionsCanEditIndex(3, 10), TRUE);
     EXPECT_EQ(ForkNewGameOptionsCanEditIndex(0, 9), FALSE);
+    EXPECT_EQ(ForkNewGameOptionsCanEditIndex(3, 13), TRUE);
+    EXPECT_EQ(ForkNewGameOptionsCanEditIndex(0, 13), FALSE);
+}
+
+TEST("New game presets keep TMs consumable")
+{
+    EXPECT_EQ(ForkNewGameOptionsPresetReusableTMs(0), FALSE);
+    EXPECT_EQ(ForkNewGameOptionsPresetReusableTMs(1), FALSE);
+    EXPECT_EQ(ForkNewGameOptionsPresetReusableTMs(2), FALSE);
+    EXPECT_EQ(ForkNewGameOptionsPresetReusableTMs(3), FALSE);
 }
 
 TEST("New game faint rule cycles through three values")

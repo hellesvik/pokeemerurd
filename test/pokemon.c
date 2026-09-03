@@ -137,12 +137,12 @@ TEST("Fork rules enable a hard story-battle level cap while leaving one-use Rare
 
 TEST("Fork gameplay options gate the catch limit and level cap")
 {
-    ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, GEN_3, TRUE);
+    ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, GEN_3, TRUE, FALSE);
     EXPECT_EQ(ForkIsCatchLimitEnabled(), FALSE);
     EXPECT_EQ(ForkIsLevelCapEnabled(), FALSE);
     EXPECT_EQ(GetCurrentLevelCap(), MAX_LEVEL);
 
-    ForkConfigureGameplayOptions(TRUE, TRUE, FORK_FAINT_RULE_WHITEOUT, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, GEN_3, TRUE);
+    ForkConfigureGameplayOptions(TRUE, TRUE, FORK_FAINT_RULE_WHITEOUT, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, GEN_3, TRUE, FALSE);
     EXPECT_EQ(ForkIsCatchLimitEnabled(), TRUE);
     EXPECT_EQ(ForkIsLevelCapEnabled(), TRUE);
 }
@@ -220,6 +220,24 @@ TEST("Fork area encounter rule starts after Professor Birch gives Poké Balls")
     EXPECT_EQ(ForkIsAreaEncounterRuleActive(), FALSE);
     FlagSet(FLAG_ADVENTURE_STARTED);
     EXPECT_EQ(ForkIsAreaEncounterRuleActive(), TRUE);
+}
+
+TEST("Fork faint penalties do not start before Professor Birch gives Poké Balls")
+{
+    ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_ON_FAINT, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, GEN_3, TRUE, FALSE);
+    FlagClear(FLAG_ADVENTURE_STARTED);
+    CreateMon(&gParties[B_TRAINER_PLAYER][0], SPECIES_MUDKIP, 5, 0, OTID_STRUCT_PLAYER_ID);
+
+    ForkApplySoftNuzlockeFaintPenalty(0);
+
+    EXPECT_EQ(GetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_SOFT_NUZLOCKE), FALSE);
+    EXPECT_EQ(GetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_LEVEL), 5);
+
+    ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, GEN_3, TRUE, FALSE);
+    ForkApplySoftNuzlockeWhiteOutPenalty();
+
+    EXPECT_EQ(GetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_SOFT_NUZLOCKE), FALSE);
+    EXPECT_EQ(GetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_LEVEL), 5);
 }
 
 TEST("Fork rules track one encounter per named area")

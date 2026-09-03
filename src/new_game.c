@@ -176,6 +176,7 @@ void NewGameInitData(void)
     u8 randomizerMaxGen = ForkGetRandomizerMaxGen();
     bool32 randomAbilitiesEnabled = ForkAreRandomAbilitiesEnabled();
     bool32 megaEvolutionEnabled = ForkAreMegaEvolutionsEnabled();
+    bool32 reusableTMsEnabled = ForkAreTMsReusable();
 #if IS_FRLG
     u8 rivalName[PLAYER_NAME_LENGTH + 1];
 #endif
@@ -193,7 +194,7 @@ void NewGameInitData(void)
     ClearFrontierRecord();
     ClearSav1();
     ClearSav3();
-    ForkConfigureGameplayOptions(catchLimitEnabled, levelCapEnabled, faintRule, itemsInBattleEnabled, infiniteRareCandyEnabled, infiniteRepelEnabled, playerEvsEnabled, itemRandomizerEnabled, randomEncountersEnabled, randomAbilitiesEnabled, randomizerMaxGen, megaEvolutionEnabled);
+    ForkConfigureGameplayOptions(catchLimitEnabled, levelCapEnabled, faintRule, itemsInBattleEnabled, infiniteRareCandyEnabled, infiniteRepelEnabled, playerEvsEnabled, itemRandomizerEnabled, randomEncountersEnabled, randomAbilitiesEnabled, randomizerMaxGen, megaEvolutionEnabled, reusableTMsEnabled);
     ClearAllMail();
     gSaveBlock2Ptr->specialSaveWarpFlags = 0;
     gSaveBlock2Ptr->gcnLinkFlags = 0;

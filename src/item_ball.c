@@ -16,7 +16,7 @@
 
 #define FIRST_HM_ITEM ITEM_HM01
 #define LAST_HM_ITEM ITEM_HM08
-#define FORK_ITEM_RANDOMIZER_VERSION 8
+#define FORK_ITEM_RANDOMIZER_VERSION 9
 #define FIRST_ITEM_BALL_FLAG FLAG_ITEM_ROUTE_102_POTION
 #define LAST_ITEM_BALL_FLAG FLAG_ITEM_SAFARI_ZONE_SOUTH_EAST_BIG_PEARL
 
@@ -619,8 +619,31 @@ enum Item ResolveForkRandomizedHiddenItem(enum Item itemId, u16 hiddenItemFlag)
     return sForkRandomizedHiddenItemPool[LocalRandom(&localRng) % ARRAY_COUNT(sForkRandomizedHiddenItemPool)];
 }
 
+static u16 GetForkGymLeaderItemSourceId(enum Item itemId)
+{
+    switch (itemId)
+    {
+    case ITEM_TM_ROCK_TOMB:  return FORK_ITEM_RANDOMIZER_GYM_LEADER_SOURCE_START + 0;
+    case ITEM_TM_BULK_UP:    return FORK_ITEM_RANDOMIZER_GYM_LEADER_SOURCE_START + 1;
+    case ITEM_TM_SHOCK_WAVE: return FORK_ITEM_RANDOMIZER_GYM_LEADER_SOURCE_START + 2;
+    case ITEM_TM_OVERHEAT:   return FORK_ITEM_RANDOMIZER_GYM_LEADER_SOURCE_START + 3;
+    case ITEM_TM_FACADE:     return FORK_ITEM_RANDOMIZER_GYM_LEADER_SOURCE_START + 4;
+    case ITEM_TM_AERIAL_ACE: return FORK_ITEM_RANDOMIZER_GYM_LEADER_SOURCE_START + 5;
+    case ITEM_TM_CALM_MIND:  return FORK_ITEM_RANDOMIZER_GYM_LEADER_SOURCE_START + 6;
+    case ITEM_TM_WATER_PULSE: return FORK_ITEM_RANDOMIZER_GYM_LEADER_SOURCE_START + 7;
+    default:                 return FORK_ITEM_RANDOMIZER_UNASSIGNED;
+    }
+}
+
 enum Item ResolveForkRandomizedScriptItem(enum Item itemId, const u8 *scriptPtr)
 {
+    u16 sourceId;
+
+    (void)scriptPtr;
+    sourceId = GetForkGymLeaderItemSourceId(itemId);
+    if (sourceId != FORK_ITEM_RANDOMIZER_UNASSIGNED)
+        return ResolveForkRandomizedItem(itemId, sourceId);
+
     return itemId;
 }
 

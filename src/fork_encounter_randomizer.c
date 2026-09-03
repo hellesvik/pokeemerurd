@@ -141,7 +141,7 @@ static bool8 IsRegularEncounterSpecies(enum Species species)
 
 u16 GetForkMaxNationalDex(void)
 {
-    return GetForkMaxNationalDexForGen(FORK_MAX_GEN_MONS);
+    return GetForkMaxNationalDexForGen(ForkGetRandomizerMaxGen());
 }
 
 static enum Species SelectEncounterSpecies(const struct ForkEncounterAssignment *assignment, u8 mapGroup, u8 mapNum, enum WildPokemonArea area, u8 slot, const enum Species *selected, u8 selectedCount, enum Species fallback)

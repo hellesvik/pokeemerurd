@@ -194,6 +194,18 @@ TEST("Fork item randomizer leaves ordinary scripted rewards vanilla")
     EXPECT_EQ(ResolveForkRandomizedScriptItem(ITEM_POTION, sFakeScript), ITEM_POTION);
 }
 
+TEST("Fork item randomizer includes gym leader TM gifts")
+{
+    static const u8 sFakeScript[] = {0x00};
+    enum Item randomizedItem;
+
+    gSaveBlock3Ptr->forkItemRandomizerSeed = 11113;
+    ResetForkItemRandomizerState();
+    randomizedItem = ResolveForkRandomizedScriptItem(ITEM_TM_ROCK_TOMB, sFakeScript);
+
+    EXPECT_NE(randomizedItem, ITEM_TM_ROCK_TOMB);
+}
+
 TEST("Fork item randomizer does not duplicate early source assignments")
 {
     enum Item items[8];

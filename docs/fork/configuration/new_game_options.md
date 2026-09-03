@@ -28,7 +28,7 @@ them. `ON` for Player EVs means normal EV gain is enabled.
 | Catch Limit | ON | ON | OFF | OFF |
 | Faint Rule | 1/WHITEOUT | ON FAINT | OFF | OFF |
 | Level Cap | ON | ON | OFF | OFF |
-| Items in Battle | ON | OFF | ON | ON |
+| Items in Battle | OFF | OFF | ON | ON |
 | Infinite Rare Candy | ON | ON | OFF | OFF |
 | Infinite Repel | ON | ON | OFF | OFF |
 | Player EVs | NORMAL | NORMAL | OFF | OFF |
@@ -75,7 +75,7 @@ The default is **ON**, preserving the fork's current behavior.
 - **ON**: The player can open the Bag and use battle items during battles.
 - **OFF**: The battle-item action is disabled for the player.
 
-NUZLITE defaults to **ON**. NORMAL and NUZLOCKE default to **OFF**. The rule
+NUZLITE and NUZLOCKE default to **OFF**. NORMAL defaults to **ON**. The rule
 can be changed in CUSTOM.
 
 ## Infinite Rare Candy

@@ -40,6 +40,7 @@
 #include "text_window.h"
 #include "trainer_card.h"
 #include "trade.h"
+#include "fork_gift_pokemon_randomizer.h"
 #include "union_room.h"
 #include "util.h"
 #include "window.h"
@@ -314,6 +315,8 @@ static void CB2_WaitTradeComplete(void);
 static void CB2_SaveAndEndTrade(void);
 static void CB2_FreeTradeAnim(void);
 static void Task_InGameTrade(u8);
+static enum Species GetForkInGameTradeSpecies(u8 whichInGameTrade);
+static const u8 sRustboroTradeWishiwashiNickname[] = _("BUNNDYR");
 static void CheckPartnersMonForRibbons(void);
 static void Task_AnimateWirelessSignal(u8);
 static void Task_OpenCenterWhiteColumn(u8);
@@ -4546,17 +4549,16 @@ u16 GetInGameTradeSpeciesInfo(void)
 {
     const struct InGameTrade *inGameTrade = &sIngameTrades[gSpecialVar_0x8005];
     StringCopy(gStringVar1, GetSpeciesName(inGameTrade->requestedSpecies));
-    StringCopy(gStringVar2, GetSpeciesName(inGameTrade->species));
+    StringCopy(gStringVar2, GetSpeciesName(GetForkInGameTradeSpecies(gSpecialVar_0x8005)));
     return inGameTrade->requestedSpecies;
 }
 
 static void BufferInGameTradeMonName(void)
 {
     u8 nickname[max(32, POKEMON_NAME_BUFFER_SIZE)];
-    const struct InGameTrade *inGameTrade = &sIngameTrades[gSpecialVar_0x8005];
     GetMonData(&gParties[B_TRAINER_PLAYER][gSpecialVar_0x8005], MON_DATA_NICKNAME, nickname);
     StringCopy_Nickname(gStringVar1, nickname);
-    StringCopy(gStringVar2, GetSpeciesName(inGameTrade->species));
+    StringCopy(gStringVar2, GetSpeciesName(GetForkInGameTradeSpecies(gSpecialVar_0x8005)));
 }
 
 static void CreateInGameTradePokemonInternal(u8 whichPlayerMon, u8 whichInGameTrade)
@@ -4569,8 +4571,33 @@ static void CreateInGameTradePokemonInternal(u8 whichPlayerMon, u8 whichInGameTr
     metloc_u8_t metLocation = METLOC_IN_GAME_TRADE;
     u8 mailNum;
     struct Pokemon *pokemon = &gParties[B_TRAINER_OPPONENT_A][0];
+    enum Species species = GetForkInGameTradeSpecies(whichInGameTrade);
+    u8 abilityNum = inGameTrade->abilityNum;
+    bool8 isShiny = FALSE;
+    enum Item heldItem = inGameTrade->heldItem;
+    enum Move moves[MAX_MON_MOVES] = {MOVE_NONE};
 
-    CreateMon(pokemon, inGameTrade->species, level, inGameTrade->personality, OTID_STRUCT_PRESET(inGameTrade->otId));
+    if (whichInGameTrade == INGAME_TRADE_PLUSLE)
+    {
+        enum Ability ability = GetForkRandomizedFortreeTradeAbility();
+        for (abilityNum = 0; abilityNum < NUM_ABILITY_SLOTS; abilityNum++)
+            if (GetSpeciesAbility(species, abilityNum) == ability)
+                break;
+        isShiny = GetForkRandomizedFortreeTradeIsShiny();
+    }
+    else if (whichInGameTrade == INGAME_TRADE_SEEDOT)
+    {
+        enum Ability ability = GetForkRandomizedRustboroTradeAbility();
+
+        for (abilityNum = 0; abilityNum < NUM_ABILITY_SLOTS; abilityNum++)
+            if (GetSpeciesAbility(species, abilityNum) == ability)
+                break;
+        heldItem = GetForkRandomizedRustboroTradeHeldItem();
+        for (u8 i = 0; i < MAX_MON_MOVES; i++)
+            moves[i] = GetForkRandomizedRustboroTradeMove(i);
+    }
+
+    CreateMon(pokemon, species, level, inGameTrade->personality, OTID_STRUCT_PRESET(inGameTrade->otId));
     GiveMonInitialMoveset(pokemon);
 
     SetMonData(pokemon, MON_DATA_HP_IV, &inGameTrade->ivs[0]);
@@ -4579,10 +4606,14 @@ static void CreateInGameTradePokemonInternal(u8 whichPlayerMon, u8 whichInGameTr
     SetMonData(pokemon, MON_DATA_SPEED_IV, &inGameTrade->ivs[3]);
     SetMonData(pokemon, MON_DATA_SPATK_IV, &inGameTrade->ivs[4]);
     SetMonData(pokemon, MON_DATA_SPDEF_IV, &inGameTrade->ivs[5]);
-    SetMonData(pokemon, MON_DATA_NICKNAME, inGameTrade->nickname);
+    if (whichInGameTrade == INGAME_TRADE_SEEDOT && species == SPECIES_WISHIWASHI)
+        SetMonData(pokemon, MON_DATA_NICKNAME, (void *)sRustboroTradeWishiwashiNickname);
+    else
+        SetMonData(pokemon, MON_DATA_NICKNAME, inGameTrade->nickname);
     SetMonData(pokemon, MON_DATA_OT_NAME, inGameTrade->otName);
     SetMonData(pokemon, MON_DATA_OT_GENDER, &inGameTrade->otGender);
-    SetMonData(pokemon, MON_DATA_ABILITY_NUM, &inGameTrade->abilityNum);
+    SetMonData(pokemon, MON_DATA_ABILITY_NUM, &abilityNum);
+    SetMonData(pokemon, MON_DATA_IS_SHINY, &isShiny);
     SetMonData(pokemon, MON_DATA_BEAUTY, &inGameTrade->conditions[1]);
     SetMonData(pokemon, MON_DATA_CUTE, &inGameTrade->conditions[2]);
     SetMonData(pokemon, MON_DATA_COOL, &inGameTrade->conditions[0]);
@@ -4592,21 +4623,33 @@ static void CreateInGameTradePokemonInternal(u8 whichPlayerMon, u8 whichInGameTr
     SetMonData(pokemon, MON_DATA_MET_LOCATION, &metLocation);
 
     mailNum = 0;
-    if (inGameTrade->heldItem != ITEM_NONE)
+    if (heldItem != ITEM_NONE)
     {
-        if (ItemIsMail(inGameTrade->heldItem))
+        if (ItemIsMail(heldItem))
         {
             GetInGameTradeMail(&mail, inGameTrade);
             gTradeMail[0] = mail;
             SetMonData(pokemon, MON_DATA_MAIL, &mailNum);
-            SetMonData(pokemon, MON_DATA_HELD_ITEM, &inGameTrade->heldItem);
+            SetMonData(pokemon, MON_DATA_HELD_ITEM, &heldItem);
         }
         else
         {
-            SetMonData(pokemon, MON_DATA_HELD_ITEM, &inGameTrade->heldItem);
+            SetMonData(pokemon, MON_DATA_HELD_ITEM, &heldItem);
         }
     }
+    for (u8 i = 0; i < MAX_MON_MOVES; i++)
+        if (moves[i] != MOVE_NONE)
+            SetMonData(pokemon, MON_DATA_MOVE1 + i, &moves[i]);
     CalculateMonStats(&gParties[B_TRAINER_OPPONENT_A][0]);
+}
+
+static enum Species GetForkInGameTradeSpecies(u8 whichInGameTrade)
+{
+    if (whichInGameTrade == INGAME_TRADE_PLUSLE)
+        return GetForkRandomizedFortreeTradeSpecies();
+    if (whichInGameTrade == INGAME_TRADE_SEEDOT)
+        return GetForkRandomizedRustboroTradeSpecies();
+    return sIngameTrades[whichInGameTrade].species;
 }
 
 static void GetInGameTradeMail(struct Mail *mail, const struct InGameTrade *trade)

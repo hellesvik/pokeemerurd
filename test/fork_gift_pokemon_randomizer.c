@@ -1,7 +1,10 @@
 #include "global.h"
 #include "fork_gift_pokemon_randomizer.h"
+#include "fork_encounter_randomizer.h"
 #include "pokemon.h"
 #include "test/test.h"
+#include "constants/items.h"
+#include "constants/moves.h"
 
 static bool8 IsPseudoLegendaryFirstStage(enum Species species)
 {
@@ -96,6 +99,105 @@ TEST("Fork starter receives at least two perfect IVs")
         if (GetMonData(&mon, MON_DATA_HP_IV + stat) == MAX_PER_STAT_IVS)
             perfectIvs++;
     EXPECT_GE(perfectIvs, 2);
+}
+
+TEST("Fortree trade uses its generation-filtered random pool")
+{
+    enum Species species;
+
+    gSaveBlock3Ptr->forkItemRandomizerSeed = 0x10293847;
+    species = GetForkRandomizedFortreeTradeSpecies();
+
+    EXPECT(species == SPECIES_BLASTOISE || species == SPECIES_SCIZOR || species == SPECIES_TORKOAL
+        || species == SPECIES_MAGMORTAR || species == SPECIES_GOLURK || species == SPECIES_DRAGALGE
+        || species == SPECIES_SHIINOTIC || species == SPECIES_MORPEKO || species == SPECIES_DACHSBUN);
+    EXPECT_LE((u16)gSpeciesInfo[species].natDexNum, GetForkMaxNationalDex());
+}
+
+TEST("Fortree trade keeps the selected ability and shiny treatment")
+{
+    enum Species species;
+    enum Ability expectedAbility;
+
+    gSaveBlock3Ptr->forkItemRandomizerSeed = 0x56473829;
+    species = GetForkRandomizedFortreeTradeSpecies();
+
+    switch (species)
+    {
+    case SPECIES_BLASTOISE: expectedAbility = ABILITY_MEGA_LAUNCHER; break;
+    case SPECIES_SCIZOR: expectedAbility = ABILITY_TECHNICIAN; break;
+    case SPECIES_TORKOAL: expectedAbility = ABILITY_DROUGHT; break;
+    case SPECIES_MAGMORTAR: expectedAbility = ABILITY_FLASH_FIRE; break;
+    case SPECIES_GOLURK: expectedAbility = ABILITY_UNSEEN_FIST; break;
+    case SPECIES_DRAGALGE: expectedAbility = ABILITY_REGENERATOR; break;
+    case SPECIES_SHIINOTIC: expectedAbility = ABILITY_POISON_HEAL; break;
+    case SPECIES_MORPEKO: expectedAbility = ABILITY_HUNGER_SWITCH; break;
+    case SPECIES_DACHSBUN: expectedAbility = ABILITY_WELL_BAKED_BODY; break;
+    default: expectedAbility = ABILITY_NONE; break;
+    }
+    EXPECT_EQ(GetForkRandomizedFortreeTradeAbility(), expectedAbility);
+    EXPECT_EQ(GetForkRandomizedFortreeTradeIsShiny(), species == SPECIES_GOLURK);
+}
+
+TEST("Rustboro trade uses its generation-filtered random pool")
+{
+    enum Species species;
+
+    gSaveBlock3Ptr->forkItemRandomizerSeed = 0x91827364;
+    species = GetForkRandomizedRustboroTradeSpecies();
+
+    EXPECT(species == SPECIES_PSYDUCK || species == SPECIES_CHIKORITA || species == SPECIES_MAWILE
+        || species == SPECIES_SPIRITOMB || species == SPECIES_EELEKTROSS || species == SPECIES_MALAMAR
+        || species == SPECIES_WISHIWASHI || species == SPECIES_CURSOLA || species == SPECIES_PALAFIN);
+    EXPECT_LE((u16)gSpeciesInfo[species].natDexNum, GetForkMaxNationalDex());
+}
+
+TEST("Rustboro trade assigns its special held items and moves")
+{
+    enum Species species;
+    enum Item heldItem;
+    enum Move move;
+
+    gSaveBlock3Ptr->forkItemRandomizerSeed = 0x19283746;
+    species = GetForkRandomizedRustboroTradeSpecies();
+    heldItem = GetForkRandomizedRustboroTradeHeldItem();
+    move = GetForkRandomizedRustboroTradeMove(0);
+
+    if (species == SPECIES_PSYDUCK)
+        EXPECT_EQ(heldItem, ITEM_EVIOLITE);
+    else if (species == SPECIES_CHIKORITA)
+        EXPECT_EQ(heldItem, ITEM_MEGANIUMITE);
+    else if (species == SPECIES_MAWILE)
+        EXPECT_EQ(heldItem, ITEM_MAWILITE);
+    else
+        EXPECT_EQ(heldItem, ITEM_NONE);
+
+    if (species == SPECIES_WISHIWASHI)
+        EXPECT_EQ(move, MOVE_SHADOW_SNEAK);
+    else if (species == SPECIES_EELEKTROSS)
+        EXPECT_EQ(move, MOVE_THUNDERBOLT);
+    else
+        EXPECT_EQ(move, MOVE_NONE);
+}
+
+TEST("Rustboro Psyduck receives its special moveset")
+{
+    bool8 foundPsyduck = FALSE;
+
+    for (u32 seed = 1; seed <= 64; seed++)
+    {
+        gSaveBlock3Ptr->forkItemRandomizerSeed = seed;
+        if (GetForkRandomizedRustboroTradeSpecies() == SPECIES_PSYDUCK)
+        {
+            foundPsyduck = TRUE;
+            EXPECT_EQ(GetForkRandomizedRustboroTradeMove(0), MOVE_FOLLOW_ME);
+            EXPECT_EQ(GetForkRandomizedRustboroTradeMove(1), MOVE_CONFUSION);
+            EXPECT_EQ(GetForkRandomizedRustboroTradeMove(2), MOVE_CONFUSE_RAY);
+            EXPECT_EQ(GetForkRandomizedRustboroTradeMove(3), MOVE_EXPLOSION);
+            break;
+        }
+    }
+    EXPECT(foundPsyduck);
 }
 
 TEST("Fork starter's other IVs can also roll perfect")

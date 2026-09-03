@@ -230,7 +230,7 @@ static void CB2_NewGameBirchSpeech_ReturnFromNamingScreen(void);
 static void Task_NewGameBirchSpeech_ContinueAfterName(u8);
 static void Task_NewGameFeatureOptions_Init(u8);
 static void Task_NewGameBirchSpeech_FeatureOptions(u8);
-static void NewGameBirchSpeech_ShowFeatureOptions(u8, u8, u16, u8);
+static void NewGameBirchSpeech_ShowFeatureOptions(u8, u8, u16, u8, bool8);
 static void NewGameBirchSpeech_ClearFeatureOptions(void);
 void CreateYesNoMenuParameterized(u8, u8, u16, u16, u8, u8);
 static void Task_NewGameBirchSpeech_SlidePlatformAway2(u8);
@@ -277,7 +277,7 @@ static const u8 *const sText_NewGameFeatureNames[] =
     COMPOUND_STRING("MODE"), COMPOUND_STRING("CATCH LIMIT"), COMPOUND_STRING("LEVEL CAP"), COMPOUND_STRING("FAINT RULE"),
     COMPOUND_STRING("ITEMS IN BATTLE"), COMPOUND_STRING("INFINITE RARE CANDY"), COMPOUND_STRING("INFINITE REPEL"), COMPOUND_STRING("PLAYER EVS"),
     COMPOUND_STRING("ITEM RANDOMIZER"), COMPOUND_STRING("RANDOM ENCOUNTERS"), COMPOUND_STRING("RANDOMIZER MAX GEN"), COMPOUND_STRING("RANDOM ABILITIES"),
-    COMPOUND_STRING("MEGA EVOLUTION"),
+    COMPOUND_STRING("MEGA EVOLUTION"), COMPOUND_STRING("REUSABLE TMs"),
 };
 static const u8 sText_NewGameFeatureNuzlite[] = _("NUZLITE");
 static const u8 sText_NewGameFeatureNormal[] = _("NORMAL");
@@ -1737,7 +1737,8 @@ static void Task_NewGameFeatureOptions_Init(u8 taskId)
     gTasks[taskId].data[1] = 0xCBF7;
     gTasks[taskId].data[2] = 0;
     gTasks[taskId].data[3] = 0;
-    NewGameBirchSpeech_ShowFeatureOptions(0, 0, 0xCBF7, 0);
+    gTasks[taskId].data[4] = FALSE;
+    NewGameBirchSpeech_ShowFeatureOptions(0, 0, 0xCBF7, 0, FALSE);
     gTasks[taskId].func = Task_NewGameBirchSpeech_FeatureOptions;
 }
 
@@ -1749,12 +1750,13 @@ static void Task_NewGameBirchSpeech_FeatureOptions(u8 taskId)
     u8 settings = gTasks[taskId].data[2];
     u8 nextSelection;
     u16 nextValues;
+    bool8 nextReusableTMs = gTasks[taskId].data[4];
 
     if (ForkNewGameOptionsShouldContinue(gMain.newKeys))
     {
         PlaySE(SE_SELECT);
         ForkSetBattleStyleLocked(ForkNewGameOptionsLocksBattleStyle(settings));
-        ForkConfigureGameplayOptions(values & 1, (values >> 1) & 1, (values >> 2) & 3, (values >> 4) & 1, (values >> 5) & 1, (values >> 6) & 1, (values >> 7) & 1, (values >> 8) & 1, (values >> 9) & 1, (values >> 14) & 1, (values >> 10) & 0xF, (values >> 15) & 1);
+        ForkConfigureGameplayOptions(values & 1, (values >> 1) & 1, (values >> 2) & 3, (values >> 4) & 1, (values >> 5) & 1, (values >> 6) & 1, (values >> 7) & 1, (values >> 8) & 1, (values >> 9) & 1, (values >> 14) & 1, (values >> 10) & 0xF, (values >> 15) & 1, gTasks[taskId].data[4]);
         NewGameBirchSpeech_ClearFeatureOptions();
         FreeAllWindowBuffers();
         gTasks[taskId].func = Task_NewGameBirchSpeech_Init;
@@ -1764,11 +1766,18 @@ static void Task_NewGameBirchSpeech_FeatureOptions(u8 taskId)
         PlaySE(SE_SELECT);
         gTasks[taskId].data[3] = ForkNewGameOptionsNextPage(page, gMain.newKeys);
         gTasks[taskId].data[0] = 0;
-        NewGameBirchSpeech_ShowFeatureOptions(gTasks[taskId].data[3], 0, values, settings);
+        NewGameBirchSpeech_ShowFeatureOptions(gTasks[taskId].data[3], 0, values, settings, gTasks[taskId].data[4]);
     }
     else
     {
-        nextSelection = page == 3 ? 0 : ForkNewGameOptionsMoveSelection(selection, gMain.newKeys);
+        nextSelection = page == 3 ? selection : ForkNewGameOptionsMoveSelection(selection, gMain.newKeys);
+        if (page == 3)
+        {
+            if ((gMain.newKeys & DPAD_DOWN) && selection == 0)
+                nextSelection = 1;
+            else if ((gMain.newKeys & DPAD_UP) && selection == 1)
+                nextSelection = 0;
+        }
             u8 index = page * 4 + selection;
 
         if (index == 0)
@@ -1783,6 +1792,11 @@ static void Task_NewGameBirchSpeech_FeatureOptions(u8 taskId)
         else if (index == 10 && ForkNewGameOptionsCanEditIndex(settings, index))
         {
             nextValues = ForkNewGameOptionsNextMaxGen((values >> 10) & 0xF, gMain.newKeys);
+        }
+        else if (index == 13 && ForkNewGameOptionsCanEditIndex(settings, index))
+        {
+            nextReusableTMs = ForkNewGameOptionsToggleValue(nextReusableTMs, gMain.newKeys);
+            nextValues = nextReusableTMs;
         }
         else if (ForkNewGameOptionsCanEditIndex(settings, index))
         {
@@ -1799,27 +1813,30 @@ static void Task_NewGameBirchSpeech_FeatureOptions(u8 taskId)
         {
             PlaySE(SE_SELECT);
             gTasks[taskId].data[0] = nextSelection;
-            NewGameBirchSpeech_ShowFeatureOptions(page, nextSelection, values, settings);
+            NewGameBirchSpeech_ShowFeatureOptions(page, nextSelection, values, settings, nextReusableTMs);
         }
         else if (index == 0 && settings != gTasks[taskId].data[2])
         {
             PlaySE(SE_SELECT);
             gTasks[taskId].data[2] = settings;
             gTasks[taskId].data[1] = nextValues;
-            NewGameBirchSpeech_ShowFeatureOptions(page, selection, nextValues, settings);
+            gTasks[taskId].data[4] = ForkNewGameOptionsPresetReusableTMs(settings);
+            NewGameBirchSpeech_ShowFeatureOptions(page, selection, nextValues, settings, gTasks[taskId].data[4]);
         }
         else if (index != 0 && ForkNewGameOptionsCanEditIndex(settings, index)
-              && nextValues != (index == 3 ? ((values >> 2) & 3) : index == 10 ? ((values >> 10) & 0xF) : ((values >> (index >= 4 ? index : index - 1)) & 1)))
+              && nextValues != (index == 3 ? ((values >> 2) & 3) : index == 10 ? ((values >> 10) & 0xF) : index == 13 ? gTasks[taskId].data[4] : ((values >> (index >= 4 ? index : index - 1)) & 1)))
         {
             PlaySE(SE_SELECT);
             if (index == 3)
                 values = (values & 0x3) | (nextValues << 2);
             else if (index == 10)
                 values = (values & ~(0xF << 10)) | (nextValues << 10);
+            else if (index == 13)
+                gTasks[taskId].data[4] = nextReusableTMs;
             else
                 values ^= (1 << (index >= 4 ? index : index - 1));
             gTasks[taskId].data[1] = values;
-            NewGameBirchSpeech_ShowFeatureOptions(page, selection, values, settings);
+            NewGameBirchSpeech_ShowFeatureOptions(page, selection, values, settings, gTasks[taskId].data[4]);
         }
     }
 }
@@ -2433,7 +2450,7 @@ static void NewGameBirchSpeech_ClearWindow(u8 windowId)
     CopyWindowToVram(windowId, COPYWIN_GFX);
 }
 
-static void NewGameBirchSpeech_ShowFeatureOptions(u8 page, u8 selection, u16 values, u8 settings)
+static void NewGameBirchSpeech_ShowFeatureOptions(u8 page, u8 selection, u16 values, u8 settings, bool8 reusableTMs)
 {
     u8 row;
 
@@ -2475,6 +2492,8 @@ static void NewGameBirchSpeech_ShowFeatureOptions(u8 page, u8 selection, u16 val
             }
             else if (index == 10)
                 value = sText_NewGameFeatureMaxGen[((values >> 10) & 0xF) - GEN_3];
+            else if (index == 13)
+                value = reusableTMs ? sText_NewGameFeatureOn : sText_NewGameFeatureOff;
             else
                 value = index == 7
                     ? ((values >> 7) & 1 ? sText_NewGameFeatureEvsNormal : sText_NewGameFeatureOff)

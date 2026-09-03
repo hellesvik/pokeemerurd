@@ -10,6 +10,7 @@ u8 ForkNewGameOptionsNextMaxGen(u8 generation, u16 newKeys);
 bool8 ForkNewGameOptionsCanEdit(u8 settings);
 bool8 ForkNewGameOptionsCanEditIndex(u8 settings, u8 index);
 u16 ForkNewGameOptionsPresetValues(u8 settings);
+bool8 ForkNewGameOptionsPresetReusableTMs(u8 settings);
 bool8 ForkNewGameOptionsLocksBattleStyle(u8 settings);
 bool8 ForkNewGameOptionsShouldContinue(u16 newKeys);
 

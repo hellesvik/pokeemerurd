@@ -13,6 +13,7 @@
 #include "constants/flags.h"
 #include "constants/items.h"
 #include "constants/vars.h"
+#include "config/item.h"
 #include "config/wild_encounter.h"
 
 #define FORK_AREA_STATE_INIT_FLAG FLAG_SPECIAL_FLAG_UNUSED_0x4003
@@ -137,7 +138,12 @@ bool32 ForkAreMegaEvolutionsEnabled(void)
     return !gSaveBlock3Ptr->forkGameplayOptionsConfigured || gSaveBlock3Ptr->forkMegaEvolutionEnabled;
 }
 
-void ForkConfigureGameplayOptions(bool32 catchLimitEnabled, bool32 levelCapEnabled, u8 faintRule, bool32 itemsInBattleEnabled, bool32 infiniteRareCandyEnabled, bool32 infiniteRepelEnabled, bool32 playerEvsEnabled, bool32 itemRandomizerEnabled, bool32 randomEncountersEnabled, bool32 randomAbilitiesEnabled, u8 randomizerMaxGen, bool32 megaEvolutionEnabled)
+bool32 ForkAreTMsReusable(void)
+{
+    return !gSaveBlock3Ptr->forkGameplayOptionsConfigured ? I_REUSABLE_TMS : gSaveBlock3Ptr->forkReusableTMsEnabled;
+}
+
+void ForkConfigureGameplayOptions(bool32 catchLimitEnabled, bool32 levelCapEnabled, u8 faintRule, bool32 itemsInBattleEnabled, bool32 infiniteRareCandyEnabled, bool32 infiniteRepelEnabled, bool32 playerEvsEnabled, bool32 itemRandomizerEnabled, bool32 randomEncountersEnabled, bool32 randomAbilitiesEnabled, u8 randomizerMaxGen, bool32 megaEvolutionEnabled, bool32 reusableTMsEnabled)
 {
     gSaveBlock3Ptr->forkGameplayOptionsConfigured = TRUE;
     gSaveBlock3Ptr->forkCatchLimitEnabled = catchLimitEnabled;
@@ -152,6 +158,7 @@ void ForkConfigureGameplayOptions(bool32 catchLimitEnabled, bool32 levelCapEnabl
     gSaveBlock3Ptr->forkRandomizerMaxGen = randomizerMaxGen;
     gSaveBlock3Ptr->forkRandomAbilitiesEnabled = randomAbilitiesEnabled;
     gSaveBlock3Ptr->forkMegaEvolutionEnabled = megaEvolutionEnabled;
+    gSaveBlock3Ptr->forkReusableTMsEnabled = reusableTMsEnabled;
 }
 
 static void EnsureAreaStateInitialized(void)
@@ -474,7 +481,7 @@ void ForkSpendCurrentAreaEncounter(void)
 
 void ForkApplySoftNuzlockeWhiteOutPenalty(void)
 {
-    if (ForkGetFaintRule() != FORK_FAINT_RULE_WHITEOUT)
+    if (!ForkIsAreaEncounterRuleActive() || ForkGetFaintRule() != FORK_FAINT_RULE_WHITEOUT)
         return;
 
     u8 candidates[PARTY_SIZE];
@@ -514,7 +521,9 @@ void ForkApplySoftNuzlockeFaintPenalty(u8 partySlot)
     u8 level = 1;
     u32 exp;
 
-    if (ForkGetFaintRule() != FORK_FAINT_RULE_ON_FAINT || partySlot >= PARTY_SIZE)
+    if (!ForkIsAreaEncounterRuleActive()
+     || ForkGetFaintRule() != FORK_FAINT_RULE_ON_FAINT
+     || partySlot >= PARTY_SIZE)
         return;
 
     mon = &gParties[B_TRAINER_PLAYER][partySlot];

@@ -5608,7 +5608,7 @@ static void Task_LearnedMove(u8 taskId)
     if (move[1] == 0)
     {
         AdjustFriendship(mon, FRIENDSHIP_EVENT_LEARN_TMHM);
-        if (!GetItemImportance(item))
+        if (!ForkAreTMsReusable() && GetItemTMHMIndex(item) != 0 && GetItemTMHMIndex(item) <= NUM_TECHNICAL_MACHINES)
             RemoveBagItem(item, 1);
     }
     GetMonNickname(mon, gStringVar1);

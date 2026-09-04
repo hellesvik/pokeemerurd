@@ -6,6 +6,7 @@ EverGrandeCity_ChampionsRoom_MapScripts::
 
 EverGrandeCity_ChampionsRoom_OnTransition:
 	call Common_EventScript_SetupRivalGfxId
+	setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_WALLACE
 	end
 
 EverGrandeCity_ChampionsRoom_OnWarp:
@@ -27,6 +28,12 @@ EverGrandeCity_ChampionsRoom_EventScript_EnterRoom::
 	delay 40
 	applymovement LOCALID_PLAYER, EverGrandeCity_ChampionsRoom_Movement_PlayerApproachWallace
 	waitmovement 0
+	applymovement LOCALID_CHAMPIONS_ROOM_WALLACE, EverGrandeCity_ChampionsRoom_Movement_WallaceReveal
+	waitmovement 0
+	removeobject LOCALID_CHAMPIONS_ROOM_WALLACE
+	setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_STEVEN
+	addobject LOCALID_CHAMPIONS_ROOM_WALLACE
+	msgbox EverGrandeCity_ChampionsRoom_Text_StevenDisguise, MSGBOX_DEFAULT
 	setvar VAR_TEMP_1, 1
 	goto EverGrandeCity_ChampionsRoom_EventScript_Wallace
 	releaseall
@@ -35,6 +42,15 @@ EverGrandeCity_ChampionsRoom_EventScript_EnterRoom::
 EverGrandeCity_ChampionsRoom_Movement_PlayerApproachWallace:
 	walk_up
 	walk_up
+	step_end
+
+EverGrandeCity_ChampionsRoom_Movement_WallaceReveal:
+	walk_in_place_faster_left
+	walk_in_place_faster_up
+	walk_in_place_faster_right
+	walk_in_place_faster_down
+	walk_in_place_faster_left
+	walk_in_place_faster_up
 	step_end
 
 EverGrandeCity_ChampionsRoom_EventScript_Wallace::
@@ -230,6 +246,9 @@ EverGrandeCity_ChampionsRoom_Text_IntroSpeech:
 	.string "built together.\p"
 	.string "Come, {PLAYER}{KUN}!\n"
 	.string "Show me what you can do!$"
+
+EverGrandeCity_ChampionsRoom_Text_StevenDisguise:
+	.string "STEVEN: I was in disguise!$"
 
 EverGrandeCity_ChampionsRoom_Text_Defeat:
 	.string "STEVEN: I, the CHAMPION, fall in defeat…\p"

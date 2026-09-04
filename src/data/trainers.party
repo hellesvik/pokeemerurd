@@ -4943,21 +4943,21 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Withdraw
 - Round
 
-Quilava @ Focus Sash
-Ability: Blaze
+Magmar @ Punching Glove
+Ability: Flame Body
 Level: 24
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Overheat
+- Fire Punch
 - Round
-- Mud Slap
-- Will-O-Wisp
+- Thunder Punch
+- Smog
 
-Magmar
-Ability: Flame Body
+Weezing @ White Herb
+Ability: Levitate
 Level: 26
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Fire Punch
-- Thunder Punch
+- Flamethrower
+- Clear Smog
 - Toxic
 - Round
 

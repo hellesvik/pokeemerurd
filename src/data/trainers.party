@@ -608,7 +608,7 @@ Crobat
 Level: 41
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
-Sharpedo
+Sharpedo @ Sharpedonite
 Level: 43
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
@@ -4597,45 +4597,59 @@ Double Battle: No
 AI: Basic Trainer / Force Setup First Turn
 Mugshot: Purple
 
-Mightyena
+Overqwil @ Black Sludge
+Ability: Intimidate
 Level: 46
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Roar
-- Double Edge
-- Sand Attack
-- Crunch
+- Toxic Spikes
+- Spikes
+- Knock Off
+- Mortal Spin
 
-Shiftry
+Zoroark @ Choice Scarf
+Ability: Illusion
 Level: 48
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Torment
-- Double Team
-- Swagger
-- Extrasensory
+- Night Daze
+- Flamethrower
+- U-Turn
+- Shadow Ball
 
-Cacturne
+Shiftry @ Loaded Dice
+Ability: Early Bird
 Level: 46
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Leech Seed
-- Feint Attack
-- Needle Arm
-- Cotton Spore
+- Fake Out
+- Beat Up
+- Bullet Seed
+- Arm Thrust
 
-Crawdaunt
+Bombirdier @ Hard Stone
+Ability: Rocky Payload
 Level: 48
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Surf
-- Swords Dance
-- Strength
-- Facade
+- Knock Off
+- Rock Slide
+- Roost
+- Brave Bird
 
-Absol @ Sitrus Berry
+Sharpedo @ Focus Sash
+Ability: Speed Boost
 Level: 49
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Aerial Ace
-- Rock Slide
+- Waterfall
+- Crunch
+- Ice Fang
+- Poison Jab
+
+Absol @ Absolite Z
+Ability: Super Luck
+Level: 49
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Night Slash
 - Swords Dance
-- Slash
+- Shadow Claw
+- Play Rough
 
 === TRAINER_PHOEBE ===
 Name: PHOEBE
@@ -4800,29 +4814,32 @@ Items: Potion / Potion
 Double Battle: No
 AI: Basic Trainer
 
-Geodude
+Anorith
+Ability: Sturdy
 Level: 12
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Tackle
-- Defense Curl
-- Rock Throw
-- Rock Tomb
+- Fury Cutter
+- Ancient Power
+- Water Gun
+- Mud Slap
 
-Geodude
+Lileep
+Ability: Storm Drain
 Level: 12
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Tackle
-- Defense Curl
-- Rock Throw
-- Rock Tomb
+- Absorb
+- Ancient Power
+- Ingrain
+- Withdraw
 
-Nosepass @ Oran Berry
+Nosepass @ Eviolite
+Ability: Solid Rock
 Level: 15
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Block
-- Harden
-- Tackle
+- Ancient Power
 - Rock Tomb
+- Block
+- Mud Slap
 
 === TRAINER_BRAWLY_1 ===
 Name: BRAWLY
@@ -4834,29 +4851,32 @@ Items: Super Potion / Super Potion
 Double Battle: No
 AI: Basic Trainer
 
-Machop
-Level: 16
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Karate Chop
-- Low Kick
-- Seismic Toss
-- Bulk Up
-
 Meditite
+Ability: Inner Focus
 Level: 16
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Focus Punch
-- Light Screen
-- Reflect
-- Bulk Up
+- Fake Out
+- Hidden Power
+- Confusion
+- Arm Thrust
 
-Makuhita @ Sitrus Berry
+Combusken
+Ability: Speed Boost
+Level: 16
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Aerial Ace
+- Double Kick
+- Ember
+- Quick Attack
+
+Makuhita @ Loaded Dice
+Ability: Thick Fat
 Level: 19
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Arm Thrust
-- Vital Throw
-- Reversal
 - Bulk Up
+- Arm Thrust
+- Fake Out
+- Knock Off
 
 === TRAINER_WATTSON_1 ===
 Name: WATTSON
@@ -4865,40 +4885,44 @@ Pic: Leader Wattson
 Gender: Male
 Music: Male
 Items: Super Potion / Super Potion
-Double Battle: No
+Double Battle: Yes
 AI: Basic Trainer
 
-Voltorb
+Plusle
+Ability: Plus
 Level: 20
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Rollout
+- Thunder Wave
+- Helping Hand
 - Spark
-- Self Destruct
-- Shock Wave
+- Quick Attack
 
-Electrike
+Minun
+Ability: Minus
 Level: 20
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Thunder Wave
+- Helping Hand
 - Shock Wave
-- Leer
 - Quick Attack
-- Howl
 
-Magneton
+Magneton @ Air Balloon
+Ability: Magnet Pull
 Level: 22
 IVs: 26 HP / 26 Atk / 26 Def / 26 SpA / 26 SpD / 26 Spe
-- Supersonic
 - Shock Wave
-- Thunder Wave
-- Sonic Boom
+- Magnet Bomb
+- Magnet Rise
+- Tri Attack
 
-Manectric @ Sitrus Berry
+Manectric @ Magnet
+Ability: Intimidate
 Level: 24
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Quick Attack
-- Thunder Wave
 - Shock Wave
-- Howl
+- Flamethrower
+- Snarl
+- Hidden Power
 
 === TRAINER_FLANNERY_1 ===
 Name: FLANNERY
@@ -4910,37 +4934,41 @@ Items: Hyper Potion / Hyper Potion
 Double Battle: No
 AI: Basic Trainer
 
-Numel
+Torkoal @ Charcoal
+Ability: Drought
 Level: 24
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Overheat
-- Take Down
-- Magnitude
-- Sunny Day
+- Protect
+- Withdraw
+- Round
 
-Slugma
+Quilava @ Focus Sash
+Ability: Blaze
 Level: 24
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Overheat
-- Smog
-- Light Screen
-- Sunny Day
+- Round
+- Mud Slap
+- Will-O-Wisp
 
-Camerupt
+Magmar
+Ability: Flame Body
 Level: 26
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Overheat
-- Tackle
-- Sunny Day
-- Attract
+- Fire Punch
+- Thunder Punch
+- Toxic
+- Round
 
-Torkoal @ White Herb
+Camerupt @ Chesto Berry
+Ability: Fur Coat
 Level: 29
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Overheat
-- Sunny Day
-- Body Slam
-- Attract
+- Earth Power
+- Round
+- Rest
 
 === TRAINER_NORMAN_1 ===
 Name: NORMAN
@@ -4952,37 +4980,50 @@ Items: Hyper Potion / Hyper Potion
 Double Battle: No
 AI: Basic Trainer
 
-Spinda
+Linoone @ Liechi Berry
+Ability: Adaptability
 Level: 27
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Teeter Dance
-- Psybeam
+- Extreme Speed
 - Facade
-- Encore
+- Shadow Claw
+- Dig
 
-Vigoroth
+Zangoose @ Toxic Orb
+Ability: Toxic Boost
 Level: 27
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Slash
 - Facade
-- Encore
-- Feint Attack
+- Night Slash
+- Quick Attack
+- Dig
 
-Linoone
+Tauros @ Wide Lens
+Ability: Intimidate
 Level: 29
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Slash
-- Belly Drum
 - Facade
-- Headbutt
+- Surf
+- Fire Blast
+- Blizzard
 
-Slaking @ Sitrus Berry
+Bouffalant @ Rocky Helmet
+Ability: Sap Sipper
+Level: 29
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Head Smash
+- Head Charge
+- Iron Head
+- Zen Headbutt
+
+Slaking @ Flame Orb
+Ability: Truant
 Level: 31
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Counter
-- Yawn
 - Facade
-- Feint Attack
+- Rest
+- Snore
+- Fire Punch
 
 === TRAINER_WINONA_1 ===
 Name: WINONA
@@ -4994,45 +5035,48 @@ Items: Hyper Potion / Hyper Potion
 Double Battle: No
 AI: Basic Trainer / Risky
 
-Swablu
+Swellow @ Sharp Beak
+Ability: Guts
 Level: 29
 IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
-- Perish Song
-- Mirror Move
-- Safeguard
 - Aerial Ace
+- Quick Attack
+- U-Turn
+- Beat Up
 
-Tropius
+Tropius @ Sitrus Berry
+Ability: Harvest
 Level: 29
 IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
+- Solarbeam
 - Sunny Day
-- Aerial Ace
-- Solar Beam
 - Synthesis
+- Air Slash
 
-Pelipper
+Pelipper @ Wide Lens
+Ability: Keen Eye
 Level: 30
 IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
-- Water Gun
-- Supersonic
-- Protect
-- Aerial Ace
+- Rain Dance
+- Hydro Pump
+- Thunder
+- Hurricane
 
-Skarmory
+Salamence @ Persim Berry
+Ability: Intimidate
 Level: 31
 IVs: 26 HP / 26 Atk / 26 Def / 26 SpA / 26 SpD / 26 Spe
-- Sand Attack
-- Fury Attack
-- Steel Wing
-- Aerial Ace
+- Outrage
+- Fly
 
-Altaria @ Oran Berry
+Altaria @ Altarianite
+Ability: Natural Cure
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Earthquake
-- Dragon Breath
-- Dragon Dance
-- Aerial Ace
+- Dragonbreath
+- Air Slash
+- Swift
+- Roost
 
 === TRAINER_TATE_AND_LIZA_1 ===
 Name: TATE&LIZA
@@ -5044,37 +5088,59 @@ Items: Hyper Potion / Hyper Potion / Hyper Potion / Hyper Potion
 Double Battle: Yes
 AI: Basic Trainer
 
-Claydol
+Xatu @ Flame Orb
+Ability: Magic Guard
 Level: 41
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Earthquake
-- Ancient Power
-- Psychic
-- Light Screen
+- Psycho Shift
+- Roost
+- Extrasensory
+- Air Slash
 
-Xatu
+Sigilyph @ Toxic Orb
+Ability: Magic Guard
 Level: 41
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+- Psycho Shift
+- Roost
 - Psychic
-- Sunny Day
-- Confuse Ray
-- Calm Mind
+- Air Cutter
 
-Lunatone @ Sitrus Berry
+Gothitelle @ Light Clay
+Ability: Shadow Tag
 Level: 42
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+- Reflect
 - Light Screen
-- Psychic
-- Hypnosis
-- Calm Mind
+- Psyshock
+- Shadow Ball
 
-Solrock @ Sitrus Berry
+Reuniclus @ Leftovers
+Ability: Regenerator
 Level: 42
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Sunny Day
-- Solar Beam
+- Psyshock
+- Calm Mind
+- Recover
+- Focus Blast
+
+Lunatone @ Choice Specs
+Ability: Levitate
+Level: 42
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+- Power Gem
 - Psychic
-- Flamethrower
+- Moonblast
+- Swift
+
+Solrock @ Choice Band
+Ability: Levitate
+Level: 42
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+- Rock Slide
+- Heat Crash
+- Zen Headbutt
+- Meteor Mash
 
 === TRAINER_JUAN_1 ===
 Name: JUAN
@@ -5086,45 +5152,59 @@ Items: Hyper Potion / Hyper Potion
 Double Battle: No
 AI: Basic Trainer
 
-Luvdisc
+Pelipper @ Eject Button
+Ability: Drizzle
 Level: 41
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Water Pulse
-- Attract
-- Sweet Kiss
-- Flail
+- Flip Turn
+- Hurricane
+- Protect
+- Hydro Pump
 
-Whiscash
+Luvdisc @ Choice Band
+Ability: Adaptability
 Level: 41
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Rain Dance
-- Water Pulse
-- Amnesia
-- Earthquake
+- U-Turn
+- Liquidation
+- Flip Turn
+- Aqua Jet
 
-Sealeo
+Ludicolo @ Sitrus Berry
+Ability: Rain Dish
 Level: 43
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Encore
-- Body Slam
-- Aurora Beam
-- Water Pulse
+- Giga Drain
+- Leech Seed
+- Protect
+- Scald
 
-Crawdaunt
+Cursola @ Leftovers
+Ability: Perish Body
 Level: 43
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Water Pulse
-- Crabhammer
-- Taunt
-- Leer
+- Will-O-Wisp
+- Hex
+- Strength Sap
+- Brine
 
-Kingdra @ Chesto Berry
+Crawdaunt @ Scope Lens
+Ability: Sniper
 Level: 46
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Water Pulse
-- Double Team
-- Ice Beam
-- Rest
+- Night Slash
+- Slash
+- Crabhammer
+- Aqua Jet
+
+Swampert @ Swampertite
+Ability: Swift Swim
+Level: 46
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+- Earthquake
+- Flip Turn
+- Ice Punch
+- Waterfall
 
 === TRAINER_JERRY_1 ===
 Name: JERRY
@@ -6243,9 +6323,9 @@ Level: 13
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_WALLACE ===
-Name: WALLACE
+Name: STEVEN
 Class: Champion
-Pic: Champion Wallace
+Pic: Steven
 Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore / Full Restore
@@ -6253,53 +6333,53 @@ Double Battle: No
 AI: Basic Trainer
 Mugshot: Yellow
 
-Wailord
+Skarmory
 Level: 57
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Rain Dance
-- Water Spout
-- Double Edge
-- Blizzard
+- Steel Wing
+- Spikes
+- Aerial Ace
+- Sand Attack
 
-Tentacruel
+Aggron
+Level: 56
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Iron Tail
+- Protect
+- Double-Edge
+- Earthquake
+
+Claydol
 Level: 55
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Toxic
-- Hydro Pump
-- Sludge Bomb
-- Ice Beam
+- Psychic
+- Light Screen
+- Reflect
+- Ancient Power
 
-Ludicolo
+Cradily
 Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Confuse Ray
 - Giga Drain
-- Surf
-- Leech Seed
-- Double Team
+- Ancient Power
+- Sludge Bomb
 
-Whiscash
+Armaldo
 Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Earthquake
-- Surf
-- Amnesia
-- Hyper Beam
+- Slash
+- Metal Claw
+- Ancient Power
+- Water Pulse
 
-Gyarados
-Level: 56
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Dragon Dance
-- Earthquake
-- Hyper Beam
-- Surf
-
-Milotic @ Sitrus Berry
+Metagross
 Level: 58
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Recover
-- Surf
-- Ice Beam
-- Toxic
+- Meteor Mash
+- Psychic
+- Hyper Beam
+- Agility
 
 === TRAINER_ANDREW ===
 Name: ANDREW
@@ -9464,45 +9544,59 @@ Items: Full Restore / Full Restore
 Double Battle: No
 AI: Basic Trainer
 
-Altaria
-Level: 44
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Aerial Ace
-- Safeguard
-- Dragon Breath
-- Dragon Dance
-
-Delcatty
+Delcatty @ Heat Rock
+Ability: Cute Charm
 Level: 43
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Sing
-- Assist
+- Fake Out
+- Sunny Day
 - Charm
-- Feint Attack
+- Draining Kiss
 
-Roselia
+Altaria @ Heavy-Duty Boots
+Ability: Natural Cure
 Level: 44
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Magical Leaf
-- Leech Seed
-- Giga Drain
-- Toxic
+- Dragon Dance
+- Brave Bird
+- Outrage
+- Earthquake
 
-Magneton
+Roserade @ Life Orb
+Ability: Chlorophyll
+Level: 44
+IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+- Giga Drain
+- Sludge Bomb
+- Shadow Ball
+- Weather Ball
+
+Rapidash @ Choice Band
+Ability: Reckless
 Level: 41
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Supersonic
-- Thunderbolt
-- Tri Attack
-- Screech
+- Flare Blitz
+- Double-Edge
+- Wild Charge
+- High Horsepower
 
-Gardevoir
+Heliolisk @ Focus Sash
+Ability: Solar Power
 Level: 45
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Double Team
-- Calm Mind
-- Psychic
-- Future Sight
+- Sunny Day
+- Parabolic Charge
+- Solarbeam
+- Dragon Pulse
+
+Gallade @ Galladite
+Ability: Sharpness
+Level: 46
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+- Psycho Cut
+- Solar Blade
+- Bitter Blade
+- Sacred Sword
 
 === TRAINER_BRENDAN_ROUTE_103_MUDKIP ===
 Name: BRENDAN
@@ -13547,7 +13641,7 @@ Crobat
 Level: 43
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
-Camerupt
+Camerupt @ Cameruptite
 Level: 44
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 

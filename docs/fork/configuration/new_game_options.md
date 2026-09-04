@@ -37,6 +37,7 @@ them. `ON` for Player EVs means normal EV gain is enabled.
 | Randomizer Max Gen | GEN 3 | GEN 3 | GEN 3 | GEN 3 |
 | Random Abilities | ON | ON | OFF | OFF |
 | Mega Evolution | ON | ON | OFF | OFF |
+| Reusable TMs | OFF | OFF | OFF | OFF |
 
 In NUZLITE, NUZLOCKE, and NORMAL, the rule rows are visible but locked. The
 maximum generation remains editable in every mode. Choose CUSTOM to edit the
@@ -77,6 +78,13 @@ The default is **ON**, preserving the fork's current behavior.
 
 NUZLITE and NUZLOCKE default to **OFF**. NORMAL defaults to **ON**. The rule
 can be changed in CUSTOM.
+
+## Reusable TMs
+
+- **ON**: TMs remain in the Bag after teaching a move and can be taught again.
+- **OFF**: Teaching a TM consumes one copy. HMs are unaffected.
+
+All presets default to **OFF**. This option can be changed in CUSTOM.
 
 ## Infinite Rare Candy
 

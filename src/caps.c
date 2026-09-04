@@ -133,7 +133,7 @@ u32 GetCurrentLevelCap(void)
 
     if (B_LEVEL_CAP_TYPE == LEVEL_CAP_FLAG_LIST)
     {
-        if (HasTrainerBeenFought(TRAINER_STEVEN))
+        if (HasTrainerBeenFought(TRAINER_WALLACE) || HasTrainerBeenFought(TRAINER_STEVEN))
             return MAX_LEVEL;
 
         for (i = 0; i < ARRAY_COUNT(sLevelCapMilestones); i++)

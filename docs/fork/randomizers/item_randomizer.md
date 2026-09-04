@@ -22,7 +22,7 @@ The implementation handles these source types:
 - Visible item balls draw from the main pool. Their unique item-ball flags are
   used as source IDs, so pickups on different maps cannot collide.
 - Hidden items draw independently from a separate repeatable pool.
-- Direct scripted item rewards remain vanilla.
+- Gym Leader TM gifts are randomized through dedicated source slots.
 
 For item balls and hidden items, the item shown in the pickup message is the
 exact item added to the bag. A one-use guard prevents the ordinary `additem`
@@ -39,8 +39,9 @@ The following are never randomized:
   `ITEM_DEVON_SCOPE`, `ITEM_BASEMENT_KEY`, `ITEM_MAGMA_EMBLEM`, and
   `ITEM_STORAGE_KEY`.
 
-All direct scripted rewards remain vanilla, including item gifts and progression
-rewards.
+Other direct scripted rewards remain vanilla, including progression rewards.
+The Gym Leader gifts included in the randomizer are Rock Tomb, Bulk Up, Shock
+Wave, Overheat, Facade, Aerial Ace, Calm Mind, and Water Pulse.
 
 Shops and berry-tree yields are not routed through the item-randomizer code.
 Mauville Game Corner always offers the ten evolution stones and Linking Cord
@@ -83,7 +84,7 @@ with that list.
 The saved state has a randomizer version. When this version changes, the game
 clears saved source assignments, pool claims, and the Game Corner catalog while
 retaining the save's seed. This safely regenerates the layout when the pool or
-assignment algorithm changes. The current implementation version is 8.
+assignment algorithm changes. The current implementation version is 9.
 
 ## Implementation and tests
 

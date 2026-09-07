@@ -55,6 +55,8 @@
 #include "fork_tm_randomizer.h"
 #include "item_ball.h"
 #include "fork_encounter_randomizer.h"
+#include "constants/moves.h"
+#include "constants/abilities.h"
 
 extern const u8 EventScript_ResetAllMapFlags[];
 extern const u8 EventScript_ResetAllMapFlagsFrlg[];
@@ -64,6 +66,31 @@ static void WarpToTruck(void);
 static void ResetMiniGamesRecords(void);
 static void ResetItemFlags(void);
 static void ResetDexNav(void);
+
+#if TEST_START_WITH_RAYQUAZA
+static void GiveTemporaryTestRayquazaToEveryBox(void)
+{
+    struct Pokemon mon;
+    u8 abilityNum = NUM_ABILITY_SLOTS;
+    enum Item heldItem = ITEM_LIFE_ORB;
+
+    CreateMon(&mon, SPECIES_RAYQUAZA, 100, Random32(), OTID_STRUCT_PLAYER_ID);
+    GiveMonInitialMoveset(&mon);
+    for (u8 i = 0; i < MAX_MON_MOVES; i++)
+        SetMonMoveSlot(&mon, MOVE_NONE, i);
+    SetMonMoveSlot(&mon, MOVE_DRAGON_DANCE, 0);
+    SetMonMoveSlot(&mon, MOVE_DRAGON_CLAW, 1);
+    SetMonMoveSlot(&mon, MOVE_FLY, 2);
+    SetMonData(&mon, MON_DATA_ABILITY_NUM, &abilityNum);
+    SetMonData(&mon, MON_DATA_HELD_ITEM, &heldItem);
+    CalculateMonStats(&mon);
+    ForkNormalizePlayerMon(&mon);
+    MonRestorePP(&mon);
+
+    for (u8 box = 0; box < TOTAL_BOXES_COUNT; box++)
+        gPokemonStoragePtr->boxes[box][0] = mon.box;
+}
+#endif
 
 EWRAM_DATA bool8 gDifferentSaveFile = FALSE;
 EWRAM_DATA bool8 gEnableContestDebugging = FALSE;
@@ -202,6 +229,8 @@ void NewGameInitData(void)
     PlayTimeCounter_Reset();
     ClearPokedexFlags();
     InitEventData();
+    // Temporary test setup: grant the Feather Badge so Fly is usable immediately.
+    FlagSet(FLAG_BADGE06_GET);
     ClearTVShowData();
     ResetGabbyAndTy();
     ClearSecretBases();
@@ -217,6 +246,9 @@ void NewGameInitData(void)
     gPartiesCount[B_TRAINER_PLAYER] = 0;
     ZeroPlayerPartyMons();
     ResetPokemonStorageSystem();
+#if TEST_START_WITH_RAYQUAZA
+    GiveTemporaryTestRayquazaToEveryBox();
+#endif
     DeactivateAllRoamers();
     gSaveBlock1Ptr->registeredItem = ITEM_NONE;
     ClearBag();

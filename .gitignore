@@ -1,5 +1,6 @@
 *.exe
 *.o
+*.srm
 *.i
 *.elf
 *.gba

@@ -3135,6 +3135,11 @@ enum Ability GetAbilityBySpecies(enum Species species, u8 abilityNum)
 {
     int i;
 
+#if TEST_START_WITH_RAYQUAZA
+    if (species == SPECIES_RAYQUAZA && abilityNum == NUM_ABILITY_SLOTS)
+        return ABILITY_ADAPTABILITY;
+#endif
+
     if (IsForkAbilityRandomizedSpecies(species))
     {
         gLastUsedAbility = GetForkRandomizedAbility(species);
@@ -3277,6 +3282,10 @@ enum Type GetSpeciesType(enum Species species, u8 slot)
 
 enum Ability GetSpeciesAbility(enum Species species, u8 slot)
 {
+#if TEST_START_WITH_RAYQUAZA
+    if (species == SPECIES_RAYQUAZA && slot == NUM_ABILITY_SLOTS)
+        return ABILITY_ADAPTABILITY;
+#endif
     return gSpeciesInfo[SanitizeSpeciesId(species)].abilities[slot];
 }
 

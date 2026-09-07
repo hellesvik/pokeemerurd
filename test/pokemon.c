@@ -381,6 +381,20 @@ TEST("Fork rules distribute infinite key items on new game and continue")
     EXPECT_EQ(CheckBagHasItem(ITEM_INFINITE_REPEL, 1), TRUE);
 }
 
+TEST("Temporary startup Rayquaza is stored in every box")
+{
+    NewGameInitData();
+
+    for (u32 box = 0; box < TOTAL_BOXES_COUNT; box++)
+    {
+        struct BoxPokemon *mon = GetBoxedMonPtr(box, 0);
+
+        EXPECT_EQ(GetBoxMonData(mon, MON_DATA_SPECIES), SPECIES_RAYQUAZA);
+        EXPECT_EQ(GetLevelFromBoxMonExp(mon), 100);
+        EXPECT_EQ(GetBoxMonData(mon, MON_DATA_HELD_ITEM), ITEM_LIFE_ORB);
+    }
+}
+
 TEST("Fork rules force battle style to Set by default")
 {
     u32 battleStyle;

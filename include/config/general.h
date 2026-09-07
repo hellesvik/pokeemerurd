@@ -42,6 +42,12 @@
 // Uncomment to fix some identified minor bugs
 #define BUGFIX
 
+// Temporary playtesting helpers. These must live in the normal configuration,
+// rather than config/test.h, so they are also enabled in the playable ROM.
+#define TEST_START_WITH_RAYQUAZA TRUE
+#define TEST_FLY_DESTINATIONS_UNRESTRICTED TRUE
+#define TEST_DISABLE_OBEDIENCE TRUE
+
 // Various undefined behavior bugs may or may not prevent compilation with
 // newer compilers. So always fix them when using a modern compiler.
 #if MODERN || defined(BUGFIX)

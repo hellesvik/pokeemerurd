@@ -90,6 +90,29 @@ TEST("CreateNPCTrainerPartyForTrainer generates customized Pokémon")
     Free(testParty);
 }
 
+TEST("Configured trainer abilities do not need to be native to the species")
+{
+    const struct TrainerMon trainerMon =
+    {
+        .species = SPECIES_ANORITH,
+        .ability = ABILITY_STURDY,
+        .lvl = 12,
+    };
+    const struct Trainer trainer =
+    {
+        .party = &trainerMon,
+        .partySize = 1,
+        .battleType = TRAINER_BATTLE_TYPE_SINGLES,
+    };
+
+    ZeroEnemyPartyMons();
+    CreateNPCTrainerPartyFromTrainer(gParties[B_TRAINER_OPPONENT_A], &trainer, FALSE, BATTLE_TYPE_TRAINER);
+    PokemonToBattleMon(&gParties[B_TRAINER_OPPONENT_A][0], &gBattleMons[B_BATTLER_1]);
+
+    EXPECT_EQ(gBattleMons[B_BATTLER_1].species, SPECIES_ANORITH);
+    EXPECT_EQ(gBattleMons[B_BATTLER_1].ability, ABILITY_STURDY);
+}
+
 TEST("CreateNPCTrainerPartyForTrainer generates different personalities for different mons")
 {
     struct Pokemon *testParty = Alloc(6 * sizeof(struct Pokemon));

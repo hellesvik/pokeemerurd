@@ -1800,12 +1800,12 @@ static void Task_NewGameBirchSpeech_FeatureOptions(u8 taskId)
         }
         else if (ForkNewGameOptionsCanEditIndex(settings, index))
         {
-            u8 bit = index >= 4 ? index : index - 1;
+            u8 bit = ForkNewGameOptionsBitForIndex(index);
             nextValues = ForkNewGameOptionsToggleValue((values >> bit) & 1, gMain.newKeys);
         }
         else
         {
-            nextValues = (values >> (index >= 4 ? index : index - 1)) & 1;
+            nextValues = (values >> ForkNewGameOptionsBitForIndex(index)) & 1;
             if (index == 3)
                 nextValues = ForkNewGameOptionsNextFaintRule((values >> 2) & 3, gMain.newKeys);
         }
@@ -1824,7 +1824,7 @@ static void Task_NewGameBirchSpeech_FeatureOptions(u8 taskId)
             NewGameBirchSpeech_ShowFeatureOptions(page, selection, nextValues, settings, gTasks[taskId].data[4]);
         }
         else if (index != 0 && ForkNewGameOptionsCanEditIndex(settings, index)
-              && nextValues != (index == 3 ? ((values >> 2) & 3) : index == 10 ? ((values >> 10) & 0xF) : index == 13 ? gTasks[taskId].data[4] : ((values >> (index >= 4 ? index : index - 1)) & 1)))
+              && nextValues != (index == 3 ? ((values >> 2) & 3) : index == 10 ? ((values >> 10) & 0xF) : index == 13 ? gTasks[taskId].data[4] : ((values >> ForkNewGameOptionsBitForIndex(index)) & 1)))
         {
             PlaySE(SE_SELECT);
             if (index == 3)
@@ -1834,7 +1834,7 @@ static void Task_NewGameBirchSpeech_FeatureOptions(u8 taskId)
             else if (index == 13)
                 gTasks[taskId].data[4] = nextReusableTMs;
             else
-                values ^= (1 << (index >= 4 ? index : index - 1));
+                values ^= (1 << ForkNewGameOptionsBitForIndex(index));
             gTasks[taskId].data[1] = values;
             NewGameBirchSpeech_ShowFeatureOptions(page, selection, values, settings, gTasks[taskId].data[4]);
         }
@@ -2497,7 +2497,7 @@ static void NewGameBirchSpeech_ShowFeatureOptions(u8 page, u8 selection, u16 val
             else
                 value = index == 7
                     ? ((values >> 7) & 1 ? sText_NewGameFeatureEvsNormal : sText_NewGameFeatureOff)
-                    : ((values >> (index >= 4 ? index : index - 1)) & 1 ? sText_NewGameFeatureOn : sText_NewGameFeatureOff);
+                    : ((values >> ForkNewGameOptionsBitForIndex(index)) & 1 ? sText_NewGameFeatureOn : sText_NewGameFeatureOff);
         }
 
         if (row == selection)

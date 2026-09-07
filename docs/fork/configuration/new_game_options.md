@@ -14,6 +14,9 @@ The first row controls the preset for the remaining rules:
 - **NORMAL**: Disables the listed fork rules, including the faint penalty.
 - **CUSTOM**: Allows each remaining rule to be changed independently.
 
+NUZLITE and NUZLOCKE lock the battle style to Set. Their catch and faint
+rules begin after the first Poké Balls are received.
+
 When Mode is NUZLITE, NORMAL, or NUZLOCKE, the other rows remain visible but
 are locked. Choose CUSTOM before changing them.
 
@@ -141,9 +144,12 @@ CUSTOM can change this option independently.
 ## Randomizer Max Gen
 
 Selects the highest generation that randomized encounters may use. The menu
-offers GEN 3 through GEN 9, clamped to the build's `FORK_MAX_GEN_MONS` limit.
-The default is GEN 3. Unlike the other custom rules, this setting remains
-editable in every mode, including NUZLITE, NORMAL, and NUZLOCKE.
+offers GEN 3 through GEN 9. In the current build the compile-time
+`FORK_MAX_GEN_MONS` ceiling is GEN 9, so every menu choice is available. The
+selected value is saved per playthrough and limits randomized encounter, egg,
+gift, and static-encounter pools; it does not change vanilla encounter
+tables. The default is GEN 3. Unlike the other custom rules, this setting
+remains editable in every mode, including NUZLITE, NORMAL, and NUZLOCKE.
 
 ## Random Abilities
 

@@ -53,6 +53,15 @@ u8 ForkNewGameOptionsNextMaxGen(u8 generation, u16 newKeys)
     return generation;
 }
 
+u8 ForkNewGameOptionsBitForIndex(u8 index)
+{
+    if (index == 11)
+        return 14;
+    if (index == 12)
+        return 15;
+    return index >= 4 ? index : index - 1;
+}
+
 bool8 ForkNewGameOptionsCanEdit(u8 settings)
 {
     return settings == 3;

@@ -229,6 +229,7 @@ void NewGameInitData(void)
     PlayTimeCounter_Reset();
     ClearPokedexFlags();
     InitEventData();
+    FlagSet(FLAG_SYS_B_DASH);
     // Temporary test setup: grant the Feather Badge so Fly is usable immediately.
     FlagSet(FLAG_BADGE06_GET);
     ClearTVShowData();

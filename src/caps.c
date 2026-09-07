@@ -95,7 +95,7 @@ static const u16 sCapWallace[] = { TRAINER_WALLACE, TRAINER_NONE };
 static const struct LevelCapMilestone sLevelCapMilestones[] =
 {
     { 15, sCapRoxanne },
-    { 15, sCapRustboroRival },
+    { 16, sCapRustboroRival },
     { 19, sCapBrawly },
     { 16, sCapWallyMauville },
     { 20, sCapRoute110Rival },
@@ -133,7 +133,7 @@ u32 GetCurrentLevelCap(void)
 
     if (B_LEVEL_CAP_TYPE == LEVEL_CAP_FLAG_LIST)
     {
-        if (HasTrainerBeenFought(TRAINER_WALLACE) || HasTrainerBeenFought(TRAINER_STEVEN))
+        if (HasTrainerBeenFought(TRAINER_STEVEN))
             return MAX_LEVEL;
 
         for (i = 0; i < ARRAY_COUNT(sLevelCapMilestones); i++)

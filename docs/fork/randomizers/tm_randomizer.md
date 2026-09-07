@@ -17,6 +17,10 @@ it would restart that selection only if the eligible move pool were exhausted.
 Pokémon retain their normal move compatibility. A Pokémon can learn a
 randomized TM only when it can normally learn that TM's assigned move.
 
+The **Reusable TMs** new-game option controls consumption. When it is OFF,
+teaching a TM consumes one copy; when it is ON, the TM remains available for
+later use. HMs are unaffected.
+
 ## Item randomizer
 
 TM51–TM130 are included in the item-randomizer pool alongside TM01–TM50.

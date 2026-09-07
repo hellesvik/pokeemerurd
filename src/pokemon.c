@@ -3,6 +3,7 @@
 #include "malloc.h"
 #include "apprentice.h"
 #include "battle.h"
+#include "battle_main.h"
 #include "battle_ai_util.h"
 #include "battle_anim.h"
 #include "battle_controllers.h"
@@ -3169,8 +3170,13 @@ enum Ability GetAbilityBySpecies(enum Species species, u8 abilityNum)
 
 enum Ability GetMonAbility(struct Pokemon *mon)
 {
+    enum Ability trainerAbility = GetTrainerMonAbilityOverride(mon);
     enum Species species = GetMonData(mon, MON_DATA_SPECIES);
     u8 abilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM);
+
+    if (trainerAbility != ABILITY_NONE)
+        return trainerAbility;
+
     return GetAbilityBySpecies(species, abilityNum);
 }
 
@@ -3459,7 +3465,7 @@ void PokemonToBattleMon(struct Pokemon *src, struct BattlePokemon *dst)
     dst->types[2] = TYPE_MYSTERY;
     dst->isShiny = IsMonShiny(src);
     dst->affectionHearts = GetMonAffectionHearts(src);
-    dst->ability = GetAbilityBySpecies(dst->species, dst->abilityNum);
+    dst->ability = GetMonAbility(src);
     GetMonData(src, MON_DATA_NICKNAME, nickname);
     StringCopy_Nickname(dst->nickname, nickname);
     GetMonData(src, MON_DATA_OT_NAME, dst->otName);

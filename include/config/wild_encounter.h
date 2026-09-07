@@ -7,7 +7,7 @@
 
 // Fork biome encounter randomizer
 // Change this and rebuild to limit randomized wild encounters to this generation or earlier.
-#define FORK_MAX_GEN_MONS           GEN_3
+#define FORK_MAX_GEN_MONS           GEN_9
 
 #if FORK_MAX_GEN_MONS < GEN_1 || FORK_MAX_GEN_MONS > GEN_9
 #error "FORK_MAX_GEN_MONS must be between GEN_1 and GEN_9."

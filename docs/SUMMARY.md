@@ -4,6 +4,7 @@
 - [FEATURES](./FEATURES.md)
 - [Emerurd Fork Documentation](./fork/index.md)
     - [Gameplay Rules](fork/gameplay/index.md)
+        - [Story Battles](fork/gameplay/story_battles.md)
         - [One Catch Per Area](fork/gameplay/one_catch_per_area.md)
         - [Level Limits](fork/gameplay/level_limits.md)
         - [Whiteout and Faint Penalties](fork/gameplay/whiteout_penalty.md)

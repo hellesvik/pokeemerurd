@@ -95,6 +95,8 @@ TEST("Fork rules enable a hard story-battle level cap while leaving one-use Rare
     EXPECT_EQ(GetCurrentLevelCap(), 15);
 
     SetTrainerFlag(TRAINER_ROXANNE_1);
+    EXPECT_EQ(GetCurrentLevelCap(), 16);
+
     SetTrainerFlag(TRAINER_MAY_RUSTBORO_TREECKO);
     SetTrainerFlag(TRAINER_BRAWLY_1);
     EXPECT_EQ(GetCurrentLevelCap(), 16);
@@ -147,10 +149,10 @@ TEST("Fork gameplay options gate the catch limit and level cap")
     EXPECT_EQ(ForkIsLevelCapEnabled(), TRUE);
 }
 
-TEST("Fork rules disable EV gain and expose raw IV values on the summary screen")
+TEST("Fork rules disable EV gain and expose IV and EV values on the summary screen")
 {
     EXPECT_EQ(B_EV_CAP_TYPE, EV_CAP_NO_GAIN);
-    EXPECT_EQ(P_SUMMARY_SCREEN_IV_ONLY, TRUE);
+    EXPECT_EQ(P_SUMMARY_SCREEN_IV_ONLY, FALSE);
     EXPECT_EQ(P_SUMMARY_SCREEN_IV_EV_VALUES, TRUE);
 }
 
@@ -393,6 +395,13 @@ TEST("Temporary startup Rayquaza is stored in every box")
         EXPECT_EQ(GetLevelFromBoxMonExp(mon), 100);
         EXPECT_EQ(GetBoxMonData(mon, MON_DATA_HELD_ITEM), ITEM_LIFE_ORB);
     }
+}
+
+TEST("Running Shoes are available at the start of a new game")
+{
+    NewGameInitData();
+
+    EXPECT_EQ(FlagGet(FLAG_SYS_B_DASH), TRUE);
 }
 
 TEST("Fork rules force battle style to Set by default")

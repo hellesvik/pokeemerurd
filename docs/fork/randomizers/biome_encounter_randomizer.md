@@ -181,10 +181,11 @@ The current runtime implementation does not perform a global per-save coverage
 audit or repair pass; it independently derives each table from its assigned
 biome pool and BST cap.
 
-Randomized species are also limited by `FORK_MAX_GEN_MONS` in
-`include/config/wild_encounter.h`. It defaults to `GEN_3`, so the default build
-can select only Generation 1–3 Pokémon. Set it to another value from `GEN_1`
-through `GEN_9` and rebuild to expand or reduce that limit.
+Randomized species are limited by the per-save **Randomizer Max Gen** choice
+on the new-game screen, from GEN 3 through GEN 9. In the current build,
+`FORK_MAX_GEN_MONS` in `include/config/wild_encounter.h` is a GEN 9
+compile-time ceiling, so all menu choices are available. Legacy or
+unconfigured saves fall back to GEN 3.
 
 ## Duplicate and overlap policy
 

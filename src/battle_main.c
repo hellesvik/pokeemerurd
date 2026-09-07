@@ -154,6 +154,7 @@ EWRAM_DATA u8 *gBattleAnimBgTileBuffer = NULL;
 EWRAM_DATA u8 *gBattleAnimBgTilemapBuffer = NULL;
 EWRAM_DATA u32 gBattleControllerExecFlags = 0;
 EWRAM_DATA u8 gBattlersCount = 0;
+static EWRAM_DATA enum Ability sTrainerPartyAbilityOverrides[MAX_BATTLE_TRAINERS][PARTY_SIZE] = {0};
 EWRAM_DATA u16 gBattlerPartyIndexes[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u8 gBattlerPositions[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u8 gActionsByTurnOrder[MAX_BATTLERS_COUNT] = {0};
@@ -1837,6 +1838,31 @@ u32 GeneratePersonalityForGender(u32 gender, enum Species species)
         return speciesInfo->genderRatio / 2;
 }
 
+static enum BattleTrainer GetMainPartyTrainer(const struct Pokemon *party)
+{
+    for (enum BattleTrainer trainer = B_TRAINER_PLAYER; trainer < MAX_BATTLE_TRAINERS; trainer++)
+    {
+        if (party == gParties[trainer])
+            return trainer;
+    }
+
+    return MAX_BATTLE_TRAINERS;
+}
+
+enum Ability GetTrainerMonAbilityOverride(const struct Pokemon *mon)
+{
+    for (enum BattleTrainer trainer = B_TRAINER_PLAYER; trainer < MAX_BATTLE_TRAINERS; trainer++)
+    {
+        for (u32 slot = 0; slot < PARTY_SIZE; slot++)
+        {
+            if (mon == &gParties[trainer][slot])
+                return sTrainerPartyAbilityOverrides[trainer][slot];
+        }
+    }
+
+    return ABILITY_NONE;
+}
+
 void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon *partyEntry)
 {
     bool32 noMoveSet = TRUE;
@@ -1866,6 +1892,11 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
 {
     u32 personalityValue;
     u8 monsCount;
+    enum BattleTrainer partyTrainer = GetMainPartyTrainer(party);
+
+    if (partyTrainer < MAX_BATTLE_TRAINERS)
+        memset(sTrainerPartyAbilityOverrides[partyTrainer], 0, sizeof(sTrainerPartyAbilityOverrides[partyTrainer]));
+
     if (battleTypeFlags & BATTLE_TYPE_TRAINER && !(battleTypeFlags & (BATTLE_TYPE_FRONTIER
                                                                         | BATTLE_TYPE_EREADER_TRAINER
                                                                         | BATTLE_TYPE_TRAINER_HILL)))
@@ -1939,7 +1970,8 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                     if (speciesInfo->abilities[abilityNum] == partyData[monIndex].ability)
                         break;
                 }
-                assertf(abilityNum < maxAbilityNum, "illegal ability %S for %S", gAbilitiesInfo[partyData[monIndex].ability].name, speciesInfo->speciesName);
+                if (abilityNum == maxAbilityNum)
+                    abilityNum = 0;
             }
             else if (B_TRAINER_MON_RANDOM_ABILITY)
             {
@@ -1950,6 +1982,8 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                     abilityNum--;
                 }
             }
+            if (partyTrainer < MAX_BATTLE_TRAINERS)
+                sTrainerPartyAbilityOverrides[partyTrainer][i] = partyData[monIndex].ability;
             SetMonData(&party[i], MON_DATA_ABILITY_NUM, &abilityNum);
             SetMonData(&party[i], MON_DATA_FRIENDSHIP, &(partyData[monIndex].friendship));
             if (partyData[monIndex].ball < POKEBALL_COUNT)
@@ -3416,7 +3450,7 @@ static void DoBattleIntro(void)
                 gBattleMons[battler].types[0] = GetSpeciesType(gBattleMons[battler].species, 0);
                 gBattleMons[battler].types[1] = GetSpeciesType(gBattleMons[battler].species, 1);
                 gBattleMons[battler].types[2] = TYPE_MYSTERY;
-                gBattleMons[battler].ability = GetAbilityBySpecies(gBattleMons[battler].species, gBattleMons[battler].abilityNum);
+                gBattleMons[battler].ability = GetMonAbility(&GetBattlerParty(battler)[gBattlerPartyIndexes[battler]]);
                 gBattleStruct->battlerState[battler].hpOnSwitchout = gBattleMons[battler].hp;
                 memset(&gBattleMons[battler].volatiles, 0, sizeof(struct Volatiles));
                 for (i = 0; i < NUM_BATTLE_STATS; i++)

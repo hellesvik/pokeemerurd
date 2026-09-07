@@ -129,7 +129,7 @@ bool32 ForkAreRandomAbilitiesEnabled(void)
 u8 ForkGetRandomizerMaxGen(void)
 {
     if (!gSaveBlock3Ptr->forkGameplayOptionsConfigured)
-        return FORK_MAX_GEN_MONS;
+        return GEN_3;
     return gSaveBlock3Ptr->forkRandomizerMaxGen;
 }
 

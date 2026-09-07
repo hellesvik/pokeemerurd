@@ -4811,23 +4811,11 @@ static inline void ShowUtilityPrompt(s16 mode)
         if (ShouldShowIvEvPrompt())
         {
             if (mode == SUMMARY_SKILLS_MODE_STATS)
-            {
-                if (P_SUMMARY_SCREEN_EV_ONLY)
-                    promptText = gText_SkillPageEvs;
-                else
-                    promptText = gText_SkillPageIvs;
-            }
-            else if (mode == SUMMARY_SKILLS_MODE_IVS)
-            {
-                if (P_SUMMARY_SCREEN_IV_ONLY)
-                    promptText = gText_SkillPageStats;
-                else
-                    promptText = gText_SkillPageEvs;
-            }
-            else if (mode == SUMMARY_SKILLS_MODE_EVS)
-            {
                 promptText = gText_SkillPageStats;
-            }
+            else if (mode == SUMMARY_SKILLS_MODE_IVS)
+                promptText = gText_SkillPageIvs;
+            else if (mode == SUMMARY_SKILLS_MODE_EVS)
+                promptText = gText_SkillPageEvs;
         }
     }
     else if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES

@@ -13,6 +13,10 @@ Mirage Tower presents two distinct per-save randomized fossil choices. Fossils
 are excluded from the item randomizer, and the Devon researcher revives the
 selected fossil into its matching Pokémon at level 20.
 
+All eggs are resolved when they hatch, regardless of whether they came from a
+Day Care, scripted gift, trade, or another source. Egg results use the
+configured generation limit and the 100–550 BST range.
+
 When randomized encounters are disabled, the vanilla Treecko, Torchic, Mudkip,
 Beldum, Root Fossil, and Claw Fossil behavior is restored.
 

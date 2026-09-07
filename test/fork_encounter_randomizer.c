@@ -3,6 +3,7 @@
 #include "test/test.h"
 #include "wild_encounter.h"
 #include "fork_encounter_randomizer.h"
+#include "fork_run.h"
 #include "constants/map_groups.h"
 
 static u16 GetSpeciesBst(enum Species species)
@@ -83,6 +84,13 @@ TEST("Biome encounter randomizer defaults to Generation 3 species")
 
         EXPECT_LE((u16)gSpeciesInfo[species].natDexNum, NATIONAL_DEX_DEOXYS);
     }
+}
+
+TEST("Configured encounter generation can reach Generation 8")
+{
+    ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, GEN_8, TRUE, FALSE);
+
+    EXPECT_EQ(GetForkMaxNationalDex(), NATIONAL_DEX_ENAMORUS);
 }
 
 TEST("Egg randomizer selects a non-restricted species within the egg BST range")

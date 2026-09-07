@@ -75,6 +75,15 @@ TEST("Randomizer max generation cycles from Gen 3 through Gen 9")
     EXPECT_EQ(ForkNewGameOptionsNextMaxGen(GEN_3, DPAD_LEFT), GEN_9);
 }
 
+TEST("New game option indices use the correct packed value bits")
+{
+    EXPECT_EQ(ForkNewGameOptionsBitForIndex(7), 7);
+    EXPECT_EQ(ForkNewGameOptionsBitForIndex(8), 8);
+    EXPECT_EQ(ForkNewGameOptionsBitForIndex(9), 9);
+    EXPECT_EQ(ForkNewGameOptionsBitForIndex(11), 14);
+    EXPECT_EQ(ForkNewGameOptionsBitForIndex(12), 15);
+}
+
 TEST("New game settings cycles through four modes")
 {
     EXPECT_EQ(ForkNewGameOptionsNextSetting(0, DPAD_RIGHT), 1);

@@ -6,6 +6,7 @@
     - [Fork Site Navigation](fork/SUMMARY.md)
     - [Gameplay Rules](fork/gameplay/index.md)
         - [Story Battles](fork/gameplay/story_battles.md)
+        - [Boss Battle Reference](fork/gameplay/boss_battles.md)
         - [One Catch Per Area](fork/gameplay/one_catch_per_area.md)
         - [Level Limits](fork/gameplay/level_limits.md)
         - [Whiteout and Faint Penalties](fork/gameplay/whiteout_penalty.md)

@@ -67,6 +67,17 @@ static void ResetMiniGamesRecords(void);
 static void ResetItemFlags(void);
 static void ResetDexNav(void);
 
+#if TEST_START_WITH_ALL_KEY_ITEMS
+static void GiveTemporaryTestKeyItems(void)
+{
+    for (enum Item item = ITEM_NONE + 1; item < ITEMS_COUNT; item++)
+    {
+        if (GetItemPocket(item) == POCKET_KEY_ITEMS)
+            AddBagItem(item, 1);
+    }
+}
+#endif
+
 #if TEST_START_WITH_RAYQUAZA
 static void GiveTemporaryTestRayquazaToEveryBox(void)
 {
@@ -231,8 +242,11 @@ void NewGameInitData(void)
     ClearPokedexFlags();
     InitEventData();
     FlagSet(FLAG_SYS_B_DASH);
-    // Temporary test setup: grant the Feather Badge so Fly is usable immediately.
-    FlagSet(FLAG_BADGE06_GET);
+#if TEST_START_WITH_ALL_HM_ACCESS
+    // Temporary test setup: all badges unlock every HM field move immediately.
+    for (u16 badge = FLAG_BADGE01_GET; badge < FLAG_BADGE01_GET + NUM_BADGES; badge++)
+        FlagSet(badge);
+#endif
     ClearTVShowData();
     ResetGabbyAndTy();
     ClearSecretBases();
@@ -255,6 +269,9 @@ void NewGameInitData(void)
     gSaveBlock1Ptr->registeredItem = ITEM_NONE;
     ClearBag();
     NewGameInitPCItems();
+#if TEST_START_WITH_ALL_KEY_ITEMS
+    GiveTemporaryTestKeyItems();
+#endif
     ForkInvalidateOwnedFamilyCache();
     ForkEnsureKeyItemsPresent();
     ClearPokeblocks();

@@ -7,7 +7,11 @@ custom moves, held items, abilities, and species.
 - Wattson and Tate & Liza use double battles.
 - Steven is the champion and uses his Ruby/Sapphire champion identity.
 - The gym and late-game teams use the custom compositions documented by the
-  fork data, including the revised Flannery, Juan, Wally, and Sidney teams.
+  fork data, including the revised Flannery, Juan, Wally, Sidney, Phoebe,
+  Glacia, Drake, and Steven teams.
+- Phoebe's Oricorio form is selected from all four forms using the save's
+  seeded encounter randomizer, so it is random per seed but stable within a
+  save.
 - Custom trainer abilities are allowed even when they are not normally legal
   for the species. This is intentional for the fork's challenge teams.
 - All Pokémon created for gym leaders, villain leaders, the Elite Four, and the

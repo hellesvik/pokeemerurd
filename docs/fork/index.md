@@ -35,6 +35,19 @@ documented in the [reference index](./reference/index.md).
 
 ## Errata changelog
 
+### 2026-09-09
+
+- Updated Phoebe, Glacia, Drake, and Steven's Champion teams with their new
+  species, abilities, held items, and moves.
+- Phoebe's Oricorio now receives a deterministic random form based on the
+  save's seeded randomizer.
+- Test mode now starts with all key items and all badges, unlocking every HM;
+  the key-item pocket was expanded to hold the complete set.
+- Story boss Pokémon now receive 31 IVs in every stat and Hardy (neutral)
+  natures.
+- Fixed Rustboro fossil-researcher exchanges producing script errors before
+  returning the randomized Pokémon.
+
 ### 2026-09-07
 
 - Fixed the saved Randomizer Max Gen selector so GEN 4–9 choices are no

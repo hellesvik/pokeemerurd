@@ -4662,45 +4662,59 @@ Double Battle: No
 AI: Basic Trainer
 Mugshot: Green
 
-Dusclops
+Dusclops @ Eviolite
+Ability: Pressure
 Level: 48
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Shadow Punch
-- Confuse Ray
-- Curse
-- Protect
+- Pain Split
+- Will-O-Wisp
+- Substitute
+- Focus Punch
 
-Banette
+Zoroark-Hisui @ Choice Scarf
+Ability: Illusion
 Level: 49
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Shadow Ball
-- Grudge
-- Will O Wisp
-- Feint Attack
+- Bitter Malice
+- U-Turn
+- Frustration
+- Burning Jealousy
 
-Sableye
+Oricorio @ Heavy-Duty Boots
+Ability: Dancer
 Level: 50
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Shadow Ball
-- Double Team
-- Night Shade
-- Feint Attack
+- Revelation Dance
+- Quiver Dance
+- Roost
+- Hurricane
 
-Banette
+Bewear @ Life Orb
+Ability: Scrappy
 Level: 49
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Shadow Ball
-- Psychic
-- Thunderbolt
-- Facade
+- Return
+- Body Press
+- Rest
+- Sleep Talk
 
-Dusclops @ Sitrus Berry
+Mimikyu @ Sitrus Berry
+Ability: Disguise
 Level: 51
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Shadow Ball
-- Ice Beam
-- Rock Slide
-- Earthquake
+- Substitute
+- Play Rough
+- Shadow Sneak
+- Focus Punch
+
+Sableye @ Sablenite
+Ability: Prankster
+Level: 52
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Fake Out
+- Torment
+- Protect
+- Foul Play
 
 === TRAINER_GLACIA ===
 Name: GLACIA
@@ -4713,45 +4727,59 @@ Double Battle: No
 AI: Basic Trainer
 Mugshot: Pink
 
-Sealeo
+Vanilluxe @ Focus Sash
+Ability: Snow Warning
 Level: 50
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Encore
-- Body Slam
-- Hail
-- Ice Ball
-
-Glalie
-Level: 50
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Light Screen
-- Crunch
-- Icy Wind
-- Ice Beam
-
-Sealeo
-Level: 52
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Attract
-- Double Edge
-- Hail
 - Blizzard
+- Freeze-Dry
+- Flash Cannon
+- Aurora Veil
 
-Glalie
+Milotic @ Leftovers
+Ability: Marvel Scale
+Level: 50
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+- Scald
+- Weather Ball
+- Recover
+- Dragon Tail
+
+Sawsbuck-Winter @ Lum Berry
+Ability: Serene Grace
 Level: 52
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Shadow Ball
-- Explosion
-- Hail
-- Ice Beam
+- Body Slam
+- Zen Headbutt
+- Horn Leech
+- Jump Kick
 
-Walrein @ Sitrus Berry
+Rotom-Frost @ Choice Scarf
+Ability: Levitate
+Level: 52
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+- Blizzard
+- Volt Switch
+- Discharge
+- Trick
+
+Beartic @ Choice Band
+Ability: Slush Rush
 Level: 53
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Surf
-- Body Slam
-- Ice Beam
-- Sheer Cold
+- Icicle Crash
+- Liquidation
+- Superpower
+- Throat Chop
+
+Glalie @ Glalitite
+Ability: Moody
+Level: 53
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Return
+- Ice Shard
+- Earthquake
+- Steel Roller
 
 === TRAINER_DRAKE ===
 Name: DRAKE
@@ -4764,45 +4792,59 @@ Double Battle: No
 AI: Basic Trainer
 Mugshot: Blue
 
-Shelgon
+Dragalge @ Life Orb
+Ability: Adaptability
 Level: 52
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Rock Tomb
-- Dragon Claw
-- Protect
-- Double Edge
+- Sludge Wave
+- Draco Meteor
+- Toxic Spikes
+- Recover
 
-Altaria
+Flygon @ Choice Scarf
+Ability: Levitate
 Level: 54
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Double Edge
-- Dragon Breath
-- Dragon Dance
-- Aerial Ace
-
-Kingdra
-Level: 53
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Smokescreen
-- Dragon Dance
-- Surf
-- Body Slam
-
-Flygon
-Level: 53
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Flamethrower
-- Crunch
-- Dragon Breath
+- Dragon Claw
+- U-Turn
 - Earthquake
+- Stone Edge
 
-Salamence @ Sitrus Berry
+Kingdra @ Scope Lens
+Ability: Sniper
+Level: 53
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+- Dragon Pulse
+- Hydro Pump
+- Ice Beam
+- Flip Turn
+
+Turtonator @ Leftovers
+Ability: Shell Armor
+Level: 53
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+- Taunt
+- Shell Trap
+- Flash Cannon
+- Dragon Pulse
+
+Salamence @ Yache Berry
+Ability: Intimidate
 Level: 55
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Flamethrower
+- Dragon Dance
 - Dragon Claw
-- Rock Slide
-- Crunch
+- Fly
+- Wild Charge
+
+Sceptile @ Sceptilite
+Ability: Overgrow
+Level: 55
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Leaf Storm
+- Draco Meteor
+- Focus Blast
+- Hidden Power
 
 === TRAINER_ROXANNE_1 ===
 Name: ROXANNE
@@ -6333,53 +6375,59 @@ Double Battle: No
 AI: Basic Trainer
 Mugshot: Yellow
 
-Skarmory
+Regirock @ Rock Gem
+Ability: Sturdy
 Level: 57
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Steel Wing
-- Spikes
-- Aerial Ace
-- Sand Attack
+- Stealth Rock
+- Stone Edge
+- Earthquake
+- Hammer Arm
 
-Aggron
+Registeel @ Steel Gem
+Ability: Clear Body
 Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Iron Tail
-- Protect
-- Double-Edge
-- Earthquake
+- Heavy Slam
+- Seismic Toss
+- Rest
+- Sleep Talk
 
-Claydol
+Regice @ Ice Gem
+Ability: Ice Body
 Level: 55
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Psychic
-- Light Screen
-- Reflect
-- Ancient Power
+- Lock-On
+- Blizzard
+- Focus Blast
+- Zap Cannon
 
-Cradily
+Drifblim @ Flying Gem
+Ability: Unburden
 Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Confuse Ray
-- Giga Drain
-- Ancient Power
-- Sludge Bomb
+- Acrobatics
+- Poltergeist
+- Tailwind
+- Destiny Bond
 
-Armaldo
+Tinkaton @ Air Balloon
+Ability: Pickpocket
 Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Slash
-- Metal Claw
-- Ancient Power
-- Water Pulse
+- Gigaton Hammer
+- Wood Hammer
+- Play Rough
+- Ice Hammer
 
-Metagross
+Metagross @ Metagrossite
+Ability: Clear Body
 Level: 58
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Meteor Mash
-- Psychic
-- Hyper Beam
 - Agility
+- Zen Headbutt
+- Headlong Rush
 
 === TRAINER_ANDREW ===
 Name: ANDREW

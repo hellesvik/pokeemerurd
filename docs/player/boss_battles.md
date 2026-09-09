@@ -109,37 +109,47 @@ planned as multi-Pokémon battles, not as six isolated singles.
 
 ### Phoebe
 
-Dusclops Lv. 48 (Shadow Punch, Confuse Ray, Curse, Protect); Banette Lv. 49
-(Shadow Ball, Grudge, Will-O-Wisp, Feint Attack); Sableye Lv. 50 (Shadow
-Ball, Double Team, Night Shade, Feint Attack); Banette Lv. 49 (Shadow Ball,
-Psychic, Thunderbolt, Facade); Dusclops Lv. 51 holding Sitrus Berry (Shadow
-Ball, Ice Beam, Rock Slide, Earthquake).
+Dusclops Lv. 48 holding Eviolite (Pressure; Pain Split, Will-O-Wisp,
+Substitute, Focus Punch); Hisuian Zoroark Lv. 49 holding Choice Scarf
+(Illusion; Bitter Malice, U-Turn, Frustration, Burning Jealousy); Oricorio
+Lv. 50 holding Heavy-Duty Boots (Dancer; Revelation Dance, Quiver Dance,
+Roost, Hurricane; random form); Bewear Lv. 49 holding Life Orb (Scrappy;
+Return, Body Press, Rest, Sleep Talk); Mimikyu Lv. 51 holding Sitrus Berry
+(Disguise; Substitute, Play Rough, Shadow Sneak, Focus Punch); Sableye Lv. 52
+holding Sablenite (Prankster; Fake Out, Torment, Protect, Foul Play).
 
 ### Glacia
 
-Sealeo Lv. 50 (Encore, Body Slam, Hail, Ice Ball); Glalie Lv. 50 (Light
-Screen, Crunch, Icy Wind, Ice Beam); Sealeo Lv. 52 (Attract, Double-Edge,
-Hail, Blizzard); Glalie Lv. 52 (Shadow Ball, Explosion, Hail, Ice Beam);
-Walrein Lv. 53 holding Sitrus Berry (Surf, Body Slam, Ice Beam, Sheer Cold).
+Vanilluxe Lv. 50 holding Focus Sash (Snow Warning; Blizzard, Freeze-Dry,
+Flash Cannon, Aurora Veil); Milotic Lv. 50 holding Leftovers (Marvel Scale;
+Scald, Weather Ball, Recover, Dragon Tail); Sawsbuck-Winter Lv. 52 holding
+Lum Berry (Serene Grace; Body Slam, Zen Headbutt, Horn Leech, Jump Kick);
+Rotom-Frost Lv. 52 holding Choice Scarf (Levitate; Blizzard, Volt Switch,
+Discharge, Trick); Beartic Lv. 53 holding Choice Band (Slush Rush; Icicle
+Crash, Liquidation, Superpower, Throat Chop); Glalie Lv. 53 holding Glalitite
+(Moody; Return, Ice Shard, Earthquake, Steel Roller).
 
 ### Drake
 
-Shelgon Lv. 52 (Rock Tomb, Dragon Claw, Protect, Double-Edge); Altaria Lv. 54
-(Double-Edge, Dragon Breath, Dragon Dance, Aerial Ace); Kingdra Lv. 53
-(Smokescreen, Dragon Dance, Surf, Body Slam); Flygon Lv. 53 (Flamethrower,
-Crunch, Dragon Breath, Earthquake); Salamence Lv. 55 holding Sitrus Berry
-(Flamethrower, Dragon Claw, Rock Slide, Crunch).
+Dragalge Lv. 52 holding Life Orb (Adaptability; Sludge Wave, Draco Meteor,
+Toxic Spikes, Recover); Flygon Lv. 54 holding Choice Scarf (Levitate; Dragon
+Claw, U-Turn, Earthquake, Stone Edge); Kingdra Lv. 53 holding Scope Lens
+(Sniper; Dragon Pulse, Hydro Pump, Ice Beam, Flip Turn); Turtonator Lv. 53
+holding Leftovers (Shell Armor; Taunt, Shell Trap, Flash Cannon, Dragon
+Pulse); Salamence Lv. 55 holding Yache Berry (Intimidate; Dragon Dance, Dragon
+Claw, Fly, Wild Charge); Sceptile Lv. 55 holding Sceptilite (Overgrow; Leaf
+Storm, Draco Meteor, Focus Blast, Hidden Power).
 
 ## Champion Steven
 
 | Pokémon | Lv. | Held item | Moves |
 | --- | ---: | --- | --- |
-| Skarmory | 57 | — | Steel Wing, Spikes, Aerial Ace, Sand Attack |
-| Aggron | 56 | — | Iron Tail, Protect, Double-Edge, Earthquake |
-| Claydol | 55 | — | Psychic, Light Screen, Reflect, Ancient Power |
-| Cradily | 56 | — | Confuse Ray, Giga Drain, Ancient Power, Sludge Bomb |
-| Armaldo | 56 | — | Slash, Metal Claw, Ancient Power, Water Pulse |
-| Metagross | 58 | — | Meteor Mash, Psychic, Hyper Beam, Agility |
+| Regirock | 57 | Rock Gem | Stealth Rock, Stone Edge, Earthquake, Hammer Arm |
+| Registeel | 56 | Steel Gem | Heavy Slam, Seismic Toss, Rest, Sleep Talk |
+| Regice | 55 | Ice Gem | Lock-On, Blizzard, Focus Blast, Zap Cannon |
+| Drifblim | 56 | Flying Gem | Acrobatics, Poltergeist, Tailwind, Destiny Bond |
+| Tinkaton | 56 | Air Balloon | Gigaton Hammer, Wood Hammer, Play Rough, Ice Hammer |
+| Metagross | 58 | Metagrossite | Meteor Mash, Agility, Zen Headbutt, Headlong Rush |
 
 Steven is the champion in this fork.
 

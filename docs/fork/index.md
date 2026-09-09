@@ -1,8 +1,7 @@
 # Fork Docs
 
 This folder contains the player-facing documentation for Emerurd's fork
-features. Start with the [fork overview](../../FORK.md), then choose a
-category below.
+features. Start here, then choose a category below.
 
 ## Gameplay rules
 

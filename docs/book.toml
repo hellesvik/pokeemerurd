@@ -1,12 +1,12 @@
 [book]
 language = "en"
 src = "."
-title = "pokeemerald-expansion"
+title = "Emerurd Player Guide"
 
 [output.html]
 git-repository-url = "https://github.com/rh-hideout/pokeemerald-expansion"
 edit-url-template = "https://github.com/rh-hideout/pokeemerald-expansion/edit/master/docs/{path}"
-site-url = "/pokeemerald-expansion/"
+site-url = "/pokeemerurd/"
 
 [preprocessor.fix_links]
 command = "python3 fix_links.py"

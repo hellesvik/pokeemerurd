@@ -1,0 +1,13 @@
+[book]
+language = "en"
+src = "."
+title = "Emerurd Fork Documentation"
+
+[output.html]
+git-repository-url = "https://github.com/hellesvik/pokeemerurd"
+edit-url-template = "https://github.com/hellesvik/pokeemerurd/edit/master/docs/fork/{path}"
+site-url = "/pokeemerurd/"
+
+[preprocessor.fix_links]
+command = "python3 ../fix_links.py"
+after = [ "links" ]

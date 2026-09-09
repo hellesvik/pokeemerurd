@@ -10,6 +10,8 @@ custom moves, held items, abilities, and species.
   fork data, including the revised Flannery, Juan, Wally, and Sidney teams.
 - Custom trainer abilities are allowed even when they are not normally legal
   for the species. This is intentional for the fork's challenge teams.
+- All Pokémon created for gym leaders, villain leaders, the Elite Four, and the
+  Champion have 31 IVs in every stat and Hardy (a neutral nature).
 
 Level caps follow the first uncleared story milestone. After Roxanne, the
 next rival milestone sets the cap to 16; caps are not tied only to the next

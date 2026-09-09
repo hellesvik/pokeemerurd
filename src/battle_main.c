@@ -1888,6 +1888,21 @@ void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon 
     }
 }
 
+static bool32 IsStoryBossTrainerClass(enum TrainerClassID trainerClass)
+{
+    switch (trainerClass)
+    {
+    case TRAINER_CLASS_LEADER:
+    case TRAINER_CLASS_ELITE_FOUR:
+    case TRAINER_CLASS_CHAMPION:
+    case TRAINER_CLASS_AQUA_LEADER:
+    case TRAINER_CLASS_MAGMA_LEADER:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
 u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer *trainer, bool32 halfTeam, u32 battleTypeFlags)
 {
     u32 personalityValue;
@@ -1941,7 +1956,10 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 personalityValue = (personalityValue & 0xFFFFFF00) | GeneratePersonalityForGender(MON_FEMALE, partyData[monIndex].species);
             else if (partyData[monIndex].gender == TRAINER_MON_RANDOM_GENDER)
                 personalityValue = (personalityValue & 0xFFFFFF00) | GeneratePersonalityForGender(Random() & 1 ? MON_MALE : MON_FEMALE, partyData[monIndex].species);
-            ModifyPersonalityForNature(&personalityValue, partyData[monIndex].nature);
+            if (IsStoryBossTrainerClass(trainer->trainerClass))
+                ModifyPersonalityForNature(&personalityValue, NATURE_HARDY);
+            else
+                ModifyPersonalityForNature(&personalityValue, partyData[monIndex].nature);
             if (partyData[monIndex].isShiny)
             {
                 otId.method = OT_ID_PRESET;
@@ -1951,7 +1969,11 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[monIndex].heldItem);
 
             CustomTrainerPartyAssignMoves(&party[i], &partyData[monIndex]);
-            SetMonData(&party[i], MON_DATA_IVS, &(partyData[monIndex].iv));
+            u32 ivs = IsStoryBossTrainerClass(trainer->trainerClass)
+                    ? TRAINER_PARTY_IVS(MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS,
+                                        MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS)
+                    : partyData[monIndex].iv;
+            SetMonData(&party[i], MON_DATA_IVS, &ivs);
             if (partyData[monIndex].ev != NULL)
             {
                 SetMonData(&party[i], MON_DATA_HP_EV, &(partyData[monIndex].ev[0]));

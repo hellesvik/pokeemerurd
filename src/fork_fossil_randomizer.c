@@ -69,17 +69,17 @@ enum Item GetForkFirstRevivableFossil(void)
     return ITEM_NONE;
 }
 
-void GetForkMirageTowerFossilSpecial(void)
+u16 GetForkMirageTowerFossilSpecial(void)
 {
-    gSpecialVar_Result = GetForkMirageTowerFossil(gSpecialVar_0x8004);
+    return GetForkMirageTowerFossil(gSpecialVar_0x8004);
 }
 
-void GetForkFossilRevivalSpeciesSpecial(void)
+u16 GetForkFossilRevivalSpeciesSpecial(void)
 {
-    gSpecialVar_Result = GetForkFossilRevivalSpecies(gSpecialVar_0x8004);
+    return GetForkFossilRevivalSpecies(gSpecialVar_0x8004);
 }
 
-void GetForkFirstRevivableFossilSpecial(void)
+u16 GetForkFirstRevivableFossilSpecial(void)
 {
-    gSpecialVar_Result = GetForkFirstRevivableFossil();
+    return GetForkFirstRevivableFossil();
 }

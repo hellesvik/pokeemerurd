@@ -1,6 +1,9 @@
 #include "global.h"
+#include "event_data.h"
+#include "fork_fossil_randomizer.h"
 #include "item_ball.h"
 #include "pokemon.h"
+#include "script.h"
 #include "test/test.h"
 
 enum Item GetForkMirageTowerFossil(u8 choice);
@@ -59,6 +62,12 @@ TEST("Every Mirage Tower fossil has its matching revival Pokémon")
     EXPECT_EQ(GetForkFossilRevivalSpecies(ITEM_PLUME_FOSSIL), SPECIES_ARCHEN);
     EXPECT_EQ(GetForkFossilRevivalSpecies(ITEM_JAW_FOSSIL), SPECIES_TYRUNT);
     EXPECT_EQ(GetForkFossilRevivalSpecies(ITEM_SAIL_FOSSIL), SPECIES_AMAURA);
+}
+
+TEST("Fossil special functions return their script values")
+{
+    gSpecialVar_0x8004 = ITEM_CLAW_FOSSIL;
+    EXPECT_EQ(GetForkFossilRevivalSpeciesSpecial(), SPECIES_ANORITH);
 }
 
 TEST("Item randomizer does not award fossil items")

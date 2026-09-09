@@ -107,35 +107,26 @@ TEST("Fork rules enable a hard story-battle level cap while leaving one-use Rare
 
     SetTrainerFlag(TRAINER_MAY_RUSTBORO_TREECKO);
     SetTrainerFlag(TRAINER_BRAWLY_1);
-    EXPECT_EQ(GetCurrentLevelCap(), 16);
+    EXPECT_EQ(GetCurrentLevelCap(), 19);
 
-    SetTrainerFlag(TRAINER_WALLY_MAUVILLE);
     SetTrainerFlag(TRAINER_MAY_ROUTE_110_TREECKO);
     SetTrainerFlag(TRAINER_WATTSON_1);
-    SetTrainerFlag(TRAINER_TABITHA_MT_CHIMNEY);
     SetTrainerFlag(TRAINER_MAXIE_MT_CHIMNEY);
     SetTrainerFlag(TRAINER_FLANNERY_1);
     SetTrainerFlag(TRAINER_NORMAN_1);
     SetTrainerFlag(TRAINER_MAY_ROUTE_119_TREECKO);
-    EXPECT_EQ(GetCurrentLevelCap(), 28);
+    EXPECT_EQ(GetCurrentLevelCap(), 29);
 
-    SetTrainerFlag(TRAINER_SHELLY_WEATHER_INSTITUTE);
     SetTrainerFlag(TRAINER_WINONA_1);
     SetTrainerFlag(TRAINER_MAY_LILYCOVE_TREECKO);
     SetTrainerFlag(TRAINER_MAXIE_MAGMA_HIDEOUT);
-    SetTrainerFlag(TRAINER_MATT);
     SetTrainerFlag(TRAINER_TATE_AND_LIZA_1);
     SetTrainerFlag(TRAINER_MAXIE_MOSSDEEP);
-    SetTrainerFlag(TRAINER_SHELLY_SEAFLOOR_CAVERN);
     SetTrainerFlag(TRAINER_ARCHIE);
     SetTrainerFlag(TRAINER_JUAN_1);
     SetTrainerFlag(TRAINER_WALLY_VR_1);
-    EXPECT_EQ(GetCurrentLevelCap(), 49);
+    EXPECT_EQ(GetCurrentLevelCap(), 47);
 
-    SetTrainerFlag(TRAINER_SIDNEY);
-    SetTrainerFlag(TRAINER_PHOEBE);
-    SetTrainerFlag(TRAINER_GLACIA);
-    SetTrainerFlag(TRAINER_DRAKE);
     EXPECT_EQ(GetCurrentLevelCap(), 58);
 
     SetTrainerFlag(TRAINER_WALLACE);

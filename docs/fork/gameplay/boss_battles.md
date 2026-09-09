@@ -15,36 +15,29 @@ The cap ladder includes every required story battle that advances the level cap.
 | 1 | Roxanne | Single | 15 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_roxanne.png" alt="Roxanne" width="64"> |
 | 2 | Rustboro rival | Single | 16 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/brendan.png" alt="Brendan or May" width="64"> |
 | 3 | Brawly | Single | 19 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_brawly.png" alt="Brawly" width="64"> |
-| 4 | Wally — Mauville | Single | 16 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/wally.png" alt="Wally" width="64"> |
-| 5 | Route 110 rival | Single | 20 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/brendan.png" alt="Brendan or May" width="64"> |
-| 6 | Wattson | Double | 24 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_wattson.png" alt="Wattson" width="64"> |
-| 7 | Tabitha — Mt. Chimney | Single | 22 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/magma_admin.png" alt="Tabitha" width="64"> |
-| 8 | Maxie — Mt. Chimney | Single | 25 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/magma_leader_maxie.png" alt="Maxie" width="64"> |
-| 9 | Flannery | Single | 29 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_flannery.png" alt="Flannery" width="64"> |
-| 10 | Norman | Single | 31 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_norman.png" alt="Norman" width="64"> |
-| 11 | Route 119 rival | Single | 31 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/brendan.png" alt="Brendan or May" width="64"> |
-| 12 | Shelly — Weather Institute | Single | 28 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/aqua_admin_f.png" alt="Shelly" width="64"> |
-| 13 | Winona | Single | 33 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_winona.png" alt="Winona" width="64"> |
-| 14 | Lilycove rival | Single | 34 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/brendan.png" alt="Brendan or May" width="64"> |
-| 15 | Maxie — Magma Hideout | Single | 39 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/magma_leader_maxie.png" alt="Maxie" width="64"> |
-| 16 | Matt | Single | 34 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/aqua_admin_m.png" alt="Matt" width="64"> |
-| 17 | Tate & Liza | Double | 42 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_tate_and_liza.png" alt="Tate and Liza" width="64"> |
-| 18 | Maxie & Tabitha — Mossdeep | Double | 44 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/magma_leader_maxie.png" alt="Maxie and Tabitha" width="64"> |
-| 19 | Shelly — Seafloor Cavern | Single | 37 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/aqua_admin_f.png" alt="Shelly" width="64"> |
-| 20 | Archie | Single | 43 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/aqua_leader_archie.png" alt="Archie" width="64"> |
-| 21 | Juan | Single | 46 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_juan.png" alt="Juan" width="64"> |
-| 22 | Wally — Victory Road | Single | 45 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/wally.png" alt="Wally" width="64"> |
-| 23 | Sidney | Single | 49 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/elite_four_sidney.png" alt="Sidney" width="64"> |
-| 24 | Phoebe | Single | 51 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/elite_four_phoebe.png" alt="Phoebe" width="64"> |
-| 25 | Glacia | Single | 53 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/elite_four_glacia.png" alt="Glacia" width="64"> |
-| 26 | Drake | Single | 55 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/elite_four_drake.png" alt="Drake" width="64"> |
-| 27 | Steven — Champion | Single | 58 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/steven.png" alt="Steven" width="64"> |
+| 4 | Route 110 rival | Single | 20 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/brendan.png" alt="Brendan or May" width="64"> |
+| 5 | Wattson | Double | 24 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_wattson.png" alt="Wattson" width="64"> |
+| 6 | Maxie — Mt. Chimney | Single | 25 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/magma_leader_maxie.png" alt="Maxie" width="64"> |
+| 7 | Flannery | Single | 29 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_flannery.png" alt="Flannery" width="64"> |
+| 8 | Norman | Single | 31 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_norman.png" alt="Norman" width="64"> |
+| 9 | Route 119 rival | Single | 31 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/brendan.png" alt="Brendan or May" width="64"> |
+| 10 | Winona | Single | 33 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_winona.png" alt="Winona" width="64"> |
+| 11 | Lilycove rival | Single | 34 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/brendan.png" alt="Brendan or May" width="64"> |
+| 12 | Maxie — Magma Hideout | Single | 39 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/magma_leader_maxie.png" alt="Maxie" width="64"> |
+| 13 | Tate & Liza | Double | 42 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_tate_and_liza.png" alt="Tate and Liza" width="64"> |
+| 14 | Maxie & Tabitha — Mossdeep | Double | 44 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/magma_leader_maxie.png" alt="Maxie and Tabitha" width="64"> |
+| 15 | Archie | Single | 45 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/aqua_leader_archie.png" alt="Archie" width="64"> |
+| 16 | Juan | Single | 46 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_juan.png" alt="Juan" width="64"> |
+| 17 | Wally — Victory Road | Single | 47 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/wally.png" alt="Wally" width="64"> |
+| 18 | Steven — Champion | Single | 58 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/steven.png" alt="Steven" width="64"> |
 
 ## Roxanne — Single battle
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_roxanne.png" alt="Roxanne" width="96"></p>
+
 | | Anorith | Lileep | Nosepass |
 | --- | --- | --- | --- |
 | Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/anorith/anim_front.png" alt="Anorith" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/lileep/anim_front.png" alt="Lileep" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/nosepass/anim_front.png" alt="Nosepass" width="64"> |
+| Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/rock.png" alt="Rock" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/bug.png" alt="Bug" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/rock.png" alt="Rock" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/rock.png" alt="Rock" width="48"> |
 | Level | 12 | 12 | 15 |
 | Stats | Total: 151<br>HP: 36<br>ATK: 31<br>DEF: 20<br>SpA: 26<br>SpD: 18<br>Spe: 20 | Total: 152<br>HP: 41<br>ATK: 18<br>DEF: 27<br>SpA: 14<br>SpD: 23<br>Spe: 29 | Total: 188<br>HP: 38<br>ATK: 23<br>DEF: 50<br>SpA: 18<br>SpD: 23<br>Spe: 36 |
 | Ability | Sturdy | Storm Drain | Solid Rock |
@@ -54,6 +47,7 @@ The cap ladder includes every required story battle that advances the level cap.
 
 ## Brawley — Single battle
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_brawly.png" alt="Brawley" width="96"></p>
+
 | | Meditite | Combusken | Makuhita |
 | --- | --- | --- | --- |
 | Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/meditite/anim_front.png" alt="Meditite" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/combusken/anim_front.png" alt="Combusken" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/makuhita/anim_front.png" alt="Makuhita" width="64"> |
@@ -66,6 +60,7 @@ The cap ladder includes every required story battle that advances the level cap.
 
 ## Wattson — Double battle
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_wattson.png" alt="Wattson" width="96"></p>
+
 | | Plusle | Minun | Magneton | Manectric |
 | --- | --- | --- | --- | --- |
 | Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/plusle/anim_front.png" alt="Plusle" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/minun/anim_front.png" alt="Minun" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/magneton/anim_front.png" alt="Magneton" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/manectric/anim_front.png" alt="Manectric" width="64"> |
@@ -78,6 +73,7 @@ The cap ladder includes every required story battle that advances the level cap.
 
 ## Flannery — Single battle
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_flannery.png" alt="Flannery" width="96"></p>
+
 | | Torkoal | Magmar | Weezing | Camerupt |
 | --- | --- | --- | --- | --- |
 | Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/torkoal/anim_front.png" alt="Torkoal" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/magmar/anim_front.png" alt="Magmar" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/weezing/anim_front.png" alt="Weezing" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/camerupt/anim_front.png" alt="Camerupt" width="64"> |
@@ -90,6 +86,7 @@ The cap ladder includes every required story battle that advances the level cap.
 
 ## Norman — Single battle
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_norman.png" alt="Norman" width="96"></p>
+
 | | Linoone | Zangoose | Tauros | Bouffalant | Slaking |
 | --- | --- | --- | --- | --- | --- |
 | Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/linoone/anim_front.png" alt="Linoone" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/zangoose/anim_front.png" alt="Zangoose" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/tauros/anim_front.png" alt="Tauros" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/bouffalant/anim_front.png" alt="Bouffalant" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/slaking/anim_front.png" alt="Slaking" width="64"> |
@@ -102,6 +99,7 @@ The cap ladder includes every required story battle that advances the level cap.
 
 ## Winona — Single battle
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_winona.png" alt="Winona" width="96"></p>
+
 | | Swellow | Tropius | Pelipper | Salamence | Altaria |
 | --- | --- | --- | --- | --- | --- |
 | Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/swellow/anim_front.png" alt="Swellow" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/tropius/anim_front.png" alt="Tropius" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/pelipper/anim_front.png" alt="Pelipper" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/salamence/anim_front.png" alt="Salamence" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/altaria/anim_front.png" alt="Altaria" width="64"> |
@@ -114,6 +112,7 @@ The cap ladder includes every required story battle that advances the level cap.
 
 ## Tate & Liza — Double battle
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_tate_and_liza.png" alt="Tate & Liza" width="96"></p>
+
 | | Xatu | Sigilyph | Gothitelle | Reuniclus | Lunatone | Solrock |
 | --- | --- | --- | --- | --- | --- | --- |
 | Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/xatu/anim_front.png" alt="Xatu" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/sigilyph/anim_front.png" alt="Sigilyph" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/gothitelle/anim_front.png" alt="Gothitelle" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/reuniclus/anim_front.png" alt="Reuniclus" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/lunatone/anim_front.png" alt="Lunatone" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/solrock/anim_front.png" alt="Solrock" width="64"> |
@@ -126,6 +125,7 @@ The cap ladder includes every required story battle that advances the level cap.
 
 ## Juan — Single battle
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_juan.png" alt="Juan" width="96"></p>
+
 | | Pelipper | Luvdisc | Ludicolo | Cursola | Crawdaunt | Swampert |
 | --- | --- | --- | --- | --- | --- | --- |
 | Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/pelipper/anim_front.png" alt="Pelipper" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/luvdisc/anim_front.png" alt="Luvdisc" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/ludicolo/anim_front.png" alt="Ludicolo" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/cursola/front.png" alt="Cursola" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/crawdaunt/anim_front.png" alt="Crawdaunt" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/swampert/anim_front.png" alt="Swampert" width="64"> |
@@ -138,6 +138,7 @@ The cap ladder includes every required story battle that advances the level cap.
 
 ## Wally — Single battle
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/wally.png" alt="Wally" width="96"></p>
+
 | | Delcatty | Altaria | Roserade | Rapidash | Heliolisk | Gallade |
 | --- | --- | --- | --- | --- | --- | --- |
 | Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/delcatty/anim_front.png" alt="Delcatty" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/altaria/anim_front.png" alt="Altaria" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/roserade/anim_front.png" alt="Roserade" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/rapidash/anim_front.png" alt="Rapidash" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/heliolisk/anim_front.png" alt="Heliolisk" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/gallade/anim_front.png" alt="Gallade" width="64"> |
@@ -150,6 +151,7 @@ The cap ladder includes every required story battle that advances the level cap.
 
 ## Sidney — Single battle
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/elite_four_sidney.png" alt="Sidney" width="96"></p>
+
 | | Overqwil | Zoroark | Shiftry | Bombirdier | Sharpedo | Absol |
 | --- | --- | --- | --- | --- | --- | --- |
 | Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/overqwil/front.png" alt="Overqwil" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/zoroark/anim_front.png" alt="Zoroark" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/shiftry/anim_front.png" alt="Shiftry" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/bombirdier/front.png" alt="Bombirdier" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/sharpedo/anim_front.png" alt="Sharpedo" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/absol/anim_front.png" alt="Absol" width="64"> |
@@ -162,6 +164,7 @@ The cap ladder includes every required story battle that advances the level cap.
 
 ## Phoebe — Single battle
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/elite_four_phoebe.png" alt="Phoebe" width="96"></p>
+
 | | Dusclops | Zoroark-Hisui | Oricorio | Bewear | Mimikyu | Sableye |
 | --- | --- | --- | --- | --- | --- | --- |
 | Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/dusclops/anim_front.png" alt="Dusclops" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/zoroark/hisui/front.png" alt="Zoroark-Hisui" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/oricorio/anim_front.png" alt="Oricorio" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/bewear/anim_front.png" alt="Bewear" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/mimikyu/anim_front.png" alt="Mimikyu" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/sableye/anim_front.png" alt="Sableye" width="64"> |
@@ -174,6 +177,7 @@ The cap ladder includes every required story battle that advances the level cap.
 
 ## Glacia — Single battle
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/elite_four_glacia.png" alt="Glacia" width="96"></p>
+
 | | Vanilluxe | Milotic | Sawsbuck-Winter | Rotom-Frost | Beartic | Glalie |
 | --- | --- | --- | --- | --- | --- | --- |
 | Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/vanilluxe/anim_front.png" alt="Vanilluxe" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/milotic/anim_front.png" alt="Milotic" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/sawsbuck/winter/anim_front.png" alt="Sawsbuck-Winter" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/rotom/frost/anim_front.png" alt="Rotom-Frost" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/beartic/anim_front.png" alt="Beartic" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/glalie/anim_front.png" alt="Glalie" width="64"> |
@@ -186,6 +190,7 @@ The cap ladder includes every required story battle that advances the level cap.
 
 ## Drake — Single battle
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/elite_four_drake.png" alt="Drake" width="96"></p>
+
 | | Dragalge | Flygon | Kingdra | Turtonator | Salamence | Sceptile |
 | --- | --- | --- | --- | --- | --- | --- |
 | Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/dragalge/anim_front.png" alt="Dragalge" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/flygon/anim_front.png" alt="Flygon" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/kingdra/anim_front.png" alt="Kingdra" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/turtonator/anim_front.png" alt="Turtonator" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/salamence/anim_front.png" alt="Salamence" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/sceptile/anim_front.png" alt="Sceptile" width="64"> |
@@ -198,6 +203,7 @@ The cap ladder includes every required story battle that advances the level cap.
 
 ## Archie — Single battle
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/aqua_leader_archie.png" alt="Archie" width="96"></p>
+
 | | Mightyena | Crobat | Sharpedo |
 | --- | --- | --- | --- |
 | Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/mightyena/anim_front.png" alt="Mightyena" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/crobat/anim_front.png" alt="Crobat" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/sharpedo/anim_front.png" alt="Sharpedo" width="64"> |
@@ -210,6 +216,7 @@ The cap ladder includes every required story battle that advances the level cap.
 
 ## Maxie — Magma Hideout — Single battle
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/magma_leader_maxie.png" alt="Maxie" width="96"></p>
+
 | | Mightyena | Crobat | Camerupt |
 | --- | --- | --- | --- |
 | Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/mightyena/anim_front.png" alt="Mightyena" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/crobat/anim_front.png" alt="Crobat" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/camerupt/anim_front.png" alt="Camerupt" width="64"> |
@@ -222,6 +229,7 @@ The cap ladder includes every required story battle that advances the level cap.
 
 ## Maxie — Mossdeep — Single battle
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/magma_leader_maxie.png" alt="Maxie" width="96"></p>
+
 | | Mightyena | Crobat | Camerupt |
 | --- | --- | --- | --- |
 | Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/mightyena/anim_front.png" alt="Mightyena" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/crobat/anim_front.png" alt="Crobat" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/camerupt/anim_front.png" alt="Camerupt" width="64"> |
@@ -234,6 +242,7 @@ The cap ladder includes every required story battle that advances the level cap.
 
 ## Steven — Champion — Single battle
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/steven.png" alt="Steven" width="96"></p>
+
 | | Regirock | Registeel | Regice | Drifblim | Tinkaton | Metagross |
 | --- | --- | --- | --- | --- | --- | --- |
 | Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/regirock/anim_front.png" alt="Regirock" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/registeel/anim_front.png" alt="Registeel" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/regice/anim_front.png" alt="Regice" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/drifblim/anim_front.png" alt="Drifblim" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/tinkaton/front.png" alt="Tinkaton" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/metagross/anim_front.png" alt="Metagross" width="64"> |

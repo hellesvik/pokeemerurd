@@ -70,26 +70,17 @@ static const u16 sCapLilycoveRival[] =
 
 static const u16 sCapRoxanne[] = { TRAINER_ROXANNE_1, TRAINER_NONE };
 static const u16 sCapBrawly[] = { TRAINER_BRAWLY_1, TRAINER_NONE };
-static const u16 sCapWallyMauville[] = { TRAINER_WALLY_MAUVILLE, TRAINER_NONE };
 static const u16 sCapWattson[] = { TRAINER_WATTSON_1, TRAINER_NONE };
-static const u16 sCapTabithaMtChimney[] = { TRAINER_TABITHA_MT_CHIMNEY, TRAINER_NONE };
 static const u16 sCapMaxieMtChimney[] = { TRAINER_MAXIE_MT_CHIMNEY, TRAINER_NONE };
 static const u16 sCapFlannery[] = { TRAINER_FLANNERY_1, TRAINER_NONE };
 static const u16 sCapNorman[] = { TRAINER_NORMAN_1, TRAINER_NONE };
-static const u16 sCapShellyWeatherInstitute[] = { TRAINER_SHELLY_WEATHER_INSTITUTE, TRAINER_NONE };
 static const u16 sCapWinona[] = { TRAINER_WINONA_1, TRAINER_NONE };
 static const u16 sCapMaxieMagmaHideout[] = { TRAINER_MAXIE_MAGMA_HIDEOUT, TRAINER_NONE };
-static const u16 sCapMatt[] = { TRAINER_MATT, TRAINER_NONE };
 static const u16 sCapTateAndLiza[] = { TRAINER_TATE_AND_LIZA_1, TRAINER_NONE };
 static const u16 sCapMaxieTabithaMossdeep[] = { TRAINER_MAXIE_MOSSDEEP, TRAINER_TABITHA_MOSSDEEP, TRAINER_NONE };
-static const u16 sCapShellySeafloor[] = { TRAINER_SHELLY_SEAFLOOR_CAVERN, TRAINER_NONE };
 static const u16 sCapArchie[] = { TRAINER_ARCHIE, TRAINER_NONE };
 static const u16 sCapJuan[] = { TRAINER_JUAN_1, TRAINER_NONE };
 static const u16 sCapWallyVictoryRoad[] = { TRAINER_WALLY_VR_1, TRAINER_NONE };
-static const u16 sCapSidney[] = { TRAINER_SIDNEY, TRAINER_NONE };
-static const u16 sCapPhoebe[] = { TRAINER_PHOEBE, TRAINER_NONE };
-static const u16 sCapGlacia[] = { TRAINER_GLACIA, TRAINER_NONE };
-static const u16 sCapDrake[] = { TRAINER_DRAKE, TRAINER_NONE };
 static const u16 sCapWallace[] = { TRAINER_WALLACE, TRAINER_NONE };
 
 static const struct LevelCapMilestone sLevelCapMilestones[] =
@@ -97,29 +88,20 @@ static const struct LevelCapMilestone sLevelCapMilestones[] =
     { 15, sCapRoxanne },
     { 16, sCapRustboroRival },
     { 19, sCapBrawly },
-    { 16, sCapWallyMauville },
     { 20, sCapRoute110Rival },
     { 24, sCapWattson },
-    { 22, sCapTabithaMtChimney },
     { 25, sCapMaxieMtChimney },
     { 29, sCapFlannery },
     { 31, sCapNorman },
     { 31, sCapRoute119Rival },
-    { 28, sCapShellyWeatherInstitute },
     { 33, sCapWinona },
     { 34, sCapLilycoveRival },
     { 39, sCapMaxieMagmaHideout },
-    { 34, sCapMatt },
     { 42, sCapTateAndLiza },
     { 44, sCapMaxieTabithaMossdeep },
-    { 37, sCapShellySeafloor },
-    { 43, sCapArchie },
+    { 45, sCapArchie },
     { 46, sCapJuan },
-    { 45, sCapWallyVictoryRoad },
-    { 49, sCapSidney },
-    { 51, sCapPhoebe },
-    { 53, sCapGlacia },
-    { 55, sCapDrake },
+    { 47, sCapWallyVictoryRoad },
     { 58, sCapWallace },
 };
 

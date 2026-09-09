@@ -23,3 +23,10 @@ TEST("Species with form-specific excluded abilities keep their original abilitie
 {
     EXPECT_EQ(GetForkRandomizedAbility(SPECIES_ARCEUS), GetSpeciesAbility(SPECIES_ARCEUS, 0));
 }
+
+TEST("Shedinja keeps Wonder Guard")
+{
+    EXPECT_EQ(GetSpeciesAbility(SPECIES_SHEDINJA, 0), ABILITY_WONDER_GUARD);
+    EXPECT_EQ(IsForkAbilityRandomizedSpecies(SPECIES_SHEDINJA), FALSE);
+    EXPECT_EQ(GetForkRandomizedAbility(SPECIES_SHEDINJA), ABILITY_WONDER_GUARD);
+}

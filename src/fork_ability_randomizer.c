@@ -45,6 +45,11 @@ static bool8 IsExcludedAbility(enum Ability ability)
     }
 }
 
+static bool8 IsExcludedAbilityPair(enum Species species, enum Ability ability)
+{
+    return species == SPECIES_SHEDINJA && ability == ABILITY_WONDER_GUARD;
+}
+
 static enum Species GetFamilyRoot(enum Species species)
 {
     enum Species root;
@@ -86,7 +91,8 @@ static bool8 SpeciesHasExcludedAbility(enum Species species)
     u8 slot;
 
     for (slot = 0; slot < NUM_ABILITY_SLOTS; slot++)
-        if (IsExcludedAbility(GetSpeciesAbility(species, slot)))
+        if (IsExcludedAbility(GetSpeciesAbility(species, slot))
+         || IsExcludedAbilityPair(species, GetSpeciesAbility(species, slot)))
             return TRUE;
     return FALSE;
 }

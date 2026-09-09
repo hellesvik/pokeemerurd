@@ -72,15 +72,16 @@ static void GiveTemporaryTestRayquazaToEveryBox(void)
 {
     struct Pokemon mon;
     u8 abilityNum = NUM_ABILITY_SLOTS;
-    enum Item heldItem = ITEM_LIFE_ORB;
+    enum Item heldItem = ITEM_NONE;
 
     CreateMon(&mon, SPECIES_RAYQUAZA, 100, Random32(), OTID_STRUCT_PLAYER_ID);
     GiveMonInitialMoveset(&mon);
     for (u8 i = 0; i < MAX_MON_MOVES; i++)
         SetMonMoveSlot(&mon, MOVE_NONE, i);
-    SetMonMoveSlot(&mon, MOVE_DRAGON_DANCE, 0);
-    SetMonMoveSlot(&mon, MOVE_DRAGON_CLAW, 1);
-    SetMonMoveSlot(&mon, MOVE_FLY, 2);
+    SetMonMoveSlot(&mon, MOVE_ACROBATICS, 0);
+    SetMonMoveSlot(&mon, MOVE_DRAGON_DANCE, 1);
+    SetMonMoveSlot(&mon, MOVE_DRAGON_CLAW, 2);
+    SetMonMoveSlot(&mon, MOVE_FLY, 3);
     SetMonData(&mon, MON_DATA_ABILITY_NUM, &abilityNum);
     SetMonData(&mon, MON_DATA_HELD_ITEM, &heldItem);
     CalculateMonStats(&mon);

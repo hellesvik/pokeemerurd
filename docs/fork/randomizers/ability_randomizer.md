@@ -26,6 +26,10 @@ All ordinary eligible Abilities can be randomized. This deliberately includes
 Wonder Guard, Truant, Arena Trap, Shadow Tag, Huge Power, Pure Power, and
 Pickup.
 
+Shedinja is the exception for Wonder Guard: the Nincada family is excluded
+from ability randomization so Shedinja always keeps Wonder Guard. Wonder Guard
+remains available for other eligible families.
+
 ## Fixed form-mechanic Pokémon
 
 Forecast is exclusive to Castform. Castform is not ability-randomized and

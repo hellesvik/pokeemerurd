@@ -24,6 +24,14 @@
 #include "constants/opponents.h"
 #include "wild_encounter.h"
 
+TEST("HM moves can be replaced when teaching another move")
+{
+    EXPECT_EQ(IsMoveHM(MOVE_CUT), TRUE);
+    EXPECT_EQ(CannotForgetMove(MOVE_CUT), FALSE);
+    EXPECT_EQ(CannotForgetMove(MOVE_SURF), FALSE);
+    EXPECT_EQ(CannotForgetMove(MOVE_TACKLE), FALSE);
+}
+
 static void ClearForkLevelCapTrainerFlags(void)
 {
     static const u16 sLevelCapTrainerFlags[] =
@@ -393,7 +401,8 @@ TEST("Temporary startup Rayquaza is stored in every box")
 
         EXPECT_EQ(GetBoxMonData(mon, MON_DATA_SPECIES), SPECIES_RAYQUAZA);
         EXPECT_EQ(GetLevelFromBoxMonExp(mon), 100);
-        EXPECT_EQ(GetBoxMonData(mon, MON_DATA_HELD_ITEM), ITEM_LIFE_ORB);
+        EXPECT_EQ(GetBoxMonData(mon, MON_DATA_HELD_ITEM), ITEM_NONE);
+        EXPECT_EQ(GetBoxMonData(mon, MON_DATA_MOVE1), MOVE_ACROBATICS);
     }
 }
 

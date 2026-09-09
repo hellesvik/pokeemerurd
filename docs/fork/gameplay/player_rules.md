@@ -10,6 +10,15 @@ Held items consumed or removed during a battle are restored when the battle
 ends. This applies to player and opposing Pokémon in the current battle
 configuration.
 
+## Replacing HM moves
+
+HM moves can be replaced when teaching a new move. They can also be forgotten
+through the game's other move-replacement interfaces.
+
+Field HMs are available after their normal badge requirement is met. The
+player can interact with the relevant object or terrain directly; no party
+Pokémon needs to know or hold the HM.
+
 ## Infinite key items
 
 When enabled, new games receive two reusable key items:

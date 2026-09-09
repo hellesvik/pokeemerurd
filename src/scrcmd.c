@@ -2335,6 +2335,27 @@ bool8 ScrCmd_checkfieldmove(struct ScriptContext *ctx)
         }
     }
 
+    // Field HMs are unlocked by badges in this fork. If no party Pokémon
+    // knows the HM, use the first non-egg party slot for the existing field
+    // effect plumbing; the HM itself is no longer a party requirement.
+    if (gSpecialVar_Result == PARTY_SIZE
+     && IsMoveHM(move)
+     && IsFieldMoveUnlocked(fieldMove))
+    {
+        for (u32 i = 0; i < PARTY_SIZE; i++)
+        {
+            enum Species species = GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_SPECIES);
+            if (!species)
+                break;
+            if (!GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_IS_EGG))
+            {
+                gSpecialVar_Result = i;
+                gSpecialVar_0x8004 = species;
+                break;
+            }
+        }
+    }
+
     return FALSE;
 }
 

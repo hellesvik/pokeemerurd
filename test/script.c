@@ -1,10 +1,29 @@
 #include "global.h"
+#include "event_data.h"
+#include "pokemon.h"
 #include "test/test.h"
 #include "test/overworld_script.h"
 #include "script.h"
 #include "constants/decorations.h"
+#include "constants/flags.h"
 #include "constants/field_move.h"
 #include "constants/moves.h"
+
+TEST("Badge-unlocked HMs do not require a Pokémon that knows the move")
+{
+    ZeroPlayerPartyMons();
+    CreateMon(&gParties[B_TRAINER_PLAYER][0], SPECIES_WOBBUFFET, 10, 0, OTID_STRUCT_PLAYER_ID);
+
+    FlagClear(FLAG_BADGE01_GET);
+    RUN_OVERWORLD_SCRIPT(checkfieldmove FIELD_MOVE_CUT, TRUE;);
+    EXPECT_EQ(gSpecialVar_Result, PARTY_SIZE);
+
+    FlagSet(FLAG_BADGE01_GET);
+    RUN_OVERWORLD_SCRIPT(checkfieldmove FIELD_MOVE_CUT, TRUE;);
+    EXPECT_EQ(gSpecialVar_Result, 0);
+
+    FlagClear(FLAG_BADGE01_GET);
+}
 
 TEST("Script_HasNoEffect control flow")
 {

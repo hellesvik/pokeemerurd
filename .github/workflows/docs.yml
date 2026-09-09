@@ -24,8 +24,10 @@ jobs:
           echo `pwd`/mdbook >> $GITHUB_PATH
       - name: Build Book
         run: |
-          cd docs/fork
+          cd docs
           mdbook build
+      - name: Verify fork docs are included
+        run: grep -q 'fork/index.md' docs/SUMMARY.md
       - name: Check if Pages is enabled
         uses: octokit/request-action@v2.x
         id: check_pages
@@ -41,7 +43,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'docs/fork/book'
+          path: 'docs/book'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

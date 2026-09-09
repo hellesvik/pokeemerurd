@@ -19,6 +19,7 @@
         - [Gift Pokémon and Fossils](fork/randomizers/gift_pokemon_and_fossils.md)
     - [Configuration](fork/configuration/new_game_options.md)
     - [Reference Data](fork/reference/index.md)
+        - [Pokémon Evolution Methods](fork/reference/pokemon_evolution_methods.md)
 - [Player Guide](./player/index.md)
     - [New-Game Setup](player/setup.md)
     - [Nuzlite and Nuzlocke Rules](player/nuzlocke.md)

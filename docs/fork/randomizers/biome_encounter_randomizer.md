@@ -168,6 +168,17 @@ they share the same limit.
 The bounds are inclusive. The exact map/method rows are defined in the CSV
 linked above.
 
+The following towns and cities now also have a small natural grass patch, so
+they have land encounters in addition to any water or fishing encounters they
+already had:
+
+- Littleroot Town and Oldale Town: 150–250 BST
+- Rustboro City: 180–280 BST
+- Lavaridge Town: 250–350 BST
+- Fallarbor Town: 270–370 BST
+- Mauville City and Verdanturf Town: 300–400 BST
+- Fortree City: 320–420 BST
+
 The map's ordinary encounter level rules remain in effect. BST gating controls
 which species may be selected; it does not raise their level.
 

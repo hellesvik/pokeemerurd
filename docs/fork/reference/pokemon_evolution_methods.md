@@ -5,6 +5,9 @@ Every Pokémon species and form currently represented in the fork is listed belo
 Alternate forms that share a display name with their base species are listed
 as separate rows because they are separate species entries in the game data.
 
+For Generation 1, repeated entries with the same display name and evolution
+method are consolidated for readability; distinct evolution methods remain.
+
 <div class="table-scroll">
 <table>
 <thead><tr><th>Pokémon</th><th>Evolution method</th></tr></thead>
@@ -12,35 +15,23 @@ as separate rows because they are separate species entries in the game data.
 <tr><td>Bulbasaur</td><td>Level 16 → Ivysaur</td></tr>
 <tr><td>Ivysaur</td><td>Level 32 → Venusaur</td></tr>
 <tr><td>Venusaur</td><td></td></tr>
-<tr><td>Venusaur</td><td></td></tr>
-<tr><td>Venusaur</td><td></td></tr>
 <tr><td>Charmander</td><td>Level 16 → Charmeleon</td></tr>
 <tr><td>Charmeleon</td><td>Level 36 → Charizard</td></tr>
-<tr><td>Charizard</td><td></td></tr>
-<tr><td>Charizard</td><td></td></tr>
-<tr><td>Charizard</td><td></td></tr>
 <tr><td>Charizard</td><td></td></tr>
 <tr><td>Squirtle</td><td>Level 16 → Wartortle</td></tr>
 <tr><td>Wartortle</td><td>Level 36 → Blastoise</td></tr>
 <tr><td>Blastoise</td><td></td></tr>
-<tr><td>Blastoise</td><td></td></tr>
-<tr><td>Blastoise</td><td></td></tr>
 <tr><td>Caterpie</td><td>Level 7 → Metapod</td></tr>
 <tr><td>Metapod</td><td>Level 10 → Butterfree</td></tr>
-<tr><td>Butterfree</td><td></td></tr>
 <tr><td>Butterfree</td><td></td></tr>
 <tr><td>Weedle</td><td>Level 7 → Kakuna</td></tr>
 <tr><td>Kakuna</td><td>Level 10 → Beedrill</td></tr>
 <tr><td>Beedrill</td><td></td></tr>
-<tr><td>Beedrill</td><td></td></tr>
 <tr><td>Pidgey</td><td>Level 18 → Pidgeotto</td></tr>
 <tr><td>Pidgeotto</td><td>Level 36 → Pidgeot</td></tr>
 <tr><td>Pidgeot</td><td></td></tr>
-<tr><td>Pidgeot</td><td></td></tr>
 <tr><td>Rattata</td><td>Level 20 → Raticate</td></tr>
 <tr><td>Rattata</td><td>Level 20 at night → Raticate</td></tr>
-<tr><td>Raticate</td><td></td></tr>
-<tr><td>Raticate</td><td></td></tr>
 <tr><td>Raticate</td><td></td></tr>
 <tr><td>Spearow</td><td>Level 20 → Fearow</td></tr>
 <tr><td>Fearow</td><td></td></tr>
@@ -48,932 +39,86 @@ as separate rows because they are separate species entries in the game data.
 <tr><td>Arbok</td><td></td></tr>
 <tr><td>Pikachu</td><td>Thunder Stone → Raichu</td></tr>
 <tr><td>Pikachu</td><td></td></tr>
-<tr><td>Pikachu</td><td></td></tr>
-<tr><td>Pikachu</td><td></td></tr>
-<tr><td>Pikachu</td><td></td></tr>
-<tr><td>Pikachu</td><td></td></tr>
-<tr><td>Pikachu</td><td></td></tr>
-<tr><td>Pikachu</td><td></td></tr>
-<tr><td>Pikachu</td><td></td></tr>
-<tr><td>Pikachu</td><td></td></tr>
-<tr><td>Pikachu</td><td></td></tr>
-<tr><td>Pikachu</td><td></td></tr>
-<tr><td>Pikachu</td><td></td></tr>
-<tr><td>Pikachu</td><td></td></tr>
-<tr><td>Pikachu</td><td></td></tr>
-<tr><td>Pikachu</td><td></td></tr>
-<tr><td>Pikachu</td><td></td></tr>
-<tr><td>Pikachu</td><td></td></tr>
-<tr><td>Pikachu</td><td></td></tr>
-<tr><td>Raichu</td><td></td></tr>
-<tr><td>Raichu</td><td></td></tr>
-<tr><td>Raichu</td><td></td></tr>
-<tr><td>Raichu</td><td></td></tr>
-<tr><td>Raichu</td><td></td></tr>
-<tr><td>Raichu</td><td></td></tr>
-<tr><td>Raichu</td><td></td></tr>
-<tr><td>Raichu</td><td></td></tr>
-<tr><td>Raichu</td><td></td></tr>
-<tr><td>Raichu</td><td></td></tr>
-<tr><td>Raichu</td><td></td></tr>
-<tr><td>Raichu</td><td></td></tr>
-<tr><td>Raichu</td><td></td></tr>
-<tr><td>Raichu</td><td></td></tr>
 <tr><td>Raichu</td><td></td></tr>
 <tr><td>Sandshrew</td><td>Level 22 → Sandslash</td></tr>
 <tr><td>Sandshrew</td><td>Ice Stone → Sandslash</td></tr>
-<tr><td>Sandshrew</td><td>Level 22 → Sandslash</td></tr>
-<tr><td>Sandshrew</td><td>Ice Stone → Sandslash</td></tr>
-<tr><td>Sandshrew</td><td>Level 22 → Sandslash</td></tr>
-<tr><td>Sandshrew</td><td>Ice Stone → Sandslash</td></tr>
-<tr><td>Sandshrew</td><td>Level 22 → Sandslash</td></tr>
-<tr><td>Sandshrew</td><td>Ice Stone → Sandslash</td></tr>
-<tr><td>Sandshrew</td><td>Level 22 → Sandslash</td></tr>
-<tr><td>Sandshrew</td><td>Ice Stone → Sandslash</td></tr>
-<tr><td>Sandshrew</td><td>Level 22 → Sandslash</td></tr>
-<tr><td>Sandshrew</td><td>Ice Stone → Sandslash</td></tr>
-<tr><td>Sandshrew</td><td>Level 22 → Sandslash</td></tr>
-<tr><td>Sandshrew</td><td>Ice Stone → Sandslash</td></tr>
-<tr><td>Sandshrew</td><td>Level 22 → Sandslash</td></tr>
-<tr><td>Sandshrew</td><td>Ice Stone → Sandslash</td></tr>
-<tr><td>Sandshrew</td><td>Ice Stone → Sandslash</td></tr>
-<tr><td>Sandslash</td><td></td></tr>
-<tr><td>Sandslash</td><td></td></tr>
-<tr><td>Sandslash</td><td></td></tr>
-<tr><td>Sandslash</td><td></td></tr>
-<tr><td>Sandslash</td><td></td></tr>
-<tr><td>Sandslash</td><td></td></tr>
-<tr><td>Sandslash</td><td></td></tr>
-<tr><td>Sandslash</td><td></td></tr>
-<tr><td>Sandslash</td><td></td></tr>
-<tr><td>Sandslash</td><td></td></tr>
-<tr><td>Sandslash</td><td></td></tr>
-<tr><td>Sandslash</td><td></td></tr>
-<tr><td>Sandslash</td><td></td></tr>
-<tr><td>Sandslash</td><td></td></tr>
-<tr><td>Sandslash</td><td></td></tr>
 <tr><td>Sandslash</td><td></td></tr>
 <tr><td>Nidoran♀</td><td>Level 16 → Nidorina</td></tr>
-<tr><td>Nidoran♀</td><td>Level 16 → Nidorina</td></tr>
-<tr><td>Nidoran♀</td><td>Level 16 → Nidorina</td></tr>
-<tr><td>Nidoran♀</td><td>Level 16 → Nidorina</td></tr>
-<tr><td>Nidoran♀</td><td>Level 16 → Nidorina</td></tr>
-<tr><td>Nidoran♀</td><td>Level 16 → Nidorina</td></tr>
-<tr><td>Nidorina</td><td>Moon Stone → Nidoqueen</td></tr>
-<tr><td>Nidorina</td><td>Moon Stone → Nidoqueen</td></tr>
-<tr><td>Nidorina</td><td>Moon Stone → Nidoqueen</td></tr>
-<tr><td>Nidorina</td><td>Moon Stone → Nidoqueen</td></tr>
-<tr><td>Nidorina</td><td>Moon Stone → Nidoqueen</td></tr>
 <tr><td>Nidorina</td><td>Moon Stone → Nidoqueen</td></tr>
 <tr><td>Nidoqueen</td><td></td></tr>
-<tr><td>Nidoqueen</td><td></td></tr>
-<tr><td>Nidoqueen</td><td></td></tr>
-<tr><td>Nidoqueen</td><td></td></tr>
-<tr><td>Nidoqueen</td><td></td></tr>
-<tr><td>Nidoqueen</td><td></td></tr>
-<tr><td>Nidoran♂</td><td>Level 16 → Nidorino</td></tr>
-<tr><td>Nidoran♂</td><td>Level 16 → Nidorino</td></tr>
-<tr><td>Nidoran♂</td><td>Level 16 → Nidorino</td></tr>
 <tr><td>Nidoran♂</td><td>Level 16 → Nidorino</td></tr>
 <tr><td>Nidorino</td><td>Moon Stone → Nidoking</td></tr>
-<tr><td>Nidorino</td><td>Moon Stone → Nidoking</td></tr>
-<tr><td>Nidoking</td><td></td></tr>
 <tr><td>Nidoking</td><td></td></tr>
 <tr><td>Clefairy</td><td>Moon Stone → Clefable</td></tr>
-<tr><td>Clefairy</td><td>Moon Stone → Clefable</td></tr>
-<tr><td>Clefable</td><td></td></tr>
-<tr><td>Clefable</td><td></td></tr>
-<tr><td>Clefable</td><td></td></tr>
 <tr><td>Clefable</td><td></td></tr>
 <tr><td>Vulpix</td><td>Fire Stone → Ninetales</td></tr>
 <tr><td>Vulpix</td><td>Ice Stone → Ninetales</td></tr>
-<tr><td>Vulpix</td><td>Fire Stone → Ninetales</td></tr>
-<tr><td>Vulpix</td><td>Ice Stone → Ninetales</td></tr>
-<tr><td>Ninetales</td><td></td></tr>
-<tr><td>Ninetales</td><td></td></tr>
-<tr><td>Ninetales</td><td></td></tr>
 <tr><td>Ninetales</td><td></td></tr>
 <tr><td>Jigglypuff</td><td>Moon Stone → Wigglytuff</td></tr>
-<tr><td>Jigglypuff</td><td>Moon Stone → Wigglytuff</td></tr>
-<tr><td>Wigglytuff</td><td></td></tr>
 <tr><td>Wigglytuff</td><td></td></tr>
 <tr><td>Zubat</td><td>Level 22 → Golbat</td></tr>
-<tr><td>Zubat</td><td>Level 22 → Golbat</td></tr>
-<tr><td>Golbat</td><td>High friendship → Crobat</td></tr>
 <tr><td>Golbat</td><td>High friendship → Crobat</td></tr>
 <tr><td>Oddish</td><td>Level 21 → Gloom</td></tr>
-<tr><td>Oddish</td><td>Level 21 → Gloom</td></tr>
-<tr><td>Gloom</td><td>Leaf Stone → Vileplume; Sun Stone → Bellossom</td></tr>
 <tr><td>Gloom</td><td>Leaf Stone → Vileplume; Sun Stone → Bellossom</td></tr>
 <tr><td>Vileplume</td><td></td></tr>
-<tr><td>Vileplume</td><td></td></tr>
-<tr><td>Vileplume</td><td></td></tr>
-<tr><td>Vileplume</td><td></td></tr>
-<tr><td>Vileplume</td><td></td></tr>
-<tr><td>Paras</td><td>Level 24 → Parasect</td></tr>
-<tr><td>Paras</td><td>Level 24 → Parasect</td></tr>
-<tr><td>Paras</td><td>Level 24 → Parasect</td></tr>
-<tr><td>Paras</td><td>Level 24 → Parasect</td></tr>
-<tr><td>Paras</td><td>Level 24 → Parasect</td></tr>
 <tr><td>Paras</td><td>Level 24 → Parasect</td></tr>
 <tr><td>Parasect</td><td></td></tr>
-<tr><td>Parasect</td><td></td></tr>
-<tr><td>Parasect</td><td></td></tr>
-<tr><td>Parasect</td><td></td></tr>
-<tr><td>Parasect</td><td></td></tr>
-<tr><td>Parasect</td><td></td></tr>
-<tr><td>Parasect</td><td></td></tr>
-<tr><td>Parasect</td><td></td></tr>
-<tr><td>Parasect</td><td></td></tr>
-<tr><td>Parasect</td><td></td></tr>
-<tr><td>Parasect</td><td></td></tr>
-<tr><td>Parasect</td><td></td></tr>
-<tr><td>Parasect</td><td></td></tr>
-<tr><td>Parasect</td><td></td></tr>
-<tr><td>Parasect</td><td></td></tr>
-<tr><td>Venonat</td><td>Level 31 → Venomoth</td></tr>
-<tr><td>Venonat</td><td>Level 31 → Venomoth</td></tr>
-<tr><td>Venonat</td><td>Level 31 → Venomoth</td></tr>
-<tr><td>Venonat</td><td>Level 31 → Venomoth</td></tr>
-<tr><td>Venonat</td><td>Level 31 → Venomoth</td></tr>
-<tr><td>Venonat</td><td>Level 31 → Venomoth</td></tr>
-<tr><td>Venonat</td><td>Level 31 → Venomoth</td></tr>
-<tr><td>Venonat</td><td>Level 31 → Venomoth</td></tr>
-<tr><td>Venonat</td><td>Level 31 → Venomoth</td></tr>
-<tr><td>Venonat</td><td>Level 31 → Venomoth</td></tr>
-<tr><td>Venonat</td><td>Level 31 → Venomoth</td></tr>
-<tr><td>Venonat</td><td>Level 31 → Venomoth</td></tr>
 <tr><td>Venonat</td><td>Level 31 → Venomoth</td></tr>
 <tr><td>Venomoth</td><td></td></tr>
-<tr><td>Venomoth</td><td></td></tr>
-<tr><td>Venomoth</td><td></td></tr>
-<tr><td>Venomoth</td><td></td></tr>
-<tr><td>Venomoth</td><td></td></tr>
-<tr><td>Venomoth</td><td></td></tr>
-<tr><td>Venomoth</td><td></td></tr>
-<tr><td>Venomoth</td><td></td></tr>
-<tr><td>Venomoth</td><td></td></tr>
-<tr><td>Venomoth</td><td></td></tr>
-<tr><td>Venomoth</td><td></td></tr>
-<tr><td>Venomoth</td><td></td></tr>
 <tr><td>Diglett</td><td>Level 26 → Dugtrio</td></tr>
-<tr><td>Diglett</td><td>Level 26 → Dugtrio</td></tr>
-<tr><td>Diglett</td><td>Level 26 → Dugtrio</td></tr>
-<tr><td>Diglett</td><td>Level 26 → Dugtrio</td></tr>
-<tr><td>Diglett</td><td>Level 26 → Dugtrio</td></tr>
-<tr><td>Diglett</td><td>Level 26 → Dugtrio</td></tr>
-<tr><td>Diglett</td><td>Level 26 → Dugtrio</td></tr>
-<tr><td>Diglett</td><td>Level 26 → Dugtrio</td></tr>
-<tr><td>Diglett</td><td>Level 26 → Dugtrio</td></tr>
-<tr><td>Diglett</td><td>Level 26 → Dugtrio</td></tr>
-<tr><td>Diglett</td><td>Level 26 → Dugtrio</td></tr>
-<tr><td>Diglett</td><td>Level 26 → Dugtrio</td></tr>
-<tr><td>Diglett</td><td>Level 26 → Dugtrio</td></tr>
-<tr><td>Diglett</td><td>Level 26 → Dugtrio</td></tr>
-<tr><td>Diglett</td><td>Level 26 → Dugtrio</td></tr>
-<tr><td>Diglett</td><td>Level 26 → Dugtrio</td></tr>
-<tr><td>Diglett</td><td>Level 26 → Dugtrio</td></tr>
-<tr><td>Diglett</td><td>Level 26 → Dugtrio</td></tr>
-<tr><td>Diglett</td><td>Level 26 → Dugtrio</td></tr>
-<tr><td>Diglett</td><td>Level 26 → Dugtrio</td></tr>
-<tr><td>Dugtrio</td><td></td></tr>
-<tr><td>Dugtrio</td><td></td></tr>
-<tr><td>Dugtrio</td><td></td></tr>
-<tr><td>Dugtrio</td><td></td></tr>
-<tr><td>Dugtrio</td><td></td></tr>
-<tr><td>Dugtrio</td><td></td></tr>
-<tr><td>Dugtrio</td><td></td></tr>
 <tr><td>Dugtrio</td><td></td></tr>
 <tr><td>Meowth</td><td>Level 28 → Persian</td></tr>
 <tr><td>Meowth</td><td>High friendship → Persian</td></tr>
 <tr><td>Meowth</td><td>Level 28 → Perrserker</td></tr>
 <tr><td>Meowth</td><td></td></tr>
-<tr><td>Meowth</td><td>Level 28 → Persian</td></tr>
-<tr><td>Meowth</td><td>High friendship → Persian</td></tr>
-<tr><td>Meowth</td><td>Level 28 → Perrserker</td></tr>
-<tr><td>Meowth</td><td></td></tr>
-<tr><td>Meowth</td><td>Level 28 → Persian</td></tr>
-<tr><td>Meowth</td><td>High friendship → Persian</td></tr>
-<tr><td>Meowth</td><td>Level 28 → Perrserker</td></tr>
-<tr><td>Meowth</td><td></td></tr>
-<tr><td>Meowth</td><td>Level 28 → Persian</td></tr>
-<tr><td>Meowth</td><td>High friendship → Persian</td></tr>
-<tr><td>Meowth</td><td>Level 28 → Perrserker</td></tr>
-<tr><td>Meowth</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
-<tr><td>Persian</td><td></td></tr>
 <tr><td>Persian</td><td></td></tr>
 <tr><td>Psyduck</td><td>Level 33 → Golduck</td></tr>
-<tr><td>Psyduck</td><td>Level 33 → Golduck</td></tr>
-<tr><td>Psyduck</td><td>Level 33 → Golduck</td></tr>
-<tr><td>Psyduck</td><td>Level 33 → Golduck</td></tr>
-<tr><td>Psyduck</td><td>Level 33 → Golduck</td></tr>
-<tr><td>Psyduck</td><td>Level 33 → Golduck</td></tr>
-<tr><td>Psyduck</td><td>Level 33 → Golduck</td></tr>
-<tr><td>Psyduck</td><td>Level 33 → Golduck</td></tr>
-<tr><td>Psyduck</td><td>Level 33 → Golduck</td></tr>
-<tr><td>Psyduck</td><td>Level 33 → Golduck</td></tr>
-<tr><td>Psyduck</td><td>Level 33 → Golduck</td></tr>
-<tr><td>Psyduck</td><td>Level 33 → Golduck</td></tr>
-<tr><td>Psyduck</td><td>Level 33 → Golduck</td></tr>
-<tr><td>Psyduck</td><td>Level 33 → Golduck</td></tr>
-<tr><td>Psyduck</td><td>Level 33 → Golduck</td></tr>
-<tr><td>Psyduck</td><td>Level 33 → Golduck</td></tr>
-<tr><td>Psyduck</td><td>Level 33 → Golduck</td></tr>
-<tr><td>Psyduck</td><td>Level 33 → Golduck</td></tr>
-<tr><td>Psyduck</td><td>Level 33 → Golduck</td></tr>
-<tr><td>Psyduck</td><td>Level 33 → Golduck</td></tr>
-<tr><td>Psyduck</td><td>Level 33 → Golduck</td></tr>
-<tr><td>Psyduck</td><td>Level 33 → Golduck</td></tr>
-<tr><td>Psyduck</td><td>Level 33 → Golduck</td></tr>
-<tr><td>Psyduck</td><td>Level 33 → Golduck</td></tr>
-<tr><td>Golduck</td><td></td></tr>
-<tr><td>Golduck</td><td></td></tr>
-<tr><td>Golduck</td><td></td></tr>
-<tr><td>Golduck</td><td></td></tr>
-<tr><td>Golduck</td><td></td></tr>
-<tr><td>Golduck</td><td></td></tr>
-<tr><td>Golduck</td><td></td></tr>
-<tr><td>Golduck</td><td></td></tr>
-<tr><td>Golduck</td><td></td></tr>
 <tr><td>Golduck</td><td></td></tr>
 <tr><td>Mankey</td><td>Level 28 → Primeape</td></tr>
-<tr><td>Mankey</td><td>Level 28 → Primeape</td></tr>
-<tr><td>Mankey</td><td>Level 28 → Primeape</td></tr>
-<tr><td>Mankey</td><td>Level 28 → Primeape</td></tr>
-<tr><td>Mankey</td><td>Level 28 → Primeape</td></tr>
-<tr><td>Mankey</td><td>Level 28 → Primeape</td></tr>
-<tr><td>Mankey</td><td>Level 28 → Primeape</td></tr>
-<tr><td>Mankey</td><td>Level 28 → Primeape</td></tr>
-<tr><td>Primeape</td><td>Use Rage Fist 20 times, then level up → Annihilape</td></tr>
-<tr><td>Primeape</td><td>Use Rage Fist 20 times, then level up → Annihilape</td></tr>
-<tr><td>Primeape</td><td>Use Rage Fist 20 times, then level up → Annihilape</td></tr>
-<tr><td>Primeape</td><td>Use Rage Fist 20 times, then level up → Annihilape</td></tr>
-<tr><td>Primeape</td><td>Use Rage Fist 20 times, then level up → Annihilape</td></tr>
-<tr><td>Primeape</td><td>Use Rage Fist 20 times, then level up → Annihilape</td></tr>
-<tr><td>Primeape</td><td>Use Rage Fist 20 times, then level up → Annihilape</td></tr>
 <tr><td>Primeape</td><td>Use Rage Fist 20 times, then level up → Annihilape</td></tr>
 <tr><td>Growlithe</td><td>Fire Stone → Arcanine</td></tr>
-<tr><td>Growlithe</td><td>Fire Stone → Arcanine</td></tr>
-<tr><td>Growlithe</td><td>Fire Stone → Arcanine</td></tr>
-<tr><td>Growlithe</td><td>Fire Stone → Arcanine</td></tr>
-<tr><td>Growlithe</td><td>Fire Stone → Arcanine</td></tr>
-<tr><td>Growlithe</td><td>Fire Stone → Arcanine</td></tr>
-<tr><td>Growlithe</td><td>Fire Stone → Arcanine</td></tr>
-<tr><td>Growlithe</td><td>Fire Stone → Arcanine</td></tr>
-<tr><td>Growlithe</td><td>Fire Stone → Arcanine</td></tr>
-<tr><td>Growlithe</td><td>Fire Stone → Arcanine</td></tr>
-<tr><td>Growlithe</td><td>Fire Stone → Arcanine</td></tr>
-<tr><td>Growlithe</td><td>Fire Stone → Arcanine</td></tr>
-<tr><td>Growlithe</td><td>Fire Stone → Arcanine</td></tr>
-<tr><td>Growlithe</td><td>Fire Stone → Arcanine</td></tr>
-<tr><td>Growlithe</td><td>Fire Stone → Arcanine</td></tr>
-<tr><td>Growlithe</td><td>Fire Stone → Arcanine</td></tr>
 <tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwhirl</td><td>Water Stone → Poliwrath; Trade while holding a King's Rock → Politoed</td></tr>
-<tr><td>Poliwhirl</td><td>Water Stone → Poliwrath; Trade while holding a King's Rock → Politoed</td></tr>
-<tr><td>Poliwhirl</td><td>Water Stone → Poliwrath; Trade while holding a King's Rock → Politoed</td></tr>
-<tr><td>Poliwhirl</td><td>Water Stone → Poliwrath; Trade while holding a King's Rock → Politoed</td></tr>
-<tr><td>Poliwhirl</td><td>Water Stone → Poliwrath; Trade while holding a King's Rock → Politoed</td></tr>
-<tr><td>Poliwhirl</td><td>Water Stone → Poliwrath; Trade while holding a King's Rock → Politoed</td></tr>
-<tr><td>Poliwhirl</td><td>Water Stone → Poliwrath; Trade while holding a King's Rock → Politoed</td></tr>
-<tr><td>Poliwhirl</td><td>Water Stone → Poliwrath; Trade while holding a King's Rock → Politoed</td></tr>
-<tr><td>Poliwhirl</td><td>Water Stone → Poliwrath; Trade while holding a King's Rock → Politoed</td></tr>
-<tr><td>Poliwhirl</td><td>Water Stone → Poliwrath; Trade while holding a King's Rock → Politoed</td></tr>
-<tr><td>Poliwhirl</td><td>Water Stone → Poliwrath; Trade while holding a King's Rock → Politoed</td></tr>
-<tr><td>Poliwhirl</td><td>Water Stone → Poliwrath; Trade while holding a King's Rock → Politoed</td></tr>
-<tr><td>Poliwhirl</td><td>Water Stone → Poliwrath; Trade while holding a King's Rock → Politoed</td></tr>
-<tr><td>Poliwhirl</td><td>Water Stone → Poliwrath; Trade while holding a King's Rock → Politoed</td></tr>
-<tr><td>Poliwhirl</td><td>Water Stone → Poliwrath; Trade while holding a King's Rock → Politoed</td></tr>
-<tr><td>Poliwhirl</td><td>Water Stone → Poliwrath; Trade while holding a King's Rock → Politoed</td></tr>
-<tr><td>Poliwhirl</td><td>Water Stone → Poliwrath; Trade while holding a King's Rock → Politoed</td></tr>
-<tr><td>Poliwhirl</td><td>Water Stone → Poliwrath; Trade while holding a King's Rock → Politoed</td></tr>
-<tr><td>Poliwhirl</td><td>Water Stone → Poliwrath; Trade while holding a King's Rock → Politoed</td></tr>
-<tr><td>Poliwhirl</td><td>Water Stone → Poliwrath; Trade while holding a King's Rock → Politoed</td></tr>
-<tr><td>Poliwhirl</td><td>Water Stone → Poliwrath; Trade while holding a King's Rock → Politoed</td></tr>
-<tr><td>Poliwhirl</td><td>Water Stone → Poliwrath; Trade while holding a King's Rock → Politoed</td></tr>
-<tr><td>Poliwhirl</td><td>Water Stone → Poliwrath; Trade while holding a King's Rock → Politoed</td></tr>
 <tr><td>Poliwhirl</td><td>Water Stone → Poliwrath; Trade while holding a King's Rock → Politoed</td></tr>
 <tr><td>Poliwrath</td><td></td></tr>
-<tr><td>Poliwrath</td><td></td></tr>
-<tr><td>Poliwrath</td><td></td></tr>
-<tr><td>Poliwrath</td><td></td></tr>
-<tr><td>Poliwrath</td><td></td></tr>
-<tr><td>Poliwrath</td><td></td></tr>
-<tr><td>Poliwrath</td><td></td></tr>
-<tr><td>Poliwrath</td><td></td></tr>
-<tr><td>Poliwrath</td><td></td></tr>
-<tr><td>Poliwrath</td><td></td></tr>
-<tr><td>Kadabra</td><td>Trade → Alakazam; Linking Cord → Alakazam</td></tr>
-<tr><td>Kadabra</td><td>Trade → Alakazam; Linking Cord → Alakazam</td></tr>
-<tr><td>Kadabra</td><td>Trade → Alakazam; Linking Cord → Alakazam</td></tr>
-<tr><td>Kadabra</td><td>Trade → Alakazam; Linking Cord → Alakazam</td></tr>
-<tr><td>Kadabra</td><td>Trade → Alakazam; Linking Cord → Alakazam</td></tr>
-<tr><td>Kadabra</td><td>Trade → Alakazam; Linking Cord → Alakazam</td></tr>
-<tr><td>Kadabra</td><td>Trade → Alakazam; Linking Cord → Alakazam</td></tr>
 <tr><td>Kadabra</td><td>Trade → Alakazam; Linking Cord → Alakazam</td></tr>
 <tr><td>Machop</td><td>Level 28 → Machoke</td></tr>
-<tr><td>Machop</td><td>Level 28 → Machoke</td></tr>
-<tr><td>Machop</td><td>Level 28 → Machoke</td></tr>
-<tr><td>Machop</td><td>Level 28 → Machoke</td></tr>
-<tr><td>Machoke</td><td>Trade → Machamp; Linking Cord → Machamp</td></tr>
-<tr><td>Machoke</td><td>Trade → Machamp; Linking Cord → Machamp</td></tr>
-<tr><td>Machoke</td><td>Trade → Machamp; Linking Cord → Machamp</td></tr>
 <tr><td>Machoke</td><td>Trade → Machamp; Linking Cord → Machamp</td></tr>
 <tr><td>Machamp</td><td></td></tr>
-<tr><td>Machamp</td><td></td></tr>
-<tr><td>Machamp</td><td></td></tr>
-<tr><td>Machamp</td><td></td></tr>
-<tr><td>Machamp</td><td></td></tr>
-<tr><td>Machamp</td><td></td></tr>
-<tr><td>Machamp</td><td></td></tr>
-<tr><td>Machamp</td><td></td></tr>
-<tr><td>Machamp</td><td></td></tr>
-<tr><td>Machamp</td><td></td></tr>
-<tr><td>Machamp</td><td></td></tr>
-<tr><td>Machamp</td><td></td></tr>
-<tr><td>Machamp</td><td></td></tr>
-<tr><td>Machamp</td><td></td></tr>
-<tr><td>Machamp</td><td></td></tr>
 <tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Weepinbell</td><td>Leaf Stone → Victreebel</td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
-<tr><td>Victreebel</td><td></td></tr>
 <tr><td>Victreebel</td><td></td></tr>
 <tr><td>Tentacool</td><td>Level 30 → Tentacruel</td></tr>
-<tr><td>Tentacool</td><td>Level 30 → Tentacruel</td></tr>
-<tr><td>Tentacool</td><td>Level 30 → Tentacruel</td></tr>
-<tr><td>Tentacool</td><td>Level 30 → Tentacruel</td></tr>
-<tr><td>Tentacool</td><td>Level 30 → Tentacruel</td></tr>
-<tr><td>Tentacool</td><td>Level 30 → Tentacruel</td></tr>
-<tr><td>Tentacool</td><td>Level 30 → Tentacruel</td></tr>
-<tr><td>Tentacool</td><td>Level 30 → Tentacruel</td></tr>
-<tr><td>Tentacruel</td><td></td></tr>
-<tr><td>Tentacruel</td><td></td></tr>
-<tr><td>Tentacruel</td><td></td></tr>
-<tr><td>Tentacruel</td><td></td></tr>
-<tr><td>Tentacruel</td><td></td></tr>
-<tr><td>Tentacruel</td><td></td></tr>
-<tr><td>Tentacruel</td><td></td></tr>
 <tr><td>Tentacruel</td><td></td></tr>
 <tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Geodude</td><td>Level 25 → Graveler</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
-<tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
 <tr><td>Graveler</td><td>Trade → Golem; Linking Cord → Golem</td></tr>
 <tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
-<tr><td>Golem</td><td></td></tr>
 <tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
-<tr><td>Rapidash</td><td></td></tr>
-<tr><td>Rapidash</td><td></td></tr>
-<tr><td>Rapidash</td><td></td></tr>
-<tr><td>Rapidash</td><td></td></tr>
-<tr><td>Rapidash</td><td></td></tr>
-<tr><td>Rapidash</td><td></td></tr>
-<tr><td>Rapidash</td><td></td></tr>
-<tr><td>Rapidash</td><td></td></tr>
-<tr><td>Rapidash</td><td></td></tr>
-<tr><td>Rapidash</td><td></td></tr>
-<tr><td>Rapidash</td><td></td></tr>
-<tr><td>Rapidash</td><td></td></tr>
-<tr><td>Rapidash</td><td></td></tr>
-<tr><td>Rapidash</td><td></td></tr>
-<tr><td>Rapidash</td><td></td></tr>
 <tr><td>Rapidash</td><td></td></tr>
 <tr><td>Slowpoke</td><td>Level 37 → Slowbro; Trade while holding a King's Rock → Slowking</td></tr>
 <tr><td>Slowpoke</td><td>Galarica Cuff → Slowbro; Galarica Wreath → Slowking</td></tr>
-<tr><td>Slowpoke</td><td>Level 37 → Slowbro; Trade while holding a King's Rock → Slowking</td></tr>
-<tr><td>Slowpoke</td><td>Galarica Cuff → Slowbro; Galarica Wreath → Slowking</td></tr>
-<tr><td>Slowpoke</td><td>Level 37 → Slowbro; Trade while holding a King's Rock → Slowking</td></tr>
-<tr><td>Slowpoke</td><td>Galarica Cuff → Slowbro; Galarica Wreath → Slowking</td></tr>
-<tr><td>Slowpoke</td><td>Level 37 → Slowbro; Trade while holding a King's Rock → Slowking</td></tr>
-<tr><td>Slowpoke</td><td>Galarica Cuff → Slowbro; Galarica Wreath → Slowking</td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
-<tr><td>Slowbro</td><td></td></tr>
 <tr><td>Slowbro</td><td></td></tr>
 <tr><td>Magnemite</td><td>Level 30 → Magneton</td></tr>
-<tr><td>Magnemite</td><td>Level 30 → Magneton</td></tr>
-<tr><td>Magnemite</td><td>Level 30 → Magneton</td></tr>
-<tr><td>Magnemite</td><td>Level 30 → Magneton</td></tr>
-<tr><td>Magnemite</td><td>Level 30 → Magneton</td></tr>
-<tr><td>Magnemite</td><td>Level 30 → Magneton</td></tr>
-<tr><td>Magnemite</td><td>Level 30 → Magneton</td></tr>
-<tr><td>Magnemite</td><td>Level 30 → Magneton</td></tr>
-<tr><td>Magnemite</td><td>Level 30 → Magneton</td></tr>
-<tr><td>Magnemite</td><td>Level 30 → Magneton</td></tr>
-<tr><td>Magnemite</td><td>Level 30 → Magneton</td></tr>
-<tr><td>Magnemite</td><td>Level 30 → Magneton</td></tr>
-<tr><td>Magnemite</td><td>Level 30 → Magneton</td></tr>
-<tr><td>Magnemite</td><td>Level 30 → Magneton</td></tr>
-<tr><td>Magnemite</td><td>Level 30 → Magneton</td></tr>
-<tr><td>Magnemite</td><td>Level 30 → Magneton</td></tr>
-<tr><td>Magnemite</td><td>Level 30 → Magneton</td></tr>
-<tr><td>Magneton</td><td>Level up in New Mauville → Magnezone; Thunder Stone → Magnezone</td></tr>
-<tr><td>Magneton</td><td>Level up in New Mauville → Magnezone; Thunder Stone → Magnezone</td></tr>
-<tr><td>Magneton</td><td>Level up in New Mauville → Magnezone; Thunder Stone → Magnezone</td></tr>
-<tr><td>Magneton</td><td>Level up in New Mauville → Magnezone; Thunder Stone → Magnezone</td></tr>
-<tr><td>Magneton</td><td>Level up in New Mauville → Magnezone; Thunder Stone → Magnezone</td></tr>
-<tr><td>Magneton</td><td>Level up in New Mauville → Magnezone; Thunder Stone → Magnezone</td></tr>
-<tr><td>Magneton</td><td>Level up in New Mauville → Magnezone; Thunder Stone → Magnezone</td></tr>
-<tr><td>Magneton</td><td>Level up in New Mauville → Magnezone; Thunder Stone → Magnezone</td></tr>
-<tr><td>Magneton</td><td>Level up in New Mauville → Magnezone; Thunder Stone → Magnezone</td></tr>
-<tr><td>Magneton</td><td>Level up in New Mauville → Magnezone; Thunder Stone → Magnezone</td></tr>
-<tr><td>Magneton</td><td>Level up in New Mauville → Magnezone; Thunder Stone → Magnezone</td></tr>
-<tr><td>Magneton</td><td>Level up in New Mauville → Magnezone; Thunder Stone → Magnezone</td></tr>
-<tr><td>Magneton</td><td>Level up in New Mauville → Magnezone; Thunder Stone → Magnezone</td></tr>
-<tr><td>Magneton</td><td>Level up in New Mauville → Magnezone; Thunder Stone → Magnezone</td></tr>
-<tr><td>Magneton</td><td>Level up in New Mauville → Magnezone; Thunder Stone → Magnezone</td></tr>
-<tr><td>Magneton</td><td>Level up in New Mauville → Magnezone; Thunder Stone → Magnezone</td></tr>
-<tr><td>Magneton</td><td>Level up in New Mauville → Magnezone; Thunder Stone → Magnezone</td></tr>
 <tr><td>Magneton</td><td>Level up in New Mauville → Magnezone; Thunder Stone → Magnezone</td></tr>
 <tr><td>Seel</td><td>Level 34 → Dewgong</td></tr>
-<tr><td>Seel</td><td>Level 34 → Dewgong</td></tr>
-<tr><td>Seel</td><td>Level 34 → Dewgong</td></tr>
-<tr><td>Seel</td><td>Level 34 → Dewgong</td></tr>
-<tr><td>Seel</td><td>Level 34 → Dewgong</td></tr>
-<tr><td>Seel</td><td>Level 34 → Dewgong</td></tr>
-<tr><td>Seel</td><td>Level 34 → Dewgong</td></tr>
-<tr><td>Seel</td><td>Level 34 → Dewgong</td></tr>
-<tr><td>Seel</td><td>Level 34 → Dewgong</td></tr>
-<tr><td>Seel</td><td>Level 34 → Dewgong</td></tr>
-<tr><td>Muk</td><td></td></tr>
-<tr><td>Muk</td><td></td></tr>
-<tr><td>Muk</td><td></td></tr>
-<tr><td>Muk</td><td></td></tr>
-<tr><td>Muk</td><td></td></tr>
-<tr><td>Muk</td><td></td></tr>
-<tr><td>Muk</td><td></td></tr>
-<tr><td>Muk</td><td></td></tr>
-<tr><td>Muk</td><td></td></tr>
-<tr><td>Muk</td><td></td></tr>
-<tr><td>Muk</td><td></td></tr>
-<tr><td>Muk</td><td></td></tr>
-<tr><td>Muk</td><td></td></tr>
 <tr><td>Muk</td><td></td></tr>
 <tr><td>Shellder</td><td>Water Stone → Cloyster</td></tr>
-<tr><td>Shellder</td><td>Water Stone → Cloyster</td></tr>
-<tr><td>Shellder</td><td>Water Stone → Cloyster</td></tr>
-<tr><td>Shellder</td><td>Water Stone → Cloyster</td></tr>
-<tr><td>Shellder</td><td>Water Stone → Cloyster</td></tr>
-<tr><td>Shellder</td><td>Water Stone → Cloyster</td></tr>
-<tr><td>Shellder</td><td>Water Stone → Cloyster</td></tr>
-<tr><td>Shellder</td><td>Water Stone → Cloyster</td></tr>
-<tr><td>Onix</td><td>Trade while holding a Metal Coat → Steelix</td></tr>
-<tr><td>Onix</td><td>Trade while holding a Metal Coat → Steelix</td></tr>
 <tr><td>Onix</td><td>Trade while holding a Metal Coat → Steelix</td></tr>
 <tr><td>Voltorb</td><td>Level 30 → Electrode</td></tr>
 <tr><td>Voltorb</td><td>Leaf Stone → Electrode</td></tr>
-<tr><td>Voltorb</td><td>Level 30 → Electrode</td></tr>
-<tr><td>Voltorb</td><td>Leaf Stone → Electrode</td></tr>
-<tr><td>Voltorb</td><td>Level 30 → Electrode</td></tr>
-<tr><td>Voltorb</td><td>Leaf Stone → Electrode</td></tr>
-<tr><td>Voltorb</td><td>Level 30 → Electrode</td></tr>
-<tr><td>Voltorb</td><td>Leaf Stone → Electrode</td></tr>
-<tr><td>Marowak</td><td></td></tr>
-<tr><td>Marowak</td><td></td></tr>
-<tr><td>Marowak</td><td></td></tr>
 <tr><td>Marowak</td><td></td></tr>
 <tr><td>Weezing</td><td></td></tr>
-<tr><td>Weezing</td><td></td></tr>
-<tr><td>Weezing</td><td></td></tr>
-<tr><td>Weezing</td><td></td></tr>
-<tr><td>Weezing</td><td></td></tr>
-<tr><td>Weezing</td><td></td></tr>
-<tr><td>Weezing</td><td></td></tr>
-<tr><td>Weezing</td><td></td></tr>
-<tr><td>Weezing</td><td></td></tr>
-<tr><td>Weezing</td><td></td></tr>
-<tr><td>Weezing</td><td></td></tr>
-<tr><td>Weezing</td><td></td></tr>
-<tr><td>Weezing</td><td></td></tr>
-<tr><td>Weezing</td><td></td></tr>
-<tr><td>Weezing</td><td></td></tr>
-<tr><td>Weezing</td><td></td></tr>
-<tr><td>Rhyhorn</td><td>Level 42 → Rhydon</td></tr>
-<tr><td>Rhyhorn</td><td>Level 42 → Rhydon</td></tr>
-<tr><td>Rhyhorn</td><td>Level 42 → Rhydon</td></tr>
-<tr><td>Rhyhorn</td><td>Level 42 → Rhydon</td></tr>
-<tr><td>Rhyhorn</td><td>Level 42 → Rhydon</td></tr>
-<tr><td>Rhyhorn</td><td>Level 42 → Rhydon</td></tr>
 <tr><td>Rhyhorn</td><td>Level 42 → Rhydon</td></tr>
 <tr><td>Rhydon</td><td>Trade while holding a Protector → Rhyperior</td></tr>
-<tr><td>Rhydon</td><td>Trade while holding a Protector → Rhyperior</td></tr>
-<tr><td>Rhydon</td><td>Trade while holding a Protector → Rhyperior</td></tr>
-<tr><td>Rhydon</td><td>Trade while holding a Protector → Rhyperior</td></tr>
-<tr><td>Rhydon</td><td>Trade while holding a Protector → Rhyperior</td></tr>
-<tr><td>Rhydon</td><td>Trade while holding a Protector → Rhyperior</td></tr>
-<tr><td>Rhydon</td><td>Trade while holding a Protector → Rhyperior</td></tr>
-<tr><td>Rhydon</td><td>Trade while holding a Protector → Rhyperior</td></tr>
-<tr><td>Rhydon</td><td>Trade while holding a Protector → Rhyperior</td></tr>
-<tr><td>Rhydon</td><td>Trade while holding a Protector → Rhyperior</td></tr>
-<tr><td>Rhydon</td><td>Trade while holding a Protector → Rhyperior</td></tr>
-<tr><td>Rhydon</td><td>Trade while holding a Protector → Rhyperior</td></tr>
 <tr><td>Tangela</td><td>Level up while knowing Ancient Power → Tangrowth</td></tr>
-<tr><td>Tangela</td><td>Level up while knowing Ancient Power → Tangrowth</td></tr>
-<tr><td>Tangela</td><td>Level up while knowing Ancient Power → Tangrowth</td></tr>
-<tr><td>Tangela</td><td>Level up while knowing Ancient Power → Tangrowth</td></tr>
-<tr><td>Tangela</td><td>Level up while knowing Ancient Power → Tangrowth</td></tr>
-<tr><td>Tangela</td><td>Level up while knowing Ancient Power → Tangrowth</td></tr>
-<tr><td>Tangela</td><td>Level up while knowing Ancient Power → Tangrowth</td></tr>
-<tr><td>Tangela</td><td>Level up while knowing Ancient Power → Tangrowth</td></tr>
-<tr><td>Tangela</td><td>Level up while knowing Ancient Power → Tangrowth</td></tr>
-<tr><td>Tangela</td><td>Level up while knowing Ancient Power → Tangrowth</td></tr>
-<tr><td>Tangela</td><td>Level up while knowing Ancient Power → Tangrowth</td></tr>
-<tr><td>Tangela</td><td>Level up while knowing Ancient Power → Tangrowth</td></tr>
-<tr><td>Tangela</td><td>Level up while knowing Ancient Power → Tangrowth</td></tr>
-<tr><td>Tangela</td><td>Level up while knowing Ancient Power → Tangrowth</td></tr>
-<tr><td>Tangela</td><td>Level up while knowing Ancient Power → Tangrowth</td></tr>
-<tr><td>Tangela</td><td>Level up while knowing Ancient Power → Tangrowth</td></tr>
-<tr><td>Seadra</td><td>Trade while holding a Dragon Scale → Kingdra</td></tr>
-<tr><td>Seadra</td><td>Trade while holding a Dragon Scale → Kingdra</td></tr>
-<tr><td>Seadra</td><td>Trade while holding a Dragon Scale → Kingdra</td></tr>
-<tr><td>Seadra</td><td>Trade while holding a Dragon Scale → Kingdra</td></tr>
-<tr><td>Seadra</td><td>Trade while holding a Dragon Scale → Kingdra</td></tr>
 <tr><td>Seadra</td><td>Trade while holding a Dragon Scale → Kingdra</td></tr>
 <tr><td>Seaking</td><td></td></tr>
-<tr><td>Seaking</td><td></td></tr>
-<tr><td>Seaking</td><td></td></tr>
-<tr><td>Seaking</td><td></td></tr>
 <tr><td>Staryu</td><td>Water Stone → Starmie</td></tr>
-<tr><td>Staryu</td><td>Water Stone → Starmie</td></tr>
-<tr><td>Staryu</td><td>Water Stone → Starmie</td></tr>
-<tr><td>Staryu</td><td>Water Stone → Starmie</td></tr>
-<tr><td>Starmie</td><td></td></tr>
-<tr><td>Starmie</td><td></td></tr>
-<tr><td>Starmie</td><td></td></tr>
 <tr><td>Starmie</td><td></td></tr>
 <tr><td>Scyther</td><td>Trade while holding a Metal Coat → Scizor; Black Augurite → Kleavor</td></tr>
-<tr><td>Scyther</td><td>Trade while holding a Metal Coat → Scizor; Black Augurite → Kleavor</td></tr>
-<tr><td>Pinsir</td><td></td></tr>
 <tr><td>Pinsir</td><td></td></tr>
 <tr><td>Tauros</td><td></td></tr>
-<tr><td>Tauros</td><td></td></tr>
-<tr><td>Tauros</td><td></td></tr>
-<tr><td>Tauros</td><td></td></tr>
-<tr><td>Tauros</td><td></td></tr>
-<tr><td>Tauros</td><td></td></tr>
-<tr><td>Tauros</td><td></td></tr>
-<tr><td>Tauros</td><td></td></tr>
-<tr><td>Vaporeon</td><td></td></tr>
 <tr><td>Vaporeon</td><td></td></tr>
 <tr><td>Porygon</td><td>Trade while holding an Upgrade → Porygon2</td></tr>
 <tr><td>Snorlax</td><td></td></tr>
-<tr><td>Snorlax</td><td></td></tr>
-<tr><td>Snorlax</td><td></td></tr>
-<tr><td>Snorlax</td><td></td></tr>
-<tr><td>Zapdos</td><td></td></tr>
-<tr><td>Zapdos</td><td></td></tr>
-<tr><td>Zapdos</td><td></td></tr>
-<tr><td>Zapdos</td><td></td></tr>
-<tr><td>Zapdos</td><td></td></tr>
-<tr><td>Zapdos</td><td></td></tr>
-<tr><td>Zapdos</td><td></td></tr>
-<tr><td>Zapdos</td><td></td></tr>
 <tr><td>Zapdos</td><td></td></tr>
 <tr><td>Quilava</td><td>Level 36 → Typhlosion</td></tr>
 <tr><td>Quilava</td><td>Level 36 → Typhlosion</td></tr>

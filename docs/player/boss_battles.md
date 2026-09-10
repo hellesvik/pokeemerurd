@@ -59,7 +59,7 @@ planned as multi-Pokémon battles, not as six isolated singles.
 | Tropius | 29 | Harvest | Sitrus Berry | Solarbeam, Sunny Day, Synthesis, Air Slash |
 | Pelipper | 30 | Keen Eye | Wide Lens | Rain Dance, Hydro Pump, Thunder, Hurricane |
 | Salamence | 31 | Intimidate | Persim Berry | Outrage, Fly |
-| Altaria | 33 | Natural Cure | Altarianite | Dragonbreath, Air Slash, Swift, Roost |
+| Mega Altaria | 33 | Pixilate | Altarianite | Dragonbreath, Air Slash, Swift, Roost |
 
 ## Tate & Liza — doubles
 
@@ -81,7 +81,7 @@ planned as multi-Pokémon battles, not as six isolated singles.
 | Ludicolo | 43 | Rain Dish | Sitrus Berry | Giga Drain, Leech Seed, Protect, Scald |
 | Cursola | 43 | Perish Body | Leftovers | Will-O-Wisp, Hex, Strength Sap, Brine |
 | Crawdaunt | 46 | Sniper | Scope Lens | Night Slash, Slash, Crabhammer, Aqua Jet |
-| Swampert | 46 | Swift Swim | Swampertite | Earthquake, Flip Turn, Ice Punch, Waterfall |
+| Mega Swampert | 46 | Swift Swim | Swampertite | Earthquake, Flip Turn, Ice Punch, Waterfall |
 
 ## Wally — Victory Road
 
@@ -92,7 +92,7 @@ planned as multi-Pokémon battles, not as six isolated singles.
 | Roserade | 44 | Chlorophyll | Life Orb | Giga Drain, Sludge Bomb, Shadow Ball, Weather Ball |
 | Rapidash | 41 | Reckless | Choice Band | Flare Blitz, Double-Edge, Wild Charge, High Horsepower |
 | Heliolisk | 45 | Solar Power | Focus Sash | Sunny Day, Parabolic Charge, Solarbeam, Dragon Pulse |
-| Gallade | 46 | Sharpness | Galladite | Psycho Cut, Solar Blade, Bitter Blade, Sacred Sword |
+| Mega Gallade | 46 | Inner Focus | Galladite | Psycho Cut, Solar Blade, Bitter Blade, Sacred Sword |
 
 ## Sidney
 
@@ -103,7 +103,7 @@ planned as multi-Pokémon battles, not as six isolated singles.
 | Shiftry | 46 | Early Bird | Loaded Dice | Fake Out, Beat Up, Bullet Seed, Arm Thrust |
 | Bombirdier | 48 | Rocky Payload | Hard Stone | Knock Off, Rock Slide, Roost, Brave Bird |
 | Sharpedo | 49 | Speed Boost | Focus Sash | Waterfall, Crunch, Ice Fang, Poison Jab |
-| Absol | 49 | Super Luck | Absolite Z | Night Slash, Swords Dance, Shadow Claw, Play Rough |
+| Mega Absol Z | 49 | Magic Bounce | Absolite Z | Night Slash, Swords Dance, Shadow Claw, Play Rough |
 
 ## Other Elite Four
 
@@ -115,8 +115,8 @@ Substitute, Focus Punch); Hisuian Zoroark Lv. 49 holding Choice Scarf
 Lv. 50 holding Heavy-Duty Boots (Dancer; Revelation Dance, Quiver Dance,
 Roost, Hurricane; random form); Bewear Lv. 49 holding Life Orb (Scrappy;
 Return, Body Press, Rest, Sleep Talk); Mimikyu Lv. 51 holding Sitrus Berry
-(Disguise; Substitute, Play Rough, Shadow Sneak, Focus Punch); Sableye Lv. 52
-holding Sablenite (Prankster; Fake Out, Torment, Protect, Foul Play).
+(Disguise; Substitute, Play Rough, Shadow Sneak, Focus Punch); Mega Sableye Lv. 52
+holding Sablenite (Magic Bounce; Fake Out, Torment, Protect, Foul Play).
 
 ### Glacia
 
@@ -126,8 +126,8 @@ Scald, Weather Ball, Recover, Dragon Tail); Sawsbuck-Winter Lv. 52 holding
 Lum Berry (Serene Grace; Body Slam, Zen Headbutt, Horn Leech, Jump Kick);
 Rotom-Frost Lv. 52 holding Choice Scarf (Levitate; Blizzard, Volt Switch,
 Discharge, Trick); Beartic Lv. 53 holding Choice Band (Slush Rush; Icicle
-Crash, Liquidation, Superpower, Throat Chop); Glalie Lv. 53 holding Glalitite
-(Moody; Return, Ice Shard, Earthquake, Steel Roller).
+Crash, Liquidation, Superpower, Throat Chop); Mega Glalie Lv. 53 holding Glalitite
+(Refrigerate; Return, Ice Shard, Earthquake, Steel Roller).
 
 ### Drake
 
@@ -137,7 +137,7 @@ Claw, U-Turn, Earthquake, Stone Edge); Kingdra Lv. 53 holding Scope Lens
 (Sniper; Dragon Pulse, Hydro Pump, Ice Beam, Flip Turn); Turtonator Lv. 53
 holding Leftovers (Shell Armor; Taunt, Shell Trap, Flash Cannon, Dragon
 Pulse); Salamence Lv. 55 holding Yache Berry (Intimidate; Dragon Dance, Dragon
-Claw, Fly, Wild Charge); Sceptile Lv. 55 holding Sceptilite (Overgrow; Leaf
+Claw, Fly, Wild Charge); Mega Sceptile Lv. 55 holding Sceptilite (Lightning Rod; Leaf
 Storm, Draco Meteor, Focus Blast, Hidden Power).
 
 ## Champion Steven
@@ -149,7 +149,7 @@ Storm, Draco Meteor, Focus Blast, Hidden Power).
 | Regice | 55 | Ice Gem | Lock-On, Blizzard, Focus Blast, Zap Cannon |
 | Drifblim | 56 | Flying Gem | Acrobatics, Poltergeist, Tailwind, Destiny Bond |
 | Tinkaton | 56 | Air Balloon | Gigaton Hammer, Wood Hammer, Play Rough, Ice Hammer |
-| Metagross | 58 | Metagrossite | Meteor Mash, Agility, Zen Headbutt, Headlong Rush |
+| Mega Metagross | 58 | Metagrossite | Meteor Mash, Agility, Zen Headbutt, Headlong Rush |
 
 Steven is the champion in this fork.
 
@@ -158,9 +158,9 @@ Steven is the champion in this fork.
 The main late-game leader battles are:
 
 - **Maxie, Magma Hideout:** Mightyena Lv. 37, Crobat Lv. 38, Camerupt Lv. 39.
-- **Archie:** Mightyena Lv. 41, Crobat Lv. 41, Sharpedo Lv. 43 holding
+- **Archie:** Mightyena Lv. 41, Crobat Lv. 41, Mega Sharpedo Lv. 43 holding
   Sharpedonite.
-- **Maxie, Mossdeep:** Mightyena Lv. 42, Crobat Lv. 43, Camerupt Lv. 44
+- **Maxie, Mossdeep:** Mightyena Lv. 42, Crobat Lv. 43, Mega Camerupt Lv. 44
   holding Cameruptite.
 
 These leader teams use their configured story abilities and may be affected

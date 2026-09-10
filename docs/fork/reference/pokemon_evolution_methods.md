@@ -165,7 +165,7 @@ as separate rows because they are separate species entries in the game data.
 <tr><td>Cetoddle</td><td>Ice Stone → Cetitan</td></tr>
 <tr><td>Chandelure</td><td></td></tr>
 <tr><td>Chandelure</td><td></td></tr>
-<tr><td>Chansey</td><td>Level 0 → Blissey</td></tr>
+<tr><td>Chansey</td><td>High friendship → Blissey</td></tr>
 <tr><td>Charcadet</td><td>Auspicious Armor → Armarouge; Malicious Armor → Ceruledge</td></tr>
 <tr><td>Charizard</td><td></td></tr>
 <tr><td>Charizard</td><td></td></tr>
@@ -200,7 +200,7 @@ as separate rows because they are separate species entries in the game data.
 <tr><td>Clefable</td><td></td></tr>
 <tr><td>Clefable</td><td></td></tr>
 <tr><td>Clefairy</td><td>Moon Stone → Clefable</td></tr>
-<tr><td>Cleffa</td><td>Level 0 → Clefairy</td></tr>
+<tr><td>Cleffa</td><td>High friendship → Clefairy</td></tr>
 <tr><td>Clobbopus</td><td>Level 0 → Grapploct</td></tr>
 <tr><td>Clodsire</td><td></td></tr>
 <tr><td>Cloyster</td><td></td></tr>
@@ -240,7 +240,7 @@ as separate rows because they are separate species entries in the game data.
 <tr><td>Crustle</td><td></td></tr>
 <tr><td>Cryogonal</td><td></td></tr>
 <tr><td>Cubchoo</td><td>Level 37 → Beartic</td></tr>
-<tr><td>Cubone</td><td>Level 28 → Marowak; None → Marowak</td></tr>
+<tr><td>Cubone</td><td>Level 28 → Marowak</td></tr>
 <tr><td>Cufant</td><td>Level 34 → Copperajah</td></tr>
 <tr><td>Cursola</td><td></td></tr>
 <tr><td>Cutiefly</td><td>Level 25 → Ribombee; None → Ribombee</td></tr>
@@ -333,14 +333,14 @@ as separate rows because they are separate species entries in the game data.
 <tr><td>Eelektrik</td><td>Thunder Stone → Eelektross</td></tr>
 <tr><td>Eelektross</td><td></td></tr>
 <tr><td>Eelektross</td><td></td></tr>
-<tr><td>Eevee</td><td>Thunder Stone → Jolteon; Water Stone → Vaporeon; Fire Stone → Flareon; Level 0 → Sylveon; Level 0 → Espeon; Level 0 → Umbreon; Level 0 → Leafeon; Leaf Stone → Leafeon; Level 0 → Glaceon; Ice Stone → Glaceon</td></tr>
+<tr><td>Eevee</td><td>Thunder Stone → Jolteon; Water Stone → Vaporeon; Fire Stone → Flareon; High friendship + Fairy-type move → Sylveon; High friendship during the day → Espeon; High friendship at night → Umbreon; Level up in Petalburg Woods → Leafeon; Leaf Stone → Leafeon; Level up in Shoal Cave's low-tide ice room → Glaceon; Ice Stone → Glaceon</td></tr>
 <tr><td>Eevee</td><td></td></tr>
 <tr><td>Eevee</td><td></td></tr>
 <tr><td>Eiscue</td><td></td></tr>
 <tr><td>Eiscue</td><td></td></tr>
 <tr><td>Ekans</td><td>Level 22 → Arbok</td></tr>
 <tr><td>Eldegoss</td><td></td></tr>
-<tr><td>Electabuzz</td><td>Trade → Electivire; Electirizer → Electivire</td></tr>
+<tr><td>Electabuzz</td><td>Trade while holding an Electirizer → Electivire</td></tr>
 <tr><td>Electivire</td><td></td></tr>
 <tr><td>Electrike</td><td>Level 26 → Manectric</td></tr>
 <tr><td>Electrode</td><td></td></tr>
@@ -450,7 +450,7 @@ as separate rows because they are separate species entries in the game data.
 <tr><td>Gliscor</td><td></td></tr>
 <tr><td>Gloom</td><td>Leaf Stone → Vileplume; Sun Stone → Bellossom</td></tr>
 <tr><td>Gogoat</td><td></td></tr>
-<tr><td>Golbat</td><td>Level 0 → Crobat</td></tr>
+<tr><td>Golbat</td><td>High friendship → Crobat</td></tr>
 <tr><td>Goldeen</td><td>Level 33 → Seaking</td></tr>
 <tr><td>Golduck</td><td></td></tr>
 <tr><td>Golem</td><td></td></tr>
@@ -545,7 +545,7 @@ as separate rows because they are separate species entries in the game data.
 <tr><td>Hydrapple</td><td></td></tr>
 <tr><td>Hydreigon</td><td></td></tr>
 <tr><td>Hypno</td><td></td></tr>
-<tr><td>Igglybuff</td><td>Level 0 → Jigglypuff</td></tr>
+<tr><td>Igglybuff</td><td>High friendship → Jigglypuff</td></tr>
 <tr><td>Illumise</td><td></td></tr>
 <tr><td>Impidimp</td><td>Level 32 → Morgrem</td></tr>
 <tr><td>Incineroar</td><td></td></tr>
@@ -677,10 +677,10 @@ as separate rows because they are separate species entries in the game data.
 <tr><td>Magearna</td><td></td></tr>
 <tr><td>Magearna</td><td></td></tr>
 <tr><td>Magikarp</td><td>Level 20 → Gyarados</td></tr>
-<tr><td>Magmar</td><td>Trade → Magmortar; Magmarizer → Magmortar</td></tr>
+<tr><td>Magmar</td><td>Trade while holding a Magmarizer → Magmortar</td></tr>
 <tr><td>Magmortar</td><td></td></tr>
 <tr><td>Magnemite</td><td>Level 30 → Magneton</td></tr>
-<tr><td>Magneton</td><td>Level 0 → Magnezone; Thunder Stone → Magnezone</td></tr>
+<tr><td>Magneton</td><td>Level up in New Mauville → Magnezone; Thunder Stone → Magnezone</td></tr>
 <tr><td>Magnezone</td><td></td></tr>
 <tr><td>Makuhita</td><td>Level 24 → Hariyama</td></tr>
 <tr><td>Malamar</td><td></td></tr>
@@ -724,7 +724,7 @@ as separate rows because they are separate species entries in the game data.
 <tr><td>Meowstic</td><td></td></tr>
 <tr><td>Meowstic</td><td></td></tr>
 <tr><td>Meowth</td><td>Level 28 → Persian</td></tr>
-<tr><td>Meowth</td><td>Level 0 → Persian</td></tr>
+<tr><td>Meowth</td><td>High friendship → Persian</td></tr>
 <tr><td>Meowth</td><td>Level 28 → Perrserker</td></tr>
 <tr><td>Meowth</td><td></td></tr>
 <tr><td>Mesprit</td><td></td></tr>
@@ -807,7 +807,7 @@ as separate rows because they are separate species entries in the game data.
 <tr><td>Okidogi</td><td></td></tr>
 <tr><td>Omanyte</td><td>Level 40 → Omastar</td></tr>
 <tr><td>Omastar</td><td></td></tr>
-<tr><td>Onix</td><td>Trade → Steelix; Metal Coat → Steelix</td></tr>
+<tr><td>Onix</td><td>Trade while holding a Metal Coat → Steelix</td></tr>
 <tr><td>Oranguru</td><td></td></tr>
 <tr><td>Orbeetle</td><td></td></tr>
 <tr><td>Orbeetle</td><td></td></tr>
@@ -848,7 +848,7 @@ as separate rows because they are separate species entries in the game data.
 <tr><td>Phantump</td><td>Trade → Trevenant; Linking Cord → Trevenant</td></tr>
 <tr><td>Pheromosa</td><td></td></tr>
 <tr><td>Phione</td><td></td></tr>
-<tr><td>Pichu</td><td>Level 0 → Pikachu</td></tr>
+<tr><td>Pichu</td><td>High friendship → Pikachu</td></tr>
 <tr><td>Pichu</td><td></td></tr>
 <tr><td>Pidgeot</td><td></td></tr>
 <tr><td>Pidgeot</td><td></td></tr>
@@ -884,7 +884,7 @@ as separate rows because they are separate species entries in the game data.
 <tr><td>Poipole</td><td>Level 0 → Naganadel</td></tr>
 <tr><td>Politoed</td><td></td></tr>
 <tr><td>Poliwag</td><td>Level 25 → Poliwhirl</td></tr>
-<tr><td>Poliwhirl</td><td>Water Stone → Poliwrath; Trade → Politoed; Kings Rock → Politoed</td></tr>
+<tr><td>Poliwhirl</td><td>Water Stone → Poliwrath; Trade while holding a King's Rock → Politoed</td></tr>
 <tr><td>Poliwrath</td><td></td></tr>
 <tr><td>Poltchageist</td><td>Unremarkable Teacup → Sinistcha</td></tr>
 <tr><td>Poltchageist</td><td>Masterpiece Teacup → Sinistcha</td></tr>
@@ -894,11 +894,11 @@ as separate rows because they are separate species entries in the game data.
 <tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
 <tr><td>Poochyena</td><td>Level 18 → Mightyena</td></tr>
 <tr><td>Popplio</td><td>Level 17 → Brionne</td></tr>
-<tr><td>Porygon</td><td>Trade → Porygon2; Upgrade → Porygon2</td></tr>
+<tr><td>Porygon</td><td>Trade while holding an Upgrade → Porygon2</td></tr>
 <tr><td>Porygon-Z</td><td></td></tr>
-<tr><td>Porygon2</td><td>Trade → Porygon-Z; Dubious Disc → Porygon-Z</td></tr>
+<tr><td>Porygon2</td><td>Trade while holding a Dubious Disc → Porygon-Z</td></tr>
 <tr><td>Primarina</td><td></td></tr>
-<tr><td>Primeape</td><td>Level 0 → Annihilape</td></tr>
+<tr><td>Primeape</td><td>Use Rage Fist 20 times, then level up → Annihilape</td></tr>
 <tr><td>Prinplup</td><td>Level 36 → Empoleon</td></tr>
 <tr><td>Probopass</td><td></td></tr>
 <tr><td>Psyduck</td><td>Level 33 → Golduck</td></tr>
@@ -936,7 +936,7 @@ as separate rows because they are separate species entries in the game data.
 <tr><td>Raticate</td><td></td></tr>
 <tr><td>Raticate</td><td></td></tr>
 <tr><td>Rattata</td><td>Level 20 → Raticate</td></tr>
-<tr><td>Rattata</td><td>Level 20 → Raticate; None → Raticate</td></tr>
+<tr><td>Rattata</td><td>Level 20 at night → Raticate</td></tr>
 <tr><td>Rayquaza</td><td></td></tr>
 <tr><td>Rayquaza</td><td></td></tr>
 <tr><td>Regice</td><td></td></tr>
@@ -951,7 +951,7 @@ as separate rows because they are separate species entries in the game data.
 <tr><td>Reshiram</td><td></td></tr>
 <tr><td>Reuniclus</td><td></td></tr>
 <tr><td>Revavroom</td><td></td></tr>
-<tr><td>Rhydon</td><td>Trade → Rhyperior; Protector → Rhyperior</td></tr>
+<tr><td>Rhydon</td><td>Trade while holding a Protector → Rhyperior</td></tr>
 <tr><td>Rhyhorn</td><td>Level 42 → Rhydon</td></tr>
 <tr><td>Rhyperior</td><td></td></tr>
 <tr><td>Ribombee</td><td></td></tr>
@@ -1012,8 +1012,8 @@ as separate rows because they are separate species entries in the game data.
 <tr><td>Scrafty</td><td></td></tr>
 <tr><td>Scraggy</td><td>Level 39 → Scrafty</td></tr>
 <tr><td>Scream Tail</td><td></td></tr>
-<tr><td>Scyther</td><td>Trade → Scizor; Metal Coat → Scizor; Black Augurite → Kleavor</td></tr>
-<tr><td>Seadra</td><td>Trade → Kingdra; Dragon Scale → Kingdra</td></tr>
+<tr><td>Scyther</td><td>Trade while holding a Metal Coat → Scizor; Black Augurite → Kleavor</td></tr>
+<tr><td>Seadra</td><td>Trade while holding a Dragon Scale → Kingdra</td></tr>
 <tr><td>Seaking</td><td></td></tr>
 <tr><td>Sealeo</td><td>Level 44 → Walrein</td></tr>
 <tr><td>Seedot</td><td>Level 14 → Nuzleaf</td></tr>
@@ -1074,7 +1074,7 @@ as separate rows because they are separate species entries in the game data.
 <tr><td>Slowbro</td><td></td></tr>
 <tr><td>Slowking</td><td></td></tr>
 <tr><td>Slowking</td><td></td></tr>
-<tr><td>Slowpoke</td><td>Level 37 → Slowbro; Trade → Slowking; Kings Rock → Slowking</td></tr>
+<tr><td>Slowpoke</td><td>Level 37 → Slowbro; Trade while holding a King's Rock → Slowking</td></tr>
 <tr><td>Slowpoke</td><td>Galarica Cuff → Slowbro; Galarica Wreath → Slowking</td></tr>
 <tr><td>Slugma</td><td>Level 38 → Magcargo</td></tr>
 <tr><td>Slurpuff</td><td></td></tr>
@@ -1148,7 +1148,7 @@ as separate rows because they are separate species entries in the game data.
 <tr><td>Taillow</td><td>Level 22 → Swellow</td></tr>
 <tr><td>Talonflame</td><td></td></tr>
 <tr><td>Tandemaus</td><td>Battle-only level 25 → Maushold</td></tr>
-<tr><td>Tangela</td><td>Level 0 → Tangrowth</td></tr>
+<tr><td>Tangela</td><td>Level up while knowing Ancient Power → Tangrowth</td></tr>
 <tr><td>Tangrowth</td><td></td></tr>
 <tr><td>Tapu Bulu</td><td></td></tr>
 <tr><td>Tapu Fini</td><td></td></tr>
@@ -1342,4 +1342,3 @@ as separate rows because they are separate species entries in the game data.
 </tbody>
 </table>
 </div>
-

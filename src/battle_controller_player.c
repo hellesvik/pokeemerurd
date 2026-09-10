@@ -1,6 +1,5 @@
 #include "global.h"
 #include "battle.h"
-#include "fork_run.h"
 #include "battle_anim.h"
 #include "battle_arena.h"
 #include "battle_controllers.h"
@@ -315,10 +314,13 @@ static void HandleInputChooseAction(enum BattlerId battler)
             BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_USE_MOVE, 0);
             break;
         case 1: // Top right
-            if (ForkAreBattleItemsEnabled())
-                BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_USE_ITEM, 0);
-            else
-                PlaySE(SE_FAILURE);
+            if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+            {
+                // Bag is unavailable in trainer battles. Leave the controller
+                // active so the player can navigate to another action.
+                return;
+            }
+            BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_USE_ITEM, 0);
             break;
         case 2: // Bottom left
             BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_SWITCH, 0);
@@ -2023,10 +2025,14 @@ static void HandleChooseActionAfterDma3(enum BattlerId battler)
 static void PlayerHandleChooseAction(enum BattlerId battler)
 {
     s32 i;
+    static const u8 sText_BattleMenuTrainer[] = _("Battle{CLEAR_TO 56}{COLOR_HIGHLIGHT_SHADOW 3 14 15}Bag{COLOR_HIGHLIGHT_SHADOW 13 14 15}\nPokémon{CLEAR_TO 56}Run");
 
     gBattlerControllerFuncs[battler] = HandleChooseActionAfterDma3;
     BattleTv_ClearExplosionFaintCause();
-    BattlePutTextOnWindow(gText_BattleMenu, B_WIN_ACTION_MENU);
+    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+        BattlePutTextOnWindow(sText_BattleMenuTrainer, B_WIN_ACTION_MENU);
+    else
+        BattlePutTextOnWindow(gText_BattleMenu, B_WIN_ACTION_MENU);
 
     for (i = 0; i < 4; i++)
         ActionSelectionDestroyCursorAt(i);

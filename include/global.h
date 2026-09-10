@@ -18,6 +18,7 @@
 #include "constants/apricorn_tree.h"
 #include "constants/berry.h"
 #include "constants/maps.h"
+#include "constants/region_map_sections.h"
 #include "constants/pokemon.h"
 #include "constants/easy_chat.h"
 #include "constants/trainer_hill.h"
@@ -261,6 +262,7 @@ struct NPCFollower
 #define FORK_ITEM_RANDOMIZER_UNASSIGNED 0xFFFF
 #define FORK_GAME_CORNER_PRIZE_COUNT 5
 #define FORK_GAME_CORNER_MENU_PRIZE_COUNT 11
+#define FORK_AREA_ENCOUNTER_SPENT_BYTE_COUNT ((MAPSEC_COUNT + 7) / 8)
 
 struct SaveBlock3
 {
@@ -306,6 +308,8 @@ struct SaveBlock3
     u8 forkMegaEvolutionEnabled;
     u8 forkBattleStyleLocked;
     u8 forkReusableTMsEnabled;
+    u8 forkAreaEncounterStateVersion;
+    u8 forkAreaEncounterSpent[FORK_AREA_ENCOUNTER_SPENT_BYTE_COUNT];
 }; /* max size 1624 bytes */
 
 extern struct SaveBlock3 *gSaveBlock3Ptr;

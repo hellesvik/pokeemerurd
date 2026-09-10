@@ -3,6 +3,11 @@
 
 #include "wild_encounter.h"
 
+#define FORK_LAND_RANDOMIZED_SLOT_COUNT 3
+#define FORK_WATER_RANDOMIZED_SLOT_COUNT 3
+#define FORK_ROCK_RANDOMIZED_SLOT_COUNT 3
+#define FORK_FISHING_RANDOMIZED_SLOT_COUNT 2
+
 void InitForkEncounterRandomizerSeed(void);
 u16 GetForkMaxNationalDex(void);
 enum Species ResolveForkRandomizedEncounterSpecies(u8 mapGroup, u8 mapNum, enum WildPokemonArea area, u8 slot, enum Species fallback);

@@ -144,7 +144,7 @@ u16 GetForkMaxNationalDex(void)
     return GetForkMaxNationalDexForGen(ForkGetRandomizerMaxGen());
 }
 
-static enum Species SelectEncounterSpecies(const struct ForkEncounterAssignment *assignment, u8 mapGroup, u8 mapNum, enum WildPokemonArea area, u8 slot, const enum Species *selected, u8 selectedCount, enum Species fallback)
+static enum Species SelectEncounterSpecies(const struct ForkEncounterAssignment *assignment, u8 mapGroup, u8 mapNum, enum WildPokemonArea area, u8 slot, u8 randomSalt, const enum Species *selected, u8 selectedCount, enum Species fallback)
 {
     const enum Species *pool;
     rng_value_t rng;
@@ -153,7 +153,7 @@ static enum Species SelectEncounterSpecies(const struct ForkEncounterAssignment 
     u16 start;
 
     pool = GetBiomePool(assignment->biome, &count);
-    rng = LocalRandomSeed(gSaveBlock3Ptr->forkEncounterRandomizerSeed ^ ((u32)mapGroup << 24) ^ ((u32)mapNum << 16) ^ ((u32)area << 8) ^ slot);
+    rng = LocalRandomSeed(gSaveBlock3Ptr->forkEncounterRandomizerSeed ^ ((u32)mapGroup << 24) ^ ((u32)mapNum << 16) ^ ((u32)area << 8) ^ randomSalt);
     start = LocalRandom(&rng) % count;
     for (i = 0; i < count; i++)
     {
@@ -248,7 +248,7 @@ enum Species ResolveForkRandomizedEncounterSpecies(u8 mapGroup, u8 mapNum, enum 
     if (assignment == NULL || slot >= assignment->slots)
         return fallback;
     for (i = 0; i <= slot; i++)
-        selected[i] = SelectEncounterSpecies(assignment, mapGroup, mapNum, area, i, selected, i, fallback);
+        selected[i] = SelectEncounterSpecies(assignment, mapGroup, mapNum, area, i, i, selected, i, fallback);
     return selected[slot];
 }
 
@@ -276,6 +276,7 @@ enum Species ResolveForkRandomizedStaticEncounterSpecies(enum Species fallback)
         gSaveBlock1Ptr->location.mapGroup,
         gSaveBlock1Ptr->location.mapNum,
         WILD_AREA_LAND,
+        0,
         0x80,
         NULL,
         0,

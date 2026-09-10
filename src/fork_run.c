@@ -18,6 +18,7 @@
 
 #define FORK_AREA_STATE_INIT_FLAG FLAG_SPECIAL_FLAG_UNUSED_0x4003
 #define FORK_AREA_STATE_VAR_COUNT 14
+#define FORK_AREA_ENCOUNTER_STATE_VERSION 1
 
 static const u16 sAreaStateVars[FORK_AREA_STATE_VAR_COUNT] =
 {
@@ -163,11 +164,28 @@ void ForkConfigureGameplayOptions(bool32 catchLimitEnabled, bool32 levelCapEnabl
 
 static void EnsureAreaStateInitialized(void)
 {
-    if (FlagGet(FORK_AREA_STATE_INIT_FLAG))
+    u32 i;
+
+    if (gSaveBlock3Ptr->forkAreaEncounterStateVersion == FORK_AREA_ENCOUNTER_STATE_VERSION)
         return;
 
-    for (u32 i = 0; i < ARRAY_COUNT(sAreaStateVars); i++)
-        VarSet(sAreaStateVars[i], 0);
+    // Migrate encounter state from the temporary variable-based storage used
+    // by earlier saves. New saves start with an empty persistent bitset.
+    if (FlagGet(FORK_AREA_STATE_INIT_FLAG))
+    {
+        for (i = 0; i < ARRAY_COUNT(sAreaStateVars); i++)
+        {
+            u16 value = VarGet(sAreaStateVars[i]);
+            gSaveBlock3Ptr->forkAreaEncounterSpent[i * 2] = value;
+            gSaveBlock3Ptr->forkAreaEncounterSpent[i * 2 + 1] = value >> 8;
+        }
+    }
+    else
+    {
+        for (i = 0; i < ARRAY_COUNT(gSaveBlock3Ptr->forkAreaEncounterSpent); i++)
+            gSaveBlock3Ptr->forkAreaEncounterSpent[i] = 0;
+    }
+    gSaveBlock3Ptr->forkAreaEncounterStateVersion = FORK_AREA_ENCOUNTER_STATE_VERSION;
     FlagSet(FORK_AREA_STATE_INIT_FLAG);
 }
 
@@ -304,38 +322,34 @@ static void ResolveCurrentEncounterState(void)
 
 void ForkResetAreaEncounterState(void)
 {
-    for (u32 i = 0; i < ARRAY_COUNT(sAreaStateVars); i++)
-        VarSet(sAreaStateVars[i], 0);
+    for (u32 i = 0; i < ARRAY_COUNT(gSaveBlock3Ptr->forkAreaEncounterSpent); i++)
+        gSaveBlock3Ptr->forkAreaEncounterSpent[i] = 0;
+    gSaveBlock3Ptr->forkAreaEncounterStateVersion = FORK_AREA_ENCOUNTER_STATE_VERSION;
     FlagSet(FORK_AREA_STATE_INIT_FLAG);
 }
 
 bool32 ForkIsAreaEncounterSpent(mapsec_u8_t mapSecId)
 {
-    u32 word;
-    u16 value;
+    u32 byte;
 
     EnsureAreaStateInitialized();
     if (mapSecId >= MAPSEC_COUNT)
         return FALSE;
 
-    word = mapSecId / 16;
-    value = VarGet(sAreaStateVars[word]);
-    return (value >> (mapSecId % 16)) & 1;
+    byte = mapSecId / 8;
+    return (gSaveBlock3Ptr->forkAreaEncounterSpent[byte] >> (mapSecId % 8)) & 1;
 }
 
 void ForkSetAreaEncounterSpent(mapsec_u8_t mapSecId)
 {
-    u32 word;
-    u16 value;
+    u32 byte;
 
     EnsureAreaStateInitialized();
     if (mapSecId >= MAPSEC_COUNT)
         return;
 
-    word = mapSecId / 16;
-    value = VarGet(sAreaStateVars[word]);
-    value |= 1 << (mapSecId % 16);
-    VarSet(sAreaStateVars[word], value);
+    byte = mapSecId / 8;
+    gSaveBlock3Ptr->forkAreaEncounterSpent[byte] |= 1 << (mapSecId % 8);
 }
 
 bool32 ForkPlayerOwnsSpeciesFamily(enum Species species)

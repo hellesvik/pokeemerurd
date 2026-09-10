@@ -61,7 +61,7 @@ TEST("Biome encounter randomizer makes water tables water-compatible")
 
 TEST("Biome encounter randomizer avoids duplicate species within one land table")
 {
-    enum Species species[LAND_WILD_COUNT];
+    enum Species species[3];
     u32 i;
     u32 j;
 
@@ -73,11 +73,47 @@ TEST("Biome encounter randomizer avoids duplicate species within one land table"
             EXPECT_NE(species[i], species[j]);
 }
 
+TEST("Biome encounter randomizer only fills three non-fishing slots")
+{
+    enum Species third;
+    enum Species fourth;
+
+    gSaveBlock3Ptr->forkEncounterRandomizerSeed = 0x0BADF00D;
+    third = ResolveForkRandomizedEncounterSpecies(MAP_GROUP(MAP_ROUTE101), MAP_NUM(MAP_ROUTE101), WILD_AREA_LAND, 2, SPECIES_ZIGZAGOON);
+    fourth = ResolveForkRandomizedEncounterSpecies(MAP_GROUP(MAP_ROUTE101), MAP_NUM(MAP_ROUTE101), WILD_AREA_LAND, 3, SPECIES_ZIGZAGOON);
+
+    EXPECT_NE(third, SPECIES_ZIGZAGOON);
+    EXPECT_EQ(fourth, SPECIES_ZIGZAGOON);
+}
+
+TEST("Biome encounter randomizer only fills two fishing slots")
+{
+    enum Species second;
+    enum Species third;
+
+    gSaveBlock3Ptr->forkEncounterRandomizerSeed = 0x0BADF00D;
+    second = ResolveForkRandomizedEncounterSpecies(MAP_GROUP(MAP_ROUTE118), MAP_NUM(MAP_ROUTE118), WILD_AREA_FISHING, 1, SPECIES_TENTACOOL);
+    third = ResolveForkRandomizedEncounterSpecies(MAP_GROUP(MAP_ROUTE118), MAP_NUM(MAP_ROUTE118), WILD_AREA_FISHING, 2, SPECIES_TENTACOOL);
+
+    EXPECT_NE(second, SPECIES_TENTACOOL);
+    EXPECT_EQ(third, SPECIES_TENTACOOL);
+}
+
+TEST("Area encounter state is stored in the fork save block")
+{
+    mapsec_u8_t mapSecId = 42;
+
+    ForkResetAreaEncounterState();
+    ForkSetAreaEncounterSpent(mapSecId);
+
+    EXPECT((gSaveBlock3Ptr->forkAreaEncounterSpent[mapSecId / 8] & (1 << (mapSecId % 8))) != 0);
+}
+
 TEST("Biome encounter randomizer defaults to Generation 3 species")
 {
     gSaveBlock3Ptr->forkEncounterRandomizerSeed = 0x10203040;
 
-    for (u8 slot = 0; slot < LAND_WILD_COUNT; slot++)
+    for (u8 slot = 0; slot < 3; slot++)
     {
         enum Species species = ResolveForkRandomizedEncounterSpecies(
             MAP_GROUP(MAP_ROUTE101), MAP_NUM(MAP_ROUTE101), WILD_AREA_LAND, slot, SPECIES_ZIGZAGOON);

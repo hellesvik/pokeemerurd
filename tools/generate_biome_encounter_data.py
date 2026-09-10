@@ -18,10 +18,10 @@ ASSIGNMENTS_CSV = ROOT / "docs/fork/reference/biome_encounter_assignments.csv"
 BIOMES = ("Grassland", "Forest", "Mountain", "Cave", "Desert", "Volcanic", "Snow and Ice", "Marsh and Swamp", "Freshwater", "Ocean", "Beach and Coast")
 BIOME_ENUM = {biome: "FORK_BIOME_" + biome.upper().replace(" ", "_").replace("AND", "") for biome in BIOMES}
 METHODS = {
-    "land_mons": ("WILD_AREA_LAND", "LAND_WILD_COUNT"),
-    "water_mons": ("WILD_AREA_WATER", "WATER_WILD_COUNT"),
-    "rock_smash_mons": ("WILD_AREA_ROCKS", "ROCK_WILD_COUNT"),
-    "fishing_mons": ("WILD_AREA_FISHING", "FISH_WILD_COUNT"),
+    "land_mons": ("WILD_AREA_LAND", "FORK_LAND_RANDOMIZED_SLOT_COUNT"),
+    "water_mons": ("WILD_AREA_WATER", "FORK_WATER_RANDOMIZED_SLOT_COUNT"),
+    "rock_smash_mons": ("WILD_AREA_ROCKS", "FORK_ROCK_RANDOMIZED_SLOT_COUNT"),
+    "fishing_mons": ("WILD_AREA_FISHING", "FORK_FISHING_RANDOMIZED_SLOT_COUNT"),
 }
 
 

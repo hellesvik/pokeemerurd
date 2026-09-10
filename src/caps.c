@@ -3,8 +3,10 @@
 #include "battle.h"
 #include "event_data.h"
 #include "caps.h"
+#include "field_message_box.h"
 #include "pokemon.h"
 #include "fork_run.h"
+#include "string_util.h"
 #include "constants/opponents.h"
 
 struct LevelCapMilestone
@@ -12,6 +14,9 @@ struct LevelCapMilestone
     u8 levelCap;
     const u16 *trainerIds;
 };
+
+static EWRAM_DATA u8 sQueuedLevelCapIncrease = 0;
+static const u8 sText_LevelCapRaised[] = _("LEVEL CAP RAISED!\nYour POKéMON can now reach\nLv. {STR_VAR_1}.");
 
 static bool32 HasAnyTrainerBeenFought(const u16 *trainerIds)
 {
@@ -132,6 +137,37 @@ u32 GetCurrentLevelCap(void)
     }
 
     return MAX_LEVEL;
+}
+
+bool8 QueueLevelCapIncreaseMessage(u32 previousCap)
+{
+    u32 newCap = GetCurrentLevelCap();
+
+    if (!ForkIsLevelCapEnabled() || newCap <= previousCap)
+        return FALSE;
+
+    sQueuedLevelCapIncrease = newCap;
+    return TRUE;
+}
+
+u32 ConsumeQueuedLevelCapIncrease(void)
+{
+    u32 cap = sQueuedLevelCapIncrease;
+    sQueuedLevelCapIncrease = 0;
+    return cap;
+}
+
+void ShowQueuedLevelCapIncreaseMessage(void)
+{
+    u32 cap = ConsumeQueuedLevelCapIncrease();
+
+    gSpecialVar_Result = FALSE;
+    if (cap == 0)
+        return;
+
+    ConvertIntToDecimalStringN(gStringVar1, cap, STR_CONV_MODE_LEFT_ALIGN, 3);
+    if (ShowFieldMessage(sText_LevelCapRaised))
+        gSpecialVar_Result = TRUE;
 }
 
 u32 GetSoftLevelCapExpValue(u32 level, u32 expValue)

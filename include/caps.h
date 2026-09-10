@@ -21,5 +21,8 @@
 u32 GetCurrentLevelCap(void);
 u32 GetSoftLevelCapExpValue(u32 level, u32 expValue);
 u32 GetCurrentEVCap(void);
+bool8 QueueLevelCapIncreaseMessage(u32 previousCap);
+u32 ConsumeQueuedLevelCapIncrease(void);
+void ShowQueuedLevelCapIncreaseMessage(void);
 
 #endif /* GUARD_CAPS_H */

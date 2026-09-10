@@ -1,5 +1,6 @@
 #include "global.h"
 #include "battle.h"
+#include "caps.h"
 #include "load_save.h"
 #include "battle_setup.h"
 #include "battle_tower.h"
@@ -1471,7 +1472,9 @@ static void CB2_EndTrainerBattle(void)
         }
         DowngradeBadPoison();
         SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+        u32 previousCap = GetCurrentLevelCap();
         SetBattledTrainerFlag();
+        QueueLevelCapIncreaseMessage(previousCap);
     }
     else if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_SECRET_BASE)
     {
@@ -1494,12 +1497,14 @@ static void CB2_EndTrainerBattle(void)
     }
     else
     {
+        u32 previousCap = GetCurrentLevelCap();
         SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
         DowngradeBadPoison();
         if (CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE && !InTrainerHillChallenge())
         {
             RegisterTrainerInMatchCall();
             SetBattledTrainersFlags();
+            QueueLevelCapIncreaseMessage(previousCap);
         }
     }
 }

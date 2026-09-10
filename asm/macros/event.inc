@@ -836,6 +836,12 @@
 	@ are run by trainerbattle), and blocks script execution until the battle finishes.
 	.macro dotrainerbattle
 	.byte SCR_OP_DOTRAINERBATTLE
+	special ShowQueuedLevelCapIncreaseMessage
+	goto_if_eq VAR_RESULT, FALSE, .Lskip_level_cap_message_\@
+	waitmessage
+	waitbuttonpress
+	closemessage
+.Lskip_level_cap_message_\@:
 	.endm
 
 	@ Goes to address after the trainerbattle command (called by the battle functions, see battle_setup.c)

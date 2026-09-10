@@ -8,6 +8,7 @@ This fork uses the built-in hard level cap system.
 - Daycare EXP is capped by the same limit.
 - Normal one-use Rare Candies are still allowed to push a Pokemon above the cap.
 - EV gain is disabled separately through the EV cap configuration.
+- After defeating the story battle that raises the cap, a message announces the new cap. It appears after that battle's defeat text and before the map's post-battle event continues.
 
 ## Current Cap Ladder
 

@@ -2,7 +2,7 @@
 
 This page shows the main first-clear boss battles exactly as configured. It is designed for GitHub Pages and includes the battle format, sprite, level, ability, held item, IVs, nature, and moves for every Pokémon.
 
-All listed boss Pokémon use 31 IVs in every stat and Hardy (neutral) nature in battle. If Random Abilities is enabled, the displayed configured ability may be replaced by the save's ability roll.
+All listed boss Pokémon use 31 IVs in every stat and Hardy (neutral) nature in battle. Abilities shown by name are fixed team overrides. **Randomized** abilities use the save's seeded species-family ability roll when Random Abilities is enabled; otherwise they use the species' normal ability.
 
 Mega Stone holders are shown below in their final Mega form: the displayed name, ability, stats, typing, and sprite are the values after Mega Evolution.
 
@@ -49,11 +49,22 @@ The cap ladder includes every required story battle that advances the level cap.
 ## Rustboro rival — Single battle (Brendan/May variants)
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/brendan.png" alt="brendan" width="96"></p>
 
+The rival's team depends on the player's chosen starter and whether the rival is Brendan or May. Pokémon are sent out in the order shown.
+
+| Player chose | Brendan's team | May's team |
+| --- | --- | --- |
+| Treecko | Lotad Lv. 13<br>Torchic Lv. 15 | Lotad Lv. 13<br>Torchic Lv. 15 |
+| Torchic | Slugma Lv. 13<br>Mudkip Lv. 15 | Torkoal Lv. 13<br>Mudkip Lv. 15 |
+| Mudkip | Wingull Lv. 13<br>Treecko Lv. 15 | Wingull Lv. 13<br>Treecko Lv. 15 |
+
+The detailed table below shows the shared Mudkip-player variant.
+
 | | Wingull | Treecko |
 | --- | --- | --- |
 | Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/wingull/anim_front.png" alt="Wingull" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/treecko/anim_front.png" alt="Treecko" width="64"> |
 | Level | 13 | 15 |
 | Stats | Total: 118<br>HP: 33<br>ATK: 13<br>DEF: 13<br>SpA: 27<br>SpD: 19<br>Spe: 13 | Total: 145<br>HP: 37<br>ATK: 19<br>DEF: 16<br>SpA: 26<br>SpD: 25<br>Spe: 22 |
+| Ability | Randomized | Randomized |
 | Nature | Random nature | Random nature |
 | Moves | Default generated moveset | Default generated moveset |
 
@@ -75,11 +86,20 @@ The cap ladder includes every required story battle that advances the level cap.
 ## Route 110 rival — Single battle (Brendan/May variants)
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/brendan.png" alt="brendan" width="96"></p>
 
+| Player chose | Brendan's team | May's team |
+| --- | --- | --- |
+| Treecko | Wingull Lv. 18<br>Lombre Lv. 18<br>Combusken Lv. 20 | Wingull Lv. 18<br>Lombre Lv. 18<br>Combusken Lv. 20 |
+| Torchic | Lombre Lv. 18<br>Slugma Lv. 18<br>Marshtomp Lv. 20 | Lombre Lv. 18<br>Slugma Lv. 18<br>Marshtomp Lv. 20 |
+| Mudkip | Slugma Lv. 18<br>Wingull Lv. 18<br>Grovyle Lv. 20 | Wingull Lv. 18<br>Slugma Lv. 18<br>Grovyle Lv. 20 |
+
+The detailed table below shows Brendan's Mudkip-player variant.
+
 | | Slugma | Wingull | Grovyle |
 | --- | --- | --- | --- |
 | Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/slugma/anim_front.png" alt="Slugma" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/wingull/anim_front.png" alt="Wingull" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/grovyle/anim_front.png" alt="Grovyle" width="64"> |
 | Level | 18 | 18 | 20 |
 | Stats | Total: 147<br>HP: 43<br>ATK: 20<br>DEF: 20<br>SpA: 13<br>SpD: 31<br>Spe: 20 | Total: 152<br>HP: 43<br>ATK: 16<br>DEF: 16<br>SpA: 36<br>SpD: 25<br>Spe: 16 | Total: 229<br>HP: 52<br>ATK: 33<br>DEF: 25<br>SpA: 45<br>SpD: 41<br>Spe: 33 |
+| Ability | Randomized | Randomized | Randomized |
 | Nature | Random nature | Random nature | Random nature |
 | Moves | Default generated moveset | Default generated moveset | Default generated moveset |
 
@@ -106,6 +126,7 @@ The cap ladder includes every required story battle that advances the level cap.
 | Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/mightyena/anim_front.png" alt="Mightyena" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/zubat/anim_front.png" alt="Zubat" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/camerupt/anim_front.png" alt="Camerupt" width="64"> |
 | Level | 24 | 24 | 25 |
 | Stats | Total: 304<br>HP: 75<br>ATK: 55<br>DEF: 46<br>SpA: 46<br>SpD: 41<br>Spe: 41 | Total: 218<br>HP: 60<br>ATK: 34<br>DEF: 29<br>SpA: 38<br>SpD: 26<br>Spe: 31 | Total: 383<br>HP: 77<br>ATK: 72<br>DEF: 62<br>SpA: 22<br>SpD: 85<br>Spe: 65 |
+| Ability | Randomized | Randomized | Randomized |
 | Nature | Hardy | Hardy | Hardy |
 | Moves | Default generated moveset | Default generated moveset | Default generated moveset |
 
@@ -138,19 +159,28 @@ The cap ladder includes every required story battle that advances the level cap.
 | Nature | Hardy | Hardy | Hardy | Hardy | Hardy |
 | Moves | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32"> Extreme Speed<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32"> Facade<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ghost.png" alt="Ghost" width="32"> Shadow Claw<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="32"> Dig | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32"> Facade<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dark.png" alt="Dark" width="32"> Night Slash<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32"> Quick Attack<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="32"> Dig | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32"> Facade<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="32"> Surf<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="32"> Fire Blast<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ice.png" alt="Ice" width="32"> Blizzard | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/rock.png" alt="Rock" width="32"> Head Smash<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32"> Head Charge<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/steel.png" alt="Steel" width="32"> Iron Head<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/psychic.png" alt="Psychic" width="32"> Zen Headbutt | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32"> Facade<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/psychic.png" alt="Psychic" width="32"> Rest<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32"> Snore<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="32"> Fire Punch |
 
-## Route 119 rival — Single battle — Brendan variant
+## Route 119 rival — Single battle (Brendan/May variants)
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/brendan.png" alt="brendan" width="96"></p>
+
+| Player chose | Brendan's team | May's team |
+| --- | --- | --- |
+| Treecko | Pelipper Lv. 29<br>Lombre Lv. 29<br>Combusken Lv. 31 | Pelipper Lv. 29<br>Lombre Lv. 29<br>Combusken Lv. 31 |
+| Torchic | Lombre Lv. 29<br>Slugma Lv. 29<br>Marshtomp Lv. 31 | Lombre Lv. 29<br>Slugma Lv. 29<br>Marshtomp Lv. 31 |
+| Mudkip | Slugma Lv. 29<br>Pelipper Lv. 29<br>Grovyle Lv. 31 | Slugma Lv. 29<br>Lombre Lv. 29<br>Grovyle Lv. 31 |
+
+### Example: Brendan when the player chose Mudkip
 
 | | Slugma | Pelipper | Grovyle |
 | --- | --- | --- | --- |
 | Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/slugma/anim_front.png" alt="Slugma" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/pelipper/anim_front.png" alt="Pelipper" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/grovyle/anim_front.png" alt="Grovyle" width="64"> |
 | Level | 29 | 29 | 31 |
 | Stats | Total: 227<br>HP: 65<br>ATK: 31<br>DEF: 31<br>SpA: 20<br>SpD: 49<br>Spe: 31 | Total: 338<br>HP: 77<br>ATK: 37<br>DEF: 66<br>SpA: 46<br>SpD: 63<br>Spe: 49 | Total: 347<br>HP: 77<br>ATK: 50<br>DEF: 38<br>SpA: 69<br>SpD: 63<br>Spe: 50 |
+| Ability | Randomized | Randomized | Randomized |
 | Nature | Random nature | Random nature | Random nature |
 | Moves | Default generated moveset | Default generated moveset | Default generated moveset |
 
 
-## Route 119 rival — Single battle — May variant
+### Example: May when the player chose Mudkip
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/may.png" alt="may" width="96"></p>
 
 | | Slugma | Lombre | Grovyle |
@@ -158,6 +188,7 @@ The cap ladder includes every required story battle that advances the level cap.
 | Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/slugma/anim_front.png" alt="Slugma" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/lombre/anim_front.png" alt="Lombre" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/grovyle/anim_front.png" alt="Grovyle" width="64"> |
 | Level | 29 | 29 | 31 |
 | Stats | Total: 227<br>HP: 65<br>ATK: 31<br>DEF: 31<br>SpA: 20<br>SpD: 49<br>Spe: 31 | Total: 280<br>HP: 77<br>ATK: 37<br>DEF: 37<br>SpA: 37<br>SpD: 43<br>Spe: 49 | Total: 347<br>HP: 77<br>ATK: 50<br>DEF: 38<br>SpA: 69<br>SpD: 63<br>Spe: 50 |
+| Ability | Randomized | Randomized | Randomized |
 | Nature | Random nature | Random nature | Random nature |
 | Moves | Default generated moveset | Default generated moveset | Default generated moveset |
 
@@ -179,11 +210,20 @@ The cap ladder includes every required story battle that advances the level cap.
 ## Lilycove rival — Single battle (Brendan/May variants)
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/brendan.png" alt="brendan" width="96"></p>
 
+| Player chose | Brendan's team | May's team |
+| --- | --- | --- |
+| Treecko | Tropius Lv. 31<br>Pelipper Lv. 32<br>Ludicolo Lv. 32<br>Combusken Lv. 34 | Tropius Lv. 31<br>Pelipper Lv. 32<br>Ludicolo Lv. 32<br>Combusken Lv. 34 |
+| Torchic | Tropius Lv. 31<br>Ludicolo Lv. 32<br>Slugma Lv. 32<br>Marshtomp Lv. 34 | Tropius Lv. 31<br>Ludicolo Lv. 32<br>Slugma Lv. 32<br>Marshtomp Lv. 34 |
+| Mudkip | Tropius Lv. 31<br>Slugma Lv. 32<br>Pelipper Lv. 32<br>Grovyle Lv. 34 | Tropius Lv. 31<br>Slugma Lv. 32<br>Pelipper Lv. 32<br>Grovyle Lv. 34 |
+
+The detailed table below shows the shared Mudkip-player variant.
+
 | | Tropius | Slugma | Pelipper | Grovyle |
 | --- | --- | --- | --- | --- |
 | Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/tropius/anim_front.png" alt="Tropius" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/slugma/anim_front.png" alt="Slugma" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/pelipper/anim_front.png" alt="Pelipper" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/grovyle/anim_front.png" alt="Grovyle" width="64"> |
 | Level | 31 | 32 | 32 | 34 |
 | Stats | Total: 382<br>HP: 107<br>ATK: 52<br>DEF: 62<br>SpA: 42<br>SpD: 55<br>Spe: 64 | Total: 259<br>HP: 73<br>ATK: 36<br>DEF: 36<br>SpA: 23<br>SpD: 55<br>Spe: 36 | Total: 380<br>HP: 86<br>ATK: 42<br>DEF: 74<br>SpA: 52<br>SpD: 71<br>Spe: 55 | Total: 390<br>HP: 86<br>ATK: 57<br>DEF: 43<br>SpA: 77<br>SpD: 70<br>Spe: 57 |
+| Ability | Randomized | Randomized | Randomized | Randomized |
 | Nature | Random nature | Random nature | Random nature | Random nature |
 | Moves | Default generated moveset | Default generated moveset | Default generated moveset | Default generated moveset |
 
@@ -197,7 +237,7 @@ The cap ladder includes every required story battle that advances the level cap.
 | Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dark.png" alt="Dark" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/poison.png" alt="Poison" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> |
 | Level | 37 | 38 | 39 |
 | Stats | Total: 449<br>HP: 110<br>ATK: 83<br>DEF: 68<br>SpA: 68<br>SpD: 60<br>Spe: 60 | Total: 547<br>HP: 124<br>ATK: 85<br>DEF: 77<br>SpA: 115<br>SpD: 69<br>Spe: 77 | Total: 580<br>HP: 115<br>ATK: 110<br>DEF: 95<br>SpA: 32<br>SpD: 130<br>Spe: 98 |
-| Ability | — | — | — |
+| Ability | Randomized | Randomized | Randomized |
 | Held item | — | — | — |
 | Nature | Hardy | Hardy | Hardy |
 | Moves | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32">  | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32">  | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32">  |
@@ -225,7 +265,7 @@ The cap ladder includes every required story battle that advances the level cap.
 | Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dark.png" alt="Dark" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/poison.png" alt="Poison" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> |
 | Level | 42 | 43 | 44 |
 | Stats | Total: 504<br>HP: 123<br>ATK: 93<br>DEF: 76<br>SpA: 76<br>SpD: 68<br>Spe: 68 | Total: 616<br>HP: 139<br>ATK: 95<br>DEF: 87<br>SpA: 130<br>SpD: 78<br>Spe: 87 | Total: 652<br>HP: 129<br>ATK: 124<br>DEF: 106<br>SpA: 146<br>SpD: 111<br>Spe: 36 |
-| Ability | — | — | Sheer Force |
+| Ability | Randomized | Randomized | Sheer Force |
 | Held item | — | — | Cameruptite |
 | Nature | Hardy | Hardy | Hardy |
 | Moves | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32">  | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32">  | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32">  |
@@ -239,6 +279,7 @@ Tabitha participates in this double battle with her configured Camerupt, Mightye
 | --- | --- | --- | --- |
 | Level | 36 | 38 | 40 |
 | Stats | Total: 496<br>HP: 100<br>ATK: 95<br>DEF: 81<br>SpA: 23<br>SpD: 113<br>Spe: 84 | Total: 416<br>HP: 105<br>ATK: 77<br>DEF: 62<br>SpA: 62<br>SpD: 55<br>Spe: 55 | Total: 463<br>HP: 114<br>ATK: 73<br>DEF: 65<br>SpA: 81<br>SpD: 61<br>Spe: 69 |
+| Ability | Randomized | Randomized | Randomized |
 | Nature | Random nature | Random nature | Random nature |
 | Moves | Default generated moveset | Default generated moveset | Default generated moveset |
 
@@ -252,7 +293,7 @@ Tabitha participates in this double battle with her configured Camerupt, Mightye
 | Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dark.png" alt="Dark" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/poison.png" alt="Poison" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dark.png" alt="Dark" width="48"> |
 | Level | 41 | 41 | 43 |
 | Stats | Total: 494<br>HP: 121<br>ATK: 91<br>DEF: 75<br>SpA: 75<br>SpD: 66<br>Spe: 66 | Total: 589<br>HP: 133<br>ATK: 91<br>DEF: 83<br>SpA: 124<br>SpD: 75<br>Spe: 83 | Total: 636<br>HP: 126<br>ATK: 138<br>DEF: 78<br>SpA: 112<br>SpD: 74<br>Spe: 108 |
-| Ability | — | — | Strong Jaw |
+| Ability | Randomized | Randomized | Strong Jaw |
 | Held item | — | — | Sharpedonite |
 | Nature | Hardy | Hardy | Hardy |
 | Moves | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32">  | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32">  | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32">  |

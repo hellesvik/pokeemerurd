@@ -136,6 +136,26 @@ TEST("Fork rules enable a hard story-battle level cap while leaving one-use Rare
     EXPECT_EQ(GetCurrentLevelCap(), MAX_LEVEL);
 }
 
+TEST("Level cap notifications are queued only after a cap increase")
+{
+    u32 previousCap;
+
+    ClearForkLevelCapTrainerFlags();
+    ForkConfigureGameplayOptions(TRUE, TRUE, FORK_FAINT_RULE_WHITEOUT, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, GEN_3, TRUE, FALSE);
+
+    previousCap = GetCurrentLevelCap();
+    EXPECT_EQ(previousCap, 15);
+    EXPECT_EQ(QueueLevelCapIncreaseMessage(previousCap), FALSE);
+
+    SetTrainerFlag(TRAINER_ROXANNE_1);
+    EXPECT_EQ(QueueLevelCapIncreaseMessage(previousCap), TRUE);
+    EXPECT_EQ(ConsumeQueuedLevelCapIncrease(), 16);
+    EXPECT_EQ(ConsumeQueuedLevelCapIncrease(), 0);
+
+    previousCap = GetCurrentLevelCap();
+    EXPECT_EQ(QueueLevelCapIncreaseMessage(previousCap), FALSE);
+}
+
 TEST("Fork gameplay options gate the catch limit and level cap")
 {
     ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, GEN_3, TRUE, FALSE);

@@ -35,6 +35,20 @@ documented in the [reference index](./reference/index.md).
 
 ## Errata changelog
 
+### 2026-09-10
+
+- Added a human-readable evolution reference for all configured generations,
+  ordered by Pokédex number, without duplicate entries; regional forms are
+  listed separately under their debut generation.
+- Added small grass encounter patches to cities that previously had no
+  possible encounters, including their biome and BST-range assignments in the
+  encounter reference data.
+- Expanded the boss battle reference with the complete level-cap battle order,
+  rival team possibilities, trainer sprites, Pokémon types, and type markers
+  for moves.
+- Added a post-battle message when the player reaches a new level cap. The
+  message appears after the defeated trainer's final battle text.
+
 ### 2026-09-09
 
 - Updated Phoebe, Glacia, Drake, and Steven's Champion teams with their new

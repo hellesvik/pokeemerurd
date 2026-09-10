@@ -5,13 +5,16 @@ Every Pokémon species and form currently represented in the fork is listed belo
 Alternate forms that share a display name with their base species are listed
 as separate rows because they are separate species entries in the game data.
 
-For Generation 1, repeated entries with the same display name and evolution
-method are consolidated for readability; distinct evolution methods remain.
+The table is organized by generation. Regional forms are listed under the
+generation that introduced the form, with the region written in the name.
+Generation 1 contains only the original Kanto entries, without duplicate
+rows for unnamed forms.
 
 <div class="table-scroll">
 <table>
 <thead><tr><th>Pokémon</th><th>Evolution method</th></tr></thead>
 <tbody>
+<tr><th colspan="2">Generation 1 — Kanto</th></tr>
 <tr><td>Bulbasaur</td><td>Level 16 → Ivysaur</td></tr>
 <tr><td>Ivysaur</td><td>Level 32 → Venusaur</td></tr>
 <tr><td>Venusaur</td><td></td></tr>
@@ -31,17 +34,14 @@ method are consolidated for readability; distinct evolution methods remain.
 <tr><td>Pidgeotto</td><td>Level 36 → Pidgeot</td></tr>
 <tr><td>Pidgeot</td><td></td></tr>
 <tr><td>Rattata</td><td>Level 20 → Raticate</td></tr>
-<tr><td>Rattata</td><td>Level 20 at night → Raticate</td></tr>
 <tr><td>Raticate</td><td></td></tr>
 <tr><td>Spearow</td><td>Level 20 → Fearow</td></tr>
 <tr><td>Fearow</td><td></td></tr>
 <tr><td>Ekans</td><td>Level 22 → Arbok</td></tr>
 <tr><td>Arbok</td><td></td></tr>
 <tr><td>Pikachu</td><td>Thunder Stone → Raichu</td></tr>
-<tr><td>Pikachu</td><td></td></tr>
 <tr><td>Raichu</td><td></td></tr>
 <tr><td>Sandshrew</td><td>Level 22 → Sandslash</td></tr>
-<tr><td>Sandshrew</td><td>Ice Stone → Sandslash</td></tr>
 <tr><td>Sandslash</td><td></td></tr>
 <tr><td>Nidoran♀</td><td>Level 16 → Nidorina</td></tr>
 <tr><td>Nidorina</td><td>Moon Stone → Nidoqueen</td></tr>
@@ -52,7 +52,6 @@ method are consolidated for readability; distinct evolution methods remain.
 <tr><td>Clefairy</td><td>Moon Stone → Clefable</td></tr>
 <tr><td>Clefable</td><td></td></tr>
 <tr><td>Vulpix</td><td>Fire Stone → Ninetales</td></tr>
-<tr><td>Vulpix</td><td>Ice Stone → Ninetales</td></tr>
 <tr><td>Ninetales</td><td></td></tr>
 <tr><td>Jigglypuff</td><td>Moon Stone → Wigglytuff</td></tr>
 <tr><td>Wigglytuff</td><td></td></tr>
@@ -68,9 +67,6 @@ method are consolidated for readability; distinct evolution methods remain.
 <tr><td>Diglett</td><td>Level 26 → Dugtrio</td></tr>
 <tr><td>Dugtrio</td><td></td></tr>
 <tr><td>Meowth</td><td>Level 28 → Persian</td></tr>
-<tr><td>Meowth</td><td>High friendship → Persian</td></tr>
-<tr><td>Meowth</td><td>Level 28 → Perrserker</td></tr>
-<tr><td>Meowth</td><td></td></tr>
 <tr><td>Persian</td><td></td></tr>
 <tr><td>Psyduck</td><td>Level 33 → Golduck</td></tr>
 <tr><td>Golduck</td><td></td></tr>
@@ -94,7 +90,6 @@ method are consolidated for readability; distinct evolution methods remain.
 <tr><td>Ponyta</td><td>Level 40 → Rapidash</td></tr>
 <tr><td>Rapidash</td><td></td></tr>
 <tr><td>Slowpoke</td><td>Level 37 → Slowbro; Trade while holding a King's Rock → Slowking</td></tr>
-<tr><td>Slowpoke</td><td>Galarica Cuff → Slowbro; Galarica Wreath → Slowking</td></tr>
 <tr><td>Slowbro</td><td></td></tr>
 <tr><td>Magnemite</td><td>Level 30 → Magneton</td></tr>
 <tr><td>Magneton</td><td>Level up in New Mauville → Magnezone; Thunder Stone → Magnezone</td></tr>
@@ -103,7 +98,6 @@ method are consolidated for readability; distinct evolution methods remain.
 <tr><td>Shellder</td><td>Water Stone → Cloyster</td></tr>
 <tr><td>Onix</td><td>Trade while holding a Metal Coat → Steelix</td></tr>
 <tr><td>Voltorb</td><td>Level 30 → Electrode</td></tr>
-<tr><td>Voltorb</td><td>Leaf Stone → Electrode</td></tr>
 <tr><td>Marowak</td><td></td></tr>
 <tr><td>Weezing</td><td></td></tr>
 <tr><td>Rhyhorn</td><td>Level 42 → Rhydon</td></tr>
@@ -484,6 +478,38 @@ method are consolidated for readability; distinct evolution methods remain.
 <tr><td>Zamazenta</td><td></td></tr>
 <tr><td>Zarude</td><td></td></tr>
 <tr><td>Zarude</td><td></td></tr>
+<tr><th colspan="2">Generation 7 — Alolan forms</th></tr>
+<tr><td>Alolan Rattata</td><td>Level 20 at night → Alolan Raticate</td></tr>
+<tr><td>Alolan Raticate</td><td></td></tr>
+<tr><td>Alolan Raichu</td><td></td></tr>
+<tr><td>Alolan Sandshrew</td><td>Ice Stone → Alolan Sandslash</td></tr>
+<tr><td>Alolan Sandslash</td><td></td></tr>
+<tr><td>Alolan Vulpix</td><td>Ice Stone → Alolan Ninetales</td></tr>
+<tr><td>Alolan Ninetales</td><td></td></tr>
+<tr><td>Alolan Diglett</td><td>Level 26 → Alolan Dugtrio</td></tr>
+<tr><td>Alolan Dugtrio</td><td></td></tr>
+<tr><td>Alolan Meowth</td><td>High friendship → Alolan Persian</td></tr>
+<tr><td>Alolan Persian</td><td></td></tr>
+<tr><td>Alolan Geodude</td><td>Level 25 → Alolan Graveler</td></tr>
+<tr><td>Alolan Graveler</td><td>Trade → Alolan Golem; Linking Cord → Alolan Golem</td></tr>
+<tr><td>Alolan Golem</td><td></td></tr>
+<tr><td>Alolan Grimer</td><td>Level 30 → Alolan Muk</td></tr>
+<tr><td>Alolan Muk</td><td></td></tr>
+<tr><td>Alolan Marowak</td><td></td></tr>
+<tr><th colspan="2">Generation 8 — Galarian and Hisuian forms</th></tr>
+<tr><td>Galarian Meowth</td><td>Level 28 → Perrserker</td></tr>
+<tr><td>Perrserker</td><td></td></tr>
+<tr><td>Galarian Slowpoke</td><td>Galarica Cuff → Galarian Slowbro; Galarica Wreath → Galarian Slowking</td></tr>
+<tr><td>Galarian Slowbro</td><td></td></tr>
+<tr><td>Galarian Slowking</td><td></td></tr>
+<tr><td>Hisuian Voltorb</td><td>Leaf Stone → Hisuian Electrode</td></tr>
+<tr><td>Hisuian Electrode</td><td></td></tr>
+<tr><td>Hisuian Growlithe</td><td>Fire Stone → Hisuian Arcanine</td></tr>
+<tr><td>Hisuian Arcanine</td><td></td></tr>
+<tr><td>Hisuian Qwilfish</td><td>Use Barb Barrage 20 times, then level up → Overqwil</td></tr>
+<tr><td>Overqwil</td><td></td></tr>
+<tr><th colspan="2">Generation 9 — Paldean forms</th></tr>
+<tr><td>Paldean Tauros</td><td></td></tr>
 </tbody>
 </table>
 </div>

@@ -30,3 +30,14 @@ TEST("Shedinja keeps Wonder Guard")
     EXPECT_EQ(IsForkAbilityRandomizedSpecies(SPECIES_SHEDINJA), FALSE);
     EXPECT_EQ(GetForkRandomizedAbility(SPECIES_SHEDINJA), ABILITY_WONDER_GUARD);
 }
+
+TEST("Wonder Guard is not assigned by the ability randomizer")
+{
+    gSaveBlock3Ptr->forkItemRandomizerSeed = 0xA11B17E5;
+
+    for (enum Species species = SPECIES_BULBASAUR; species < NUM_SPECIES; species++)
+    {
+        if (IsForkAbilityRandomizedSpecies(species))
+            EXPECT_NE(GetForkRandomizedAbility(species), ABILITY_WONDER_GUARD);
+    }
+}

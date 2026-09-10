@@ -48,6 +48,8 @@ documented in the [reference index](./reference/index.md).
   for moves.
 - Added a post-battle message when the player reaches a new level cap. The
   message appears after the defeated trainer's final battle text.
+- Test mode now starts with Emerald's progression and utility key items only;
+  FireRed and later-generation key items are no longer granted automatically.
 
 ### 2026-09-09
 
@@ -55,8 +57,8 @@ documented in the [reference index](./reference/index.md).
   species, abilities, held items, and moves.
 - Phoebe's Oricorio now receives a deterministic random form based on the
   save's seeded randomizer.
-- Test mode now starts with all key items and all badges, unlocking every HM;
-  the key-item pocket was expanded to hold the complete set.
+- Test mode starts with Emerald key items and all badges, unlocking every HM;
+  the key-item pocket was expanded for the test setup.
 - Story boss Pokémon now receive 31 IVs in every stat and Hardy (neutral)
   natures.
 - Fixed Rustboro fossil-researcher exchanges producing script errors before

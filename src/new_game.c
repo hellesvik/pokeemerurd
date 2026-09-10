@@ -67,12 +67,43 @@ static void ResetMiniGamesRecords(void);
 static void ResetItemFlags(void);
 static void ResetDexNav(void);
 
-#if TEST_START_WITH_ALL_KEY_ITEMS
+#if TEST_START_WITH_EMERALD_KEY_ITEMS
+static bool8 IsEmeraldKeyItem(enum Item item)
+{
+    switch (item)
+    {
+    case ITEM_MACH_BIKE:
+    case ITEM_ACRO_BIKE:
+    case ITEM_OLD_ROD:
+    case ITEM_GOOD_ROD:
+    case ITEM_SUPER_ROD:
+    case ITEM_DOWSING_MACHINE:
+    case ITEM_TOWN_MAP:
+    case ITEM_WAILMER_PAIL:
+    case ITEM_POKEBLOCK_CASE:
+    case ITEM_SOOT_SACK:
+    case ITEM_SS_TICKET:
+    case ITEM_LETTER:
+    case ITEM_DEVON_PARTS:
+    case ITEM_GO_GOGGLES:
+    case ITEM_DEVON_SCOPE:
+    case ITEM_BASEMENT_KEY:
+    case ITEM_SCANNER:
+    case ITEM_STORAGE_KEY:
+    case ITEM_METEORITE:
+    case ITEM_MAGMA_EMBLEM:
+    case ITEM_CONTEST_PASS:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
 static void GiveTemporaryTestKeyItems(void)
 {
     for (enum Item item = ITEM_NONE + 1; item < ITEMS_COUNT; item++)
     {
-        if (GetItemPocket(item) == POCKET_KEY_ITEMS)
+        if (IsEmeraldKeyItem(item))
             AddBagItem(item, 1);
     }
 }
@@ -269,7 +300,7 @@ void NewGameInitData(void)
     gSaveBlock1Ptr->registeredItem = ITEM_NONE;
     ClearBag();
     NewGameInitPCItems();
-#if TEST_START_WITH_ALL_KEY_ITEMS
+#if TEST_START_WITH_EMERALD_KEY_ITEMS
     GiveTemporaryTestKeyItems();
 #endif
     ForkInvalidateOwnedFamilyCache();

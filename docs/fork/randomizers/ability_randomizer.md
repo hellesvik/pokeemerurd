@@ -23,12 +23,11 @@ and Paradox Pokémon keep their normal Abilities and do not contribute an
 Ability to the pool.
 
 All ordinary eligible Abilities can be randomized. This deliberately includes
-Wonder Guard, Truant, Arena Trap, Shadow Tag, Huge Power, Pure Power, and
-Pickup.
+Truant, Arena Trap, Shadow Tag, Huge Power, Pure Power, and Pickup. Wonder
+Guard is excluded from the candidate pool.
 
-Shedinja is the exception for Wonder Guard: the Nincada family is excluded
-from ability randomization so Shedinja always keeps Wonder Guard. Wonder Guard
-remains available for other eligible families.
+Shedinja's Nincada family is excluded from ability randomization, so Shedinja
+always keeps its normal Wonder Guard.
 
 ## Fixed form-mechanic Pokémon
 

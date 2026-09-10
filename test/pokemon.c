@@ -393,13 +393,24 @@ TEST("Fork rules zero EVs on player-owned mons added to party and storage")
     EXPECT_EQ(GetBoxMonData(GetBoxedMonPtr(0, 0), MON_DATA_ATK_EV), 0);
 }
 
-TEST("Fork rules distribute infinite key items on new game and continue")
+TEST("Test mode starts with Emerald key items and fork test items")
 {
     NewGameInitData();
     ForkEnsureKeyItemsPresent();
 
     EXPECT_EQ(CheckBagHasItem(ITEM_INFINITE_RARE_CANDY, 1), TRUE);
     EXPECT_EQ(CheckBagHasItem(ITEM_INFINITE_REPEL, 1), TRUE);
+    EXPECT_EQ(CheckBagHasItem(ITEM_MACH_BIKE, 1), TRUE);
+    EXPECT_EQ(CheckBagHasItem(ITEM_ACRO_BIKE, 1), TRUE);
+    EXPECT_EQ(CheckBagHasItem(ITEM_OLD_ROD, 1), TRUE);
+    EXPECT_EQ(CheckBagHasItem(ITEM_GOOD_ROD, 1), TRUE);
+    EXPECT_EQ(CheckBagHasItem(ITEM_SUPER_ROD, 1), TRUE);
+    EXPECT_EQ(CheckBagHasItem(ITEM_GO_GOGGLES, 1), TRUE);
+    EXPECT_EQ(CheckBagHasItem(ITEM_DEVON_SCOPE, 1), TRUE);
+    EXPECT_EQ(CheckBagHasItem(ITEM_MAGMA_EMBLEM, 1), TRUE);
+    EXPECT_EQ(CheckBagHasItem(ITEM_Z_POWER_RING, 1), FALSE);
+    EXPECT_EQ(CheckBagHasItem(ITEM_DYNAMAX_BAND, 1), FALSE);
+    EXPECT_EQ(CheckBagHasItem(ITEM_SILPH_SCOPE, 1), FALSE);
 }
 
 TEST("Temporary startup Rayquaza is stored in every box")

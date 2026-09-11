@@ -8,6 +8,7 @@
 #include "field_player_avatar.h"
 #include "field_screen_effect.h"
 #include "field_weather.h"
+#include "fork_tm_randomizer.h"
 #include "fieldmap.h"
 #include "gpu_regs.h"
 #include "graphics.h"
@@ -657,7 +658,8 @@ static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y)
                 6);
         }
 
-        if (GetItemImportance(itemId) && (CheckBagHasItem(itemId, 1) || CheckPCHasItem(itemId, 1)))
+        if ((GetItemImportance(itemId) && (CheckBagHasItem(itemId, 1) || CheckPCHasItem(itemId, 1)))
+         || HasForkLilycoveTmShopItemBeenPurchased(itemId))
             StringCopy(gStringVar4, gText_SoldOut);
         else
             StringExpandPlaceholders(gStringVar4, gText_PokedollarVar1);
@@ -1021,7 +1023,8 @@ static void Task_BuyMenu(u8 taskId)
             else
                 sShopData->totalCost = gDecorations[itemId].price;
 
-            if (GetItemImportance(itemId) && (CheckBagHasItem(itemId, 1) || CheckPCHasItem(itemId, 1)))
+            if ((GetItemImportance(itemId) && (CheckBagHasItem(itemId, 1) || CheckPCHasItem(itemId, 1)))
+             || HasForkLilycoveTmShopItemBeenPurchased(itemId))
                 BuyMenuDisplayMessage(taskId, gText_ThatItemIsSoldOut, BuyMenuReturnToItemList);
             else if (!IsEnoughMoney(&gSaveBlock1Ptr->money, sShopData->totalCost))
             {
@@ -1150,6 +1153,7 @@ static void BuyMenuTryMakePurchase(u8 taskId)
         if (AddBagItem(tItemId, tItemCount) == TRUE)
         {
             GetSetItemObtained(tItemId, FLAG_SET_ITEM_OBTAINED);
+            MarkForkLilycoveTmShopItemPurchased(tItemId);
             RecordItemPurchase(taskId);
             BuyMenuDisplayMessage(taskId, gText_HereYouGoThankYou, BuyMenuSubtractMoney);
         }

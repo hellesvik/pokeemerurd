@@ -122,6 +122,11 @@ static void BuildAbilityPool(void)
      && sPoolMaxNationalDex == maxNationalDex)
         return;
 
+    // This cache can be rebuilt for a different save or configured generation.
+    // Clear both lookup tables so excluded families from an earlier pool cannot
+    // influence the new one.
+    memset(sFamilyRoots, 0, sizeof(sFamilyRoots));
+    memset(sExcludedFamilies, 0, sizeof(sExcludedFamilies));
     sAvailableAbilityCount = 0;
     for (species = SPECIES_BULBASAUR; species < NUM_SPECIES; species++)
     {
@@ -162,5 +167,7 @@ enum Ability GetForkRandomizedAbility(enum Species species)
 
     root = GetFamilyRoot(species);
     rng = LocalRandomSeed(gSaveBlock3Ptr->forkItemRandomizerSeed ^ FORK_ABILITY_RANDOMIZER_SALT ^ root);
+    if (sAvailableAbilityCount == 0)
+        return GetSpeciesAbility(species, 0);
     return sAvailableAbilities[LocalRandom(&rng) % sAvailableAbilityCount];
 }

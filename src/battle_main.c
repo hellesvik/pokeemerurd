@@ -1825,7 +1825,7 @@ static enum Species GetRandomTrainerSpeciesForm(enum Species species, u32 salt)
         return species;
 
     formTable = GetSpeciesFormTable(species);
-    for (u16 i = 0; formTable[i] != FORM_SPECIES_END; i++)
+    for (u16 i = 0; formTable[i] != FORM_SPECIES_END && formCount < ARRAY_COUNT(forms); i++)
     {
         if (IsSpeciesEnabled(formTable[i]))
             forms[formCount++] = formTable[i];
@@ -1874,6 +1874,12 @@ static enum BattleTrainer GetMainPartyTrainer(const struct Pokemon *party)
 
 enum Ability GetTrainerMonAbilityOverride(const struct Pokemon *mon)
 {
+    // Opponent ability overrides are only meaningful during trainer battles.
+    // Wild encounters reuse the opponent party buffers, so never expose a
+    // previously-created trainer's override outside that battle type.
+    if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER))
+        return ABILITY_NONE;
+
     for (enum BattleTrainer trainer = B_TRAINER_PLAYER; trainer < MAX_BATTLE_TRAINERS; trainer++)
     {
         for (u32 slot = 0; slot < PARTY_SIZE; slot++)
@@ -2028,7 +2034,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                     abilityNum--;
                 }
             }
-            if (partyTrainer < MAX_BATTLE_TRAINERS)
+            if (partyTrainer != B_TRAINER_PLAYER && partyTrainer < MAX_BATTLE_TRAINERS)
                 sTrainerPartyAbilityOverrides[partyTrainer][i] = partyData[monIndex].ability;
             SetMonData(&party[i], MON_DATA_ABILITY_NUM, &abilityNum);
             SetMonData(&party[i], MON_DATA_FRIENDSHIP, &(partyData[monIndex].friendship));

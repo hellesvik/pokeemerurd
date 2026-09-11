@@ -7,6 +7,13 @@ contents. TM51–TM130 are assigned random moves when a new save is created.
 The assignment is stored in the save and therefore does not change when the
 game is reloaded.
 
+## Lilycove Department Store
+
+The two TM clerks on Lilycove Department Store 4F sell TM51–TM58. Their moves
+come from the save's seeded TM randomizer. Each of these eight shop TMs can be
+purchased once per save. After purchase, its listing shows **SOLD OUT** and
+selecting it displays the standard sold-out message.
+
 ## Move pool and teaching
 
 Each randomized TM receives a non-HM move found in at least one enabled

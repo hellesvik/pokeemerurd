@@ -649,7 +649,21 @@ enum Item ResolveForkRandomizedScriptItem(enum Item itemId, const u8 *scriptPtr)
 
 void GetItemBallIdAndAmountFromTemplate(void)
 {
-    u32 itemBallId = (gSpecialVar_LastTalked - 1);
+    u32 itemBallId;
+
+    // The special is normally called by an item-ball object event. Do not
+    // dereference an arbitrary object index if a malformed script invokes it.
+    if (gMapHeader.events == NULL
+     || gSpecialVar_LastTalked == 0
+     || gSpecialVar_LastTalked > gMapHeader.events->objectEventCount)
+    {
+        gSpecialVar_Result = ITEM_NONE;
+        gSpecialVar_0x8009 = 0;
+        ClearForkItemBallRandomizationGuard();
+        return;
+    }
+
+    itemBallId = gSpecialVar_LastTalked - 1;
     gSpecialVar_Result = ResolveForkRandomizedItemBall(GetItemBallIdFromTemplate(itemBallId), GetForkItemBallSourceId(itemBallId));
     gSpecialVar_0x8009 = GetItemBallAmountFromTemplate(itemBallId);
 }

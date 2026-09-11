@@ -308,6 +308,7 @@ struct SaveBlock3
     u8 forkMegaEvolutionEnabled;
     u8 forkBattleStyleLocked;
     u8 forkReusableTMsEnabled;
+    u8 forkLilycoveTmShopPurchases;
     u8 forkAreaEncounterStateVersion;
     u8 forkAreaEncounterSpent[FORK_AREA_ENCOUNTER_SPENT_BYTE_COUNT];
 }; /* max size 1624 bytes */

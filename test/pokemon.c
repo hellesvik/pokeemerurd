@@ -24,6 +24,16 @@
 #include "constants/opponents.h"
 #include "wild_encounter.h"
 
+#include "field_player_avatar.h"
+
+TEST("Overworld movement runs by default and walks while B is held")
+{
+    EXPECT_EQ(PlayerShouldRunWithHeldKeys(0), TRUE);
+    EXPECT_EQ(PlayerShouldRunWithHeldKeys(DPAD_UP), TRUE);
+    EXPECT_EQ(PlayerShouldRunWithHeldKeys(B_BUTTON), FALSE);
+    EXPECT_EQ(PlayerShouldRunWithHeldKeys(DPAD_LEFT | B_BUTTON), FALSE);
+}
+
 TEST("HM moves can be replaced when teaching another move")
 {
     EXPECT_EQ(IsMoveHM(MOVE_CUT), TRUE);
@@ -464,6 +474,22 @@ TEST("Fork rules force battle style to Set by default")
     NewGameInitData();
     battleStyle = gSaveBlock2Ptr->optionsBattleStyle;
     EXPECT_EQ(battleStyle, OPTIONS_BATTLE_STYLE_SET);
+}
+
+TEST("Fork randomizer generation is sanitized from save data")
+{
+    u8 oldConfigured = gSaveBlock3Ptr->forkGameplayOptionsConfigured;
+    u8 oldMaxGen = gSaveBlock3Ptr->forkRandomizerMaxGen;
+
+    gSaveBlock3Ptr->forkGameplayOptionsConfigured = TRUE;
+    gSaveBlock3Ptr->forkRandomizerMaxGen = GEN_1;
+    EXPECT_EQ(ForkGetRandomizerMaxGen(), GEN_3);
+
+    gSaveBlock3Ptr->forkRandomizerMaxGen = GEN_9 + 1;
+    EXPECT_EQ(ForkGetRandomizerMaxGen(), GEN_9);
+
+    gSaveBlock3Ptr->forkGameplayOptionsConfigured = oldConfigured;
+    gSaveBlock3Ptr->forkRandomizerMaxGen = oldMaxGen;
 }
 
 TEST("Fork rules ban battle items in trainer battles")

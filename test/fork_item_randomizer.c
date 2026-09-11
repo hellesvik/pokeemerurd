@@ -1,4 +1,5 @@
 #include "global.h"
+#include "event_data.h"
 #include "item_ball.h"
 #include "item.h"
 #include "random.h"
@@ -13,6 +14,18 @@ TEST("Fork item randomizer preserves protected items")
 
     EXPECT_EQ(ResolveForkRandomizedItem(ITEM_HM01, 7), ITEM_HM01);
     EXPECT_EQ(ResolveForkRandomizedItem(ITEM_DEVON_SCOPE, 9), ITEM_DEVON_SCOPE);
+}
+
+TEST("Fork item-ball resolver safely rejects an invalid object context")
+{
+    gSpecialVar_LastTalked = 0;
+    gSpecialVar_Result = ITEM_POTION;
+    gSpecialVar_0x8009 = 1;
+
+    GetItemBallIdAndAmountFromTemplate();
+
+    EXPECT_EQ(gSpecialVar_Result, ITEM_NONE);
+    EXPECT_EQ(gSpecialVar_0x8009, 0);
 }
 
 TEST("Fork item randomizer is stable per source and seed")

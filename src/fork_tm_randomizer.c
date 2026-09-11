@@ -19,6 +19,25 @@ static void SetBit(u8 *bits, u16 index)
     bits[index / 8] |= 1 << (index % 8);
 }
 
+bool32 IsForkLilycoveTmShopItem(enum Item item)
+{
+    return item >= ITEM_TM51 && item < ITEM_TM51 + FORK_LILYCOVE_TM_SHOP_ITEM_COUNT;
+}
+
+bool32 HasForkLilycoveTmShopItemBeenPurchased(enum Item item)
+{
+    if (!IsForkLilycoveTmShopItem(item))
+        return FALSE;
+
+    return gSaveBlock3Ptr->forkLilycoveTmShopPurchases & (1 << (item - ITEM_TM51));
+}
+
+void MarkForkLilycoveTmShopItemPurchased(enum Item item)
+{
+    if (IsForkLilycoveTmShopItem(item))
+        gSaveBlock3Ptr->forkLilycoveTmShopPurchases |= 1 << (item - ITEM_TM51);
+}
+
 static bool32 IsHmMove(enum Move move)
 {
     switch (move)

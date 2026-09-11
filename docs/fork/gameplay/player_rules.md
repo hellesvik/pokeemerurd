@@ -46,7 +46,8 @@ player can organize their boxes while out in the field.
 ## Running Shoes
 
 New games receive the Running Shoes immediately. Their availability does not
-depend on receiving the Mother's gift.
+depend on receiving the Mother's gift. The player runs by default where running
+is allowed; hold **B** while moving to walk.
 
 ## EVs and IVs
 

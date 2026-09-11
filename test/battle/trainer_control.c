@@ -107,10 +107,40 @@ TEST("Configured trainer abilities do not need to be native to the species")
 
     ZeroEnemyPartyMons();
     CreateNPCTrainerPartyFromTrainer(gParties[B_TRAINER_OPPONENT_A], &trainer, FALSE, BATTLE_TYPE_TRAINER);
+    gBattleTypeFlags = BATTLE_TYPE_TRAINER;
     PokemonToBattleMon(&gParties[B_TRAINER_OPPONENT_A][0], &gBattleMons[B_BATTLER_1]);
 
     EXPECT_EQ(gBattleMons[B_BATTLER_1].species, SPECIES_ANORITH);
     EXPECT_EQ(gBattleMons[B_BATTLER_1].ability, ABILITY_STURDY);
+
+    gBattleTypeFlags = 0;
+}
+
+TEST("Trainer ability overrides do not leak into wild battles")
+{
+    const struct TrainerMon trainerMon =
+    {
+        .species = SPECIES_ANORITH,
+        .ability = ABILITY_STURDY,
+        .lvl = 12,
+    };
+    const struct Trainer trainer =
+    {
+        .party = &trainerMon,
+        .partySize = 1,
+        .battleType = TRAINER_BATTLE_TYPE_SINGLES,
+    };
+    u8 abilityNum;
+
+    ZeroEnemyPartyMons();
+    CreateNPCTrainerPartyFromTrainer(gParties[B_TRAINER_OPPONENT_A], &trainer, FALSE, BATTLE_TYPE_TRAINER);
+    abilityNum = GetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_ABILITY_NUM);
+
+    gBattleTypeFlags = BATTLE_TYPE_TRAINER;
+    EXPECT_EQ(GetMonAbility(&gParties[B_TRAINER_OPPONENT_A][0]), ABILITY_STURDY);
+
+    gBattleTypeFlags = 0;
+    EXPECT_EQ(GetMonAbility(&gParties[B_TRAINER_OPPONENT_A][0]), GetAbilityBySpecies(SPECIES_ANORITH, abilityNum));
 }
 
 TEST("CreateNPCTrainerPartyForTrainer generates different personalities for different mons")

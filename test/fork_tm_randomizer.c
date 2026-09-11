@@ -7,6 +7,21 @@
 #include "constants/tms_hms.h"
 
 void InitForkRandomizedTMMoves(void);
+
+TEST("Lilycove TM shop sells each randomized TM only once")
+{
+    gSaveBlock3Ptr->forkLilycoveTmShopPurchases = 0;
+
+    EXPECT(IsForkLilycoveTmShopItem(ITEM_TM51));
+    EXPECT(!IsForkLilycoveTmShopItem(ITEM_TM59));
+    EXPECT(!HasForkLilycoveTmShopItemBeenPurchased(ITEM_TM51));
+
+    MarkForkLilycoveTmShopItemPurchased(ITEM_TM51);
+
+    EXPECT(HasForkLilycoveTmShopItemBeenPurchased(ITEM_TM51));
+    EXPECT(!HasForkLilycoveTmShopItemBeenPurchased(ITEM_TM52));
+}
+
 TEST("Fork TM randomizer assigns distinct normally teachable moves")
 {
     enum Move moves[80];

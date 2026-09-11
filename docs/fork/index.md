@@ -35,6 +35,15 @@ documented in the [reference index](./reference/index.md).
 
 ## Errata changelog
 
+### 2026-09-11
+
+- Lilycove Department Store 4F now sells eight seeded randomized TMs. Each
+  listing can be purchased once per save and then shows as sold out.
+- Overworld movement now runs by default. Hold B to walk where running is
+  normally permitted.
+- Hardened fork randomizers and item-ball handling against invalid save or
+  script state that could cause a game crash.
+
 ### 2026-09-10
 
 - Added a human-readable evolution reference for all configured generations,

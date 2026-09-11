@@ -177,8 +177,10 @@ static enum Species SelectSpeciesFromBstRange(u16 minBst, u16 maxBst, bool8 allo
 
     for (enum Species species = SPECIES_BULBASAUR; species < NUM_SPECIES; species++)
     {
-        if (species != GET_BASE_SPECIES_ID(species)
-         || !IsSpeciesEnabled(species)
+        // The expanded species enum contains disabled placeholder entries.
+        // Check that a slot is enabled before asking form helpers to inspect it.
+        if (!IsSpeciesEnabled(species)
+         || species != GET_BASE_SPECIES_ID(species)
          || !IsWithinForkMaxGeneration(species)
          || GetSpeciesBst(species) < minBst
          || GetSpeciesBst(species) > maxBst)
@@ -193,8 +195,8 @@ static enum Species SelectSpeciesFromBstRange(u16 minBst, u16 maxBst, bool8 allo
     candidateIndex = LocalRandom(&rng) % candidateCount;
     for (enum Species species = SPECIES_BULBASAUR; species < NUM_SPECIES; species++)
     {
-        if (species != GET_BASE_SPECIES_ID(species)
-         || !IsSpeciesEnabled(species)
+        if (!IsSpeciesEnabled(species)
+         || species != GET_BASE_SPECIES_ID(species)
          || !IsWithinForkMaxGeneration(species)
          || GetSpeciesBst(species) < minBst
          || GetSpeciesBst(species) > maxBst

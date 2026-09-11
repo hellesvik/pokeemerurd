@@ -102,6 +102,8 @@ enum MoveComparisonResult
 
 void BattleAI_SetupAIData(u8 defaultScoreMoves, enum BattlerId battler);
 void BattleAI_SetupItems(void);
+bool32 IsTrainerClassBossBattleItemRestricted(enum TrainerClassID trainerClass);
+bool32 IsTrainerBossBattleItemRestricted(u16 trainerId);
 void BattleAI_SetupFlags(void);
 void ComputeAiBattlerDecisions(enum BattlerId battler);
 u32 BattleAI_ChooseMoveIndex(enum BattlerId battler);

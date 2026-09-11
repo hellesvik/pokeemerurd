@@ -51,10 +51,16 @@ is allowed; hold **B** while moving to walk.
 
 ## EVs and IVs
 
-With player EV gain disabled, player-owned Pokémon are normalized to 0 EVs.
-This applies to new Pokémon and to party, box, and daycare Pokémon when an
-older save is loaded. The summary screen cycles through the Stats, IVs, and
-EVs views; the top-right label identifies the view currently displayed.
+With player EVs disabled, newly obtained Pokémon start with 0 EVs and cannot
+gain EVs from battles or EV-raising items. Loading a save no longer scans or
+rewrites Pokémon that are already in the party, PC, or daycare.
+
+With player EVs enabled, Pokémon gain EVs normally from battles and EV-raising
+items, and their existing EVs are preserved. EV-reducing items still work in
+either mode.
+
+The summary screen cycles through the Stats, IVs, and EVs views; the top-right
+label identifies the view currently displayed.
 
 ## Nuzlite and Nuzlocke start
 

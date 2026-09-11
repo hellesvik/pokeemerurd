@@ -4,6 +4,8 @@ This page shows the main first-clear boss battles exactly as configured. It is d
 
 All listed boss Pokémon use 31 IVs in every stat and Hardy (neutral) nature in battle. Abilities shown by name are fixed team overrides. **Randomized** abilities use the save's seeded species-family ability roll when Random Abilities is enabled; otherwise they use the species' normal ability.
 
+Boss trainers do not carry battle-item inventories, so they cannot use Potions or other bag items. Their Pokémon still use the held items listed below.
+
 Mega Stone holders are shown below in their final Mega form: the displayed name, ability, stats, typing, and sprite are the values after Mega Evolution.
 
 **Wattson and Tate & Liza are double battles; all other teams below are single battles.**

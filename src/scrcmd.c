@@ -1836,6 +1836,7 @@ bool8 ScrCmd_dynmultichoice(struct ScriptContext *ctx)
     // Read vararg
     u32 argc = ScriptReadByte(ctx);
     struct ListMenuItem *items;
+    bool32 usesStaticNames = FALSE;
 
     Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
 
@@ -1861,6 +1862,7 @@ bool8 ScrCmd_dynmultichoice(struct ScriptContext *ctx)
     }
     else
     {
+        usesStaticNames = MultichoiceDynamic_UsesStaticNames();
         argc = MultichoiceDynamic_StackSize();
         items = AllocZeroed(sizeof(struct ListMenuItem) * argc);
         for (i = 0; i < argc; ++i)
@@ -1875,7 +1877,7 @@ bool8 ScrCmd_dynmultichoice(struct ScriptContext *ctx)
         MultichoiceDynamic_DestroyStack();
     }
 
-    if (ScriptMenu_MultichoiceDynamic(left, top, argc, items, ignoreBPress, maxBeforeScroll, initialRow, callbackSet))
+    if (ScriptMenu_MultichoiceDynamic(left, top, argc, items, ignoreBPress, maxBeforeScroll, initialRow, callbackSet, usesStaticNames))
     {
         ScriptContext_Stop();
         return TRUE;

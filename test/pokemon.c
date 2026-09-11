@@ -7,6 +7,7 @@
 #include "event_data.h"
 #include "fork_run.h"
 #include "item_use.h"
+#include "load_save.h"
 #include "new_game.h"
 #include "party_menu.h"
 #include "item.h"
@@ -203,11 +204,97 @@ TEST("Fork gameplay options gate the catch limit and level cap")
     EXPECT_EQ(ForkIsLevelCapEnabled(), TRUE);
 }
 
-TEST("Fork rules disable EV gain and expose IV and EV values on the summary screen")
+TEST("Fork rules expose IV and EV values on the summary screen")
 {
-    EXPECT_EQ(B_EV_CAP_TYPE, EV_CAP_NO_GAIN);
     EXPECT_EQ(P_SUMMARY_SCREEN_IV_ONLY, FALSE);
     EXPECT_EQ(P_SUMMARY_SCREEN_IV_EV_VALUES, TRUE);
+}
+
+TEST("Player EV setting controls battle EV gain")
+{
+    struct Pokemon mon;
+
+    CreateMon(&mon, SPECIES_TREECKO, 5, 0, OTID_STRUCT_PLAYER_ID);
+    ForkConfigureGameplayOptions(TRUE, TRUE, FORK_FAINT_RULE_OFF, TRUE, TRUE, TRUE, FALSE, TRUE, TRUE, TRUE, GEN_3, TRUE, FALSE);
+    MonGainEVs(&mon, SPECIES_POOCHYENA);
+    EXPECT_EQ(GetMonEVCount(&mon), 0);
+
+    ForkConfigureGameplayOptions(TRUE, TRUE, FORK_FAINT_RULE_OFF, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, GEN_3, TRUE, FALSE);
+    MonGainEVs(&mon, SPECIES_POOCHYENA);
+    EXPECT_GT(GetMonEVCount(&mon), 0);
+}
+
+TEST("EV raising items cannot add EVs when player EVs are disabled")
+{
+    struct Pokemon mon;
+
+    CreateMon(&mon, SPECIES_TREECKO, 5, 0, OTID_STRUCT_PLAYER_ID);
+    ForkConfigureGameplayOptions(TRUE, TRUE, FORK_FAINT_RULE_OFF, TRUE, TRUE, TRUE, FALSE, TRUE, TRUE, TRUE, GEN_3, TRUE, FALSE);
+    EXPECT(PokemonUseItemEffects(&mon, ITEM_HP_UP, 0, 0, FALSE));
+    EXPECT(PokemonUseItemEffects(&mon, ITEM_IRON, 0, 0, FALSE));
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_HP_EV), 0);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_DEF_EV), 0);
+
+    ForkConfigureGameplayOptions(TRUE, TRUE, FORK_FAINT_RULE_OFF, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, GEN_3, TRUE, FALSE);
+    EXPECT(!PokemonUseItemEffects(&mon, ITEM_HP_UP, 0, 0, FALSE));
+    EXPECT(!PokemonUseItemEffects(&mon, ITEM_IRON, 0, 0, FALSE));
+    EXPECT_GT(GetMonData(&mon, MON_DATA_HP_EV), 0);
+    EXPECT_GT(GetMonData(&mon, MON_DATA_DEF_EV), 0);
+}
+
+TEST("Loading a save does not rewrite existing EVs")
+{
+    u8 ev = 42;
+
+    ForkConfigureGameplayOptions(TRUE, TRUE, FORK_FAINT_RULE_OFF, TRUE, TRUE, TRUE, FALSE, TRUE, TRUE, TRUE, GEN_3, TRUE, FALSE);
+    ZeroPlayerPartyMons();
+    CreateMon(&gParties[B_TRAINER_PLAYER][0], SPECIES_TREECKO, 5, 0, OTID_STRUCT_PLAYER_ID);
+    SetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_HP_EV, &ev);
+    gPartiesCount[B_TRAINER_PLAYER] = 1;
+    SavePlayerParty();
+
+    ZeroPlayerPartyMons();
+    CopyPartyAndObjectsFromSave();
+    EXPECT_EQ(GetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_HP_EV), 42);
+}
+
+TEST("Normalizing a newly obtained Pokemon respects the player EV setting")
+{
+    struct Pokemon mon;
+    u8 ev = 42;
+
+    CreateMon(&mon, SPECIES_TREECKO, 5, 0, OTID_STRUCT_PLAYER_ID);
+    SetMonData(&mon, MON_DATA_HP_EV, &ev);
+    ForkConfigureGameplayOptions(TRUE, TRUE, FORK_FAINT_RULE_OFF, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, GEN_3, TRUE, FALSE);
+    ForkNormalizePlayerMon(&mon);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_HP_EV), 42);
+
+    ForkConfigureGameplayOptions(TRUE, TRUE, FORK_FAINT_RULE_OFF, TRUE, TRUE, TRUE, FALSE, TRUE, TRUE, TRUE, GEN_3, TRUE, FALSE);
+    ForkNormalizePlayerMon(&mon);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_HP_EV), 0);
+}
+
+TEST("A blocked egg hatch resets the egg hatch counter")
+{
+    u8 eggCycles = 0;
+
+    ZeroPlayerPartyMons();
+    CreateMon(&gParties[B_TRAINER_PLAYER][0], SPECIES_TREECKO, EGG_HATCH_LEVEL, 0, OTID_STRUCT_PLAYER_ID);
+    SetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_IS_EGG, &(u32){TRUE});
+    SetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_FRIENDSHIP, &eggCycles);
+    gPartiesCount[B_TRAINER_PLAYER] = 1;
+    gSpecialVar_0x8004 = 0;
+
+    ForkConfigureGameplayOptions(TRUE, TRUE, FORK_FAINT_RULE_OFF, TRUE, TRUE, TRUE, FALSE, TRUE, TRUE, TRUE, GEN_3, TRUE, FALSE);
+    ForkResetAreaEncounterState();
+    FlagSet(FLAG_ADVENTURE_STARTED);
+    gSaveBlock1Ptr->location.mapGroup = MAP_GROUP(MAP_ROUTE101);
+    gSaveBlock1Ptr->location.mapNum = MAP_NUM(MAP_ROUTE101);
+    gMapHeader.regionMapSectionId = MAPSEC_ROUTE_101;
+    ForkSetAreaEncounterSpent(MAPSEC_ROUTE_101);
+
+    EXPECT(ForkShouldBlockEggHatchInCurrentArea());
+    EXPECT_EQ(GetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_FRIENDSHIP), gSpeciesInfo[SPECIES_TREECKO].eggCycles);
 }
 
 TEST("Fork rules only allow catching the first legal wild encounter")
@@ -467,11 +554,12 @@ TEST("Fork rules mark soft nuzlocke mons and stop further level gains")
     EXPECT_EQ(GetMonData(&mon, MON_DATA_LEVEL), 10);
 }
 
-TEST("Fork rules zero EVs on player-owned mons added to party and storage")
+TEST("Fork rules zero EVs on newly obtained mons when player EVs are disabled")
 {
     struct Pokemon mon;
     u8 ev = 42;
 
+    ForkConfigureGameplayOptions(TRUE, TRUE, FORK_FAINT_RULE_OFF, TRUE, TRUE, TRUE, FALSE, TRUE, TRUE, TRUE, GEN_3, TRUE, FALSE);
     ZeroPlayerPartyMons();
     ResetPokemonStorageSystem();
     CreateMon(&mon, SPECIES_WOBBUFFET, 10, 0, OTID_STRUCT_PLAYER_ID);

@@ -2,7 +2,9 @@
 #include "event_data.h"
 #include "item_ball.h"
 #include "item.h"
+#include "malloc.h"
 #include "random.h"
+#include "script_menu.h"
 #include "test/test.h"
 #include "constants/items.h"
 #include "constants/moves.h"
@@ -84,6 +86,22 @@ TEST("Game Corner sells every evolution stone and the Linking Cord")
         EXPECT_EQ(GetForkGameCornerPrizeItem(i), expectedPrizes[i]);
     }
     EXPECT_EQ(GetForkGameCornerPrizeItem(ARRAY_COUNT(expectedPrizes)), ITEM_NONE);
+}
+
+TEST("Game Corner prize menu names use static storage")
+{
+    struct ListMenuItem *menuItem;
+
+    ScrCmd_BuildForkGameCornerPrizeMenu(NULL);
+    for (u32 i = 0; i < FORK_GAME_CORNER_MENU_PRIZE_COUNT + 1; i++)
+    {
+        menuItem = MultichoiceDynamic_PopElement();
+        EXPECT(menuItem != NULL);
+        EXPECT((const u8 *)menuItem->name < gHeap || (const u8 *)menuItem->name >= gHeap + HEAP_SIZE);
+        if ((const u8 *)menuItem->name >= gHeap && (const u8 *)menuItem->name < gHeap + HEAP_SIZE)
+            Free((void *)menuItem->name);
+    }
+    MultichoiceDynamic_DestroyStack();
 }
 
 TEST("Fork item randomizer hidden items are stable by hidden-item flag")

@@ -3676,6 +3676,9 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, enum Item item, u8 partyIndex, 
 
                         if (evChange > 0) // Increasing EV (HP or Atk)
                         {
+                            if (!ForkArePlayerEvsEnabled())
+                                return TRUE;
+
                             // Check if the total EV limit is reached
                             if (evCount >= maxAllowedEVs)
                                 return TRUE;
@@ -3876,6 +3879,9 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, enum Item item, u8 partyIndex, 
                         evChange = temp2;
                         if (evChange > 0) // Increasing EV
                         {
+                            if (!ForkArePlayerEvsEnabled())
+                                return TRUE;
+
                             // Check if the total EV limit is reached
                             if (evCount >= maxAllowedEVs)
                                 return TRUE;

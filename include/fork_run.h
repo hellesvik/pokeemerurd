@@ -37,7 +37,6 @@ bool32 ForkIsSoftNuzlockeMon(struct Pokemon *mon);
 void ForkEnsureKeyItemsPresent(void);
 void ForkInvalidateOwnedFamilyCache(void);
 void ForkRecordOwnedSpecies(enum Species species);
-void ForkScrubPlayerOwnedMons(void);
 void ForkNormalizePlayerMon(struct Pokemon *mon);
 void ForkPrepareWildEncounter(void);
 void ForkResolveWildEncounter(void);

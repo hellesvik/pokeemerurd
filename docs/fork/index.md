@@ -35,8 +35,18 @@ documented in the [reference index](./reference/index.md).
 
 ## Errata changelog
 
+### 2026-09-12
+
+- Fixed the Mauville Game Corner prize menu repeatedly allocating prize-name
+  buffers by moving its names to static storage.
+- Blocked egg hatches now reset the egg's hatch counter, preventing the hatch
+  warning from triggering after every step.
+
 ### 2026-09-11
 
+- Removed battle-item inventories from Gym Leaders, rivals, Wally, Aqua and
+  Magma leaders/admins, the Elite Four, and the Champion. Pokémon held items
+  are unchanged.
 - Egg hatching is now approximately ten times faster while retaining the
   existing helper-ability bonus.
 - NPC trade Pokémon now receive randomized IVs when traded instead of fixed
@@ -56,6 +66,9 @@ documented in the [reference index](./reference/index.md).
   normally permitted.
 - Hardened fork randomizers and item-ball handling against invalid save or
   script state that could cause a game crash.
+- Reworked the player EV option. When disabled, battle and item EV gains are
+  blocked at their source; when enabled, EVs work normally. Loading a save no
+  longer scans and rewrites every party, PC, and daycare Pokémon.
 
 ### 2026-09-10
 

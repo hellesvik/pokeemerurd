@@ -29,6 +29,7 @@
 #include "constants/battle_move_effects.h"
 #include "constants/moves.h"
 #include "constants/items.h"
+#include "constants/opponents.h"
 #include "constants/trainers.h"
 
 #if TESTING
@@ -191,6 +192,43 @@ void BattleAI_SetupAIData(u8 defaultScoreMoves, enum BattlerId battler)
     gAiBattleData->chosenTarget[battler] = gBattlerTarget;
 }
 
+bool32 IsTrainerClassBossBattleItemRestricted(enum TrainerClassID trainerClass)
+{
+    switch (trainerClass)
+    {
+    case TRAINER_CLASS_LEADER:
+    case TRAINER_CLASS_ELITE_FOUR:
+    case TRAINER_CLASS_CHAMPION:
+    case TRAINER_CLASS_AQUA_LEADER:
+    case TRAINER_CLASS_MAGMA_LEADER:
+    case TRAINER_CLASS_AQUA_ADMIN:
+    case TRAINER_CLASS_MAGMA_ADMIN:
+    case TRAINER_CLASS_RIVAL:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
+bool32 IsTrainerBossBattleItemRestricted(u16 trainerId)
+{
+    switch (trainerId)
+    {
+    case TRAINER_WALLY_MAUVILLE:
+    case TRAINER_WALLY_VR_1:
+    case TRAINER_WALLY_VR_2:
+    case TRAINER_WALLY_VR_3:
+    case TRAINER_WALLY_VR_4:
+    case TRAINER_WALLY_VR_5:
+        return TRUE;
+    }
+
+    if (trainerId == TRAINER_NONE || IsSpecialTrainer(trainerId))
+        return FALSE;
+
+    return IsTrainerClassBossBattleItemRestricted(GetTrainerClassFromId(trainerId));
+}
+
 void BattleAI_SetupItems(void)
 {
     u8 *data = (u8 *)gBattleHistory;
@@ -204,6 +242,7 @@ void BattleAI_SetupItems(void)
 
     // Items are allowed to use in ONLY trainer battles.
     if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+        && !IsTrainerBossBattleItemRestricted(trainerId)
         && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_SAFARI | BATTLE_TYPE_BATTLE_TOWER
                                | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_SECRET_BASE | BATTLE_TYPE_FRONTIER
                                | BATTLE_TYPE_INGAME_PARTNER | BATTLE_TYPE_RECORDED_LINK)

@@ -419,44 +419,10 @@ void ForkNormalizePlayerMon(struct Pokemon *mon)
 {
     if (GetMonData(mon, MON_DATA_SPECIES) == SPECIES_NONE)
         return;
-    ZeroMonEvs(mon);
+    if (!ForkArePlayerEvsEnabled())
+        ZeroMonEvs(mon);
     if (!GetMonData(mon, MON_DATA_IS_EGG))
         ForkRecordOwnedSpecies(GetMonData(mon, MON_DATA_SPECIES));
-}
-
-void ForkScrubPlayerOwnedMons(void)
-{
-    struct Pokemon mon;
-
-    ForkInvalidateOwnedFamilyCache();
-
-    for (u32 i = 0; i < PARTY_SIZE; i++)
-    {
-        if (GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_SPECIES) != SPECIES_NONE)
-            ZeroMonEvs(&gParties[B_TRAINER_PLAYER][i]);
-    }
-
-    for (u32 box = 0; box < TOTAL_BOXES_COUNT; box++)
-    {
-        for (u32 slot = 0; slot < IN_BOX_COUNT; slot++)
-        {
-            struct BoxPokemon *boxMon = GetBoxedMonPtr(box, slot);
-            if (GetBoxMonData(boxMon, MON_DATA_SPECIES) == SPECIES_NONE)
-                continue;
-            BoxMonToMon(boxMon, &mon);
-            ZeroMonEvs(&mon);
-            CopyMon(boxMon, &mon.box, sizeof(mon.box));
-        }
-    }
-
-    for (u32 i = 0; i < DAYCARE_MON_COUNT; i++)
-    {
-        if (GetBoxMonData(&gSaveBlock1Ptr->daycare.mons[i].mon, MON_DATA_SPECIES) == SPECIES_NONE)
-            continue;
-        BoxMonToMon(&gSaveBlock1Ptr->daycare.mons[i].mon, &mon);
-        ZeroMonEvs(&mon);
-        CopyMon(&gSaveBlock1Ptr->daycare.mons[i].mon, &mon.box, sizeof(mon.box));
-    }
 }
 
 void ForkPrepareWildEncounter(void)
@@ -505,8 +471,24 @@ bool32 ForkShouldShowFirstEncounterIndicator(void)
 bool32 ForkShouldBlockEggHatchInCurrentArea(void)
 {
     mapsec_u8_t mapSecId = ForkGetCurrentMapSec();
+    bool32 blocked = ForkIsAreaEncounterRuleActive() && mapSecId < MAPSEC_COUNT && ForkIsAreaEncounterSpent(mapSecId);
 
-    return ForkIsAreaEncounterRuleActive() && mapSecId < MAPSEC_COUNT && ForkIsAreaEncounterSpent(mapSecId);
+    if (blocked && gSpecialVar_0x8004 < gPartiesCount[B_TRAINER_PLAYER])
+    {
+        struct Pokemon *egg = &gParties[B_TRAINER_PLAYER][gSpecialVar_0x8004];
+
+        if (GetMonData(egg, MON_DATA_IS_EGG))
+        {
+            enum Species species = GetMonData(egg, MON_DATA_SPECIES);
+            u32 eggCycles = 1;
+
+            if (species > SPECIES_NONE && species < NUM_SPECIES && gSpeciesInfo[species].eggCycles != 0)
+                eggCycles = gSpeciesInfo[species].eggCycles;
+            SetMonData(egg, MON_DATA_FRIENDSHIP, &eggCycles);
+        }
+    }
+
+    return blocked;
 }
 
 void ForkSpendCurrentAreaEncounter(void)

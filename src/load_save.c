@@ -254,7 +254,6 @@ void CopyPartyAndObjectsFromSave(void)
     LoadObjectEvents();
     ForkEnsureKeyItemsPresent();
     ForkInvalidateOwnedFamilyCache();
-    ForkScrubPlayerOwnedMons();
 }
 
 void LoadPlayerBag(void)

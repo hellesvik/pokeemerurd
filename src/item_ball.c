@@ -372,6 +372,8 @@ static const enum Item sForkGameCornerPrizes[FORK_GAME_CORNER_MENU_PRIZE_COUNT] 
     ITEM_LINKING_CORD,
 };
 
+static EWRAM_DATA u8 sForkGameCornerPrizeMenuNames[FORK_GAME_CORNER_MENU_PRIZE_COUNT + 1][40];
+
 STATIC_ASSERT(ARRAY_COUNT(sForkRandomizedItemPool) == FORK_ITEM_RANDOMIZER_POOL_COUNT, ForkItemRandomizerPoolSizeMismatch);
 
 static u32 GetItemBallAmountFromTemplate(u32);
@@ -551,17 +553,18 @@ void ScrCmd_BuildForkGameCornerPrizeMenu(struct ScriptContext *ctx)
 {
     (void)ctx;
     InitForkGameCornerPrizeCatalog();
+    MultichoiceDynamic_UseStaticNames();
 
     for (u16 i = 0; i < FORK_GAME_CORNER_MENU_PRIZE_COUNT; i++)
     {
-        u8 *name = Alloc(40);
+        u8 *name = sForkGameCornerPrizeMenuNames[i];
         StringCopy(name, GetItemName(GetForkGameCornerPrizeItem(i)));
         StringAppend(name, COMPOUND_STRING("  4,000 COINS"));
         MultichoiceDynamic_PushElement((struct ListMenuItem){ .name = name, .id = i });
     }
 
     {
-        u8 *name = Alloc(6);
+        u8 *name = sForkGameCornerPrizeMenuNames[FORK_GAME_CORNER_MENU_PRIZE_COUNT];
         StringCopy(name, gText_Exit);
         MultichoiceDynamic_PushElement((struct ListMenuItem){ .name = name, .id = LIST_CANCEL });
     }

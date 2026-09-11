@@ -48,12 +48,12 @@ static EWRAM_DATA u16 *sDynamicMenuEventScratchPad = NULL;
 
 static u8 sLilycoveSSTidalSelections[SSTIDAL_SELECTION_COUNT];
 
-static void FreeListMenuItems(struct ListMenuItem *items, u32 count);
+static void FreeListMenuItems(struct ListMenuItem *items, u32 count, bool32 usesStaticNames);
 static void Task_HandleScrollingMultichoiceInput(u8 taskId);
 static void Task_HandleMultichoiceInput(u8 taskId);
 static void Task_HandleYesNoInput(u8 taskId);
 static void Task_HandleMultichoiceGridInput(u8 taskId);
-static void DrawMultichoiceMenuDynamic(u8 left, u8 top, u8 argc, struct ListMenuItem *items, bool8 ignoreBPress, u32 initialRow, u8 maxBeforeScroll, u32 callbackSet);
+static void DrawMultichoiceMenuDynamic(u8 left, u8 top, u8 argc, struct ListMenuItem *items, bool8 ignoreBPress, u32 initialRow, u8 maxBeforeScroll, u32 callbackSet, bool32 usesStaticNames);
 static void DrawMultichoiceMenu(u8 left, u8 top, u8 multichoiceId, bool8 ignoreBPress, u8 cursorPos);
 static void InitMultichoiceCheckWrap(bool8 ignoreBPress, u8 count, u8 windowId, u8 multichoiceId);
 static void DrawLinkServicesMultichoiceMenu(u8 multichoiceId);
@@ -97,17 +97,17 @@ static const struct ListMenuTemplate sScriptableListMenuTemplate =
     .fontId = FONT_NORMAL,
 };
 
-bool8 ScriptMenu_MultichoiceDynamic(u8 left, u8 top, u8 argc, struct ListMenuItem *items, bool8 ignoreBPress, u8 maxBeforeScroll, u32 initialRow, u32 callbackSet)
+bool8 ScriptMenu_MultichoiceDynamic(u8 left, u8 top, u8 argc, struct ListMenuItem *items, bool8 ignoreBPress, u8 maxBeforeScroll, u32 initialRow, u32 callbackSet, bool32 usesStaticNames)
 {
     if (FuncIsActiveTask(Task_HandleMultichoiceInput) == TRUE)
     {
-        FreeListMenuItems(items, argc);
+        FreeListMenuItems(items, argc, usesStaticNames);
         return FALSE;
     }
     else
     {
         gSpecialVar_Result = 0xFF;
-        DrawMultichoiceMenuDynamic(left, top, argc, items, ignoreBPress, initialRow, maxBeforeScroll, callbackSet);
+        DrawMultichoiceMenuDynamic(left, top, argc, items, ignoreBPress, initialRow, maxBeforeScroll, callbackSet, usesStaticNames);
         return TRUE;
     }
 }
@@ -208,13 +208,16 @@ static void MultichoiceDynamicEventShowItem_OnDestroy(struct DynamicListMenuEven
 #undef sItemSpriteId
 #undef TAG_CB_ITEM_ICON
 
-static void FreeListMenuItems(struct ListMenuItem *items, u32 count)
+static void FreeListMenuItems(struct ListMenuItem *items, u32 count, bool32 usesStaticNames)
 {
     u32 i;
-    for (i = 0; i < count; ++i)
+    if (!usesStaticNames)
     {
-        // All items were dynamically allocated, so items[i].name is not actually constant.
-        Free((void *)items[i].name);
+        for (i = 0; i < count; ++i)
+        {
+            // Dynamically built menus normally allocate each name separately.
+            Free((void *)items[i].name);
+        }
     }
     Free(items);
 }
@@ -294,6 +297,18 @@ void MultichoiceDynamic_PushElement(struct ListMenuItem item)
     sDynamicMultiChoiceStack->elements[++sDynamicMultiChoiceStack->top] = item;
 }
 
+void MultichoiceDynamic_UseStaticNames(void)
+{
+    if (sDynamicMultiChoiceStack == NULL)
+        MultichoiceDynamic_InitStack(MULTICHOICE_DYNAMIC_STACK_SIZE);
+    sDynamicMultiChoiceStack->usesStaticNames = TRUE;
+}
+
+bool32 MultichoiceDynamic_UsesStaticNames(void)
+{
+    return sDynamicMultiChoiceStack != NULL && sDynamicMultiChoiceStack->usesStaticNames;
+}
+
 struct ListMenuItem *MultichoiceDynamic_PopElement(void)
 {
     if (sDynamicMultiChoiceStack == NULL)
@@ -344,7 +359,7 @@ static void MultichoiceDynamic_MoveCursor(s32 itemIndex, bool8 onInit, struct Li
     }
 }
 
-static void DrawMultichoiceMenuDynamic(u8 left, u8 top, u8 argc, struct ListMenuItem *items, bool8 ignoreBPress, u32 initialRow, u8 maxBeforeScroll, u32 callbackSet)
+static void DrawMultichoiceMenuDynamic(u8 left, u8 top, u8 argc, struct ListMenuItem *items, bool8 ignoreBPress, u32 initialRow, u8 maxBeforeScroll, u32 callbackSet, bool32 usesStaticNames)
 {
     u32 i;
     u8 windowId;
@@ -389,6 +404,7 @@ static void DrawMultichoiceMenuDynamic(u8 left, u8 top, u8 argc, struct ListMenu
     gTasks[taskId].data[2] = windowId;
     gTasks[taskId].data[5] = argc;
     gTasks[taskId].data[7] = maxBeforeScroll;
+    gTasks[taskId].data[8] = usesStaticNames;
     StoreWordInTwoHalfwords((u16*) &gTasks[taskId].data[3], (u32) items);
     list = (void *) gTasks[gTasks[taskId].data[0]].data;
     ListMenuChangeSelectionFull(list, TRUE, FALSE, initialRow, TRUE);
@@ -527,7 +543,7 @@ static void Task_HandleScrollingMultichoiceInput(u8 taskId)
         }
 
         LoadWordFromTwoHalfwords((u16*) &gTasks[taskId].data[3], (u32* )(&items));
-        FreeListMenuItems(items, gTasks[taskId].data[5]);
+        FreeListMenuItems(items, gTasks[taskId].data[5], gTasks[taskId].data[8]);
         TRY_FREE_AND_SET_NULL(sDynamicMenuEventScratchPad);
         DestroyListMenuTask(gTasks[taskId].data[0], NULL, NULL);
         ClearStdWindowAndFrame(gTasks[taskId].data[2], TRUE);

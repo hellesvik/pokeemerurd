@@ -1093,6 +1093,8 @@ enum __attribute__((packed)) Item
     ITEM_REGI_EMERALD_WHITE,
     ITEM_REGI_EMERALD_BLACK,
 
+    ITEM_HEART_CHARM,
+
     ITEMS_COUNT,
     ITEM_FIELD_ARROW = ITEMS_COUNT,
 };

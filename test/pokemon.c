@@ -413,6 +413,28 @@ TEST("Test mode starts with Emerald key items and fork test items")
     EXPECT_EQ(CheckBagHasItem(ITEM_SILPH_SCOPE, 1), FALSE);
 }
 
+TEST("Heart Charm is a reusable key item that heals the party")
+{
+    NewGameInitData();
+
+    EXPECT_EQ(CheckBagHasItem(ITEM_HEART_CHARM, 1), TRUE);
+    EXPECT_EQ(GetItemPocket(ITEM_HEART_CHARM), POCKET_KEY_ITEMS);
+    EXPECT_EQ(GetItemImportance(ITEM_HEART_CHARM), TRUE);
+    EXPECT_EQ(GetItemConsumability(ITEM_HEART_CHARM), FALSE);
+    EXPECT_EQ(GetItemFieldFunc(ITEM_HEART_CHARM), ItemUseOutOfBattle_HealParty);
+}
+
+TEST("Portable PC is a reusable key item that opens Pokemon storage")
+{
+    NewGameInitData();
+
+    EXPECT_EQ(CheckBagHasItem(ITEM_POKEMON_BOX_LINK, 1), TRUE);
+    EXPECT_EQ(GetItemPocket(ITEM_POKEMON_BOX_LINK), POCKET_KEY_ITEMS);
+    EXPECT_EQ(GetItemImportance(ITEM_POKEMON_BOX_LINK), TRUE);
+    EXPECT_EQ(GetItemConsumability(ITEM_POKEMON_BOX_LINK), FALSE);
+    EXPECT_EQ(GetItemFieldFunc(ITEM_POKEMON_BOX_LINK), ItemUseOutOfBattle_PokemonBoxLink);
+}
+
 TEST("Temporary startup Rayquaza is stored in every box")
 {
     NewGameInitData();

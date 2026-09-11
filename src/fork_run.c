@@ -368,6 +368,10 @@ bool32 ForkIsSoftNuzlockeMon(struct Pokemon *mon)
 
 void ForkEnsureKeyItemsPresent(void)
 {
+    if (!CheckBagHasItem(ITEM_HEART_CHARM, 1))
+        AddBagItem(ITEM_HEART_CHARM, 1);
+    if (!CheckBagHasItem(ITEM_POKEMON_BOX_LINK, 1))
+        AddBagItem(ITEM_POKEMON_BOX_LINK, 1);
     if (ForkAreMegaEvolutionsEnabled() && !CheckBagHasItem(ITEM_MEGA_RING, 1))
         AddBagItem(ITEM_MEGA_RING, 1);
     if (ForkHasInfiniteRareCandy() && !CheckBagHasItem(ITEM_INFINITE_RARE_CANDY, 1))

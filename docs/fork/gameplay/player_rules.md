@@ -30,6 +30,19 @@ When enabled, new games receive two reusable key items:
 
 Existing saves receive missing items when they are continued.
 
+## Heart Charm
+
+Every save receives the reusable **Heart Charm** key item. Its heart icon can
+be used from the Key Items pocket or registered for field use. It restores the
+player's party exactly as a Pokémon Center does: HP, status conditions, PP,
+and fainted Pokémon are restored.
+
+## Portable PC
+
+Every save also receives a reusable **Portable PC** key item. Its compact PC
+icon opens the Pokémon Storage System directly to **Move Pokémon**, so the
+player can organize their boxes while out in the field.
+
 ## Running Shoes
 
 New games receive the Running Shoes immediately. Their availability does not

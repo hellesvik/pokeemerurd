@@ -2359,6 +2359,24 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_MaxRepel,
     },
 
+    [ITEM_HEART_CHARM] =
+    {
+        .name = ITEM_NAME("Heart Charm"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Fully restores the\n"
+            "HP, status, and PP\n"
+            "of your Pokémon."),
+        .pocket = POCKET_KEY_ITEMS,
+        .sortType = ITEM_TYPE_FIELD_USE,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_HealParty,
+        .importance = TRUE,
+        .notConsumed = TRUE,
+        .iconPic = gItemIcon_SweetHeart,
+        .iconPalette = gItemIconPalette_SweetHeart,
+    },
+
     [ITEM_LURE] =
     {
         .name = ITEM_NAME("Lure"),
@@ -14037,13 +14055,14 @@ const struct ItemInfo gItemsInfo[] =
 
     [ITEM_POKEMON_BOX_LINK] =
     {
-        .name = ITEM_NAME("{PKMN} Box Link"),
+        .name = ITEM_NAME("Portable PC"),
         .price = 0,
         .description = COMPOUND_STRING(
-            "This device grants\n"
-            "access to the {PKMN}\n"
-            "Storage System."),
+            "A compact PC that\n"
+            "lets you move\n"
+            "your {PKMN} anywhere."),
         .importance = 1,
+        .notConsumed = TRUE,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_FIELD,
         .fieldUseFunc = ItemUseOutOfBattle_PokemonBoxLink,

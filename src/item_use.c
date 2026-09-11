@@ -38,6 +38,7 @@
 #include "pokeblock.h"
 #include "pokemon.h"
 #include "script.h"
+#include "script_pokemon_util.h"
 #include "sound.h"
 #include "strings.h"
 #include "string_util.h"
@@ -99,6 +100,7 @@ static const u8 sText_Var2TurnedOff[] = _("{STR_VAR_2} was turned off.{PAUSE_UNT
 static const u8 sText_PlayedPokeFluteCatchy[] = _("Played the POKé FLUTE.\pNow, that's a catchy tune!{PAUSE_UNTIL_PRESS}");
 static const u8 sText_PlayedPokeFlute[] = _("Played the POKé FLUTE.");
 static const u8 sText_PokeFluteAwakenedMon[] = _("The POKé FLUTE awakened sleeping\nPOKéMON.{PAUSE_UNTIL_PRESS}");
+static const u8 sText_HeartCharmRestoredParty[] = _("Your Pokémon were fully healed!{PAUSE_UNTIL_PRESS}");
 
 // EWRAM variables
 EWRAM_DATA static TaskFunc sItemUseOnFieldCB = NULL;
@@ -863,6 +865,16 @@ void ItemUseOutOfBattle_Medicine(u8 taskId)
 {
     gItemUseCB = ItemUseCB_Medicine;
     SetUpItemUseCallback(taskId);
+}
+
+void ItemUseOutOfBattle_HealParty(u8 taskId)
+{
+    HealPlayerParty();
+    PlaySE(SE_USE_ITEM);
+    if (!gTasks[taskId].tUsingRegisteredKeyItem)
+        DisplayItemMessage(taskId, FONT_NORMAL, sText_HeartCharmRestoredParty, CloseItemMessage);
+    else
+        DisplayItemMessageOnField(taskId, sText_HeartCharmRestoredParty, Task_CloseCantUseKeyItemMessage);
 }
 
 void ItemUseOutOfBattle_AbilityCapsule(u8 taskId)

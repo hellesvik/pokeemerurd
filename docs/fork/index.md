@@ -37,6 +37,10 @@ documented in the [reference index](./reference/index.md).
 
 ### 2026-09-11
 
+- Egg hatching is now approximately ten times faster while retaining the
+  existing helper-ability bonus.
+- NPC trade Pokémon now receive randomized IVs when traded instead of fixed
+  low IV templates.
 - Raised the Pokémon League level cap to 80 and updated every Elite Four and
   Champion team to the new Lv. 74–80 progression.
 - The entire Safari Zone now shares one strict catch limit. Its first wild

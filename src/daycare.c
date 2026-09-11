@@ -1178,10 +1178,13 @@ static bool8 TryProduceOrHatchEgg(struct DayCare *daycare)
 
     // Try to hatch Egg
     daycare->stepCounter++;
-    if (((P_EGG_CYCLE_LENGTH <= GEN_3 || P_EGG_CYCLE_LENGTH == GEN_7) && daycare->stepCounter >= 256)
-     || (P_EGG_CYCLE_LENGTH == GEN_4 && daycare->stepCounter >= 255)
-     || ((P_EGG_CYCLE_LENGTH == GEN_5 || P_EGG_CYCLE_LENGTH == GEN_6) && daycare->stepCounter >= 257)
-     || (P_EGG_CYCLE_LENGTH >= GEN_8 && daycare->stepCounter >= 128))
+    // Keep the generation-specific vanilla intervals, then scale them down
+    // for the fork's faster egg hatching setting.
+    #define EGG_CYCLE_INTERVAL(steps) (((steps) + P_EGG_CYCLE_SPEED_MULTIPLIER - 1) / P_EGG_CYCLE_SPEED_MULTIPLIER)
+    if (((P_EGG_CYCLE_LENGTH <= GEN_3 || P_EGG_CYCLE_LENGTH == GEN_7) && daycare->stepCounter >= EGG_CYCLE_INTERVAL(256))
+     || (P_EGG_CYCLE_LENGTH == GEN_4 && daycare->stepCounter >= EGG_CYCLE_INTERVAL(255))
+     || ((P_EGG_CYCLE_LENGTH == GEN_5 || P_EGG_CYCLE_LENGTH == GEN_6) && daycare->stepCounter >= EGG_CYCLE_INTERVAL(257))
+     || (P_EGG_CYCLE_LENGTH >= GEN_8 && daycare->stepCounter >= EGG_CYCLE_INTERVAL(128)))
     {
         u32 eggCycles;
         u8 toSub = GetEggCyclesToSubtract();

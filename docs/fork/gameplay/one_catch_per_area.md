@@ -10,3 +10,7 @@ the battle ends, including when it escapes or the player runs. The duplicate
 and shiny exceptions do not grant another Safari Zone encounter.
 
 Egg hatching also respects the area rule. If an egg is ready to hatch in an area that has already spent its encounter, the hatch is deferred until you enter an unused area.
+
+Eggs hatch at approximately one-tenth of the normal step interval. Magma
+Armor, Flame Body, and Steam Engine still provide their additional hatch-speed
+bonus.

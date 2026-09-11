@@ -25,6 +25,9 @@ Beldum, Root Fossil, and Claw Fossil behavior is restored.
 The Rustboro trade requests an Unown. When randomized encounters are enabled,
 the Pokémon received is selected from this generation-filtered pool:
 
+NPC trade Pokémon receive newly randomized IVs when the trade is completed;
+they no longer use the original fixed 4–5 IV templates.
+
 - Psyduck, holding Eviolite, with Drizzle and Follow Me, Confusion, Confuse
   Ray, and Explosion.
 - Chikorita, holding Meganiumite, with its ability selected by the normal
@@ -43,3 +46,6 @@ generation pool: Blastoise with Mega Launcher, Scizor with Technician,
 Torkoal with Drought, Magmortar with Flash Fire, shiny Golurk with Unseen
 Fist, Dragalge with Regenerator, Shiinotic with Poison Heal, Morpeko with
 Hunger Switch, or Dachsbun with Well-Baked Body.
+
+The Pacifidlog Town trade requests Mew and returns a level 69 Conkeldurr named
+ONKELDURR, holding Rocky Helmet and knowing only Steel Beam.

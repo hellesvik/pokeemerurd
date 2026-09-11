@@ -4577,6 +4577,9 @@ static void CreateInGameTradePokemonInternal(u8 whichPlayerMon, u8 whichInGameTr
     enum Item heldItem = inGameTrade->heldItem;
     enum Move moves[MAX_MON_MOVES] = {MOVE_NONE};
 
+    if (whichInGameTrade == INGAME_TRADE_HORSEA)
+        level = 69;
+
     if (whichInGameTrade == INGAME_TRADE_PLUSLE)
     {
         enum Ability ability = GetForkRandomizedFortreeTradeAbility();
@@ -4597,15 +4600,8 @@ static void CreateInGameTradePokemonInternal(u8 whichPlayerMon, u8 whichInGameTr
             moves[i] = GetForkRandomizedRustboroTradeMove(i);
     }
 
-    CreateMon(pokemon, species, level, inGameTrade->personality, OTID_STRUCT_PRESET(inGameTrade->otId));
+    CreateMonWithIVs(pokemon, species, level, inGameTrade->personality, OTID_STRUCT_PRESET(inGameTrade->otId), USE_RANDOM_IVS);
     GiveMonInitialMoveset(pokemon);
-
-    SetMonData(pokemon, MON_DATA_HP_IV, &inGameTrade->ivs[0]);
-    SetMonData(pokemon, MON_DATA_ATK_IV, &inGameTrade->ivs[1]);
-    SetMonData(pokemon, MON_DATA_DEF_IV, &inGameTrade->ivs[2]);
-    SetMonData(pokemon, MON_DATA_SPEED_IV, &inGameTrade->ivs[3]);
-    SetMonData(pokemon, MON_DATA_SPATK_IV, &inGameTrade->ivs[4]);
-    SetMonData(pokemon, MON_DATA_SPDEF_IV, &inGameTrade->ivs[5]);
     if (whichInGameTrade == INGAME_TRADE_SEEDOT && species == SPECIES_WISHIWASHI)
         SetMonData(pokemon, MON_DATA_NICKNAME, (void *)sRustboroTradeWishiwashiNickname);
     else
@@ -4637,9 +4633,20 @@ static void CreateInGameTradePokemonInternal(u8 whichPlayerMon, u8 whichInGameTr
             SetMonData(pokemon, MON_DATA_HELD_ITEM, &heldItem);
         }
     }
-    for (u8 i = 0; i < MAX_MON_MOVES; i++)
-        if (moves[i] != MOVE_NONE)
-            SetMonData(pokemon, MON_DATA_MOVE1 + i, &moves[i]);
+    if (whichInGameTrade == INGAME_TRADE_HORSEA)
+    {
+        for (u8 i = 0; i < MAX_MON_MOVES; i++)
+        {
+            enum Move move = i == 0 ? MOVE_STEEL_BEAM : MOVE_NONE;
+            SetMonData(pokemon, MON_DATA_MOVE1 + i, &move);
+        }
+    }
+    else
+    {
+        for (u8 i = 0; i < MAX_MON_MOVES; i++)
+            if (moves[i] != MOVE_NONE)
+                SetMonData(pokemon, MON_DATA_MOVE1 + i, &moves[i]);
+    }
     CalculateMonStats(&gParties[B_TRAINER_OPPONENT_A][0]);
 }
 

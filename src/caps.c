@@ -107,7 +107,7 @@ static const struct LevelCapMilestone sLevelCapMilestones[] =
     { 45, sCapArchie },
     { 46, sCapJuan },
     { 47, sCapWallyVictoryRoad },
-    { 58, sCapWallace },
+    { 80, sCapWallace },
 };
 
 

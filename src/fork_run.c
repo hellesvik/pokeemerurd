@@ -10,6 +10,7 @@
 #include "pokemon_storage_system.h"
 #include "random.h"
 #include "region_map.h"
+#include "safari_zone.h"
 #include "constants/flags.h"
 #include "constants/items.h"
 #include "constants/vars.h"
@@ -51,6 +52,9 @@ bool32 ForkPlayerOwnsSpeciesFamily(enum Species species);
 
 static mapsec_u8_t ForkGetCurrentMapSec(void)
 {
+    if (GetSafariZoneFlag())
+        return MAPSEC_SAFARI_ZONE;
+
     // Keep separate encounter areas distinct. CorrectSpecialMapSecId maps
     // Petalburg Woods to Route 104 for region-map display purposes.
     return GetCurrentRegionMapSectionId();
@@ -58,8 +62,8 @@ static mapsec_u8_t ForkGetCurrentMapSec(void)
 
 bool32 ForkIsAreaEncounterRuleActive(void)
 {
-    // This flag is set immediately after Birch's successful five-Poké-Ball
-    // gift, so early forced encounters never consume an area.
+    // This flag is set when Birch gives the Pokédex, so early forced
+    // encounters never consume an area.
     return FlagGet(FLAG_ADVENTURE_STARTED) && ForkIsCatchLimitEnabled();
 }
 
@@ -324,6 +328,14 @@ static void ResolveCurrentEncounterState(void)
     areaSpent = ForkIsAreaEncounterSpent(sForkEncounterMapSec);
 
     sForkEncounterResolved = TRUE;
+    if (GetSafariZoneFlag())
+    {
+        // The whole Safari Zone is one strict encounter area. Dupes and
+        // shinies do not grant another attempt if the first Pokémon escapes.
+        sForkEncounterCatchable = !areaSpent;
+        sForkEncounterShouldSpend = !areaSpent;
+        return;
+    }
     sForkEncounterCatchable = isShiny || (!areaSpent && !isDupe);
     sForkEncounterShouldSpend = !isShiny && !isDupe && !areaSpent;
 }
@@ -507,14 +519,13 @@ void ForkSpendCurrentAreaEncounter(void)
 
 void ForkApplySoftNuzlockeWhiteOutPenalty(void)
 {
-    if (!ForkIsAreaEncounterRuleActive() || ForkGetFaintRule() != FORK_FAINT_RULE_WHITEOUT)
+    if (!FlagGet(FLAG_ADVENTURE_STARTED) || ForkGetFaintRule() != FORK_FAINT_RULE_WHITEOUT)
         return;
 
     u8 candidates[PARTY_SIZE];
     u8 candidateCount = 0;
     u32 softNuzlocke = TRUE;
-    u32 exp;
-    u8 level = 1;
+    u16 hp = 0;
 
     for (u32 i = 0; i < PARTY_SIZE; i++)
     {
@@ -529,38 +540,25 @@ void ForkApplySoftNuzlockeWhiteOutPenalty(void)
         return;
 
     u8 slot = candidates[Random() % candidateCount];
-    enum Species species = GetMonData(&gParties[B_TRAINER_PLAYER][slot], MON_DATA_SPECIES);
-
     SetMonData(&gParties[B_TRAINER_PLAYER][slot], MON_DATA_SOFT_NUZLOCKE, &softNuzlocke);
-    SetMonData(&gParties[B_TRAINER_PLAYER][slot], MON_DATA_LEVEL, &level);
-    exp = gExperienceTables[gSpeciesInfo[species].growthRate][level];
-    SetMonData(&gParties[B_TRAINER_PLAYER][slot], MON_DATA_EXP, &exp);
-    CalculateMonStats(&gParties[B_TRAINER_PLAYER][slot]);
-    SetMonData(&gParties[B_TRAINER_PLAYER][slot], MON_DATA_HP, &gParties[B_TRAINER_PLAYER][slot].maxHP);
+    SetMonData(&gParties[B_TRAINER_PLAYER][slot], MON_DATA_HP, &hp);
 }
 
 void ForkApplySoftNuzlockeFaintPenalty(u8 partySlot)
 {
     struct Pokemon *mon;
-    enum Species species;
     u32 softNuzlocke = TRUE;
-    u8 level = 1;
-    u32 exp;
+    u16 hp = 0;
 
-    if (!ForkIsAreaEncounterRuleActive()
+    if (!FlagGet(FLAG_ADVENTURE_STARTED)
      || ForkGetFaintRule() != FORK_FAINT_RULE_ON_FAINT
      || partySlot >= PARTY_SIZE)
         return;
 
     mon = &gParties[B_TRAINER_PLAYER][partySlot];
-    species = GetMonData(mon, MON_DATA_SPECIES);
-    if (species == SPECIES_NONE || GetMonData(mon, MON_DATA_IS_EGG))
+    if (GetMonData(mon, MON_DATA_SPECIES) == SPECIES_NONE || GetMonData(mon, MON_DATA_IS_EGG))
         return;
 
     SetMonData(mon, MON_DATA_SOFT_NUZLOCKE, &softNuzlocke);
-    SetMonData(mon, MON_DATA_LEVEL, &level);
-    exp = gExperienceTables[gSpeciesInfo[species].growthRate][level];
-    SetMonData(mon, MON_DATA_EXP, &exp);
-    CalculateMonStats(mon);
-    SetMonData(mon, MON_DATA_HP, &mon->maxHP);
+    SetMonData(mon, MON_DATA_HP, &hp);
 }

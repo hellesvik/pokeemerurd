@@ -98,58 +98,58 @@ planned as multi-Pokémon battles, not as six isolated singles.
 
 | Pokémon | Lv. | Ability | Held item | Moves |
 | --- | ---: | --- | --- | --- |
-| Overqwil | 46 | Intimidate | Black Sludge | Toxic Spikes, Spikes, Knock Off, Mortal Spin |
-| Zoroark | 48 | Illusion | Choice Scarf | Night Daze, Flamethrower, U-Turn, Shadow Ball |
-| Shiftry | 46 | Early Bird | Loaded Dice | Fake Out, Beat Up, Bullet Seed, Arm Thrust |
-| Bombirdier | 48 | Rocky Payload | Hard Stone | Knock Off, Rock Slide, Roost, Brave Bird |
-| Sharpedo | 49 | Speed Boost | Focus Sash | Waterfall, Crunch, Ice Fang, Poison Jab |
-| Mega Absol Z | 49 | Magic Bounce | Absolite Z | Night Slash, Swords Dance, Shadow Claw, Play Rough |
+| Overqwil | 74 | Intimidate | Black Sludge | Toxic Spikes, Spikes, Knock Off, Mortal Spin |
+| Zoroark | 75 | Illusion | Choice Scarf | Night Daze, Flamethrower, U-Turn, Shadow Ball |
+| Shiftry | 76 | Early Bird | Loaded Dice | Fake Out, Beat Up, Bullet Seed, Arm Thrust |
+| Bombirdier | 77 | Rocky Payload | Hard Stone | Knock Off, Rock Slide, Roost, Brave Bird |
+| Sharpedo | 78 | Speed Boost | Focus Sash | Waterfall, Crunch, Ice Fang, Poison Jab |
+| Mega Absol Z | 79 | Magic Bounce | Absolite Z | Night Slash, Swords Dance, Shadow Claw, Play Rough |
 
 ## Other Elite Four
 
 ### Phoebe
 
-Dusclops Lv. 48 holding Eviolite (Pressure; Pain Split, Will-O-Wisp,
-Substitute, Focus Punch); Hisuian Zoroark Lv. 49 holding Choice Scarf
+Dusclops Lv. 76 holding Eviolite (Pressure; Pain Split, Will-O-Wisp,
+Substitute, Focus Punch); Hisuian Zoroark Lv. 76 holding Choice Scarf
 (Illusion; Bitter Malice, U-Turn, Frustration, Burning Jealousy); Oricorio
-Lv. 50 holding Heavy-Duty Boots (Dancer; Revelation Dance, Quiver Dance,
-Roost, Hurricane; random form); Bewear Lv. 49 holding Life Orb (Scrappy;
-Return, Body Press, Rest, Sleep Talk); Mimikyu Lv. 51 holding Sitrus Berry
-(Disguise; Substitute, Play Rough, Shadow Sneak, Focus Punch); Mega Sableye Lv. 52
+Lv. 76 holding Heavy-Duty Boots (Dancer; Revelation Dance, Quiver Dance,
+Roost, Hurricane; random form); Bewear Lv. 77 holding Life Orb (Scrappy;
+Return, Body Press, Rest, Sleep Talk); Mimikyu Lv. 78 holding Sitrus Berry
+(Disguise; Substitute, Play Rough, Shadow Sneak, Focus Punch); Mega Sableye Lv. 79
 holding Sablenite (Magic Bounce; Fake Out, Torment, Protect, Foul Play).
 
 ### Glacia
 
-Vanilluxe Lv. 50 holding Focus Sash (Snow Warning; Blizzard, Freeze-Dry,
-Flash Cannon, Aurora Veil); Milotic Lv. 50 holding Leftovers (Marvel Scale;
-Scald, Weather Ball, Recover, Dragon Tail); Sawsbuck-Winter Lv. 52 holding
+Vanilluxe Lv. 77 holding Focus Sash (Snow Warning; Blizzard, Freeze-Dry,
+Flash Cannon, Aurora Veil); Milotic Lv. 77 holding Leftovers (Marvel Scale;
+Scald, Weather Ball, Recover, Dragon Tail); Sawsbuck-Winter Lv. 77 holding
 Lum Berry (Serene Grace; Body Slam, Zen Headbutt, Horn Leech, Jump Kick);
-Rotom-Frost Lv. 52 holding Choice Scarf (Levitate; Blizzard, Volt Switch,
-Discharge, Trick); Beartic Lv. 53 holding Choice Band (Slush Rush; Icicle
-Crash, Liquidation, Superpower, Throat Chop); Mega Glalie Lv. 53 holding Glalitite
+Rotom-Frost Lv. 77 holding Choice Scarf (Levitate; Blizzard, Volt Switch,
+Discharge, Trick); Beartic Lv. 77 holding Choice Band (Slush Rush; Icicle
+Crash, Liquidation, Superpower, Throat Chop); Mega Glalie Lv. 79 holding Glalitite
 (Refrigerate; Return, Ice Shard, Earthquake, Steel Roller).
 
 ### Drake
 
-Dragalge Lv. 52 holding Life Orb (Adaptability; Sludge Wave, Draco Meteor,
-Toxic Spikes, Recover); Flygon Lv. 54 holding Choice Scarf (Levitate; Dragon
-Claw, U-Turn, Earthquake, Stone Edge); Kingdra Lv. 53 holding Scope Lens
-(Sniper; Dragon Pulse, Hydro Pump, Ice Beam, Flip Turn); Turtonator Lv. 53
+Dragalge Lv. 78 holding Life Orb (Adaptability; Sludge Wave, Draco Meteor,
+Toxic Spikes, Recover); Flygon Lv. 78 holding Choice Scarf (Levitate; Dragon
+Claw, U-Turn, Earthquake, Stone Edge); Kingdra Lv. 78 holding Scope Lens
+(Sniper; Dragon Pulse, Hydro Pump, Ice Beam, Flip Turn); Turtonator Lv. 78
 holding Leftovers (Shell Armor; Taunt, Shell Trap, Flash Cannon, Dragon
-Pulse); Salamence Lv. 55 holding Yache Berry (Intimidate; Dragon Dance, Dragon
-Claw, Fly, Wild Charge); Mega Sceptile Lv. 55 holding Sceptilite (Lightning Rod; Leaf
+Pulse); Salamence Lv. 79 holding Yache Berry (Intimidate; Dragon Dance, Dragon
+Claw, Fly, Wild Charge); Mega Sceptile Lv. 79 holding Sceptilite (Lightning Rod; Leaf
 Storm, Draco Meteor, Focus Blast, Hidden Power).
 
 ## Champion Steven
 
 | Pokémon | Lv. | Held item | Moves |
 | --- | ---: | --- | --- |
-| Regirock | 57 | Rock Gem | Stealth Rock, Stone Edge, Earthquake, Hammer Arm |
-| Registeel | 56 | Steel Gem | Heavy Slam, Seismic Toss, Rest, Sleep Talk |
-| Regice | 55 | Ice Gem | Lock-On, Blizzard, Focus Blast, Zap Cannon |
-| Drifblim | 56 | Flying Gem | Acrobatics, Poltergeist, Tailwind, Destiny Bond |
-| Tinkaton | 56 | Air Balloon | Gigaton Hammer, Wood Hammer, Play Rough, Ice Hammer |
-| Mega Metagross | 58 | Metagrossite | Meteor Mash, Agility, Zen Headbutt, Headlong Rush |
+| Regirock | 79 | Rock Gem | Stealth Rock, Stone Edge, Earthquake, Hammer Arm |
+| Registeel | 79 | Steel Gem | Heavy Slam, Seismic Toss, Rest, Sleep Talk |
+| Regice | 79 | Ice Gem | Lock-On, Blizzard, Focus Blast, Zap Cannon |
+| Drifblim | 79 | Flying Gem | Acrobatics, Poltergeist, Tailwind, Destiny Bond |
+| Tinkaton | 79 | Air Balloon | Gigaton Hammer, Wood Hammer, Play Rough, Ice Hammer |
+| Mega Metagross | 80 | Metagrossite | Meteor Mash, Agility, Zen Headbutt, Headlong Rush |
 
 Steven is the champion in this fork.
 

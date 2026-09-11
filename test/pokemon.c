@@ -13,6 +13,7 @@
 #include "pokedex.h"
 #include "pokemon.h"
 #include "pokemon_storage_system.h"
+#include "safari_zone.h"
 #include "test/overworld_script.h"
 #include "test/test.h"
 #include "constants/characters.h"
@@ -116,31 +117,55 @@ TEST("Fork rules enable a hard story-battle level cap while leaving one-use Rare
     EXPECT_EQ(GetCurrentLevelCap(), 16);
 
     SetTrainerFlag(TRAINER_MAY_RUSTBORO_TREECKO);
-    SetTrainerFlag(TRAINER_BRAWLY_1);
     EXPECT_EQ(GetCurrentLevelCap(), 19);
 
+    SetTrainerFlag(TRAINER_BRAWLY_1);
+    EXPECT_EQ(GetCurrentLevelCap(), 20);
+
     SetTrainerFlag(TRAINER_MAY_ROUTE_110_TREECKO);
+    EXPECT_EQ(GetCurrentLevelCap(), 24);
+
     SetTrainerFlag(TRAINER_WATTSON_1);
+    EXPECT_EQ(GetCurrentLevelCap(), 25);
+
     SetTrainerFlag(TRAINER_MAXIE_MT_CHIMNEY);
-    SetTrainerFlag(TRAINER_FLANNERY_1);
-    SetTrainerFlag(TRAINER_NORMAN_1);
-    SetTrainerFlag(TRAINER_MAY_ROUTE_119_TREECKO);
     EXPECT_EQ(GetCurrentLevelCap(), 29);
 
+    SetTrainerFlag(TRAINER_FLANNERY_1);
+    EXPECT_EQ(GetCurrentLevelCap(), 31);
+
+    SetTrainerFlag(TRAINER_NORMAN_1);
+    EXPECT_EQ(GetCurrentLevelCap(), 31);
+
+    SetTrainerFlag(TRAINER_MAY_ROUTE_119_TREECKO);
+    EXPECT_EQ(GetCurrentLevelCap(), 33);
+
     SetTrainerFlag(TRAINER_WINONA_1);
+    EXPECT_EQ(GetCurrentLevelCap(), 34);
+
     SetTrainerFlag(TRAINER_MAY_LILYCOVE_TREECKO);
+    EXPECT_EQ(GetCurrentLevelCap(), 39);
+
     SetTrainerFlag(TRAINER_MAXIE_MAGMA_HIDEOUT);
+    EXPECT_EQ(GetCurrentLevelCap(), 42);
+
     SetTrainerFlag(TRAINER_TATE_AND_LIZA_1);
+    EXPECT_EQ(GetCurrentLevelCap(), 44);
+
     SetTrainerFlag(TRAINER_MAXIE_MOSSDEEP);
+    EXPECT_EQ(GetCurrentLevelCap(), 45);
+
     SetTrainerFlag(TRAINER_ARCHIE);
+    EXPECT_EQ(GetCurrentLevelCap(), 46);
+
     SetTrainerFlag(TRAINER_JUAN_1);
-    SetTrainerFlag(TRAINER_WALLY_VR_1);
     EXPECT_EQ(GetCurrentLevelCap(), 47);
 
-    EXPECT_EQ(GetCurrentLevelCap(), 58);
+    SetTrainerFlag(TRAINER_WALLY_VR_1);
+    EXPECT_EQ(GetCurrentLevelCap(), 80);
 
     SetTrainerFlag(TRAINER_WALLACE);
-    EXPECT_EQ(GetCurrentLevelCap(), 58);
+    EXPECT_EQ(GetCurrentLevelCap(), 80);
 
     SetTrainerFlag(TRAINER_STEVEN);
     EXPECT_EQ(GetCurrentLevelCap(), MAX_LEVEL);
@@ -223,6 +248,41 @@ TEST("Fork rules only allow catching the first legal wild encounter")
     EXPECT_EQ(CanThrowLastUsedBall(), FALSE);
 }
 
+TEST("Safari Zone spends its shared limit on the first encounter even when it is a dupe")
+{
+    ZeroEnemyPartyMons();
+    ZeroPlayerPartyMons();
+    ResetPokemonStorageSystem();
+    ResetPokedex();
+    ForkResetAreaEncounterState();
+    ForkInvalidateOwnedFamilyCache();
+    ForkConfigureGameplayOptions(TRUE, FALSE, FORK_FAINT_RULE_OFF, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, GEN_3, TRUE, FALSE);
+    FlagSet(FLAG_ADVENTURE_STARTED);
+    SetSafariZoneFlag();
+    gMapHeader.regionMapSectionId = MAPSEC_SAFARI_ZONE;
+
+    CreateMon(&gParties[B_TRAINER_PLAYER][0], SPECIES_POOCHYENA, 3, 0, OTID_STRUCT_PLAYER_ID);
+    ForkInvalidateOwnedFamilyCache();
+    EXPECT_EQ(ForkPlayerOwnsSpeciesFamily(SPECIES_MIGHTYENA), TRUE);
+    ForkPrepareWildEncounter();
+    CreateMon(&gParties[B_TRAINER_OPPONENT_A][0], SPECIES_MIGHTYENA, 3, 0x12345678, OTID_STRUCT_PLAYER_ID);
+    EXPECT_EQ(GetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_IS_SHINY), FALSE);
+    ForkResolveWildEncounter();
+    EXPECT_EQ(ForkCanCatchCurrentEncounter(), TRUE);
+    ForkFinalizeWildEncounter();
+
+    gSaveBlock1Ptr->location.mapGroup = MAP_GROUP(MAP_SAFARI_ZONE_NORTH);
+    gSaveBlock1Ptr->location.mapNum = MAP_NUM(MAP_SAFARI_ZONE_NORTH);
+    ZeroEnemyPartyMons();
+    ForkPrepareWildEncounter();
+    CreateMon(&gParties[B_TRAINER_OPPONENT_A][0], SPECIES_PIKACHU, 3, 0, OTID_STRUCT_PLAYER_ID);
+    ForkResolveWildEncounter();
+    EXPECT_EQ(ForkCanCatchCurrentEncounter(), FALSE);
+
+    ForkFinalizeWildEncounter();
+    ResetSafariZoneFlag();
+}
+
 TEST("Fork rules do not spend an area encounter before Professor Birch gives Poké Balls")
 {
     ZeroEnemyPartyMons();
@@ -253,9 +313,9 @@ TEST("Fork area encounter rule starts after Professor Birch gives Poké Balls")
     EXPECT_EQ(ForkIsAreaEncounterRuleActive(), TRUE);
 }
 
-TEST("Fork faint penalties do not start before Professor Birch gives Poké Balls")
+TEST("Fork faint penalties do not start before Professor Birch gives the Pokédex")
 {
-    ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_ON_FAINT, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, GEN_3, TRUE, FALSE);
+    ForkConfigureGameplayOptions(TRUE, FALSE, FORK_FAINT_RULE_ON_FAINT, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, GEN_3, TRUE, FALSE);
     FlagClear(FLAG_ADVENTURE_STARTED);
     CreateMon(&gParties[B_TRAINER_PLAYER][0], SPECIES_MUDKIP, 5, 0, OTID_STRUCT_PLAYER_ID);
 
@@ -269,6 +329,35 @@ TEST("Fork faint penalties do not start before Professor Birch gives Poké Balls
 
     EXPECT_EQ(GetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_SOFT_NUZLOCKE), FALSE);
     EXPECT_EQ(GetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_LEVEL), 5);
+}
+
+TEST("Fork faint penalty permanently faints without changing level")
+{
+    ForkConfigureGameplayOptions(TRUE, FALSE, FORK_FAINT_RULE_ON_FAINT, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, GEN_3, TRUE, FALSE);
+    FlagSet(FLAG_ADVENTURE_STARTED);
+    CreateMon(&gParties[B_TRAINER_PLAYER][0], SPECIES_MUDKIP, 20, 0, OTID_STRUCT_PLAYER_ID);
+
+    ForkApplySoftNuzlockeFaintPenalty(0);
+
+    EXPECT_EQ(GetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_SOFT_NUZLOCKE), TRUE);
+    EXPECT_EQ(GetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_LEVEL), 20);
+    EXPECT_EQ(GetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_HP), 0);
+
+    HealPokemon(&gParties[B_TRAINER_PLAYER][0]);
+
+    EXPECT_EQ(GetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_HP), 0);
+}
+
+TEST("Fork faint penalty works when the catch limit is disabled")
+{
+    ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_ON_FAINT, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, GEN_3, TRUE, FALSE);
+    FlagSet(FLAG_ADVENTURE_STARTED);
+    CreateMon(&gParties[B_TRAINER_PLAYER][0], SPECIES_EEVEE, 15, 0, OTID_STRUCT_PLAYER_ID);
+
+    ForkApplySoftNuzlockeFaintPenalty(0);
+
+    EXPECT_EQ(GetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_SOFT_NUZLOCKE), TRUE);
+    EXPECT_EQ(GetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_HP), 0);
 }
 
 TEST("Fork rules track one encounter per named area")

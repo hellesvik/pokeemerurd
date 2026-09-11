@@ -2,7 +2,7 @@
 
 ## When the rules begin
 
-Catch and faint rules begin when the player receives the first Poké Balls.
+Catch and faint rules begin when Birch gives the Pokédex.
 The opening rival fight and the first wild Pokémon therefore cannot cause an
 immediate Nuzlite/Nuzlocke wipe.
 
@@ -13,6 +13,8 @@ Both modes lock battle style to **Set**.
 With Catch Limit enabled, each named area provides one normal wild encounter.
 The first eligible encounter is the encounter for that area. The existing
 evolutionary-family duplicate clause applies, and shiny Pokémon are exempt.
+The entire Safari Zone instead shares one strict limit: only its first wild
+encounter can be caught, and an escape still spends that encounter.
 
 Gift Pokémon, trades, eggs, fossils, and static encounters are separate game
 events; their treatment is described in the [randomizer guide](./randomizers.md).
@@ -22,8 +24,8 @@ events; their treatment is described in the [randomizer guide](./randomizers.md)
 - **NUZLOCKE — ON FAINT:** a Pokémon is marked lost as soon as it faints.
 - **NUZLITE — 1/WHITEOUT:** a whiteout marks one random party Pokémon as
   lost. Ordinary individual faints do not immediately end the run.
-- A lost Pokémon is locked to level 1 by the fork's loss system and should be
-  boxed or released according to the player's chosen challenge convention.
+- A lost Pokémon remains fainted and cannot be healed. It should be boxed or
+  released according to the player's chosen challenge convention.
 
 ## Level caps
 

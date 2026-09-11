@@ -58,9 +58,9 @@ EVs views; the top-right label identifies the view currently displayed.
 
 ## Nuzlite and Nuzlocke start
 
-Catch and faint rules become active after the player receives the first
-Poké Balls, so the opening fights cannot cause an immediate rules wipe. These
-modes also lock the battle style to Set.
+Catch and faint rules become active when Birch gives the Pokédex, so the
+opening fights cannot cause an immediate rules wipe. These modes also lock the
+battle style to Set.
 
 See [New-Game Feature Options](../configuration/new_game_options.md) for the
 available presets.

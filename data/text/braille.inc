@@ -53,21 +53,20 @@ SealedChamber_OuterRoom_Braille_DigHere:
 SealedChamber_InnerRoom_Braille_RedEmerald:
 	brailleformat 0, 0, 29, 19, 3, 3
 	.braille "SEVEN COLORS.\n"
-	.braille "RED HIDES IN\n"
+	.braille "RED HIDES BELOW\n"
 	.braille "PETALBURG WOODS.\n"
 	.braille "BRING THEM ALL.$"
 
 SealedChamber_InnerRoom_Braille_BlueEmerald:
 	brailleformat 2, 0, 26, 19, 5, 3
 	.braille "BLUE RESTS\n"
-	.braille "ON THE BEACH\n"
-	.braille "WEST OF DEWFORD.$"
+	.braille "ON THE GRANITE\n"
+	.braille "BEACH.$"
 
 SealedChamber_InnerRoom_Braille_GreenEmerald:
 	brailleformat 7, 2, 23, 17, 10, 5
 	.braille "GREEN HIDES\n"
-	.braille "IN THE DESERT\n"
-	.braille "WHERE ASH FALLS.$"
+	.braille "IN THE DESERT.$"
 
 SealedChamber_InnerRoom_Braille_YellowEmerald:
 	brailleformat 3, 0, 25, 19, 6, 3
@@ -78,9 +77,8 @@ SealedChamber_InnerRoom_Braille_YellowEmerald:
 SealedChamber_InnerRoom_Braille_PurpleEmerald:
 	brailleformat 5, 6, 25, 13, 8, 9
 	.braille "PURPLE WAITS\n"
-	.braille "WHERE THE\n"
-	.braille "CYCLING ROAD\n"
-	.braille "MEETS THE ROUTE.$"
+	.braille "BELOW FIELDS\n"
+	.braille "OF FLOWERS.$"
 
 SealedChamber_InnerRoom_Braille_WhiteEmerald:
 	brailleformat 6, 0, 24, 19, 9, 3
@@ -91,8 +89,8 @@ SealedChamber_InnerRoom_Braille_WhiteEmerald:
 SealedChamber_InnerRoom_Braille_BlackEmerald:
 	brailleformat 3, 2, 27, 17, 6, 5
 	.braille "BLACK RESTS\n"
-	.braille "AT THE RIVER'S\n"
-	.braille "START.$"
+	.braille "AT THE START\n"
+	.braille "OF THE RIVER.$"
 
 DesertRuins_Braille_UseRockSmash:
 	brailleformat 1, 0, 27, 19, 4, 3

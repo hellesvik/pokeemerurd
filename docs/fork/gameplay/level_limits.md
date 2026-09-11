@@ -16,4 +16,6 @@ The active cap is chosen from the first uncleared story battle milestone in `src
 
 The ladder currently starts at Roxanne, advances through the selected rival, gym, and required villain milestones, then continues through Tate & Liza, the remaining villain battles, Juan, Wally's Victory Road battle, and Steven. Wally in Mauville, Tabitha at Mt. Chimney, Shelly at the Weather Institute and Seafloor Cavern, Matt, and the Elite Four do not create cap milestones. The cap never decreases: a later milestone that would be lower than the previous cap is raised to the previous cap plus one.
 
+The final Pokémon League cap is **Lv. 80**. It becomes the active cap after the Victory Road Wally milestone and remains in force through Sidney, Phoebe, Glacia, Drake, and Champion Steven.
+
 Because the rule is tied to story-battle milestones, the cap can be higher than the defeated battle's highest-level Pokémon. Overleveled Pokemon are not reduced in level; they just stop gaining EXP until the active cap rises again or Steven is cleared.

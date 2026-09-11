@@ -39,7 +39,8 @@ species.
 Static encounters use the current map's route/place BST range. Kecleon,
 Electrode, and Voltorb therefore follow the same range as the route where they
 appear. The Regi trio, Groudon, Kyogre, and Rayquaza instead use a 550–600 BST
-range and may resolve to Legendary or Mythical species.
+range and may resolve to any enabled species in that range, including special
+species.
 
 ## Biomes
 

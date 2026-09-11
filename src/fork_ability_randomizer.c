@@ -70,6 +70,33 @@ static enum Species GetFamilyRoot(enum Species species)
     return root;
 }
 
+static u16 GetSpeciesBst(enum Species species)
+{
+    const struct SpeciesInfo *speciesInfo = &gSpeciesInfo[SanitizeSpeciesId(species)];
+
+    return speciesInfo->baseHP
+         + speciesInfo->baseAttack
+         + speciesInfo->baseDefense
+         + speciesInfo->baseSpeed
+         + speciesInfo->baseSpAttack
+         + speciesInfo->baseSpDefense;
+}
+
+static bool8 IsSpecialStaticAbilitySpecies(enum Species species)
+{
+    const struct SpeciesInfo *speciesInfo = &gSpeciesInfo[SanitizeSpeciesId(species)];
+    u16 bst = GetSpeciesBst(species);
+
+    return speciesInfo->natDexNum <= GetForkMaxNationalDex()
+        && bst >= 550
+        && bst <= 600
+        && (speciesInfo->isRestrictedLegendary
+         || speciesInfo->isSubLegendary
+         || speciesInfo->isMythical
+         || speciesInfo->isUltraBeast
+         || speciesInfo->isParadox);
+}
+
 static bool8 IsEligibleAbilitySpecies(enum Species species)
 {
     const struct SpeciesInfo *speciesInfo;
@@ -79,12 +106,13 @@ static bool8 IsEligibleAbilitySpecies(enum Species species)
 
     speciesInfo = &gSpeciesInfo[SanitizeSpeciesId(species)];
 
-    return speciesInfo->natDexNum <= GetForkMaxNationalDex()
-        && !speciesInfo->isRestrictedLegendary
-        && !speciesInfo->isSubLegendary
-        && !speciesInfo->isMythical
-        && !speciesInfo->isUltraBeast
-        && !speciesInfo->isParadox;
+    return (speciesInfo->natDexNum <= GetForkMaxNationalDex()
+         && !speciesInfo->isRestrictedLegendary
+         && !speciesInfo->isSubLegendary
+         && !speciesInfo->isMythical
+         && !speciesInfo->isUltraBeast
+         && !speciesInfo->isParadox)
+        || IsSpecialStaticAbilitySpecies(species);
 }
 
 static bool8 SpeciesHasExcludedAbility(enum Species species)

@@ -2,9 +2,6 @@
 
 These pages describe rules that directly affect a playthrough.
 
-The Sealed Chamber unlock no longer requires Wailord and Relicanth in the
-player's party.
-
 - [Story battles](./story_battles.md)
 - [Boss battle reference](./boss_battles.md)
 - [One Catch Per Area](./one_catch_per_area.md)

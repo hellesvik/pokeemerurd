@@ -31,6 +31,14 @@ TEST("Shedinja keeps Wonder Guard")
     EXPECT_EQ(GetForkRandomizedAbility(SPECIES_SHEDINJA), ABILITY_WONDER_GUARD);
 }
 
+TEST("Special-static legendary families receive randomized abilities")
+{
+    gSaveBlock3Ptr->forkItemRandomizerSeed = 0xA11B17E5;
+
+    EXPECT_EQ(IsForkAbilityRandomizedSpecies(SPECIES_LATIAS), TRUE);
+    EXPECT_NE(GetForkRandomizedAbility(SPECIES_LATIAS), ABILITY_LEVITATE);
+}
+
 TEST("Wonder Guard is not assigned by the ability randomizer")
 {
     gSaveBlock3Ptr->forkItemRandomizerSeed = 0xA11B17E5;

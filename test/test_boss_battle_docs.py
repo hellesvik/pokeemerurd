@@ -4,6 +4,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DOC = ROOT / "docs/fork/gameplay/boss_battles.md"
+TRAINERS = ROOT / "src/data/trainers.party"
+CAPS = ROOT / "src/caps.c"
 
 
 class BossBattleDocsTests(unittest.TestCase):
@@ -67,6 +69,24 @@ class BossBattleDocsTests(unittest.TestCase):
             for row in rows:
                 with self.subTest(heading=heading, row=row):
                     self.assertIn(row, section)
+
+    def test_league_level_progression_matches_the_game_design(self):
+        trainer_data = TRAINERS.read_text()
+        expected = {
+            "TRAINER_SIDNEY": [74, 75, 76, 77, 78, 79],
+            "TRAINER_PHOEBE": [76, 76, 76, 77, 78, 79],
+            "TRAINER_GLACIA": [77, 77, 77, 77, 77, 79],
+            "TRAINER_DRAKE": [78, 78, 78, 78, 79, 79],
+            "TRAINER_WALLACE": [79, 79, 79, 79, 79, 80],
+        }
+        for trainer, levels in expected.items():
+            start = trainer_data.index(f"=== {trainer} ===")
+            end = trainer_data.find("\n=== TRAINER_", start + 4)
+            section = trainer_data[start:end if end >= 0 else None]
+            actual = [int(line.removeprefix("Level: ")) for line in section.splitlines() if line.startswith("Level: ")]
+            self.assertEqual(actual, levels, trainer)
+
+        self.assertIn("{ 80, sCapWallace },", CAPS.read_text())
 
 
 if __name__ == "__main__":

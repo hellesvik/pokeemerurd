@@ -15,7 +15,7 @@ The first row controls the preset for the remaining rules:
 - **CUSTOM**: Allows each remaining rule to be changed independently.
 
 NUZLITE and NUZLOCKE lock the battle style to Set. Their catch and faint
-rules begin after the first Poké Balls are received.
+rules begin when Birch gives the Pokédex.
 
 When Mode is NUZLITE, NORMAL, or NUZLOCKE, the other rows remain visible but
 are locked. Choose CUSTOM before changing them.
@@ -57,10 +57,10 @@ The default is **ON**, preserving the fork's current behavior.
 
 ## Faint Rule
 
-- **1/WHITEOUT**: A whiteout marks one random party Pokémon as lost and locks
-  it to level 1.
-- **ON FAINT**: Each player Pokémon that faints is marked as lost and locked
-  to level 1 immediately.
+- **1/WHITEOUT**: A whiteout marks one random party Pokémon as lost. Lost
+  Pokémon remain fainted and cannot be healed.
+- **ON FAINT**: Each player Pokémon that faints is marked as lost immediately.
+  Lost Pokémon remain fainted and cannot be healed.
 - **OFF**: Fainting and whiteouts do not mark Pokémon as lost.
 
 NUZLITE defaults to **1/WHITEOUT**. NORMAL defaults to **OFF**. The rule can

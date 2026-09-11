@@ -3621,8 +3621,6 @@ static void Cmd_tryfaintmon(void)
             }
 
             SetValuesOnFaint(battler);
-            if (GetBattlerSide(battler) == B_SIDE_PLAYER)
-                ForkApplySoftNuzlockeFaintPenalty(gBattlerPartyIndexes[battler]);
             BattleScriptPush(cmd->nextInstr);
             gBattlescriptCurrInstr = BattleScript_FaintBattler;
         }
@@ -11233,7 +11231,11 @@ void BS_ItemRestoreHP(void)
     u16 maxHP = GetMonData(&party[gBattleStruct->itemPartyIndex[gBattlerAttacker]], MON_DATA_MAX_HP);
     gBattleCommunication[MULTIUSE_STATE] = 0;
 
-    if (hp == maxHP)
+    if (ForkIsSoftNuzlockeMon(&party[gBattleStruct->itemPartyIndex[gBattlerAttacker]]))
+    {
+        gBattlescriptCurrInstr = cmd->alreadyMaxHpInstr;
+    }
+    else if (hp == maxHP)
     {
         gBattlescriptCurrInstr = cmd->alreadyMaxHpInstr;
     }

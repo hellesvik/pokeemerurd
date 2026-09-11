@@ -4,4 +4,9 @@ This fork enforces one normal encounter per named area. Named areas use the regi
 
 The first non-shiny wild encounter that is not covered by dupes clause spends the area's encounter when the battle ends, whether or not it is caught. Dupes are checked by evolutionary family across party, boxes, daycare, and caught Pokedex data, and they do not spend the area. Shiny encounters are always catchable and never blocked by a spent area.
 
+The Safari Zone is one shared strict encounter area. Its first wild encounter
+is the only catchable encounter for the entire zone and spends the limit when
+the battle ends, including when it escapes or the player runs. The duplicate
+and shiny exceptions do not grant another Safari Zone encounter.
+
 Egg hatching also respects the area rule. If an egg is ready to hatch in an area that has already spent its encounter, the hatch is deferred until you enter an unused area.

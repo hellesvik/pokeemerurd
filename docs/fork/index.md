@@ -37,6 +37,15 @@ documented in the [reference index](./reference/index.md).
 
 ### 2026-09-11
 
+- Raised the Pokémon League level cap to 80 and updated every Elite Four and
+  Champion team to the new Lv. 74–80 progression.
+- The entire Safari Zone now shares one strict catch limit. Its first wild
+  encounter spends the limit even if it escapes or the player runs.
+- Nuzlite and Nuzlocke rules now start when Birch gives the Pokédex. A
+  Pokémon lost under the ON FAINT rule remains fainted and cannot be healed.
+- Fixed ordinary battle knockouts bypassing the ON FAINT loss rule.
+- Special-static-pool Pokémon (550–600 BST) now both contribute their normal
+  Abilities to the ability pool and receive seeded randomized Abilities.
 - Lilycove Department Store 4F now sells eight seeded randomized TMs. Each
   listing can be purchased once per save and then shows as sold out.
 - Overworld movement now runs by default. Hold B to walk where running is
@@ -107,7 +116,5 @@ documented in the [reference index](./reference/index.md).
 
 ### 2026-08-22
 
-- Removed the Wailord and Relicanth party requirement from the Sealed Chamber
-  unlock.
 - Changed the Mauville Game Corner evolution-item stock to stones and the
   Linking Cord instead of randomized items.

@@ -27,12 +27,6 @@ Boss teams are allowed to use custom abilities even when the ability is not
 normally legal for that species. This is intentional and is part of the
 challenge design.
 
-## What is no longer required for the Sealed Chamber?
-
-Relicanth and Wailord are no longer required to unlock the chamber. The fork
-uses seven colored Regi Emeralds instead. Their hidden locations are not
-listed in the public guide.
-
 ## Can I use Fly immediately?
 
 In normal play, Fly follows the fork's configured badge and field rules. The

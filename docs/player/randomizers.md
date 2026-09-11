@@ -13,23 +13,25 @@ highest ordinary route range tops out at 550, while Victory Road uses
 The selected maximum generation limits randomized species. Eggs, gifts,
 fossils, and static encounters are randomized too, with eggs using BST
 100–550. Legendary static encounters such as the Regis, Groudon, Kyogre, and
-Rayquaza use BST 550–600 and may include legendary or mythical species.
+Rayquaza use BST 550–600 and may include any enabled species in that range,
+including special species.
 
 Kecleon, Voltorb, and Electrode use the range for the area where they are
 encountered.
 
 ## Item randomizer
 
-Item Balls, hidden items, and gym leader item gifts can be randomized. Hidden
-items used for the seven Regi Emeralds are excluded from this randomizer.
+Item Balls, hidden items, and gym leader item gifts can be randomized.
 Mauville Game Corner sells evolution stones and the Linking Cord instead of
 randomized stock.
 
 ## Ability randomizer
 
-Eligible evolutionary families receive one deterministic ability. Legendary,
-mythical, Ultra Beast, Paradox, and form-mechanic families are restricted as
-described in the technical [Ability Randomizer documentation](../fork/randomizers/ability_randomizer.md).
+Eligible evolutionary families receive one deterministic ability. Special
+Pokémon in the 550–600 BST legendary-static pool also receive randomized
+Abilities and contribute their normal Abilities to that pool; other Legendary,
+Mythical, Ultra Beast, Paradox, and form-mechanic families remain restricted
+as described in the technical [Ability Randomizer documentation](../fork/randomizers/ability_randomizer.md).
 
 Shedinja always keeps Wonder Guard; the Nincada family is protected from
 ability randomization. Wonder Guard may still appear on other eligible

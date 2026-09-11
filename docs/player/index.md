@@ -22,7 +22,7 @@ options do, what rules are active, and what to expect from important battles.
 ## Quick facts
 
 - The game is based on Pokémon Emerald and uses the Hoenn story progression.
-- The first Poké Balls activate catch and faint rules in NUZLITE and
+- Birch giving the Pokédex activates catch and faint rules in NUZLITE and
   NUZLOCKE, so the opening rival fight cannot end a run.
 - Those two modes force battle style to **Set**.
 - Running Shoes are available from the beginning.

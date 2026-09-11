@@ -16,11 +16,13 @@ family, including ordinary forms, uses the same randomized Ability. For
 example, if Charmander receives Levitate, Charmeleon and Charizard also have
 Levitate.
 
-The candidate Ability pool is built from the non-Legendary, non-Mythical
-Pokémon available within `FORK_MAX_GEN_MONS`. An Ability cannot be assigned
-unless a qualifying Pokémon can supply it. Legendary, Mythical, Ultra Beast,
-and Paradox Pokémon keep their normal Abilities and do not contribute an
-Ability to the pool.
+The candidate Ability pool is built from ordinary eligible Pokémon available
+within the selected maximum generation. It also includes Legendary, Mythical,
+Ultra Beast, and Paradox Pokémon that qualify for the special static-encounter
+pool (550–600 BST). Those qualifying special Pokémon receive deterministic
+randomized Abilities and their normal Abilities contribute to the pool.
+Other Legendary, Mythical, Ultra Beast, and Paradox Pokémon keep their normal
+Abilities and do not contribute an Ability to the pool.
 
 All ordinary eligible Abilities can be randomized. This deliberately includes
 Truant, Arena Trap, Shadow Tag, Huge Power, Pure Power, and Pickup. Wonder

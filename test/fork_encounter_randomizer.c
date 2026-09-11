@@ -93,30 +93,43 @@ TEST("Biome encounter randomizer avoids duplicate species within one land table"
             EXPECT_NE(species[i], species[j]);
 }
 
-TEST("Biome encounter randomizer only fills three non-fishing slots")
+TEST("Biome encounter randomizer maps every land slot onto three randomized species")
 {
-    enum Species third;
-    enum Species fourth;
+    enum Species species[LAND_WILD_COUNT];
+    u32 i;
 
     gSaveBlock3Ptr->forkEncounterRandomizerSeed = 0x0BADF00D;
-    third = ResolveForkRandomizedEncounterSpecies(MAP_GROUP(MAP_ROUTE101), MAP_NUM(MAP_ROUTE101), WILD_AREA_LAND, 2, SPECIES_ZIGZAGOON);
-    fourth = ResolveForkRandomizedEncounterSpecies(MAP_GROUP(MAP_ROUTE101), MAP_NUM(MAP_ROUTE101), WILD_AREA_LAND, 3, SPECIES_ZIGZAGOON);
+    for (i = 0; i < ARRAY_COUNT(species); i++)
+        species[i] = ResolveForkRandomizedEncounterSpecies(MAP_GROUP(MAP_ROUTE101), MAP_NUM(MAP_ROUTE101), WILD_AREA_LAND, i, SPECIES_ZIGZAGOON);
 
-    EXPECT_NE(third, SPECIES_ZIGZAGOON);
-    EXPECT_EQ(fourth, SPECIES_ZIGZAGOON);
+    EXPECT_NE(species[0], species[1]);
+    EXPECT_NE(species[0], species[2]);
+    EXPECT_NE(species[1], species[2]);
+    for (i = 3; i < ARRAY_COUNT(species); i++)
+        EXPECT_EQ(species[i], species[i % 3]);
 }
 
-TEST("Biome encounter randomizer only fills two fishing slots")
+TEST("Biome encounter randomizer gives each fishing rod two randomized species")
 {
-    enum Species second;
-    enum Species third;
+    enum Species species[FISH_WILD_COUNT];
+    const u8 representativeSlots[] = {0, 1, 2, 3, 5, 6};
+    u32 i;
+    u32 j;
 
     gSaveBlock3Ptr->forkEncounterRandomizerSeed = 0x0BADF00D;
-    second = ResolveForkRandomizedEncounterSpecies(MAP_GROUP(MAP_ROUTE118), MAP_NUM(MAP_ROUTE118), WILD_AREA_FISHING, 1, SPECIES_TENTACOOL);
-    third = ResolveForkRandomizedEncounterSpecies(MAP_GROUP(MAP_ROUTE118), MAP_NUM(MAP_ROUTE118), WILD_AREA_FISHING, 2, SPECIES_TENTACOOL);
+    for (i = 0; i < ARRAY_COUNT(species); i++)
+        species[i] = ResolveForkRandomizedEncounterSpecies(MAP_GROUP(MAP_ROUTE118), MAP_NUM(MAP_ROUTE118), WILD_AREA_FISHING, i, SPECIES_TENTACOOL);
 
-    EXPECT_NE(second, SPECIES_TENTACOOL);
-    EXPECT_EQ(third, SPECIES_TENTACOOL);
+    EXPECT_NE(species[0], species[1]);
+    EXPECT_NE(species[2], species[3]);
+    EXPECT_EQ(species[2], species[4]);
+    EXPECT_NE(species[5], species[6]);
+    EXPECT_EQ(species[5], species[7]);
+    EXPECT_EQ(species[6], species[8]);
+    EXPECT_EQ(species[5], species[9]);
+    for (i = 0; i < ARRAY_COUNT(representativeSlots); i++)
+        for (j = i + 1; j < ARRAY_COUNT(representativeSlots); j++)
+            EXPECT_NE(species[representativeSlots[i]], species[representativeSlots[j]]);
 }
 
 TEST("Area encounter state is stored in the fork save block")

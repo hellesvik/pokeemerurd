@@ -239,19 +239,36 @@ u16 GetForkEncounterRandomizerBstMin(u8 mapGroup, u8 mapNum, enum WildPokemonAre
     return assignment == NULL ? 0 : assignment->minBst;
 }
 
+static u8 GetRandomizedEncounterSlot(enum WildPokemonArea area, u8 slot)
+{
+    if (area != WILD_AREA_FISHING)
+        return slot % FORK_LAND_RANDOMIZED_SLOT_COUNT;
+
+    if (slot < 2) // Old Rod: slots 0-1
+        return slot;
+    if (slot < 5) // Good Rod: slots 2-4
+        return 2 + (slot - 2) % FORK_FISHING_SPECIES_PER_ROD;
+    // Super Rod: slots 5-9
+    return 4 + (slot - 5) % FORK_FISHING_SPECIES_PER_ROD;
+}
+
 enum Species ResolveForkRandomizedEncounterSpecies(u8 mapGroup, u8 mapNum, enum WildPokemonArea area, u8 slot, enum Species fallback)
 {
     if (!ForkAreRandomEncountersEnabled())
         return fallback;
     const struct ForkEncounterAssignment *assignment = FindAssignment(mapGroup, mapNum, area);
     enum Species selected[LAND_WILD_COUNT];
+    u8 randomizedSlot;
     u8 i;
 
-    if (assignment == NULL || slot >= assignment->slots)
+    if (assignment == NULL)
         return fallback;
-    for (i = 0; i <= slot; i++)
+    randomizedSlot = GetRandomizedEncounterSlot(area, slot);
+    if (randomizedSlot >= assignment->slots)
+        return fallback;
+    for (i = 0; i <= randomizedSlot; i++)
         selected[i] = SelectEncounterSpecies(assignment, mapGroup, mapNum, area, i, i, selected, i, fallback);
-    return selected[slot];
+    return selected[randomizedSlot];
 }
 
 enum Species ResolveForkRandomizedEggSpecies(enum Species fallback)

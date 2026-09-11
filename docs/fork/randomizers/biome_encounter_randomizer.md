@@ -75,10 +75,10 @@ method select the candidate pool used to fill that table:
 
 | Method | Intended flavor |
 | --- | --- |
-| Land | A 12-slot table generated separately for each route/map. |
-| Surf | A 5-slot table generated separately for each route/map with surf encounters. |
-| Fishing | A 10-slot table generated separately for each route/map with fishing encounters. |
-| Rock Smash | A separately randomized rock encounter table. |
+| Land | Three randomized species generated separately for each route/map; every weighted land slot maps to one of them. |
+| Surf | Three randomized species generated separately for each route/map with surf encounters. |
+| Fishing | Two randomized species per rod, for six across Old, Good, and Super Rod on each route/map. |
+| Rock Smash | Three randomized species generated separately for each route/map with Rock Smash encounters. |
 
 Surf and fishing must not use the land pool. A map's biome determines the
 appropriate candidates for all of its encounter methods; for example, coastal
@@ -226,7 +226,10 @@ rates, and available methods. The randomizer replaces species entries only.
   related maps draw from their appropriate separate pools.
 - Every route/map receives its own per-save table for each encounter method it
   supports.
-- Land, surf, and fishing tables use 12, 5, and 10 species slots respectively.
+- Land, surf, and Rock Smash expose three randomized species per map and
+  method. Every weighted slot maps onto that method's three-species pool.
+- Each fishing rod exposes two randomized species per map. The Old, Good, and
+  Super Rod pools are distinct, for six randomized fishing species in total.
 - The same biome may overlap across routes, but routes are not required to have
   identical species tables.
 - A save reload produces the same encounter tables.

@@ -18,7 +18,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SPECIES_INFO_DIR = REPO_ROOT / "src/data/pokemon/species_info"
-OUTPUT_CSV = REPO_ROOT / "docs/fork/biome_species_catalog.csv"
+OUTPUT_CSV = REPO_ROOT / "docs/fork/reference/biome_species_catalog.csv"
 
 
 # The species data records Mythicals, Ultra Beasts and Paradox Pokémon with
@@ -43,6 +43,7 @@ LEGENDARY_SPECIES = {
 # table curation a defined, auditable candidate set without claiming that all
 # listed species will occupy every route or every encounter method.
 BIOME_ORDER = (
+    "City",
     "Grassland",
     "Forest",
     "Mountain",
@@ -57,24 +58,24 @@ BIOME_ORDER = (
 )
 
 TYPE_BIOMES = {
-    "NORMAL": ("Grassland", "Forest", "Mountain"),
+    "NORMAL": ("City", "Grassland", "Forest", "Mountain"),
     "FIRE": ("Volcanic", "Mountain", "Desert"),
-    "WATER": ("Freshwater", "Ocean", "Beach and Coast", "Marsh and Swamp"),
-    "ELECTRIC": ("Grassland", "Mountain"),
+    "WATER": ("City", "Freshwater", "Ocean", "Beach and Coast", "Marsh and Swamp"),
+    "ELECTRIC": ("City", "Grassland", "Mountain"),
     "GRASS": ("Grassland", "Forest", "Marsh and Swamp"),
     "ICE": ("Snow and Ice", "Mountain"),
-    "FIGHTING": ("Mountain", "Grassland"),
-    "POISON": ("Marsh and Swamp", "Cave", "Forest"),
+    "FIGHTING": ("City", "Mountain", "Grassland"),
+    "POISON": ("City", "Marsh and Swamp", "Cave", "Forest"),
     "GROUND": ("Desert", "Mountain", "Cave"),
-    "FLYING": ("Grassland", "Forest", "Mountain", "Beach and Coast"),
-    "PSYCHIC": ("Forest", "Mountain", "Cave"),
-    "BUG": ("Grassland", "Forest", "Marsh and Swamp"),
+    "FLYING": ("City", "Grassland", "Forest", "Mountain", "Beach and Coast"),
+    "PSYCHIC": ("City", "Forest", "Mountain", "Cave"),
+    "BUG": ("City", "Grassland", "Forest", "Marsh and Swamp"),
     "ROCK": ("Cave", "Mountain", "Desert", "Beach and Coast"),
-    "GHOST": ("Cave", "Forest", "Marsh and Swamp"),
+    "GHOST": ("City", "Cave", "Forest", "Marsh and Swamp"),
     "DRAGON": ("Mountain", "Cave", "Ocean"),
-    "DARK": ("Cave", "Forest", "Marsh and Swamp"),
-    "STEEL": ("Cave", "Mountain"),
-    "FAIRY": ("Forest", "Grassland"),
+    "DARK": ("City", "Cave", "Forest", "Marsh and Swamp"),
+    "STEEL": ("City", "Cave", "Mountain"),
+    "FAIRY": ("City", "Forest", "Grassland"),
 }
 
 
@@ -180,7 +181,7 @@ def write_csv(species: list[Species]) -> int:
     if uncovered:
         raise RuntimeError(f"Eligible species without a biome: {uncovered}")
     with OUTPUT_CSV.open("w", newline="") as output:
-        writer = csv.writer(output)
+        writer = csv.writer(output, lineterminator="\n")
         writer.writerow(("biome", "species_constant", "species_name", "national_dex", "types"))
         for biome in BIOME_ORDER:
             for entry in sorted(entries_by_biome[biome], key=lambda entry: entry.name.casefold()):

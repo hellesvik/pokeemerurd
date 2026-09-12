@@ -46,6 +46,7 @@ species.
 
 Each ordinary encounter table is assigned a biome. The initial biome set is:
 
+- City
 - Grassland
 - Forest
 - Cave
@@ -63,10 +64,16 @@ The assignment is explicit map/method data in
 generator uses map-name rules only to create that checked-in assignment file;
 the game uses the generated explicit assignments, never a runtime name guess.
 
-Biomes provide a *theme*, not a hard Pokédex type restriction. For example,
-Forest can contain Bug-, Grass-, Flying-, Poison-, and Normal-type Pokémon;
-Mountain can contain Rock-, Ground-, Fighting-, Flying-, and Dragon-adjacent
+Biomes provide a *theme*, not a hard Pokédex type restriction. City includes
+Pokémon associated with urban land and waterways, including Normal, Electric,
+Water, Fighting, Poison, Flying, Psychic, Bug, Ghost, Dark, Steel, and Fairy
+types. Forest can contain Bug-, Grass-, Flying-, Poison-, and Normal-type
 Pokémon. A Pokémon may belong to more than one biome.
+
+Every encounter method in a town or city uses the City biome. This includes
+land, surfing, fishing, and Rock Smash tables where present. The normal
+method-compatibility filter still requires Water types for surfing and fishing,
+and Rock, Ground, or Steel types for Rock Smash.
 
 ## Encounter methods
 
@@ -124,33 +131,35 @@ increase it, and late-game routes reach the 450–550 range. Victory Road is the
 intentional exception, using 490–560. The values are reviewed in
 [`biome_encounter_assignments.csv`](../reference/biome_encounter_assignments.csv).
 
-### BST limits by route and place
+### BST limits
 
-The following is the route-facing summary of the current limits. A limit applies
-to every encounter method configured for that route or place (land, water,
-fishing, or Rock Smash). Areas with multiple floors are grouped together where
-they share the same limit.
+The following table includes every BST-gated random encounter pool. A
+route/place limit applies to each configured encounter method there (land,
+water, fishing, or Rock Smash), and to ordinary static encounters resolved on
+that map. Areas with multiple floors are grouped where they share a limit.
 
-| BST range | Routes and places |
+| BST range | Encounters, routes, and places |
 | ---: | --- |
-| 150–250 | Route 101, Petalburg City |
+| 100–550 | Hatched Eggs |
+| 150–250 | Route 101, Littleroot Town, Oldale Town, Petalburg City |
 | 160–260 | Route 102 |
 | 170–270 | Route 103 |
-| 180–280 | Route 104, Petalburg Woods |
+| 180–280 | Route 104, Petalburg Woods, Rustboro City |
 | 190–290 | Route 105 |
 | 200–300 | Route 106, Dewford Town |
 | 210–310 | Routes 107–109 |
 | 220–320 | Granite Cave |
 | 230–330 | Route 110 |
 | 240–340 | Route 111 |
-| 250–350 | Route 112, Fiery Path, Jagged Pass |
+| 250–350 | Route 112, Fiery Path, Jagged Pass, Lavaridge Town |
 | 260–360 | Route 113, Mirage Tower, Desert Underpass |
-| 270–370 | Route 114, Rusturf Tunnel |
+| 270–370 | Route 114, Rusturf Tunnel, Fallarbor Town |
+| 275–325 | Birch's three Route 101 starter choices |
 | 280–380 | Route 115 |
 | 290–390 | Route 116 |
-| 300–400 | Route 117, New Mauville |
+| 300–400 | Route 117, New Mauville, Mauville City, Verdanturf Town |
 | 310–410 | Route 118 |
-| 320–420 | Route 119, Safari Zone |
+| 320–420 | Route 119, Safari Zone, Fortree City |
 | 330–430 | Route 120, Mt. Pyre |
 | 340–440 | Routes 121–122 |
 | 350–450 | Route 123, Lilycove City |
@@ -165,20 +174,14 @@ they share the same limit.
 | 440–540 | Route 130 |
 | 450–550 | Routes 131–134, Cave of Origin, Ever Grande City, Sky Pillar, Sootopolis City, Artisan Cave, Altering Cave |
 | 490–560 | Victory Road |
+| 550–600 | Regirock, Regice, Registeel, Groudon, Kyogre, and Rayquaza static encounters; special species are allowed |
 
 The bounds are inclusive. The exact map/method rows are defined in the CSV
 linked above.
 
-The following towns and cities now also have a small natural grass patch, so
-they have land encounters in addition to any water or fishing encounters they
-already had:
-
-- Littleroot Town and Oldale Town: 150–250 BST
-- Rustboro City: 180–280 BST
-- Lavaridge Town: 250–350 BST
-- Fallarbor Town: 270–370 BST
-- Mauville City and Verdanturf Town: 300–400 BST
-- Fortree City: 320–420 BST
+The towns and cities listed in the table have natural grass patches, so they
+have land encounters in addition to any water or fishing encounters already
+present.
 
 The map's ordinary encounter level rules remain in effect. BST gating controls
 which species may be selected; it does not raise their level.

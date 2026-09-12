@@ -8,6 +8,7 @@
 
 enum ForkEncounterBiome
 {
+    FORK_BIOME_CITY,
     FORK_BIOME_GRASSL,
     FORK_BIOME_FOREST,
     FORK_BIOME_MOUNTAIN,
@@ -60,6 +61,7 @@ static const enum Species *GetBiomePool(u8 biome, u16 *count)
 {
     switch (biome)
     {
+    case FORK_BIOME_CITY: *count = ARRAY_COUNT(sForkBiomePool_CITY); return sForkBiomePool_CITY;
     case FORK_BIOME_GRASSL: *count = ARRAY_COUNT(sForkBiomePool_GRASSL); return sForkBiomePool_GRASSL;
     case FORK_BIOME_FOREST: *count = ARRAY_COUNT(sForkBiomePool_FOREST); return sForkBiomePool_FOREST;
     case FORK_BIOME_MOUNTAIN: *count = ARRAY_COUNT(sForkBiomePool_MOUNTAIN); return sForkBiomePool_MOUNTAIN;

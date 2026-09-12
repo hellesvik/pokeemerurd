@@ -79,6 +79,7 @@ static bool8 IsEligibleStarterSpecies(enum Species species)
 {
     return IsEligibleGiftSpecies(species)
         && species == GET_BASE_SPECIES_ID(species)
+        && GetSpeciesBaseStatTotal(species) >= 275
         && GetSpeciesBaseStatTotal(species) <= 325;
 }
 

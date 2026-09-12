@@ -10,35 +10,40 @@ Each area has its own gradually increasing BST range; areas may overlap. The
 highest ordinary route range tops out at 550, while Victory Road uses
 490–560. The minimum configured range is 150.
 
+Towns and cities use a dedicated City biome for land, surfing, fishing, and
+Rock Smash encounters. Water and Rock Smash encounters still apply their usual
+type requirements.
+
 The selected maximum generation limits randomized species. Eggs, gifts,
-fossils, and static encounters are randomized too, with eggs using BST
-100–550. Legendary static encounters such as the Regis, Groudon, Kyogre, and
-Rayquaza use BST 550–600 and may include any enabled species in that range,
-including special species.
+fossils, and static encounters are randomized too. The table below includes
+every BST-gated pool. Fossil choices and Steven's postgame gift use separate
+species rules rather than a BST range.
 
-Kecleon, Voltorb, and Electrode use the range for the area where they are
-encountered.
+Ordinary static encounters such as Kecleon, Voltorb, and Electrode use the
+listed range for their current area. The bounds are inclusive.
 
-| BST range | Routes and places |
+| BST range | Encounters, routes, and places |
 | ---: | --- |
-| 150–250 | Route 101, Petalburg City |
+| 100–550 | Hatched Eggs |
+| 150–250 | Route 101, Littleroot Town, Oldale Town, Petalburg City |
 | 160–260 | Route 102 |
 | 170–270 | Route 103 |
-| 180–280 | Route 104, Petalburg Woods |
+| 180–280 | Route 104, Petalburg Woods, Rustboro City |
 | 190–290 | Route 105 |
 | 200–300 | Route 106, Dewford Town |
 | 210–310 | Routes 107–109 |
 | 220–320 | Granite Cave |
 | 230–330 | Route 110 |
 | 240–340 | Route 111 |
-| 250–350 | Route 112, Fiery Path, Jagged Pass |
+| 250–350 | Route 112, Fiery Path, Jagged Pass, Lavaridge Town |
 | 260–360 | Route 113, Mirage Tower, Desert Underpass |
-| 270–370 | Route 114, Rusturf Tunnel |
+| 270–370 | Route 114, Rusturf Tunnel, Fallarbor Town |
+| 275–325 | Birch's three Route 101 starter choices |
 | 280–380 | Route 115 |
 | 290–390 | Route 116 |
-| 300–400 | Route 117, New Mauville |
+| 300–400 | Route 117, New Mauville, Mauville City, Verdanturf Town |
 | 310–410 | Route 118 |
-| 320–420 | Route 119, Safari Zone |
+| 320–420 | Route 119, Safari Zone, Fortree City |
 | 330–430 | Route 120, Mt. Pyre |
 | 340–440 | Routes 121–122 |
 | 350–450 | Route 123, Lilycove City |
@@ -53,6 +58,7 @@ encountered.
 | 440–540 | Route 130 |
 | 450–550 | Routes 131–134, Cave of Origin, Ever Grande City, Sky Pillar, Sootopolis City, Artisan Cave, Altering Cave |
 | 490–560 | Victory Road |
+| 550–600 | Regirock, Regice, Registeel, Groudon, Kyogre, and Rayquaza static encounters; special species are allowed |
 
 ## Item randomizer
 

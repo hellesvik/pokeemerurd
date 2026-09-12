@@ -15,7 +15,7 @@ ENCOUNTERS = ROOT / "src/data/wild_encounters.json"
 OUTPUT = ROOT / "src/data/fork_biome_encounter_data.h"
 ASSIGNMENTS_CSV = ROOT / "docs/fork/reference/biome_encounter_assignments.csv"
 
-BIOMES = ("Grassland", "Forest", "Mountain", "Cave", "Desert", "Volcanic", "Snow and Ice", "Marsh and Swamp", "Freshwater", "Ocean", "Beach and Coast")
+BIOMES = ("City", "Grassland", "Forest", "Mountain", "Cave", "Desert", "Volcanic", "Snow and Ice", "Marsh and Swamp", "Freshwater", "Ocean", "Beach and Coast")
 BIOME_ENUM = {biome: "FORK_BIOME_" + biome.upper().replace(" ", "_").replace("AND", "") for biome in BIOMES}
 METHODS = {
     "land_mons": ("WILD_AREA_LAND", "FORK_LAND_RANDOMIZED_SLOT_COUNT"),
@@ -27,6 +27,8 @@ METHODS = {
 
 def biome_for(name: str, method: str) -> str:
     upper = name.upper()
+    if "_TOWN" in upper or "_CITY" in upper:
+        return "City"
     if method in ("water_mons", "fishing_mons"):
         if any(token in upper for token in ("ROUTE105", "ROUTE106", "ROUTE107", "ROUTE108", "ROUTE109", "ROUTE124", "ROUTE125", "ROUTE126", "ROUTE127", "ROUTE128", "ROUTE129", "ROUTE130", "ROUTE131", "ROUTE132", "ROUTE133", "ROUTE134", "PACIFIDLOG", "DEWFORD", "SLATEPORT", "LILYCOVE", "MOSSDEEP", "SOOTOPOLIS", "EVER_GRANDE", "SEAFLOOR", "UNDERWATER", "ABANDONED_SHIP", "MARINE_CAVE", "NAVEL_ROCK", "BIRTH_ISLAND")):
             return "Ocean"

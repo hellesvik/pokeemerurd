@@ -44,20 +44,24 @@ static bool8 IsOfficialStarterSpecies(enum Species species)
     }
 }
 
-TEST("Fork starter choices use distinct Generation 3 Pokémon at or below 325 BST")
+TEST("Fork starter choices use distinct Generation 3 Pokémon from 275 to 325 BST")
 {
     enum Species starters[3];
 
-    gSaveBlock3Ptr->forkItemRandomizerSeed = 0x12345678;
-    for (u8 i = 0; i < ARRAY_COUNT(starters); i++)
+    for (u32 seed = 1; seed <= 32; seed++)
     {
-        starters[i] = GetForkRandomizedStarterSpecies(i);
-        EXPECT_LE((u16)gSpeciesInfo[starters[i]].natDexNum, NATIONAL_DEX_DEOXYS);
-        EXPECT_LE(GetSpeciesBaseStatTotal(starters[i]), 325);
+        gSaveBlock3Ptr->forkItemRandomizerSeed = seed;
+        for (u8 i = 0; i < ARRAY_COUNT(starters); i++)
+        {
+            starters[i] = GetForkRandomizedStarterSpecies(i);
+            EXPECT_LE((u16)gSpeciesInfo[starters[i]].natDexNum, NATIONAL_DEX_DEOXYS);
+            EXPECT_GE(GetSpeciesBaseStatTotal(starters[i]), 275);
+            EXPECT_LE(GetSpeciesBaseStatTotal(starters[i]), 325);
+        }
+        EXPECT_NE(starters[0], starters[1]);
+        EXPECT_NE(starters[0], starters[2]);
+        EXPECT_NE(starters[1], starters[2]);
     }
-    EXPECT_NE(starters[0], starters[1]);
-    EXPECT_NE(starters[0], starters[2]);
-    EXPECT_NE(starters[1], starters[2]);
 }
 
 TEST("Fork starter randomizer can choose non-starter Pokémon")

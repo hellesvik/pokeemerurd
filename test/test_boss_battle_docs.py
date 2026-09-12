@@ -151,6 +151,22 @@ class BossBattleDocsTests(unittest.TestCase):
         self.assertIn("HP: 91<br>ATK: 54<br>DEF: 47<br>SpA: 37<br>SpD: 43<br>Spe: 61", docs)
         self.assertNotIn("Linoone", docs)
 
+    def test_lilycove_rival_tables_show_pokemon_and_type_sprites(self):
+        docs = self.section("## Lilycove rival")
+        self.assertEqual(docs.count("| Sprite |"), 3)
+        self.assertEqual(docs.count("| Type |"), 3)
+        for pokemon in ("vibrava", "relicanth", "torkoal", "chimecho", "exploud", "sceptile", "tropius", "swampert", "blaziken"):
+            self.assertIn(f"graphics/pokemon/{pokemon}/anim_front.png", docs)
+        for pokemon_type in ("ground", "dragon", "water", "rock", "fire", "psychic", "normal", "grass", "flying", "fight"):
+            self.assertIn(f"graphics/types/{pokemon_type}.png", docs)
+
+    def test_archie_table_has_consistent_columns(self):
+        docs = self.section("## Archie")
+        rows = [line for line in docs.splitlines() if line.startswith("|")]
+        expected_pipes = rows[0].count("|")
+        for row in rows:
+            self.assertEqual(row.count("|"), expected_pipes, row)
+
     def test_summary_lists_all_double_battles(self):
         self.assertIn(
             "**Wattson, Shelly, Tate & Liza, and Maxie & Tabitha are double battles; all other teams below are single battles.**",

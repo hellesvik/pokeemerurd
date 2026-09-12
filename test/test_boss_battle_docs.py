@@ -26,7 +26,7 @@ class BossBattleDocsTests(unittest.TestCase):
             "## Route 110 rival": "| Ability | Randomized | Randomized | Randomized |",
             "## Maxie — Mt. Chimney": "| Ability | Intimidate | Reckless | Chlorophyll | Solid Rock |",
             "## Route 119 rival": "| Ability | Randomized | Randomized | Randomized |",
-            "## Lilycove rival": "| Ability | Randomized | Randomized | Randomized | Randomized |",
+            "## Lilycove rival": "| Ability | Randomized | Randomized | Randomized | Randomized | Randomized | Randomized |",
             "## Maxie — Magma Hideout": "| Ability | Sand Spit | Sand Rush | Reckless | Storm Drain | Solid Rock → Sheer Force |",
             "### Tabitha's team": "| Ability | Sand Stream | Sand Veil | Water Absorb |",
             "## Maxie & Tabitha — Mossdeep": "| Ability | Sand Veil | Sand Rush | Solid Rock → Sheer Force |",
@@ -60,9 +60,9 @@ class BossBattleDocsTests(unittest.TestCase):
                 "| Mudkip | Slugma Lv. 29<br>Pelipper Lv. 29<br>Grovyle Lv. 31 | Slugma Lv. 29<br>Lombre Lv. 29<br>Grovyle Lv. 31 |",
             ),
             "## Lilycove rival": (
-                "| Treecko | Tropius Lv. 31<br>Pelipper Lv. 32<br>Ludicolo Lv. 32<br>Combusken Lv. 34 | Tropius Lv. 31<br>Pelipper Lv. 32<br>Ludicolo Lv. 32<br>Combusken Lv. 34 |",
-                "| Torchic | Tropius Lv. 31<br>Ludicolo Lv. 32<br>Slugma Lv. 32<br>Marshtomp Lv. 34 | Tropius Lv. 31<br>Ludicolo Lv. 32<br>Slugma Lv. 32<br>Marshtomp Lv. 34 |",
-                "| Mudkip | Tropius Lv. 31<br>Slugma Lv. 32<br>Pelipper Lv. 32<br>Grovyle Lv. 34 | Tropius Lv. 31<br>Slugma Lv. 32<br>Pelipper Lv. 32<br>Grovyle Lv. 34 |",
+                "| Treecko | Vibrava Lv. 32<br>Relicanth Lv. 33<br>Tropius Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Blaziken Lv. 36 | Vibrava Lv. 32<br>Relicanth Lv. 33<br>Tropius Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Blaziken Lv. 36 |",
+                "| Torchic | Vibrava Lv. 32<br>Torkoal Lv. 33<br>Tropius Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Swampert Lv. 36 | Vibrava Lv. 32<br>Torkoal Lv. 33<br>Tropius Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Swampert Lv. 36 |",
+                "| Mudkip | Vibrava Lv. 32<br>Relicanth Lv. 33<br>Torkoal Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Sceptile Lv. 36 | Vibrava Lv. 32<br>Relicanth Lv. 33<br>Torkoal Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Sceptile Lv. 36 |",
             ),
         }
         for heading, rows in expected_rows.items():
@@ -104,6 +104,52 @@ class BossBattleDocsTests(unittest.TestCase):
         end = source.index("\n}\n", start)
         self.assertIn("case TRAINER_CLASS_RIVAL:", source[start:end])
         self.assertIn("u32 ivs = IsMaxIvTrainerClass(trainer->trainerClass)", source)
+
+    def test_lilycove_rival_parties_match_design(self):
+        trainer_data = TRAINERS.read_text()
+        expected = {
+            "MUDKIP": (
+                "Vibrava @ Soft Sand", "Relicanth @ Water Gem", "Torkoal @ White Herb",
+                "Chimecho @ Sitrus Berry", "Exploud @ Expert Belt", "Sceptile @ Grass Gem",
+                "- Fly", "- Dive", "- Shell Smash", "- Flash", "- Boomburst", "- Leaf Blade",
+            ),
+            "TORCHIC": (
+                "Vibrava @ Soft Sand", "Torkoal @ White Herb", "Tropius @ Power Herb",
+                "Chimecho @ Sitrus Berry", "Exploud @ Expert Belt", "Swampert @ Water Gem",
+                "- Rock Smash", "- Sunny Day", "- Solarbeam", "- Flash", "- Surf", "- Earthquake",
+            ),
+            "TREECKO": (
+                "Vibrava @ Soft Sand", "Relicanth @ Water Gem", "Tropius @ Power Herb",
+                "Chimecho @ Sitrus Berry", "Exploud @ Expert Belt", "Blaziken @ Fire Gem",
+                "- Rock Smash", "- Dive", "- Solarbeam", "- Flash", "- Strength", "- Blaze Kick",
+            ),
+        }
+        for rival in ("BRENDAN", "MAY"):
+            for starter, entries in expected.items():
+                trainer = f"TRAINER_{rival}_LILYCOVE_{starter}"
+                start = trainer_data.index(f"=== {trainer} ===")
+                end = trainer_data.find("\n=== TRAINER_", start + 4)
+                section = trainer_data[start:end if end >= 0 else None]
+                self.assertEqual(section.count("IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"), 6, trainer)
+                self.assertNotIn("Ability:", section, trainer)
+                for entry in entries:
+                    self.assertIn(entry, section, trainer)
+
+    def test_norman_uses_furret_with_linoones_set(self):
+        trainer_data = TRAINERS.read_text()
+        start = trainer_data.index("=== TRAINER_NORMAN_1 ===")
+        end = trainer_data.index("\n=== TRAINER_", start + 4)
+        section = trainer_data[start:end]
+        self.assertIn("Furret @ Liechi Berry", section)
+        self.assertIn("Ability: Adaptability", section)
+        for move in ("Extreme Speed", "Facade", "Shadow Claw", "Dig"):
+            self.assertIn(f"- {move}", section)
+        self.assertNotIn("Linoone", section)
+
+        docs = self.section("## Norman")
+        self.assertIn("| | Furret | Zangoose | Tauros | Bouffalant | Slaking |", docs)
+        self.assertIn("HP: 91<br>ATK: 54<br>DEF: 47<br>SpA: 37<br>SpD: 43<br>Spe: 61", docs)
+        self.assertNotIn("Linoone", docs)
 
     def test_summary_lists_all_double_battles(self):
         self.assertIn(

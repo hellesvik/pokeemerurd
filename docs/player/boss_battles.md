@@ -153,12 +153,12 @@ The detailed table below shows Brendan's Mudkip-player variant.
 ## Norman — Single battle
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_norman.png" alt="Norman" width="96"></p>
 
-| | Linoone | Zangoose | Tauros | Bouffalant | Slaking |
+| | Furret | Zangoose | Tauros | Bouffalant | Slaking |
 | --- | --- | --- | --- | --- | --- |
-| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/linoone/anim_front.png" alt="Linoone" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/zangoose/anim_front.png" alt="Zangoose" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/tauros/anim_front.png" alt="Tauros" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/bouffalant/anim_front.png" alt="Bouffalant" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/slaking/anim_front.png" alt="Slaking" width="64"> |
+| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/furret/anim_front.png" alt="Furret" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/zangoose/anim_front.png" alt="Zangoose" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/tauros/anim_front.png" alt="Tauros" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/bouffalant/anim_front.png" alt="Bouffalant" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/slaking/anim_front.png" alt="Slaking" width="64"> |
 | Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="48"> |
 | Level | 27 | 27 | 29 | 29 | 31 |
-| Stats | Total: 337<br>HP: 87<br>ATK: 51<br>DEF: 46<br>SpA: 67<br>SpD: 40<br>Spe: 46 | Total: 355<br>HP: 84<br>ATK: 75<br>DEF: 45<br>SpA: 61<br>SpD: 45<br>Spe: 45 | Total: 398<br>HP: 91<br>ATK: 77<br>DEF: 74<br>SpA: 71<br>SpD: 31<br>Spe: 54 | Total: 400<br>HP: 103<br>ATK: 77<br>DEF: 69<br>SpA: 45<br>SpD: 37<br>Spe: 69 | Total: 535<br>HP: 143<br>ATK: 113<br>DEF: 76<br>SpA: 76<br>SpD: 73<br>Spe: 54 |
+| Stats | Total: 333<br>HP: 91<br>ATK: 54<br>DEF: 47<br>SpA: 37<br>SpD: 43<br>Spe: 61 | Total: 355<br>HP: 84<br>ATK: 75<br>DEF: 45<br>SpA: 61<br>SpD: 45<br>Spe: 45 | Total: 398<br>HP: 91<br>ATK: 77<br>DEF: 74<br>SpA: 71<br>SpD: 31<br>Spe: 54 | Total: 400<br>HP: 103<br>ATK: 77<br>DEF: 69<br>SpA: 45<br>SpD: 37<br>Spe: 69 | Total: 535<br>HP: 143<br>ATK: 113<br>DEF: 76<br>SpA: 76<br>SpD: 73<br>Spe: 54 |
 | Ability | Adaptability | Toxic Boost | Intimidate | Sap Sipper | Truant |
 | Held item | Liechi Berry | Toxic Orb | Wide Lens | Rocky Helmet | Flame Orb |
 | Nature | Hardy | Hardy | Hardy | Hardy | Hardy |
@@ -231,20 +231,38 @@ The detailed table below shows Brendan's Mudkip-player variant.
 
 | Player chose | Brendan's team | May's team |
 | --- | --- | --- |
-| Treecko | Tropius Lv. 31<br>Pelipper Lv. 32<br>Ludicolo Lv. 32<br>Combusken Lv. 34 | Tropius Lv. 31<br>Pelipper Lv. 32<br>Ludicolo Lv. 32<br>Combusken Lv. 34 |
-| Torchic | Tropius Lv. 31<br>Ludicolo Lv. 32<br>Slugma Lv. 32<br>Marshtomp Lv. 34 | Tropius Lv. 31<br>Ludicolo Lv. 32<br>Slugma Lv. 32<br>Marshtomp Lv. 34 |
-| Mudkip | Tropius Lv. 31<br>Slugma Lv. 32<br>Pelipper Lv. 32<br>Grovyle Lv. 34 | Tropius Lv. 31<br>Slugma Lv. 32<br>Pelipper Lv. 32<br>Grovyle Lv. 34 |
+| Treecko | Vibrava Lv. 32<br>Relicanth Lv. 33<br>Tropius Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Blaziken Lv. 36 | Vibrava Lv. 32<br>Relicanth Lv. 33<br>Tropius Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Blaziken Lv. 36 |
+| Torchic | Vibrava Lv. 32<br>Torkoal Lv. 33<br>Tropius Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Swampert Lv. 36 | Vibrava Lv. 32<br>Torkoal Lv. 33<br>Tropius Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Swampert Lv. 36 |
+| Mudkip | Vibrava Lv. 32<br>Relicanth Lv. 33<br>Torkoal Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Sceptile Lv. 36 | Vibrava Lv. 32<br>Relicanth Lv. 33<br>Torkoal Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Sceptile Lv. 36 |
 
-The detailed table below shows the shared Mudkip-player variant.
+Brendan and May use the same party for each player starter. Every Pokémon has 31 IVs, a random nature, and its save-seeded randomized family ability.
 
-| | Tropius | Slugma | Pelipper | Grovyle |
-| --- | --- | --- | --- | --- |
-| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/tropius/anim_front.png" alt="Tropius" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/slugma/anim_front.png" alt="Slugma" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/pelipper/anim_front.png" alt="Pelipper" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/grovyle/anim_front.png" alt="Grovyle" width="64"> |
-| Level | 31 | 32 | 32 | 34 |
-| Stats | Total: 382<br>HP: 107<br>ATK: 52<br>DEF: 62<br>SpA: 42<br>SpD: 55<br>Spe: 64 | Total: 259<br>HP: 73<br>ATK: 36<br>DEF: 36<br>SpA: 23<br>SpD: 55<br>Spe: 36 | Total: 380<br>HP: 86<br>ATK: 42<br>DEF: 74<br>SpA: 52<br>SpD: 71<br>Spe: 55 | Total: 390<br>HP: 86<br>ATK: 57<br>DEF: 43<br>SpA: 77<br>SpD: 70<br>Spe: 57 |
-| Ability | Randomized | Randomized | Randomized | Randomized |
-| Nature | Random nature | Random nature | Random nature | Random nature |
-| Moves | Default generated moveset | Default generated moveset | Default generated moveset | Default generated moveset |
+### Player chose Mudkip
+
+| | Vibrava | Relicanth | Torkoal | Chimecho | Exploud | Sceptile |
+| --- | --- | --- | --- | --- | --- | --- |
+| Level | 32 | 33 | 33 | 34 | 35 | 36 |
+| Ability | Randomized | Randomized | Randomized | Randomized | Randomized | Randomized |
+| Held item | Soft Sand | Water Gem | White Herb | Sitrus Berry | Expert Belt | Grass Gem |
+| Moves | Dig<br>Dragonbreath<br>Rock Slide<br>Fly | Surf<br>Dive<br>Head Smash<br>Take Down | Overheat<br>Shell Smash<br>Earth Power<br>Rock Smash | Extrasensory<br>Confuse Ray<br>Flash<br>Uproar | Boomburst<br>Focus Blast<br>Crunch<br>Strength | Leaf Blade<br>Dragon Tail<br>Cut<br>Pursuit |
+
+### Player chose Torchic
+
+| | Vibrava | Torkoal | Tropius | Chimecho | Exploud | Swampert |
+| --- | --- | --- | --- | --- | --- | --- |
+| Level | 32 | 33 | 33 | 34 | 35 | 36 |
+| Ability | Randomized | Randomized | Randomized | Randomized | Randomized | Randomized |
+| Held item | Soft Sand | White Herb | Power Herb | Sitrus Berry | Expert Belt | Water Gem |
+| Moves | Dig<br>Dragonbreath<br>Rock Slide<br>Rock Smash | Overheat<br>Sunny Day<br>Earth Power<br>Shell Smash | Solarbeam<br>Fly<br>Cut<br>Steel Wing | Extrasensory<br>Confuse Ray<br>Flash<br>Uproar | Boomburst<br>Focus Blast<br>Crunch<br>Surf | Waterfall<br>Muddy Water<br>Strength<br>Earthquake |
+
+### Player chose Treecko
+
+| | Vibrava | Relicanth | Tropius | Chimecho | Exploud | Blaziken |
+| --- | --- | --- | --- | --- | --- | --- |
+| Level | 32 | 33 | 33 | 34 | 35 | 36 |
+| Ability | Randomized | Randomized | Randomized | Randomized | Randomized | Randomized |
+| Held item | Soft Sand | Water Gem | Power Herb | Sitrus Berry | Expert Belt | Fire Gem |
+| Moves | Dig<br>Dragonbreath<br>Rock Slide<br>Rock Smash | Surf<br>Dive<br>Head Smash<br>Take Down | Solarbeam<br>Fly<br>Cut<br>Steel Wing | Extrasensory<br>Confuse Ray<br>Flash<br>Uproar | Boomburst<br>Focus Blast<br>Crunch<br>Strength | Blaze Kick<br>Sky Uppercut<br>Aerial Ace |
 
 
 ## Maxie — Magma Hideout — Single battle

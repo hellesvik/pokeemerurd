@@ -106,6 +106,9 @@ static bool8 IsEligibleAbilitySpecies(enum Species species)
 
     speciesInfo = &gSpeciesInfo[SanitizeSpeciesId(species)];
 
+    if (species != GET_BASE_SPECIES_ID(species))
+        return FALSE;
+
     return (speciesInfo->natDexNum <= GetForkMaxNationalDex()
          && !speciesInfo->isRestrictedLegendary
          && !speciesInfo->isSubLegendary
@@ -176,6 +179,36 @@ static void BuildAbilityPool(void)
     sPoolMaxNationalDex = maxNationalDex;
     sPoolInitialized = TRUE;
 }
+
+#if TESTING
+u16 GetForkAbilityPoolCount(void)
+{
+    BuildAbilityPool();
+    return sAvailableAbilityCount;
+}
+
+enum Ability GetForkAbilityPoolEntry(u16 index)
+{
+    BuildAbilityPool();
+    if (index >= sAvailableAbilityCount)
+        return ABILITY_NONE;
+    return sAvailableAbilities[index];
+}
+
+bool8 IsForkAbilityPoolSource(enum Species species, enum Ability ability)
+{
+    u8 slot;
+
+    BuildAbilityPool();
+    if (!IsEligibleAbilitySpecies(species) || sExcludedFamilies[GetFamilyRoot(species)])
+        return FALSE;
+
+    for (slot = 0; slot < NUM_ABILITY_SLOTS; slot++)
+        if (GetSpeciesAbility(species, slot) == ability)
+            return TRUE;
+    return FALSE;
+}
+#endif
 
 bool8 IsForkAbilityRandomizedSpecies(enum Species species)
 {

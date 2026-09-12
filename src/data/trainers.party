@@ -562,16 +562,44 @@ Class: Aqua Admin
 Pic: Aqua Admin F
 Gender: Female
 Music: Aqua
-Double Battle: No
+Double Battle: Yes
 AI: Basic Trainer
 
-Carvanha
-Level: 28
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Politoed @ Focus Sash
+Ability: Drizzle
+Level: 29
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Wide Guard
+- Weather Ball
+- Icy Wind
+- Hypnosis
 
-Mightyena
-Level: 28
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Castform @ Mystic Water
+Ability: Forecast
+Level: 29
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Weather Ball
+- Rain Dance
+- Icy Wind
+- Freeze Dry
+
+Whiscash @ Rindo Berry
+Ability: Hydration
+Level: 30
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Rest
+- Aqua Jet
+- Magnitude
+- Dive
+
+Dragonair @ Air Balloon
+Ability: Marvel Scale
+Level: 32
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Dragon Rage
+- Dragon Tail
+- Aqua Tail
+- Thunder Wave
 
 === TRAINER_SHELLY_SEAFLOOR_CAVERN ===
 Name: SHELLY
@@ -9498,21 +9526,36 @@ Class: Magma Admin
 Pic: Magma Admin
 Gender: Male
 Music: Magma
-Double Battle: No
-AI: Check Bad Move
+Double Battle: Yes
+AI: Basic Trainer
 Multi Party: Half
 
-Camerupt
-Level: 36
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Hippowdon @ Leftovers
+Ability: Sand Stream
+Level: 42
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Earthquake
+- Rock Slide
+- Slack Off
+- Crunch
 
-Mightyena
-Level: 38
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Gabite @ Dragon Scale
+Ability: Sand Veil
+Level: 43
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Earthquake
+- Dragon Rush
+- Rock Slide
+- Fire Fang
 
-Golbat
-Level: 40
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Volcanion @ Covert Cloak
+Ability: Water Absorb
+Level: 44
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Eruption
+- Sludge Bomb
+- Scorching Sands
+- Heat Wave
 
 === TRAINER_EDWIN_2 ===
 Name: EDWIN
@@ -11151,21 +11194,53 @@ Class: Magma Leader
 Pic: Magma Leader Maxie
 Gender: Male
 Music: Magma
-Items: Super Potion / Super Potion
 Double Battle: No
 AI: Basic Trainer
 
-Mightyena
+Sandaconda @ Passho Berry
+Ability: Sand Spit
+Level: 35
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Glare
+- Bulldoze
+- Poison Tail
+- Fire Fang
+
+Stoutland @ Covert Cloak
+Ability: Sand Rush
+Level: 36
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Fire Fang
+- Crunch
+- Retaliate
+- Play Rough
+
+Rhydon @ Passho Berry
+Ability: Reckless
 Level: 37
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Head Smash
+- Flare Blitz
+- Double Edge
+- Headlong Rush
 
-Crobat
+Cradily @ Big Root
+Ability: Storm Drain
 Level: 38
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Leech Seed
+- Giga Drain
+- Ancient Power
+- Weather Ball
 
-Camerupt
+Camerupt @ Cameruptite
+Ability: Solid Rock
 Level: 39
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Weather Ball
+- Eruption
+- Earth Power
+- Heat Wave
 
 === TRAINER_MAXIE_MT_CHIMNEY ===
 Name: MAXIE
@@ -11173,21 +11248,44 @@ Class: Magma Leader
 Pic: Magma Leader Maxie
 Gender: Male
 Music: Magma
-Items: Super Potion / Super Potion
 Double Battle: No
 AI: Basic Trainer
 
-Mightyena
-Level: 24
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+Gligar @ Passho Berry
+Ability: Intimidate
+Level: 23
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Stealth Rock
+- Acrobatics
+- Bulldoze
+- Fire Fang
 
-Zubat
-Level: 24
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+Rhyhorn @ Passho Berry
+Ability: Reckless
+Level: 23
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bulldoze
+- Flame Charge
+- Rock Tomb
+- Horn Attack
 
-Camerupt
+Scovillain @ Heat Rock
+Ability: Chlorophyll
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Sunny Day
+- Spicy Extract
+- Flame Burst
+- Magical Leaf
+
+Camerupt @ Passho Berry
+Ability: Solid Rock
 Level: 25
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Lava Plume
+- Scorching Sands
+- Ancient Power
+- Roar
 
 === TRAINER_TIANA ===
 Name: TIANA
@@ -13677,21 +13775,35 @@ Class: Magma Leader
 Pic: Magma Leader Maxie
 Gender: Male
 Music: Magma
-Double Battle: No
+Double Battle: Yes
 AI: Basic Trainer
 Multi Party: Half
 
-Mightyena
+Gliscor @ Passho Berry
+Ability: Sand Veil
 Level: 42
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Stealth Rock
+- Rock Slide
+- Acrobatics
 
-Crobat
+Stoutland @ Air Balloon
+Ability: Sand Rush
 Level: 43
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Fire Fang
+- Crunch
+- Retaliate
+- Play Rough
 
 Camerupt @ Cameruptite
+Ability: Solid Rock
 Level: 44
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Weather Ball
+- Eruption
+- Earth Power
+- Heat Wave
 
 === TRAINER_PETE ===
 Name: PETE

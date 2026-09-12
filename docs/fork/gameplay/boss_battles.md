@@ -23,7 +23,7 @@ The cap ladder includes every required story battle that advances the level cap.
 | 6 | Maxie — Mt. Chimney | Single | 25 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/magma_leader_maxie.png" alt="Maxie" width="64"> |
 | 7 | Flannery | Single | 29 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_flannery.png" alt="Flannery" width="64"> |
 | 8 | Norman | Single | 31 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_norman.png" alt="Norman" width="64"> |
-| 9 | Shelly — Weather Institute | Single | 32 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/aqua_admin_f.png" alt="Shelly" width="64"> |
+| 9 | Shelly — Weather Institute | Double | 32 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/aqua_admin_f.png" alt="Shelly" width="64"> |
 | 10 | Route 119 rival | Single | 32 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/brendan.png" alt="Brendan or May" width="64"> |
 | 11 | Winona | Single | 33 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_winona.png" alt="Winona" width="64"> |
 | 12 | Lilycove rival | Single | 34 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/brendan.png" alt="Brendan or May" width="64"> |
@@ -124,14 +124,16 @@ The detailed table below shows Brendan's Mudkip-player variant.
 ## Maxie — Mt. Chimney — Single battle
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/magma_leader_maxie.png" alt="magma_leader_maxie" width="96"></p>
 
-| | Mightyena | Zubat | Camerupt |
-| --- | --- | --- | --- |
-| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/mightyena/anim_front.png" alt="Mightyena" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/zubat/anim_front.png" alt="Zubat" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/camerupt/anim_front.png" alt="Camerupt" width="64"> |
-| Level | 24 | 24 | 25 |
-| Stats | Total: 304<br>HP: 75<br>ATK: 55<br>DEF: 46<br>SpA: 46<br>SpD: 41<br>Spe: 41 | Total: 218<br>HP: 60<br>ATK: 34<br>DEF: 29<br>SpA: 38<br>SpD: 26<br>Spe: 31 | Total: 383<br>HP: 77<br>ATK: 72<br>DEF: 62<br>SpA: 22<br>SpD: 85<br>Spe: 65 |
-| Ability | Randomized | Randomized | Randomized |
-| Nature | Hardy | Hardy | Hardy |
-| Moves | Default generated moveset | Default generated moveset | Default generated moveset |
+| | Gligar | Rhyhorn | Scovillain | Camerupt |
+| --- | --- | --- | --- | --- |
+| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/gligar/anim_front.png" alt="Gligar" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/rhyhorn/anim_front.png" alt="Rhyhorn" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/scovillain/anim_front.png" alt="Scovillain" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/camerupt/anim_front.png" alt="Camerupt" width="64"> |
+| Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/rock.png" alt="Rock" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> |
+| Level | 23 | 23 | 24 | 25 |
+| Stats | Total: 297<br>HP: 70<br>ATK: 46<br>DEF: 60<br>SpA: 28<br>SpD: 42<br>Spe: 51 | Total: 255<br>HP: 76<br>ATK: 51<br>DEF: 55<br>SpA: 25<br>SpD: 25<br>Spe: 23 | Total: 334<br>HP: 72<br>ATK: 64<br>DEF: 43<br>SpA: 64<br>SpD: 43<br>Spe: 48 | Total: 333<br>HP: 77<br>ATK: 62<br>DEF: 47<br>SpA: 65<br>SpD: 50<br>Spe: 32 |
+| Ability | Intimidate | Reckless | Chlorophyll | Solid Rock |
+| Held item | Passho Berry | Passho Berry | Heat Rock | Passho Berry |
+| Nature | Hardy | Hardy | Hardy | Hardy |
+| Moves | Stealth Rock<br>Acrobatics<br>Bulldoze<br>Fire Fang | Bulldoze<br>Flame Charge<br>Rock Tomb<br>Horn Attack | Sunny Day<br>Spicy Extract<br>Flame Burst<br>Magical Leaf | Lava Plume<br>Scorching Sands<br>Ancient Power<br>Roar |
 
 
 ## Flannery — Single battle
@@ -161,6 +163,20 @@ The detailed table below shows Brendan's Mudkip-player variant.
 | Held item | Liechi Berry | Toxic Orb | Wide Lens | Rocky Helmet | Flame Orb |
 | Nature | Hardy | Hardy | Hardy | Hardy | Hardy |
 | Moves | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32"> Extreme Speed<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32"> Facade<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ghost.png" alt="Ghost" width="32"> Shadow Claw<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="32"> Dig | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32"> Facade<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dark.png" alt="Dark" width="32"> Night Slash<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32"> Quick Attack<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="32"> Dig | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32"> Facade<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="32"> Surf<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="32"> Fire Blast<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ice.png" alt="Ice" width="32"> Blizzard | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/rock.png" alt="Rock" width="32"> Head Smash<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32"> Head Charge<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/steel.png" alt="Steel" width="32"> Iron Head<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/psychic.png" alt="Psychic" width="32"> Zen Headbutt | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32"> Facade<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/psychic.png" alt="Psychic" width="32"> Rest<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32"> Snore<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="32"> Fire Punch |
+
+## Shelly — Weather Institute — Double battle
+<p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/aqua_admin_f.png" alt="Shelly" width="96"></p>
+
+| | Politoed | Castform | Whiscash | Dragonair |
+| --- | --- | --- | --- | --- |
+| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/politoed/anim_front.png" alt="Politoed" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/castform/rainy/anim_front.png" alt="Rainy Castform" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/whiscash/anim_front.png" alt="Whiscash" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/dragonair/anim_front.png" alt="Dragonair" width="64"> |
+| Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water in rain" width="48"> (Forecast) | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dragon.png" alt="Dragon" width="48"> |
+| Level | 29 | 29 | 30 | 32 |
+| Stats | Total: 405<br>HP: 100<br>ATK: 57<br>DEF: 57<br>SpA: 66<br>SpD: 71<br>Spe: 54 | Total: 358<br>HP: 88<br>ATK: 54<br>DEF: 54<br>SpA: 54<br>SpD: 54<br>Spe: 54 | Total: 399<br>HP: 115<br>ATK: 61<br>DEF: 58<br>SpA: 59<br>SpD: 56<br>Spe: 50 | Total: 391<br>HP: 90<br>ATK: 68<br>DEF: 56<br>SpA: 59<br>SpD: 59<br>Spe: 59 |
+| Ability | Drizzle | Forecast | Hydration | Marvel Scale |
+| Held item | Focus Sash | Mystic Water | Rindo Berry | Air Balloon |
+| Nature | Hardy | Hardy | Hardy | Hardy |
+| Moves | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/rock.png" alt="Rock" width="32"> Wide Guard<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water in rain" width="32"> Weather Ball<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ice.png" alt="Ice" width="32"> Icy Wind<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/psychic.png" alt="Psychic" width="32"> Hypnosis | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water in rain" width="32"> Weather Ball<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="32"> Rain Dance<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ice.png" alt="Ice" width="32"> Icy Wind<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ice.png" alt="Ice" width="32"> Freeze-Dry | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/psychic.png" alt="Psychic" width="32"> Rest<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="32"> Aqua Jet<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="32"> Magnitude<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="32"> Dive | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dragon.png" alt="Dragon" width="32"> Dragon Rage<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dragon.png" alt="Dragon" width="32"> Dragon Tail<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="32"> Aqua Tail<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/electric.png" alt="Electric" width="32"> Thunder Wave |
 
 ## Route 119 rival — Single battle (Brendan/May variants)
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/brendan.png" alt="brendan" width="96"></p>
@@ -234,16 +250,16 @@ The detailed table below shows the shared Mudkip-player variant.
 ## Maxie — Magma Hideout — Single battle
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/magma_leader_maxie.png" alt="Maxie" width="96"></p>
 
-| | Mightyena | Crobat | Camerupt |
-| --- | --- | --- | --- |
-| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/mightyena/anim_front.png" alt="Mightyena" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/crobat/anim_front.png" alt="Crobat" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/camerupt/mega/front.png" alt="Camerupt" width="64"> |
-| Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dark.png" alt="Dark" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/poison.png" alt="Poison" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> |
-| Level | 37 | 38 | 39 |
-| Stats | Total: 449<br>HP: 110<br>ATK: 83<br>DEF: 68<br>SpA: 68<br>SpD: 60<br>Spe: 60 | Total: 547<br>HP: 124<br>ATK: 85<br>DEF: 77<br>SpA: 115<br>SpD: 69<br>Spe: 77 | Total: 580<br>HP: 115<br>ATK: 110<br>DEF: 95<br>SpA: 32<br>SpD: 130<br>Spe: 98 |
-| Ability | Randomized | Randomized | Randomized |
-| Held item | — | — | — |
-| Nature | Hardy | Hardy | Hardy |
-| Moves | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32">  | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32">  | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32">  |
+| | Sandaconda | Stoutland | Rhydon | Cradily | Mega Camerupt |
+| --- | --- | --- | --- | --- | --- |
+| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/sandaconda/anim_front.png" alt="Sandaconda" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/stoutland/anim_front.png" alt="Stoutland" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/rhydon/anim_front.png" alt="Rhydon" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/cradily/anim_front.png" alt="Cradily" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/camerupt/mega/front.png" alt="Mega Camerupt" width="64"> |
+| Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/rock.png" alt="Rock" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/rock.png" alt="Rock" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> |
+| Level | 35 | 36 | 37 | 38 | 39 |
+| Stats | Total: 489<br>HP: 106<br>ATK: 90<br>DEF: 103<br>SpA: 61<br>SpD: 64<br>Spe: 65 | Total: 494<br>HP: 118<br>ATK: 95<br>DEF: 80<br>SpA: 48<br>SpD: 80<br>Spe: 73 | Total: 497<br>HP: 136<br>ATK: 112<br>DEF: 105<br>SpA: 49<br>SpD: 49<br>Spe: 46 | Total: 518<br>HP: 125<br>ATK: 78<br>DEF: 90<br>SpA: 78<br>SpD: 98<br>Spe: 49 | Total: 580<br>HP: 115<br>ATK: 110<br>DEF: 95<br>SpA: 130<br>SpD: 98<br>Spe: 32 |
+| Ability | Sand Spit | Sand Rush | Reckless | Storm Drain | Solid Rock → Sheer Force |
+| Held item | Passho Berry | Covert Cloak | Passho Berry | Big Root | Cameruptite |
+| Nature | Hardy | Hardy | Hardy | Hardy | Hardy |
+| Moves | Glare<br>Bulldoze<br>Poison Tail<br>Fire Fang | Fire Fang<br>Crunch<br>Retaliate<br>Play Rough | Head Smash<br>Flare Blitz<br>Double-Edge<br>Headlong Rush | Leech Seed<br>Giga Drain<br>Ancient Power<br>Weather Ball | Weather Ball<br>Eruption<br>Earth Power<br>Heat Wave |
 
 ## Tate & Liza — Double battle
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_tate_and_liza.png" alt="Tate & Liza" width="96"></p>
@@ -262,29 +278,32 @@ The detailed table below shows the shared Mudkip-player variant.
 ## Maxie & Tabitha — Mossdeep — Double battle
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/magma_leader_maxie.png" alt="Maxie" width="96"></p>
 
-| | Mightyena | Crobat | Mega Camerupt |
+| | Gliscor | Stoutland | Mega Camerupt |
 | --- | --- | --- | --- |
-| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/mightyena/anim_front.png" alt="Mightyena" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/crobat/anim_front.png" alt="Crobat" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/camerupt/mega/front.png" alt="Mega Camerupt" width="64"> |
-| Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dark.png" alt="Dark" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/poison.png" alt="Poison" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> |
+| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/gliscor/anim_front.png" alt="Gliscor" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/stoutland/anim_front.png" alt="Stoutland" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/camerupt/mega/front.png" alt="Mega Camerupt" width="64"> |
+| Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> |
 | Level | 42 | 43 | 44 |
-| Stats | Total: 504<br>HP: 123<br>ATK: 93<br>DEF: 76<br>SpA: 76<br>SpD: 68<br>Spe: 68 | Total: 616<br>HP: 139<br>ATK: 95<br>DEF: 87<br>SpA: 130<br>SpD: 78<br>Spe: 87 | Total: 652<br>HP: 129<br>ATK: 124<br>DEF: 106<br>SpA: 146<br>SpD: 111<br>Spe: 36 |
-| Ability | Randomized | Randomized | Sheer Force |
-| Held item | — | — | Cameruptite |
+| Stats | Total: 581<br>HP: 128<br>ATK: 97<br>DEF: 123<br>SpA: 55<br>SpD: 81<br>Spe: 97 | Total: 585<br>HP: 139<br>ATK: 112<br>DEF: 95<br>SpA: 57<br>SpD: 95<br>Spe: 87 | Total: 652<br>HP: 129<br>ATK: 124<br>DEF: 106<br>SpA: 146<br>SpD: 111<br>Spe: 36 |
+| Ability | Sand Veil | Sand Rush | Solid Rock → Sheer Force |
+| Held item | Passho Berry | Air Balloon | Cameruptite |
 | Nature | Hardy | Hardy | Hardy |
-| Moves | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32">  | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32">  | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32">  |
-Tabitha participates in this double battle with her configured Camerupt, Mightyena, and Golbat team.
+| Moves | Stealth Rock<br>Rock Slide<br>Acrobatics | Fire Fang<br>Crunch<br>Retaliate<br>Play Rough | Weather Ball<br>Eruption<br>Earth Power<br>Heat Wave |
+Tabitha participates in this double battle with the configured sand team below.
 
 ### Tabitha's team
 
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/magma_admin.png" alt="Tabitha" width="96"></p>
 
-| | Camerupt | Mightyena | Golbat |
+| | Hippowdon | Gabite | Volcanion |
 | --- | --- | --- | --- |
-| Level | 36 | 38 | 40 |
-| Stats | Total: 496<br>HP: 100<br>ATK: 95<br>DEF: 81<br>SpA: 23<br>SpD: 113<br>Spe: 84 | Total: 416<br>HP: 105<br>ATK: 77<br>DEF: 62<br>SpA: 62<br>SpD: 55<br>Spe: 55 | Total: 463<br>HP: 114<br>ATK: 73<br>DEF: 65<br>SpA: 81<br>SpD: 61<br>Spe: 69 |
-| Ability | Randomized | Randomized | Randomized |
-| Nature | Random nature | Random nature | Random nature |
-| Moves | Default generated moveset | Default generated moveset | Default generated moveset |
+| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/hippowdon/anim_front.png" alt="Hippowdon" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/gabite/anim_front.png" alt="Gabite" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/volcanion/anim_front.png" alt="Volcanion" width="64"> |
+| Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dragon.png" alt="Dragon" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="48"> |
+| Level | 42 | 43 | 44 |
+| Stats | Total: 594<br>HP: 155<br>ATK: 112<br>DEF: 117<br>SpA: 75<br>SpD: 78<br>Spe: 57 | Total: 507<br>HP: 124<br>ATK: 95<br>DEF: 74<br>SpA: 61<br>SpD: 65<br>Spe: 88 | Total: 687<br>HP: 138<br>ATK: 115<br>DEF: 124<br>SpA: 133<br>SpD: 97<br>Spe: 80 |
+| Ability | Sand Stream | Sand Veil | Water Absorb |
+| Held item | Leftovers | Dragon Scale | Covert Cloak |
+| Nature | Hardy | Hardy | Hardy |
+| Moves | Earthquake<br>Rock Slide<br>Slack Off<br>Crunch | Earthquake<br>Dragon Rush<br>Rock Slide<br>Fire Fang | Eruption<br>Sludge Bomb<br>Scorching Sands<br>Heat Wave |
 
 
 ## Archie — Single battle

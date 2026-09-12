@@ -57,26 +57,53 @@ TEST("Biome encounter randomizer assigns BST ranges to newly grassy cities")
     EXPECT_EQ(GetForkEncounterRandomizerBstCap(MAP_GROUP(MAP_OLDALE_TOWN), MAP_NUM(MAP_OLDALE_TOWN), WILD_AREA_LAND), 250);
     EXPECT_EQ(GetForkEncounterRandomizerBstMin(MAP_GROUP(MAP_RUSTBORO_CITY), MAP_NUM(MAP_RUSTBORO_CITY), WILD_AREA_LAND), 180);
     EXPECT_EQ(GetForkEncounterRandomizerBstCap(MAP_GROUP(MAP_RUSTBORO_CITY), MAP_NUM(MAP_RUSTBORO_CITY), WILD_AREA_LAND), 280);
-    EXPECT_EQ(GetForkEncounterRandomizerBstMin(MAP_GROUP(MAP_MAUVILLE_CITY), MAP_NUM(MAP_MAUVILLE_CITY), WILD_AREA_LAND), 300);
-    EXPECT_EQ(GetForkEncounterRandomizerBstCap(MAP_GROUP(MAP_MAUVILLE_CITY), MAP_NUM(MAP_MAUVILLE_CITY), WILD_AREA_LAND), 400);
-    EXPECT_EQ(GetForkEncounterRandomizerBstMin(MAP_GROUP(MAP_VERDANTURF_TOWN), MAP_NUM(MAP_VERDANTURF_TOWN), WILD_AREA_LAND), 300);
-    EXPECT_EQ(GetForkEncounterRandomizerBstCap(MAP_GROUP(MAP_VERDANTURF_TOWN), MAP_NUM(MAP_VERDANTURF_TOWN), WILD_AREA_LAND), 400);
+    EXPECT_EQ(GetForkEncounterRandomizerBstMin(MAP_GROUP(MAP_MAUVILLE_CITY), MAP_NUM(MAP_MAUVILLE_CITY), WILD_AREA_LAND), 250);
+    EXPECT_EQ(GetForkEncounterRandomizerBstCap(MAP_GROUP(MAP_MAUVILLE_CITY), MAP_NUM(MAP_MAUVILLE_CITY), WILD_AREA_LAND), 350);
+    EXPECT_EQ(GetForkEncounterRandomizerBstMin(MAP_GROUP(MAP_VERDANTURF_TOWN), MAP_NUM(MAP_VERDANTURF_TOWN), WILD_AREA_LAND), 250);
+    EXPECT_EQ(GetForkEncounterRandomizerBstCap(MAP_GROUP(MAP_VERDANTURF_TOWN), MAP_NUM(MAP_VERDANTURF_TOWN), WILD_AREA_LAND), 350);
     EXPECT_EQ(GetForkEncounterRandomizerBstMin(MAP_GROUP(MAP_FALLARBOR_TOWN), MAP_NUM(MAP_FALLARBOR_TOWN), WILD_AREA_LAND), 270);
     EXPECT_EQ(GetForkEncounterRandomizerBstCap(MAP_GROUP(MAP_FALLARBOR_TOWN), MAP_NUM(MAP_FALLARBOR_TOWN), WILD_AREA_LAND), 370);
-    EXPECT_EQ(GetForkEncounterRandomizerBstMin(MAP_GROUP(MAP_LAVARIDGE_TOWN), MAP_NUM(MAP_LAVARIDGE_TOWN), WILD_AREA_LAND), 250);
-    EXPECT_EQ(GetForkEncounterRandomizerBstCap(MAP_GROUP(MAP_LAVARIDGE_TOWN), MAP_NUM(MAP_LAVARIDGE_TOWN), WILD_AREA_LAND), 350);
+    EXPECT_EQ(GetForkEncounterRandomizerBstMin(MAP_GROUP(MAP_LAVARIDGE_TOWN), MAP_NUM(MAP_LAVARIDGE_TOWN), WILD_AREA_LAND), 300);
+    EXPECT_EQ(GetForkEncounterRandomizerBstCap(MAP_GROUP(MAP_LAVARIDGE_TOWN), MAP_NUM(MAP_LAVARIDGE_TOWN), WILD_AREA_LAND), 400);
     EXPECT_EQ(GetForkEncounterRandomizerBstMin(MAP_GROUP(MAP_FORTREE_CITY), MAP_NUM(MAP_FORTREE_CITY), WILD_AREA_LAND), 320);
     EXPECT_EQ(GetForkEncounterRandomizerBstCap(MAP_GROUP(MAP_FORTREE_CITY), MAP_NUM(MAP_FORTREE_CITY), WILD_AREA_LAND), 420);
 }
 
-TEST("Biome encounter randomizer makes water tables water-compatible")
+TEST("Surf randomizer can select non-Water Flying Pokémon")
 {
-    enum Species species;
+    bool8 foundFlyingNonWater = FALSE;
 
-    gSaveBlock3Ptr->forkEncounterRandomizerSeed = 0x13579BDF;
-    species = ResolveForkRandomizedEncounterSpecies(MAP_GROUP(MAP_ROUTE118), MAP_NUM(MAP_ROUTE118), WILD_AREA_WATER, 1, SPECIES_TENTACOOL);
+    for (u32 seed = 1; seed <= 512 && !foundFlyingNonWater; seed++)
+    {
+        gSaveBlock3Ptr->forkEncounterRandomizerSeed = seed;
+        for (u8 slot = 0; slot < 3; slot++)
+        {
+            enum Species species = ResolveForkRandomizedEncounterSpecies(
+                MAP_GROUP(MAP_ROUTE118), MAP_NUM(MAP_ROUTE118), WILD_AREA_WATER, slot, SPECIES_TENTACOOL);
+            bool8 isWater = gSpeciesInfo[species].types[0] == TYPE_WATER || gSpeciesInfo[species].types[1] == TYPE_WATER;
+            bool8 isFlying = gSpeciesInfo[species].types[0] == TYPE_FLYING || gSpeciesInfo[species].types[1] == TYPE_FLYING;
 
-    EXPECT(gSpeciesInfo[species].types[0] == TYPE_WATER || gSpeciesInfo[species].types[1] == TYPE_WATER);
+            if (isFlying && !isWater)
+                foundFlyingNonWater = TRUE;
+        }
+    }
+
+    EXPECT(foundFlyingNonWater);
+}
+
+TEST("Fishing randomizer remains Water-only")
+{
+    for (u32 seed = 1; seed <= 32; seed++)
+    {
+        gSaveBlock3Ptr->forkEncounterRandomizerSeed = seed;
+        for (u8 slot = 0; slot < FISH_WILD_COUNT; slot++)
+        {
+            enum Species species = ResolveForkRandomizedEncounterSpecies(
+                MAP_GROUP(MAP_ROUTE118), MAP_NUM(MAP_ROUTE118), WILD_AREA_FISHING, slot, SPECIES_TENTACOOL);
+
+            EXPECT(gSpeciesInfo[species].types[0] == TYPE_WATER || gSpeciesInfo[species].types[1] == TYPE_WATER);
+        }
+    }
 }
 
 TEST("Biome encounter randomizer avoids duplicate species within one land table")

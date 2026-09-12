@@ -80,7 +80,9 @@ static bool8 IsMethodCompatible(enum Species species, enum WildPokemonArea area)
 {
     enum Type type1 = gSpeciesInfo[species].types[0];
     enum Type type2 = gSpeciesInfo[species].types[1];
-    if (area == WILD_AREA_WATER || area == WILD_AREA_FISHING)
+    if (area == WILD_AREA_WATER)
+        return type1 == TYPE_WATER || type2 == TYPE_WATER || type1 == TYPE_FLYING || type2 == TYPE_FLYING;
+    if (area == WILD_AREA_FISHING)
         return type1 == TYPE_WATER || type2 == TYPE_WATER;
     if (area == WILD_AREA_ROCKS)
         return type1 == TYPE_ROCK || type2 == TYPE_ROCK || type1 == TYPE_GROUND || type2 == TYPE_GROUND || type1 == TYPE_STEEL || type2 == TYPE_STEEL;

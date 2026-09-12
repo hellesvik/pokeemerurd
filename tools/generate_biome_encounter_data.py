@@ -27,6 +27,10 @@ METHODS = {
 
 def biome_for(name: str, method: str) -> str:
     upper = name.upper()
+    if "PACIFIDLOG_TOWN" in upper:
+        return "Ocean"
+    if "FORTREE_CITY" in upper:
+        return "Forest"
     if "_TOWN" in upper or "_CITY" in upper:
         return "City"
     if method in ("water_mons", "fishing_mons"):
@@ -57,41 +61,41 @@ def bst_range_for(name: str) -> tuple[int, int]:
     if "VICTORY_ROAD" in upper:
         return 490, 560
     ranges = (
-        (("ROUTE101", "LITTLEROOT", "OLDALE", "PETALBURG_CITY"), (150, 250)),
-        (("ROUTE102",), (160, 260)),
-        (("ROUTE103",), (170, 270)),
+        (("ROUTE101", "LITTLEROOT", "OLDALE"), (150, 250)),
+        (("ROUTE103",), (160, 260)),
+        (("ROUTE102",), (170, 270)),
         (("ROUTE104", "RUSTBORO_CITY", "PETALBURG_WOODS"), (180, 280)),
-        (("ROUTE105",), (190, 290)),
-        (("ROUTE106", "DEWFORD"), (200, 300)),
-        (("ROUTE107", "ROUTE108", "ROUTE109"), (210, 310)),
-        (("GRANITE_CAVE",), (220, 320)),
-        (("ROUTE110",), (230, 330)),
-        (("ROUTE111",), (240, 340)),
-        (("ROUTE112", "FIERY_PATH", "JAGGED_PASS", "LAVARIDGE_TOWN"), (250, 350)),
-        (("ROUTE113",), (260, 360)),
-        (("ROUTE114", "RUSTURF_TUNNEL", "FALLARBOR_TOWN"), (270, 370)),
-        (("ROUTE115",), (280, 380)),
-        (("ROUTE116",), (290, 390)),
-        (("ROUTE117", "NEW_MAUVILLE", "MAUVILLE_CITY", "VERDANTURF_TOWN"), (300, 400)),
+        (("ROUTE116", "RUSTURF_TUNNEL"), (190, 290)),
+        (("ROUTE105", "ROUTE106", "DEWFORD"), (200, 300)),
+        (("GRANITE_CAVE",), (210, 310)),
+        (("ROUTE107", "ROUTE108", "ROUTE109"), (220, 320)),
+        (("SLATEPORT_CITY",), (230, 330)),
+        (("ROUTE110",), (240, 340)),
+        (("ROUTE117", "MAUVILLE_CITY", "VERDANTURF_TOWN"), (250, 350)),
+        (("ROUTE111", "ROUTE112", "FIERY_PATH", "MIRAGE_TOWER"), (260, 360)),
+        (("ROUTE113", "FALLARBOR_TOWN"), (270, 370)),
+        (("ROUTE114",), (280, 380)),
+        (("METEOR_FALLS", "ROUTE115"), (290, 390)),
+        (("JAGGED_PASS", "LAVARIDGE_TOWN", "PETALBURG_CITY"), (300, 400)),
         (("ROUTE118",), (310, 410)),
+        (("NEW_MAUVILLE", "ABANDONED_SHIP"), (310, 410)),
         (("ROUTE119", "SAFARI_ZONE", "FORTREE_CITY"), (320, 420)),
-        (("ROUTE120", "MT_PYRE"), (330, 430)),
-        (("ROUTE121", "ROUTE122"), (340, 440)),
+        (("ROUTE120",), (330, 430)),
+        (("ROUTE121", "ROUTE122", "MT_PYRE"), (340, 440)),
         (("ROUTE123", "LILYCOVE"), (350, 450)),
-        (("ABANDONED_SHIP", "SLATEPORT"), (360, 460)),
-        (("ROUTE124", "ROUTE125"), (370, 470)),
-        (("SHOAL_CAVE",), (380, 480)),
-        (("ROUTE126", "UNDERWATER_ROUTE126", "MOSSDEEP"), (390, 490)),
-        (("METEOR_FALLS",), (400, 500)),
-        (("ROUTE127",), (410, 510)),
-        (("ROUTE128", "SEAFLOOR_CAVERN"), (420, 520)),
-        (("ROUTE129",), (430, 530)),
-        (("ROUTE130",), (440, 540)),
-        (("ROUTE131", "SKY_PILLAR", "EVER_GRANDE"), (450, 550)),
-        (("ROUTE132", "ROUTE133", "ROUTE134", "CAVE_OF_ORIGIN", "ARTISAN_CAVE", "SOOTOPOLIS"), (450, 550)),
-        (("MAGMA_HIDEOUT",), (400, 500)),
-        (("MIRAGE_TOWER", "DESERT_UNDERPASS"), (260, 360)),
-        (("PACIFIDLOG",), (360, 460)),
+        (("ROUTE124", "UNDERWATER_ROUTE124", "MAGMA_HIDEOUT"), (360, 460)),
+        (("MOSSDEEP_CITY",), (370, 470)),
+        (("ROUTE125", "SHOAL_CAVE"), (380, 480)),
+        (("ROUTE127",), (390, 490)),
+        (("ROUTE128",), (400, 500)),
+        (("SEAFLOOR_CAVERN",), (410, 510)),
+        (("ROUTE126", "UNDERWATER_ROUTE126"), (420, 520)),
+        (("CAVE_OF_ORIGIN", "SOOTOPOLIS_CITY"), (430, 530)),
+        (("ROUTE129",), (440, 540)),
+        (("ROUTE130",), (450, 550)),
+        (("ROUTE131", "ROUTE132", "ROUTE133", "ROUTE134", "SKY_PILLAR", "PACIFIDLOG"), (460, 560)),
+        (("EVER_GRANDE",), (470, 560)),
+        (("ARTISAN_CAVE", "ALTERING_CAVE", "DESERT_UNDERPASS"), (490, 560)),
     )
     for tokens, bst_range in ranges:
         if any(token in upper for token in tokens):

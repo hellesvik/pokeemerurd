@@ -67,7 +67,7 @@ TYPE_BIOMES = {
     "FIGHTING": ("City", "Mountain", "Grassland"),
     "POISON": ("City", "Marsh and Swamp", "Cave", "Forest"),
     "GROUND": ("Desert", "Mountain", "Cave"),
-    "FLYING": ("City", "Grassland", "Forest", "Mountain", "Beach and Coast"),
+    "FLYING": ("City", "Grassland", "Forest", "Mountain", "Freshwater", "Ocean", "Beach and Coast"),
     "PSYCHIC": ("City", "Forest", "Mountain", "Cave"),
     "BUG": ("City", "Grassland", "Forest", "Marsh and Swamp"),
     "ROCK": ("Cave", "Mountain", "Desert", "Beach and Coast"),

@@ -87,7 +87,7 @@ static const u16 sCapMaxieTabithaMossdeep[] = { TRAINER_MAXIE_MOSSDEEP, TRAINER_
 static const u16 sCapArchie[] = { TRAINER_ARCHIE, TRAINER_NONE };
 static const u16 sCapJuan[] = { TRAINER_JUAN_1, TRAINER_NONE };
 static const u16 sCapWallyVictoryRoad[] = { TRAINER_WALLY_VR_1, TRAINER_NONE };
-static const u16 sCapWallace[] = { TRAINER_WALLACE, TRAINER_NONE };
+static const u16 sCapSteven[] = { TRAINER_STEVEN, TRAINER_NONE };
 
 static const struct LevelCapMilestone sLevelCapMilestones[] =
 {
@@ -109,7 +109,7 @@ static const struct LevelCapMilestone sLevelCapMilestones[] =
     { 45, sCapArchie },
     { 46, sCapJuan },
     { 47, sCapWallyVictoryRoad },
-    { 80, sCapWallace },
+    { 80, sCapSteven },
 };
 
 

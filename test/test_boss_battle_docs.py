@@ -3,9 +3,11 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DOC = ROOT / "docs/fork/gameplay/boss_battles.md"
+DOC = ROOT / "docs/player/boss_battles.md"
 TRAINERS = ROOT / "src/data/trainers.party"
 CAPS = ROOT / "src/caps.c"
+BATTLE_MAIN = ROOT / "src/battle_main.c"
+CHAMPION_SCRIPT = ROOT / "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
 
 
 class BossBattleDocsTests(unittest.TestCase):
@@ -18,17 +20,17 @@ class BossBattleDocsTests(unittest.TestCase):
         end = self.markdown.find("\n## ", start + len(heading))
         return self.markdown[start:end if end >= 0 else None]
 
-    def test_non_custom_teams_label_abilities_as_randomized(self):
+    def test_team_ability_rows_match_configured_overrides(self):
         expected_rows = {
             "## Rustboro rival": "| Ability | Randomized | Randomized |",
             "## Route 110 rival": "| Ability | Randomized | Randomized | Randomized |",
-            "## Maxie — Mt. Chimney": "| Ability | Randomized | Randomized | Randomized |",
+            "## Maxie — Mt. Chimney": "| Ability | Intimidate | Reckless | Chlorophyll | Solid Rock |",
             "## Route 119 rival": "| Ability | Randomized | Randomized | Randomized |",
             "## Lilycove rival": "| Ability | Randomized | Randomized | Randomized | Randomized |",
-            "## Maxie — Magma Hideout": "| Ability | Randomized | Randomized | Randomized |",
-            "### Tabitha's team": "| Ability | Randomized | Randomized | Randomized |",
-            "## Maxie & Tabitha — Mossdeep": "| Ability | Randomized | Randomized | Sheer Force |",
-            "## Archie": "| Ability | Randomized | Randomized | Strong Jaw |",
+            "## Maxie — Magma Hideout": "| Ability | Sand Spit | Sand Rush | Reckless | Storm Drain | Solid Rock → Sheer Force |",
+            "### Tabitha's team": "| Ability | Sand Stream | Sand Veil | Water Absorb |",
+            "## Maxie & Tabitha — Mossdeep": "| Ability | Sand Veil | Sand Rush | Solid Rock → Sheer Force |",
+            "## Archie": "| Ability | Drizzle | Swift Swim | Infiltrator | Lightning Rod | Intimidate | Speed Boost → Strong Jaw |",
         }
         for heading, row in expected_rows.items():
             with self.subTest(heading=heading):
@@ -77,7 +79,7 @@ class BossBattleDocsTests(unittest.TestCase):
             "TRAINER_PHOEBE": [76, 76, 76, 77, 78, 79],
             "TRAINER_GLACIA": [77, 77, 77, 77, 77, 79],
             "TRAINER_DRAKE": [78, 78, 78, 78, 79, 79],
-            "TRAINER_WALLACE": [79, 79, 79, 79, 79, 80],
+            "TRAINER_STEVEN": [79, 79, 79, 79, 80, 80],
         }
         for trainer, levels in expected.items():
             start = trainer_data.index(f"=== {trainer} ===")
@@ -86,7 +88,28 @@ class BossBattleDocsTests(unittest.TestCase):
             actual = [int(line.removeprefix("Level: ")) for line in section.splitlines() if line.startswith("Level: ")]
             self.assertEqual(actual, levels, trainer)
 
-        self.assertIn("{ 80, sCapWallace },", CAPS.read_text())
+        caps = CAPS.read_text()
+        self.assertIn("static const u16 sCapSteven[] = { TRAINER_STEVEN, TRAINER_NONE };", caps)
+        self.assertIn("{ 80, sCapSteven },", caps)
+
+    def test_champion_room_uses_documented_steven_team(self):
+        self.assertIn(
+            "trainerbattle_no_intro TRAINER_STEVEN, EverGrandeCity_ChampionsRoom_Text_Defeat",
+            CHAMPION_SCRIPT.read_text(),
+        )
+
+    def test_rivals_receive_story_boss_ivs(self):
+        source = BATTLE_MAIN.read_text()
+        start = source.index("static bool32 IsMaxIvTrainerClass")
+        end = source.index("\n}\n", start)
+        self.assertIn("case TRAINER_CLASS_RIVAL:", source[start:end])
+        self.assertIn("u32 ivs = IsMaxIvTrainerClass(trainer->trainerClass)", source)
+
+    def test_summary_lists_all_double_battles(self):
+        self.assertIn(
+            "**Wattson, Shelly, Tate & Liza, and Maxie & Tabitha are double battles; all other teams below are single battles.**",
+            self.markdown,
+        )
 
 
 if __name__ == "__main__":

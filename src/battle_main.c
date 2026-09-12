@@ -1932,6 +1932,17 @@ static bool32 IsStoryBossTrainerClass(enum TrainerClassID trainerClass)
     }
 }
 
+static bool32 IsMaxIvTrainerClass(enum TrainerClassID trainerClass)
+{
+    switch (trainerClass)
+    {
+    case TRAINER_CLASS_RIVAL:
+        return TRUE;
+    default:
+        return IsStoryBossTrainerClass(trainerClass);
+    }
+}
+
 u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer *trainer, bool32 halfTeam, u32 battleTypeFlags)
 {
     u32 personalityValue;
@@ -1999,7 +2010,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[monIndex].heldItem);
 
             CustomTrainerPartyAssignMoves(&party[i], &partyData[monIndex]);
-            u32 ivs = IsStoryBossTrainerClass(trainer->trainerClass)
+            u32 ivs = IsMaxIvTrainerClass(trainer->trainerClass)
                     ? TRAINER_PARTY_IVS(MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS,
                                         MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS)
                     : partyData[monIndex].iv;

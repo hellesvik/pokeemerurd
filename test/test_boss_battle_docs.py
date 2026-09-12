@@ -183,6 +183,21 @@ class BossBattleDocsTests(unittest.TestCase):
         self.assertIn("HP: 138<br>ATK: 159<br>DEF: 89<br>SpA: 133<br>SpD: 89<br>Spe: 106", docs)
         self.assertNotIn("Volcanion", docs)
 
+    def test_shelly_weather_institute_has_feraligatr(self):
+        trainer_data = TRAINERS.read_text()
+        start = trainer_data.index("=== TRAINER_SHELLY_WEATHER_INSTITUTE ===")
+        end = trainer_data.index("\n=== TRAINER_", start + 4)
+        section = trainer_data[start:end]
+        self.assertIn("Feraligatr @ Power Herb", section)
+        self.assertIn("Ability: Strong Jaw", section)
+        self.assertIn("Level: 32", section)
+        for move in ("Ice Fang", "Bite", "Dive", "Thunder Fang"):
+            self.assertIn(f"- {move}", section)
+
+        docs = self.section("## Shelly")
+        self.assertIn("| | Politoed | Castform | Whiscash | Dragonair | Feraligatr |", docs)
+        self.assertIn("HP: 106<br>ATK: 82<br>DEF: 78<br>SpA: 65<br>SpD: 68<br>Spe: 64", docs)
+
     def test_summary_lists_all_double_battles(self):
         self.assertIn(
             "**Wattson, Shelly, Tate & Liza, and Maxie & Tabitha are double battles; all other teams below are single battles.**",

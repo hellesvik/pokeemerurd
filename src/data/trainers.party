@@ -601,6 +601,15 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Aqua Tail
 - Thunder Wave
 
+Feraligatr @ Power Herb
+Ability: Strong Jaw
+Level: 32
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Ice Fang
+- Bite
+- Dive
+- Thunder Fang
+
 === TRAINER_SHELLY_SEAFLOOR_CAVERN ===
 Name: SHELLY
 Class: Aqua Admin

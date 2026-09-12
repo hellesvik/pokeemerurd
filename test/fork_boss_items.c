@@ -109,6 +109,30 @@ TEST("Maxie and Tabitha's Mossdeep battle uses the configured six-Pokemon sand t
     EXPECT_EQ(tabitha->party[2].ability, ABILITY_WATER_ABSORB);
 }
 
+TEST("Archie uses the configured six-Pokemon rain team")
+{
+    const struct Trainer *trainer = &gTrainers[DIFFICULTY_NORMAL][TRAINER_ARCHIE];
+    EXPECT_EQ((u32)trainer->partySize, 6);
+    EXPECT_EQ(trainer->party[0].species, SPECIES_WAILORD);
+    EXPECT_EQ(trainer->party[0].ability, ABILITY_DRIZZLE);
+    EXPECT_EQ(trainer->party[4].species, SPECIES_MASQUERAIN);
+    EXPECT_EQ(trainer->party[5].species, SPECIES_SHARPEDO);
+    EXPECT_EQ(trainer->party[5].heldItem, ITEM_SHARPEDONITE);
+}
+
+TEST("Steven uses the configured Regi and Mawile champion team")
+{
+    const struct Trainer *trainer = &gTrainers[DIFFICULTY_NORMAL][TRAINER_STEVEN];
+    EXPECT_EQ((u32)trainer->partySize, 6);
+    EXPECT_EQ(trainer->party[0].species, SPECIES_REGIROCK);
+    EXPECT_EQ(trainer->party[3].species, SPECIES_DRIFBLIM);
+    EXPECT_EQ(trainer->party[4].species, SPECIES_METAGROSS);
+    EXPECT_EQ(trainer->party[4].heldItem, ITEM_LIECHI_BERRY);
+    EXPECT_EQ(trainer->party[5].species, SPECIES_MAWILE);
+    EXPECT_EQ(trainer->party[5].lvl, 80);
+    EXPECT_EQ(trainer->party[5].heldItem, ITEM_MAWILITE);
+}
+
 TEST("Story bosses are restricted from bringing battle items")
 {
     static const enum TrainerClassID sBossClasses[] =

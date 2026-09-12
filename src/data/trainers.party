@@ -624,21 +624,62 @@ Class: Aqua Leader
 Pic: Aqua Leader Archie
 Gender: Male
 Music: Aqua
-Items: Super Potion / Super Potion
 Double Battle: No
 AI: Basic Trainer
 
-Mightyena
+Wailord @ Leftovers
+Ability: Drizzle
 Level: 41
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Water Spout
+- Ice Beam
+- Heavy Slam
+- Brine
 
-Crobat
+Huntail @ Choice Band
+Ability: Swift Swim
 Level: 41
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Flip Turn
+- Aqua Tail
+- Sucker Punch
+- Giga Impact
+
+Seviper @ Black Sludge
+Ability: Infiltrator
+Level: 42
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Poison Tail
+- Aqua Tail
+- Dragon Tail
+- Coil
+
+Seaking @ Choice Band
+Ability: Lightning Rod
+Level: 43
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Aqua Jet
+- Drill Run
+- Waterfall
+- Megahorn
+
+Masquerain @ Life Orb
+Ability: Intimidate
+Level: 44
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Hurricane
+- U-Turn
+- Bug Buzz
+- Weather Ball
 
 Sharpedo @ Sharpedonite
-Level: 43
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+Ability: Speed Boost
+Level: 45
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Crunch
+- Ice Fang
+- Waterfall
+- Poison Fang
 
 === TRAINER_LEAH ===
 Name: LEAH
@@ -16113,61 +16154,66 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
 === TRAINER_STEVEN ===
 Name: STEVEN
-Class: Rival
+Class: Champion
 Pic: Steven
 Gender: Male
 Music: Male
-Items: Full Restore / Full Restore / Full Restore / Full Restore
 Double Battle: No
 AI: Basic Trainer
 
-Skarmory
-Level: 77
+Regirock @ Rock Gem
+Ability: Sturdy
+Level: 79
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Toxic
-- Aerial Ace
-- Spikes
-- Steel Wing
-
-Claydol
-Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Reflect
-- Light Screen
-- Ancient Power
+- Stealth Rock
+- Stone Edge
 - Earthquake
+- Hammer Arm
 
-Aggron
-Level: 76
+Registeel @ Steel Gem
+Ability: Clear Body
+Level: 79
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Thunder
-- Earthquake
-- Solar Beam
-- Dragon Claw
+- Heavy Slam
+- Seismic Toss
+- Rest
+- Sleep Talk
 
-Cradily
-Level: 76
+Regice @ Ice Gem
+Ability: Ice Body
+Level: 79
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Giga Drain
-- Ancient Power
-- Ingrain
-- Confuse Ray
+- Lock-On
+- Blizzard
+- Focus Blast
+- Zap Cannon
 
-Armaldo
-Level: 76
+Drifblim @ Flying Gem
+Ability: Unburden
+Level: 79
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Water Pulse
-- Ancient Power
-- Aerial Ace
-- Slash
+- Acrobatics
+- Poltergeist
+- Tailwind
+- Destiny Bond
 
-Metagross @ Sitrus Berry
-Level: 78
+Metagross @ Liechi Berry
+Ability: Clear Body
+Level: 80
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Earthquake
-- Psychic
 - Meteor Mash
-- Shadow Ball
+- Agility
+- Zen Headbutt
+- Headlong Rush
+
+Mawile @ Mawilite
+Ability: Intimidate
+Level: 80
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Sucker Punch
+- Iron Head
+- Play Rough
+- Fire Fang
 
 === TRAINER_ANABEL ===
 Name: ANABEL

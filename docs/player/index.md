@@ -14,6 +14,8 @@ options do, what rules are active, and what to expect from important battles.
   the opening-game grace period.
 - [Boss battle teams](./boss_battles.md) — gyms, Wally, Team Aqua/Magma,
   Elite Four, and champion teams.
+- [Pokémon evolution methods](./pokemon_evolution_methods.md) — evolution
+  requirements for every represented species and form.
 - [Randomizer guide](./randomizers.md) — what each randomizer changes and
   what remains fixed.
 - [Player FAQ](./faq.md) — HMs, TMs, held items, trades, eggs, and common

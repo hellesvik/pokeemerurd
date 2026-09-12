@@ -26,8 +26,3 @@ battle ends in the current fork configuration.
 Boss teams are allowed to use custom abilities even when the ability is not
 normally legal for that species. This is intentional and is part of the
 challenge design.
-
-## Can I use Fly immediately?
-
-In normal play, Fly follows the fork's configured badge and field rules. The
-developer test mode is separate and is not part of the player rules.

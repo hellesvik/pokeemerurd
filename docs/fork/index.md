@@ -37,6 +37,8 @@ documented in the [reference index](./reference/index.md).
 
 ### 2026-09-12
 
+- Added Shelly's Weather Institute battle as a Lv. 32 cap milestone. The
+  following Route 119 rival battle also uses Lv. 32.
 - Fixed the Mauville Game Corner prize menu repeatedly allocating prize-name
   buffers by moving its names to static storage.
 - Blocked egg hatches now reset the egg's hatch counter, preventing the hatch

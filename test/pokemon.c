@@ -136,7 +136,10 @@ TEST("Fork rules enable a hard story-battle level cap while leaving one-use Rare
     EXPECT_EQ(GetCurrentLevelCap(), 31);
 
     SetTrainerFlag(TRAINER_NORMAN_1);
-    EXPECT_EQ(GetCurrentLevelCap(), 31);
+    EXPECT_EQ(GetCurrentLevelCap(), 32);
+
+    SetTrainerFlag(TRAINER_SHELLY_WEATHER_INSTITUTE);
+    EXPECT_EQ(GetCurrentLevelCap(), 32);
 
     SetTrainerFlag(TRAINER_MAY_ROUTE_119_TREECKO);
     EXPECT_EQ(GetCurrentLevelCap(), 33);

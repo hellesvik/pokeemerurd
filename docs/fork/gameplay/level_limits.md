@@ -14,7 +14,7 @@ This fork uses the built-in hard level cap system.
 
 The active cap is chosen from the first uncleared story battle milestone in `src/caps.c`. Rival variants share the same milestone, and boss fights use the highest level present in that battle.
 
-The ladder currently starts at Roxanne, advances through the selected rival, gym, and required villain milestones, then continues through Tate & Liza, the remaining villain battles, Juan, Wally's Victory Road battle, and Steven. Wally in Mauville, Tabitha at Mt. Chimney, Shelly at the Weather Institute and Seafloor Cavern, Matt, and the Elite Four do not create cap milestones. The cap never decreases: a later milestone that would be lower than the previous cap is raised to the previous cap plus one.
+The ladder currently starts at Roxanne, advances through the selected rival, gym, and required villain milestones, then continues through Tate & Liza, the remaining villain battles, Juan, Wally's Victory Road battle, and Steven. Wally in Mauville, Tabitha at Mt. Chimney, Shelly at Seafloor Cavern, Matt, and the Elite Four do not create cap milestones. The cap never decreases: a later milestone that would be lower than the previous cap is raised to the previous cap plus one.
 
 The final Pokémon League cap is **Lv. 80**. It becomes the active cap after the Victory Road Wally milestone and remains in force through Sidney, Phoebe, Glacia, Drake, and Champion Steven.
 

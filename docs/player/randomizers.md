@@ -23,6 +23,28 @@ species rules rather than a BST range.
 Ordinary static encounters such as Kecleon, Voltorb, and Electrode use the
 listed range for their current area. The bounds are inclusive.
 
+### Rules by encounter type
+
+All ordinary encounter methods use the current map's biome, its inclusive BST
+range, and the selected maximum generation. Legendary, Mythical, Ultra Beast,
+and Paradox Pokémon are excluded from these ordinary pools. Randomization
+changes species only: the original encounter rates and level ranges remain.
+Each map and method receives its own deterministic selections for that save.
+
+| Encounter type | Species and slot rules |
+| --- | --- |
+| Land, including grass and cave floors | Three distinct species from the map's biome and BST range. The normal twelve weighted slots repeat those three species. No additional type requirement. |
+| Surf | Three distinct Water- or Flying-type species from the map's biome and BST range. The normal five weighted slots repeat those three species. |
+| Fishing | Six distinct Water-type species from the map's biome and BST range when enough candidates exist: two for the Old Rod, two for the Good Rod, and two for the Super Rod. Each rod repeats its pair across its normal weighted slots. |
+| Rock Smash | Three distinct Rock-, Ground-, or Steel-type species from the map's biome and BST range. The normal weighted slots repeat those three species. |
+| Hatched Eggs | One base-form species from any biome, using BST 100–550. The result is chosen when the Egg hatches. Ordinary special-species exclusions apply. |
+| Ordinary static encounters | One species from the current map's land biome and BST range. Kecleon, Voltorb, and Electrode use this rule. If the map has no land assignment, the original species remains. |
+| Special static encounters | Regirock, Regice, Registeel, Groudon, Kyogre, and Rayquaza use BST 550–600. Special species are permitted, but the generation limit still applies. |
+| Birch's Route 101 starters | Three distinct base-form species using BST 275–325. The selected generation limit applies. The chosen starter receives at least two perfect IVs. |
+
+If a pool has too few eligible candidates, the game keeps the original species
+for any selection it cannot fill.
+
 | BST range | Encounters, routes, and places |
 | ---: | --- |
 | 100–550 | Hatched Eggs |

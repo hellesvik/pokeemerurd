@@ -93,8 +93,9 @@ Surf and fishing must not use the land pool. A map's biome determines the
 appropriate candidates for all of its encounter methods; for example, coastal
 and ocean maps can use water-appropriate surf and fishing candidates, while a
 cave lake can use freshwater or cave-water candidates. Fishing can overlap with
-surfing, but retains its own rod-tier weighting so better rods improve variety
-and access to stronger candidates.
+surfing. Each rod receives a different pair of species, but all three rods use
+the same biome and BST pool. Their original encounter rates and level ranges
+remain unchanged.
 
 The randomizer replaces only species entries. Maps keep their normal encounter
 rates and level ranges. Maps that have no encounter data for a method continue

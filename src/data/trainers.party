@@ -9589,14 +9589,14 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Rock Slide
 - Fire Fang
 
-Volcanion @ Covert Cloak
-Ability: Water Absorb
+Blaziken @ Blazikenite
+Ability: Speed Boost
 Level: 44
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Eruption
-- Sludge Bomb
-- Scorching Sands
 - Heat Wave
+- Aura Sphere
+- Weather Ball
+- Scorching Sands
 
 === TRAINER_EDWIN_2 ===
 Name: EDWIN

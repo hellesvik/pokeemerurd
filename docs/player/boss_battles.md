@@ -318,16 +318,16 @@ Tabitha participates in this double battle with the configured sand team below.
 
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/magma_admin.png" alt="Tabitha" width="96"></p>
 
-| | Hippowdon | Gabite | Volcanion |
+| | Hippowdon | Gabite | Mega Blaziken |
 | --- | --- | --- | --- |
-| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/hippowdon/anim_front.png" alt="Hippowdon" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/gabite/anim_front.png" alt="Gabite" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/volcanion/anim_front.png" alt="Volcanion" width="64"> |
-| Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dragon.png" alt="Dragon" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="48"> |
+| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/hippowdon/anim_front.png" alt="Hippowdon" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/gabite/anim_front.png" alt="Gabite" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/blaziken/mega/front.png" alt="Mega Blaziken" width="64"> |
+| Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dragon.png" alt="Dragon" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fight.png" alt="Fighting" width="48"> |
 | Level | 42 | 43 | 44 |
-| Stats | Total: 594<br>HP: 155<br>ATK: 112<br>DEF: 117<br>SpA: 75<br>SpD: 78<br>Spe: 57 | Total: 507<br>HP: 124<br>ATK: 95<br>DEF: 74<br>SpA: 61<br>SpD: 65<br>Spe: 88 | Total: 687<br>HP: 138<br>ATK: 115<br>DEF: 124<br>SpA: 133<br>SpD: 97<br>Spe: 80 |
-| Ability | Sand Stream | Sand Veil | Water Absorb |
-| Held item | Leftovers | Dragon Scale | Covert Cloak |
+| Stats | Total: 594<br>HP: 155<br>ATK: 112<br>DEF: 117<br>SpA: 75<br>SpD: 78<br>Spe: 57 | Total: 507<br>HP: 124<br>ATK: 95<br>DEF: 74<br>SpA: 61<br>SpD: 65<br>Spe: 88 | Total: 714<br>HP: 138<br>ATK: 159<br>DEF: 89<br>SpA: 133<br>SpD: 89<br>Spe: 106 |
+| Ability | Sand Stream | Sand Veil | Speed Boost |
+| Held item | Leftovers | Dragon Scale | Blazikenite |
 | Nature | Hardy | Hardy | Hardy |
-| Moves | Earthquake<br>Rock Slide<br>Slack Off<br>Crunch | Earthquake<br>Dragon Rush<br>Rock Slide<br>Fire Fang | Eruption<br>Sludge Bomb<br>Scorching Sands<br>Heat Wave |
+| Moves | Earthquake<br>Rock Slide<br>Slack Off<br>Crunch | Earthquake<br>Dragon Rush<br>Rock Slide<br>Fire Fang | Heat Wave<br>Aura Sphere<br>Weather Ball<br>Scorching Sands |
 
 
 ## Archie — Single battle

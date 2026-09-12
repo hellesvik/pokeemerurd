@@ -28,7 +28,7 @@ class BossBattleDocsTests(unittest.TestCase):
             "## Route 119 rival": "| Ability | Randomized | Randomized | Randomized |",
             "## Lilycove rival": "| Ability | Randomized | Randomized | Randomized | Randomized | Randomized | Randomized |",
             "## Maxie — Magma Hideout": "| Ability | Sand Spit | Sand Rush | Reckless | Storm Drain | Solid Rock → Sheer Force |",
-            "### Tabitha's team": "| Ability | Sand Stream | Sand Veil | Water Absorb |",
+            "### Tabitha's team": "| Ability | Sand Stream | Sand Veil | Speed Boost |",
             "## Maxie & Tabitha — Mossdeep": "| Ability | Sand Veil | Sand Rush | Solid Rock → Sheer Force |",
             "## Archie": "| Ability | Drizzle | Swift Swim | Infiltrator | Lightning Rod | Intimidate | Speed Boost → Strong Jaw |",
         }
@@ -166,6 +166,22 @@ class BossBattleDocsTests(unittest.TestCase):
         expected_pipes = rows[0].count("|")
         for row in rows:
             self.assertEqual(row.count("|"), expected_pipes, row)
+
+    def test_tabitha_uses_mega_blaziken(self):
+        trainer_data = TRAINERS.read_text()
+        start = trainer_data.index("=== TRAINER_TABITHA_MOSSDEEP ===")
+        end = trainer_data.index("\n=== TRAINER_", start + 4)
+        section = trainer_data[start:end]
+        self.assertIn("Blaziken @ Blazikenite", section)
+        self.assertIn("Ability: Speed Boost", section)
+        for move in ("Heat Wave", "Aura Sphere", "Weather Ball", "Scorching Sands"):
+            self.assertIn(f"- {move}", section)
+        self.assertNotIn("Volcanion", section)
+
+        docs = self.section("## Maxie & Tabitha")
+        self.assertIn("| | Hippowdon | Gabite | Mega Blaziken |", docs)
+        self.assertIn("HP: 138<br>ATK: 159<br>DEF: 89<br>SpA: 133<br>SpD: 89<br>Spe: 106", docs)
+        self.assertNotIn("Volcanion", docs)
 
     def test_summary_lists_all_double_battles(self):
         self.assertIn(

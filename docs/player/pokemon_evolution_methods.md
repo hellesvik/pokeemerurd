@@ -33,7 +33,7 @@ Regional forms are listed under the generation in which that form debuted. When 
 <tr><td>Fearow</td><td></td></tr>
 <tr><td>Ekans</td><td>Level 22 → Arbok</td></tr>
 <tr><td>Arbok</td><td></td></tr>
-<tr><td>Pikachu</td><td>Thunder Stone outside Alola → Raichu<br>Thunder Stone in Alola → Alolan Raichu</td></tr>
+<tr><td>Pikachu</td><td>Thunder Stone outside the Trick House → Raichu<br>Thunder Stone in the Trick House → Alolan Raichu</td></tr>
 <tr><td>Raichu</td><td></td></tr>
 <tr><td>Sandshrew</td><td>Level 22 → Sandslash</td></tr>
 <tr><td>Sandslash</td><td></td></tr>
@@ -110,14 +110,14 @@ Regional forms are listed under the generation in which that form debuted. When 
 <tr><td>Kingler</td><td></td></tr>
 <tr><td>Voltorb</td><td>Level 30 → Electrode</td></tr>
 <tr><td>Electrode</td><td></td></tr>
-<tr><td>Exeggcute</td><td>Leaf Stone outside Alola → Exeggutor<br>Leaf Stone in Alola → Alolan Exeggutor</td></tr>
+<tr><td>Exeggcute</td><td>Leaf Stone outside the Trick House → Exeggutor<br>Leaf Stone in the Trick House → Alolan Exeggutor</td></tr>
 <tr><td>Exeggutor</td><td></td></tr>
-<tr><td>Cubone</td><td>Level 28 outside Alola → Marowak<br>Level 28 in Alola, at night → Alolan Marowak</td></tr>
+<tr><td>Cubone</td><td>Level 28 outside the Trick House → Marowak<br>Level 28 in the Trick House, at night → Alolan Marowak</td></tr>
 <tr><td>Marowak</td><td></td></tr>
 <tr><td>Hitmonlee</td><td></td></tr>
 <tr><td>Hitmonchan</td><td></td></tr>
 <tr><td>Lickitung</td><td>Level up while knowing Rollout → Lickilicky</td></tr>
-<tr><td>Koffing</td><td>Level 35 outside Galar → Weezing<br>Level 35 in Galar → Galarian Weezing</td></tr>
+<tr><td>Koffing</td><td>Level 35 outside the Trick House → Weezing<br>Level 35 in the Trick House → Galarian Weezing</td></tr>
 <tr><td>Weezing</td><td></td></tr>
 <tr><td>Rhyhorn</td><td>Level 42 → Rhydon</td></tr>
 <tr><td>Rhydon</td><td>Trade while holding Protector → Rhyperior<br>Protector → Rhyperior</td></tr>
@@ -165,7 +165,7 @@ Regional forms are listed under the generation in which that form debuted. When 
 <tr><td>Bayleef</td><td>Level 32 → Meganium</td></tr>
 <tr><td>Meganium</td><td></td></tr>
 <tr><td>Cyndaquil</td><td>Level 14 → Quilava</td></tr>
-<tr><td>Quilava</td><td>Level 36 outside Hisui → Typhlosion<br>Level 36 in Hisui → Hisuian Typhlosion</td></tr>
+<tr><td>Quilava</td><td>Level 36 outside the Trick House → Typhlosion<br>Level 36 in the Trick House → Hisuian Typhlosion</td></tr>
 <tr><td>Typhlosion</td><td></td></tr>
 <tr><td>Totodile</td><td>Level 18 → Croconaw</td></tr>
 <tr><td>Croconaw</td><td>Level 30 → Feraligatr</td></tr>
@@ -226,7 +226,7 @@ Regional forms are listed under the generation in which that form debuted. When 
 <tr><td>Heracross</td><td></td></tr>
 <tr><td>Sneasel</td><td>Level up at night, while holding Razor Claw → Weavile<br>Razor Claw at night → Weavile</td></tr>
 <tr><td>Teddiursa</td><td>Level 30 → Ursaring</td></tr>
-<tr><td>Ursaring</td><td>Peat Block in Hisui, at night → Ursaluna</td></tr>
+<tr><td>Ursaring</td><td>Peat Block in the Trick House, at night → Ursaluna</td></tr>
 <tr><td>Slugma</td><td>Level 38 → Magcargo</td></tr>
 <tr><td>Magcargo</td><td></td></tr>
 <tr><td>Swinub</td><td>Level 33 → Piloswine</td></tr>
@@ -450,7 +450,7 @@ Regional forms are listed under the generation in which that form debuted. When 
 <tr><td>Bronzor</td><td>Level 33 → Bronzong</td></tr>
 <tr><td>Bronzong</td><td></td></tr>
 <tr><td>Bonsly</td><td>Level up while knowing Mimic → Sudowoodo</td></tr>
-<tr><td>Mime Jr.</td><td>Level up while knowing Mimic, outside Galar → Mr. Mime<br>Level up while knowing Mimic, in Galar → Galarian Mr. Mime</td></tr>
+<tr><td>Mime Jr.</td><td>Level up while knowing Mimic, outside the Trick House → Mr. Mime<br>Level up while knowing Mimic, in the Trick House → Galarian Mr. Mime</td></tr>
 <tr><td>Happiny</td><td>Level up during the day, while holding Oval Stone → Chansey<br>Oval Stone during the day → Chansey</td></tr>
 <tr><td>Chatot</td><td></td></tr>
 <tr><td>Spiritomb</td><td></td></tr>
@@ -514,7 +514,7 @@ Regional forms are listed under the generation in which that form debuted. When 
 <tr><td>Pignite</td><td>Level 36 → Emboar</td></tr>
 <tr><td>Emboar</td><td></td></tr>
 <tr><td>Oshawott</td><td>Level 17 → Dewott</td></tr>
-<tr><td>Dewott</td><td>Level 36 outside Hisui → Samurott<br>Level 36 in Hisui → Hisuian Samurott</td></tr>
+<tr><td>Dewott</td><td>Level 36 outside the Trick House → Samurott<br>Level 36 in the Trick House → Hisuian Samurott</td></tr>
 <tr><td>Samurott</td><td></td></tr>
 <tr><td>Patrat</td><td>Level 20 → Watchog</td></tr>
 <tr><td>Watchog</td><td></td></tr>
@@ -560,7 +560,7 @@ Regional forms are listed under the generation in which that form debuted. When 
 <tr><td>Scolipede</td><td></td></tr>
 <tr><td>Cottonee</td><td>Sun Stone → Whimsicott</td></tr>
 <tr><td>Whimsicott</td><td></td></tr>
-<tr><td>Petilil</td><td>Sun Stone outside Hisui → Lilligant<br>Sun Stone in Hisui → Hisuian Lilligant</td></tr>
+<tr><td>Petilil</td><td>Sun Stone outside the Trick House → Lilligant<br>Sun Stone in the Trick House → Hisuian Lilligant</td></tr>
 <tr><td>Lilligant</td><td></td></tr>
 <tr><td>Basculin</td><td>Level up as White-Striped Form, after taking at least 294 recoil damage, if male → Basculegion (Male)<br>Level up as White-Striped Form, after taking at least 294 recoil damage, if female → Basculegion (Female)</td></tr>
 <tr><td>Sandile</td><td>Level 29 → Krokorok</td></tr>
@@ -639,7 +639,7 @@ Regional forms are listed under the generation in which that form debuted. When 
 <tr><td>Pawniard</td><td>Level 52 → Bisharp</td></tr>
 <tr><td>Bisharp</td><td>Level up after defeating 3 Bisharp holding Leader's Crests → Kingambit</td></tr>
 <tr><td>Bouffalant</td><td></td></tr>
-<tr><td>Rufflet</td><td>Level 54 outside Hisui → Braviary<br>Level 54 in Hisui → Hisuian Braviary</td></tr>
+<tr><td>Rufflet</td><td>Level 54 outside the Trick House → Braviary<br>Level 54 in the Trick House → Hisuian Braviary</td></tr>
 <tr><td>Braviary</td><td></td></tr>
 <tr><td>Vullaby</td><td>Level 54 → Mandibuzz</td></tr>
 <tr><td>Mandibuzz</td><td></td></tr>
@@ -717,7 +717,7 @@ Regional forms are listed under the generation in which that form debuted. When 
 <tr><td>Hawlucha</td><td></td></tr>
 <tr><td>Dedenne</td><td></td></tr>
 <tr><td>Carbink</td><td></td></tr>
-<tr><td>Goomy</td><td>Level 40 outside Hisui → Sliggoo<br>Level 40 in Hisui → Hisuian Sliggoo</td></tr>
+<tr><td>Goomy</td><td>Level 40 outside the Trick House → Sliggoo<br>Level 40 in the Trick House → Hisuian Sliggoo</td></tr>
 <tr><td>Sliggoo</td><td>Level 50 during rain → Goodra<br>Level 50 during fog → Goodra</td></tr>
 <tr><td>Goodra</td><td></td></tr>
 <tr><td>Klefki</td><td></td></tr>
@@ -725,7 +725,7 @@ Regional forms are listed under the generation in which that form debuted. When 
 <tr><td>Trevenant</td><td></td></tr>
 <tr><td>Pumpkaboo</td><td>Trade as Average Size → Gourgeist (Average)<br>Linking Cord as Average Size → Gourgeist (Average)<br>Trade as Small Size → Gourgeist (Small)<br>Linking Cord as Small Size → Gourgeist (Small)<br>Trade as Large Size → Gourgeist (Large)<br>Linking Cord as Large Size → Gourgeist (Large)<br>Trade as Super Size → Gourgeist (Super Size)<br>Linking Cord as Super Size → Gourgeist (Super Size)</td></tr>
 <tr><td>Gourgeist</td><td></td></tr>
-<tr><td>Bergmite</td><td>Level 37 outside Hisui → Avalugg<br>Level 37 in Hisui → Hisuian Avalugg</td></tr>
+<tr><td>Bergmite</td><td>Level 37 outside the Trick House → Avalugg<br>Level 37 in the Trick House → Hisuian Avalugg</td></tr>
 <tr><td>Avalugg</td><td></td></tr>
 <tr><td>Noibat</td><td>Level 48 → Noivern</td></tr>
 <tr><td>Noivern</td><td></td></tr>
@@ -755,7 +755,7 @@ Regional forms are listed under the generation in which that form debuted. When 
 <tr><td>Alolan Exeggutor</td><td></td></tr>
 <tr><td>Alolan Marowak</td><td></td></tr>
 <tr><td>Rowlet</td><td>Level 17 → Dartrix</td></tr>
-<tr><td>Dartrix</td><td>Level 34 outside Hisui → Decidueye<br>Level 36 in Hisui → Hisuian Decidueye</td></tr>
+<tr><td>Dartrix</td><td>Level 34 outside the Trick House → Decidueye<br>Level 36 in the Trick House → Hisuian Decidueye</td></tr>
 <tr><td>Decidueye</td><td></td></tr>
 <tr><td>Litten</td><td>Level 17 → Torracat</td></tr>
 <tr><td>Torracat</td><td>Level 34 → Incineroar</td></tr>

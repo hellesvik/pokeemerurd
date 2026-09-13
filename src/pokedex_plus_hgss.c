@@ -6714,6 +6714,12 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, enum Species species
                     }
                     break;
                 }
+                case IF_IN_TRICK_HOUSE:
+                    StringAppend(gStringVar4, COMPOUND_STRING("in Trick House"));
+                    break;
+                case IF_NOT_IN_TRICK_HOUSE:
+                    StringAppend(gStringVar4, COMPOUND_STRING("outside Trick House"));
+                    break;
                 // Gen 8
                 case IF_NATURE:
                     StringCopy(gStringVar2, gNaturesInfo[evolutions[i].params[j].arg1].name);

@@ -9,7 +9,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTPUT = ROOT / "docs/fork/reference/pokemon_evolution_methods.md"
+OUTPUT = ROOT / "docs/player/pokemon_evolution_methods.md"
 
 GENERATION_NAMES = {
     1: "Kanto",
@@ -302,6 +302,8 @@ def _condition_text(condition: str) -> str:
         return f"after defeating {args[-1]} {_title_constant(args[0], 'SPECIES_')} holding {item}"
     if kind == "IF_REGION": return "in " + _title_constant(args[0], "REGION_")
     if kind == "IF_NOT_REGION": return "outside " + _title_constant(args[0], "REGION_")
+    if kind == "IF_IN_TRICK_HOUSE": return "in the Trick House"
+    if kind == "IF_NOT_IN_TRICK_HOUSE": return "outside the Trick House"
     if kind == "IF_AMPED_NATURE": return "with an Amped-form nature"
     if kind == "IF_LOW_KEY_NATURE": return "with a Low Key-form nature"
     if kind.startswith("IF_PID_"): return "based on its personality value"

@@ -22,11 +22,39 @@
 #include "constants/flags.h"
 #include "constants/global.h"
 #include "constants/items.h"
+#include "constants/map_groups.h"
 #include "constants/move_relearner.h"
 #include "constants/opponents.h"
 #include "wild_encounter.h"
 
 #include "field_player_avatar.h"
+
+TEST("Regional branch evolutions require the Trick House")
+{
+    struct Pokemon mon;
+    bool32 canStopEvo;
+    const u16 trickHouseMaps[] =
+    {
+        MAP_ROUTE110_TRICK_HOUSE_ENTRANCE,
+        MAP_ROUTE110_TRICK_HOUSE_END,
+        MAP_ROUTE110_TRICK_HOUSE_CORRIDOR,
+        MAP_ROUTE110_TRICK_HOUSE_PUZZLE1,
+        MAP_ROUTE110_TRICK_HOUSE_PUZZLE8,
+    };
+
+    CreateMon(&mon, SPECIES_PIKACHU, 20, 0, OTID_STRUCT_PLAYER_ID);
+
+    for (u32 i = 0; i < ARRAY_COUNT(trickHouseMaps); i++)
+    {
+        gSaveBlock1Ptr->location.mapGroup = MAP_GROUP(trickHouseMaps[i]);
+        gSaveBlock1Ptr->location.mapNum = MAP_NUM(trickHouseMaps[i]);
+        EXPECT_EQ(GetEvolutionTargetSpecies(&mon, EVO_MODE_ITEM_CHECK, ITEM_THUNDER_STONE, NULL, &canStopEvo, CHECK_EVO), SPECIES_RAICHU_ALOLA);
+    }
+
+    gSaveBlock1Ptr->location.mapGroup = MAP_GROUP(MAP_ROUTE110);
+    gSaveBlock1Ptr->location.mapNum = MAP_NUM(MAP_ROUTE110);
+    EXPECT_EQ(GetEvolutionTargetSpecies(&mon, EVO_MODE_ITEM_CHECK, ITEM_THUNDER_STONE, NULL, &canStopEvo, CHECK_EVO), SPECIES_RAICHU);
+}
 
 TEST("Overworld movement runs by default and walks while B is held")
 {

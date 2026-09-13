@@ -69,6 +69,7 @@
 #include "constants/item_effects.h"
 #include "constants/items.h"
 #include "constants/layouts.h"
+#include "constants/map_groups.h"
 #include "constants/moves.h"
 #include "constants/party_menu.h"
 #include "constants/regions.h"
@@ -4556,6 +4557,16 @@ bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct Evoluti
             if (GetCurrentRegion() != params[i].arg1)
                 currentCondition = TRUE;
             break;
+        case IF_IN_TRICK_HOUSE:
+        case IF_NOT_IN_TRICK_HOUSE:
+        {
+            u16 currentMap = (gSaveBlock1Ptr->location.mapGroup << 8) | gSaveBlock1Ptr->location.mapNum;
+            bool32 inTrickHouse = currentMap >= MAP_ROUTE110_TRICK_HOUSE_ENTRANCE
+                               && currentMap <= MAP_ROUTE110_TRICK_HOUSE_PUZZLE8;
+
+            currentCondition = params[i].condition == IF_IN_TRICK_HOUSE ? inTrickHouse : !inTrickHouse;
+            break;
+        }
         case CONDITIONS_END:
             break;
         }

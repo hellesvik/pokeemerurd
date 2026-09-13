@@ -1,5 +1,6 @@
 #include "global.h"
 #include "event_data.h"
+#include "fork_run.h"
 #include "item_ball.h"
 #include "item.h"
 #include "malloc.h"
@@ -356,6 +357,70 @@ TEST("Fork item randomizer includes every randomized TM")
             randomizedTMCount++;
     }
     EXPECT_EQ(randomizedTMCount, 80);
+}
+
+TEST("Fork item randomizer includes every DLC evolution item")
+{
+    static const enum Item evolutionItems[] =
+    {
+        ITEM_SCROLL_OF_DARKNESS,
+        ITEM_SCROLL_OF_WATERS,
+        ITEM_SYRUPY_APPLE,
+        ITEM_UNREMARKABLE_TEACUP,
+        ITEM_MASTERPIECE_TEACUP,
+        ITEM_METAL_ALLOY,
+    };
+    bool8 found[ARRAY_COUNT(evolutionItems)] = {FALSE};
+
+    ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
+        FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, GEN_9, TRUE, FALSE);
+    gSaveBlock3Ptr->forkItemRandomizerSeed = 77779;
+    ResetForkItemRandomizerState();
+
+    for (u16 sourceId = 0; sourceId < FORK_ITEM_RANDOMIZER_POOL_COUNT; sourceId++)
+    {
+        enum Item item = ResolveForkRandomizedItem(ITEM_POTION, sourceId);
+
+        for (u32 i = 0; i < ARRAY_COUNT(evolutionItems); i++)
+            if (item == evolutionItems[i])
+                found[i] = TRUE;
+    }
+
+    for (u32 i = 0; i < ARRAY_COUNT(evolutionItems); i++)
+        EXPECT(found[i]);
+}
+
+TEST("Single-purpose evolution items follow the Pokemon randomizer pool")
+{
+    ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
+        FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, GEN_3, TRUE, FALSE);
+
+    EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_FIRE_STONE));
+    EXPECT(!IsForkItemEligibleForRandomizerPool(ITEM_METAL_ALLOY));
+    EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_DEEP_SEA_TOOTH));
+
+    ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
+        FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, GEN_9, TRUE, FALSE);
+
+    EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_METAL_ALLOY));
+    EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_SCROLL_OF_DARKNESS));
+}
+
+TEST("Mega Stones follow the Pokemon randomizer pool")
+{
+    ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
+        FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, GEN_3, TRUE, FALSE);
+
+    EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_SCEPTILITE));
+    EXPECT(!IsForkItemEligibleForRandomizerPool(ITEM_BAXCALIBRITE));
+
+    ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
+        FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, GEN_9, TRUE, FALSE);
+    EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_BAXCALIBRITE));
+
+    ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
+        FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, GEN_9, FALSE, FALSE);
+    EXPECT(!IsForkItemEligibleForRandomizerPool(ITEM_SCEPTILITE));
 }
 
 TEST("Fork item randomizer does not yield Plates or Incenses")

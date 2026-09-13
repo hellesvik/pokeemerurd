@@ -58,15 +58,22 @@ the scrollable menu allows all eleven prizes to be selected.
 The pool contains 378 items. It consists of:
 
 - Mega Stones.
-- Evolution items.
+- Evolution items needed by Pokémon within the selected generation limit,
+  including the Key Item-pocket Scroll of Darkness and Scroll of Waters when
+  their Pokémon are eligible. Evolution items that also function as battle
+  held items remain eligible independently.
+- Mega Stones whose corresponding Pokémon are within the selected generation
+  limit. Mega Stones are omitted entirely when Mega Evolution is disabled.
 - Form- and species-specific items, such as Memories, Drives, Orbs, Masks, and
   Nectars.
 - Battle held items.
 - `ITEM_TM01` through `ITEM_TM130`.
 
 The pool deliberately excludes all fossils, Plates, and Incenses. It also
-excludes HMs, Key Items, consumable medicine and ball items, vendor-value
-filler, Tera Orb, and Dynamax Band.
+excludes HMs, ordinary Key Items, consumable medicine and ball items,
+vendor-value filler, Tera Orb, and Dynamax Band. The Scroll of Darkness and
+Scroll of Waters are explicit Key Item exceptions because Kubfu requires them
+to evolve.
 
 ## Hidden-item pool
 

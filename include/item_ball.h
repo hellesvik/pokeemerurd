@@ -5,6 +5,7 @@
 
 void GetItemBallIdAndAmountFromTemplate(void);
 enum Item ResolveForkRandomizedItem(enum Item itemId, u16 sourceId);
+bool32 IsForkItemEligibleForRandomizerPool(enum Item item);
 enum Item ResolveForkRandomizedItemBall(enum Item itemId, u16 sourceId);
 enum Item ResolveForkRandomizedHiddenItem(enum Item itemId, u16 hiddenItemFlag);
 enum Item ResolveForkRandomizedScriptItem(enum Item itemId, const u8 *scriptPtr);

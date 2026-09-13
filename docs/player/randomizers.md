@@ -88,6 +88,11 @@ for any selection it cannot fill.
 ## Item randomizer
 
 Item Balls, hidden items, and gym leader item gifts can be randomized.
+Single-purpose evolution items appear only when a Pokémon that uses them is
+within the selected generation limit. This includes the Key Item-pocket Scroll
+of Darkness and Scroll of Waters. Evolution items with battle-held effects
+remain available regardless. Mega Stones follow the same Pokémon availability
+rule and are excluded when Mega Evolution is disabled.
 Mauville Game Corner sells evolution stones and the Linking Cord instead of
 randomized stock.
 

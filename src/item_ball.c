@@ -16,7 +16,7 @@
 
 #define FIRST_HM_ITEM ITEM_HM01
 #define LAST_HM_ITEM ITEM_HM08
-#define FORK_ITEM_RANDOMIZER_VERSION 9
+#define FORK_ITEM_RANDOMIZER_VERSION 11
 #define FIRST_ITEM_BALL_FLAG FLAG_ITEM_ROUTE_102_POTION
 #define LAST_ITEM_BALL_FLAG FLAG_ITEM_SAFARI_ZONE_SOUTH_EAST_BIG_PEARL
 
@@ -133,6 +133,8 @@ static const enum Item sForkRandomizedItemPool[] =
     ITEM_LINKING_CORD,
     ITEM_MAGMARIZER,
     ITEM_MALICIOUS_ARMOR,
+    ITEM_MASTERPIECE_TEACUP,
+    ITEM_METAL_ALLOY,
     ITEM_METAL_COAT,
     ITEM_MOON_STONE,
     ITEM_OVAL_STONE,
@@ -143,11 +145,15 @@ static const enum Item sForkRandomizedItemPool[] =
     ITEM_RAZOR_FANG,
     ITEM_REAPER_CLOTH,
     ITEM_SACHET,
+    ITEM_SCROLL_OF_DARKNESS,
+    ITEM_SCROLL_OF_WATERS,
     ITEM_SHINY_STONE,
     ITEM_SUN_STONE,
     ITEM_SWEET_APPLE,
+    ITEM_SYRUPY_APPLE,
     ITEM_TART_APPLE,
     ITEM_THUNDER_STONE,
+    ITEM_UNREMARKABLE_TEACUP,
     ITEM_UPGRADE,
     ITEM_WATER_STONE,
     ITEM_WHIPPED_DREAM,
@@ -433,6 +439,138 @@ static void SetForkBit(u8 *bits, u16 index)
     bits[index / 8] |= 1 << (index % 8);
 }
 
+static u8 GetEvolutionItemRequiredGeneration(enum Item item)
+{
+    switch (item)
+    {
+    case ITEM_DUSK_STONE:
+    case ITEM_PEAT_BLOCK:
+    case ITEM_RAZOR_CLAW:
+    case ITEM_RAZOR_FANG:
+    case ITEM_SHINY_STONE:
+        return GEN_2;
+    case ITEM_DAWN_STONE:
+    case ITEM_DEEP_SEA_SCALE:
+    case ITEM_DEEP_SEA_TOOTH:
+    case ITEM_PRISM_SCALE:
+    case ITEM_REAPER_CLOTH:
+        return GEN_3;
+    case ITEM_SACHET:
+    case ITEM_WHIPPED_DREAM:
+        return GEN_6;
+    case ITEM_CHIPPED_POT:
+    case ITEM_CRACKED_POT:
+    case ITEM_METAL_ALLOY:
+    case ITEM_SCROLL_OF_DARKNESS:
+    case ITEM_SCROLL_OF_WATERS:
+    case ITEM_SWEET_APPLE:
+    case ITEM_SYRUPY_APPLE:
+    case ITEM_TART_APPLE:
+        return GEN_8;
+    case ITEM_AUSPICIOUS_ARMOR:
+    case ITEM_MALICIOUS_ARMOR:
+    case ITEM_MASTERPIECE_TEACUP:
+    case ITEM_UNREMARKABLE_TEACUP:
+        return GEN_9;
+    default:
+        return GEN_1;
+    }
+}
+
+static u8 GetMegaStoneRequiredGeneration(enum Item item)
+{
+    switch (item)
+    {
+    case ITEM_AMPHAROSITE:
+    case ITEM_FERALIGITE:
+    case ITEM_HERACRONITE:
+    case ITEM_HOUNDOOMINITE:
+    case ITEM_MEGANIUMITE:
+    case ITEM_SKARMORITE:
+    case ITEM_TYRANITARITE:
+        return GEN_2;
+    case ITEM_ABSOLITE:
+    case ITEM_AGGRONITE:
+    case ITEM_ALTARIANITE:
+    case ITEM_BANETTITE:
+    case ITEM_BLAZIKENITE:
+    case ITEM_CAMERUPTITE:
+    case ITEM_CHIMECHITE:
+    case ITEM_FROSLASSITE:
+    case ITEM_GALLADITE:
+    case ITEM_GARDEVOIRITE:
+    case ITEM_GLALITITE:
+    case ITEM_LATIASITE:
+    case ITEM_LATIOSITE:
+    case ITEM_MANECTITE:
+    case ITEM_MAWILITE:
+    case ITEM_MEDICHAMITE:
+    case ITEM_METAGROSSITE:
+    case ITEM_SABLENITE:
+    case ITEM_SALAMENCITE:
+    case ITEM_SCEPTILITE:
+    case ITEM_SHARPEDONITE:
+    case ITEM_SWAMPERTITE:
+        return GEN_3;
+    case ITEM_ABOMASITE:
+    case ITEM_DARKRANITE:
+    case ITEM_GARCHOMPITE:
+    case ITEM_HEATRANITE:
+    case ITEM_LOPUNNITE:
+    case ITEM_LUCARIONITE:
+    case ITEM_STARAPTITE:
+        return GEN_4;
+    case ITEM_AUDINITE:
+    case ITEM_CHANDELURITE:
+    case ITEM_EELEKTROSSITE:
+    case ITEM_EMBOARITE:
+    case ITEM_EXCADRITE:
+    case ITEM_GOLURKITE:
+    case ITEM_SCOLIPITE:
+    case ITEM_SCRAFTINITE:
+        return GEN_5;
+    case ITEM_BARBARACITE:
+    case ITEM_CHESNAUGHTITE:
+    case ITEM_DELPHOXITE:
+    case ITEM_DIANCITE:
+    case ITEM_DRAGALGITE:
+    case ITEM_FLOETTITE:
+    case ITEM_GRENINJITE:
+    case ITEM_HAWLUCHANITE:
+    case ITEM_MALAMARITE:
+    case ITEM_MEOWSTICITE:
+    case ITEM_PYROARITE:
+    case ITEM_ZYGARDITE:
+        return GEN_6;
+    case ITEM_CRABOMINITE:
+    case ITEM_DRAMPANITE:
+    case ITEM_GOLISOPITE:
+    case ITEM_MAGEARNITE:
+    case ITEM_ZERAORITE:
+        return GEN_7;
+    case ITEM_FALINKSITE:
+        return GEN_8;
+    case ITEM_BAXCALIBRITE:
+    case ITEM_GLIMMORANITE:
+    case ITEM_SCOVILLAINITE:
+    case ITEM_TATSUGIRINITE:
+        return GEN_9;
+    default:
+        return GEN_1;
+    }
+}
+
+bool32 IsForkItemEligibleForRandomizerPool(enum Item item)
+{
+    if (gItemsInfo[item].sortType == ITEM_TYPE_MEGA_STONE)
+        return ForkAreMegaEvolutionsEnabled()
+            && GetMegaStoneRequiredGeneration(item) <= ForkGetRandomizerMaxGen();
+    if (gItemsInfo[item].sortType == ITEM_TYPE_EVOLUTION_ITEM
+     && gItemsInfo[item].holdEffect == HOLD_EFFECT_NONE)
+        return GetEvolutionItemRequiredGeneration(item) <= ForkGetRandomizerMaxGen();
+    return TRUE;
+}
+
 void ResetForkItemRandomizerState(void)
 {
     sForkItemBallRandomizationPending = FALSE;
@@ -469,7 +607,7 @@ static u16 GetNextUnclaimedPoolIndex(u16 sourceId)
     {
         u16 candidate = LocalRandom(&localRng) % FORK_ITEM_RANDOMIZER_POOL_COUNT;
         if (!GetForkBit(gSaveBlock3Ptr->forkItemRandomizerPoolClaimed, candidate)
-         && (ForkAreMegaEvolutionsEnabled() || gItemsInfo[sForkRandomizedItemPool[candidate]].sortType != ITEM_TYPE_MEGA_STONE))
+         && IsForkItemEligibleForRandomizerPool(sForkRandomizedItemPool[candidate]))
         {
             SetForkBit(gSaveBlock3Ptr->forkItemRandomizerPoolClaimed, candidate);
             gSaveBlock3Ptr->forkItemRandomizerNextScan = candidate + 1;
@@ -488,7 +626,7 @@ static u16 GetStableUnclaimedPoolIndex(u16 sourceId)
     for (u16 attempt = 0; attempt < FORK_ITEM_RANDOMIZER_POOL_COUNT; attempt++)
     {
         if (!GetForkBit(gSaveBlock3Ptr->forkItemRandomizerPoolClaimed, candidate)
-         && (ForkAreMegaEvolutionsEnabled() || gItemsInfo[sForkRandomizedItemPool[candidate]].sortType != ITEM_TYPE_MEGA_STONE))
+         && IsForkItemEligibleForRandomizerPool(sForkRandomizedItemPool[candidate]))
         {
             SetForkBit(gSaveBlock3Ptr->forkItemRandomizerPoolClaimed, candidate);
             return candidate;

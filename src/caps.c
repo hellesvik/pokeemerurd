@@ -16,6 +16,7 @@ struct LevelCapMilestone
 };
 
 static EWRAM_DATA u8 sQueuedLevelCapIncrease = 0;
+static EWRAM_DATA u16 sResultBeforeLevelCapIncreaseMessage = 0;
 static const u8 sText_LevelCapRaised[] = _("LEVEL CAP RAISED!\nYour POKéMON can now reach\nLv. {STR_VAR_1}.");
 
 static bool32 HasAnyTrainerBeenFought(const u16 *trainerIds)
@@ -163,6 +164,7 @@ void ShowQueuedLevelCapIncreaseMessage(void)
 {
     u32 cap = ConsumeQueuedLevelCapIncrease();
 
+    sResultBeforeLevelCapIncreaseMessage = gSpecialVar_Result;
     gSpecialVar_Result = FALSE;
     if (cap == 0)
         return;
@@ -170,6 +172,11 @@ void ShowQueuedLevelCapIncreaseMessage(void)
     ConvertIntToDecimalStringN(gStringVar1, cap, STR_CONV_MODE_LEFT_ALIGN, 3);
     if (ShowFieldMessage(sText_LevelCapRaised))
         gSpecialVar_Result = TRUE;
+}
+
+void RestoreResultAfterLevelCapIncreaseMessage(void)
+{
+    gSpecialVar_Result = sResultBeforeLevelCapIncreaseMessage;
 }
 
 u32 GetSoftLevelCapExpValue(u32 level, u32 expValue)

@@ -88,11 +88,15 @@ for any selection it cannot fill.
 ## Item randomizer
 
 Item Balls, hidden items, and gym leader item gifts can be randomized.
-Single-purpose evolution items appear only when a Pokémon that uses them is
-within the selected generation limit. This includes the Key Item-pocket Scroll
-of Darkness and Scroll of Waters. Evolution items with battle-held effects
-remain available regardless. Mega Stones follow the same Pokémon availability
-rule and are excluded when Mega Evolution is disabled.
+Single-purpose evolution items, Mega Stones, and species-specific form items
+appear only when their Pokémon can actually be obtained from the Pokémon
+randomizer in the selected generation range. Randomized special static
+encounters and obtainable pre-evolutions count; Pokémon excluded by the BST
+rules do not. Items requiring multiple Pokémon require all of them. Evolution
+items with battle-held effects remain available regardless, and all Mega
+Stones are excluded when Mega Evolution is disabled. Kubfu's Scrolls can
+appear in Generation 8 because Urshifu qualifies for the special-static pool;
+Mewtwo's Mega Stones remain unavailable under the current BST ranges.
 Mauville Game Corner sells evolution stones and the Linking Cord instead of
 randomized stock.
 
@@ -105,8 +109,7 @@ Mythical, Ultra Beast, Paradox, and form-mechanic families remain restricted
 as described in the technical [Ability Randomizer documentation](../fork/randomizers/ability_randomizer.md).
 
 Shedinja always keeps Wonder Guard; the Nincada family is protected from
-ability randomization. Wonder Guard may still appear on other eligible
-families.
+ability randomization. Wonder Guard is never assigned to another family.
 
 ## TM randomizer
 

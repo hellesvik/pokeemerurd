@@ -223,6 +223,15 @@ TEST("Level cap notifications are queued only after a cap increase")
     EXPECT_EQ(QueueLevelCapIncreaseMessage(previousCap), FALSE);
 }
 
+TEST("Level cap notifications preserve VAR_RESULT")
+{
+    gSpecialVar_Result = 1;
+    ShowQueuedLevelCapIncreaseMessage();
+    RestoreResultAfterLevelCapIncreaseMessage();
+
+    EXPECT_EQ(gSpecialVar_Result, 1);
+}
+
 TEST("Fork gameplay options gate the catch limit and level cap")
 {
     ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, GEN_3, TRUE, FALSE);
@@ -611,21 +620,22 @@ TEST("Fork rules zero EVs on newly obtained mons when player EVs are disabled")
     EXPECT_EQ(GetBoxMonData(GetBoxedMonPtr(0, 0), MON_DATA_ATK_EV), 0);
 }
 
-TEST("Test mode starts with Emerald key items and fork test items")
+TEST("Test mode does not start with Emerald progression key items")
 {
     NewGameInitData();
-    ForkEnsureKeyItemsPresent();
 
+    for (u16 badge = FLAG_BADGE01_GET; badge < FLAG_BADGE01_GET + NUM_BADGES; badge++)
+        EXPECT_EQ(FlagGet(badge), FALSE);
     EXPECT_EQ(CheckBagHasItem(ITEM_INFINITE_RARE_CANDY, 1), TRUE);
     EXPECT_EQ(CheckBagHasItem(ITEM_INFINITE_REPEL, 1), TRUE);
-    EXPECT_EQ(CheckBagHasItem(ITEM_MACH_BIKE, 1), TRUE);
-    EXPECT_EQ(CheckBagHasItem(ITEM_ACRO_BIKE, 1), TRUE);
-    EXPECT_EQ(CheckBagHasItem(ITEM_OLD_ROD, 1), TRUE);
-    EXPECT_EQ(CheckBagHasItem(ITEM_GOOD_ROD, 1), TRUE);
-    EXPECT_EQ(CheckBagHasItem(ITEM_SUPER_ROD, 1), TRUE);
-    EXPECT_EQ(CheckBagHasItem(ITEM_GO_GOGGLES, 1), TRUE);
-    EXPECT_EQ(CheckBagHasItem(ITEM_DEVON_SCOPE, 1), TRUE);
-    EXPECT_EQ(CheckBagHasItem(ITEM_MAGMA_EMBLEM, 1), TRUE);
+    EXPECT_EQ(CheckBagHasItem(ITEM_MACH_BIKE, 1), FALSE);
+    EXPECT_EQ(CheckBagHasItem(ITEM_ACRO_BIKE, 1), FALSE);
+    EXPECT_EQ(CheckBagHasItem(ITEM_OLD_ROD, 1), FALSE);
+    EXPECT_EQ(CheckBagHasItem(ITEM_GOOD_ROD, 1), FALSE);
+    EXPECT_EQ(CheckBagHasItem(ITEM_SUPER_ROD, 1), FALSE);
+    EXPECT_EQ(CheckBagHasItem(ITEM_GO_GOGGLES, 1), FALSE);
+    EXPECT_EQ(CheckBagHasItem(ITEM_DEVON_SCOPE, 1), FALSE);
+    EXPECT_EQ(CheckBagHasItem(ITEM_MAGMA_EMBLEM, 1), FALSE);
     EXPECT_EQ(CheckBagHasItem(ITEM_Z_POWER_RING, 1), FALSE);
     EXPECT_EQ(CheckBagHasItem(ITEM_DYNAMAX_BAND, 1), FALSE);
     EXPECT_EQ(CheckBagHasItem(ITEM_SILPH_SCOPE, 1), FALSE);

@@ -24,5 +24,6 @@ u32 GetCurrentEVCap(void);
 bool8 QueueLevelCapIncreaseMessage(u32 previousCap);
 u32 ConsumeQueuedLevelCapIncrease(void);
 void ShowQueuedLevelCapIncreaseMessage(void);
+void RestoreResultAfterLevelCapIncreaseMessage(void);
 
 #endif /* GUARD_CAPS_H */

@@ -12,7 +12,9 @@ gift Pokémon, the player's Pokémon, and trainer Pokémon.
 ## Families and ability pool
 
 One Ability is assigned to each evolutionary family. Every member of that
-family, including ordinary forms, uses the same randomized Ability. For
+family that is obtainable in the configured generation uses the same
+randomized Ability. Reachable regional evolutions join their family only from
+the generation that introduced the form. For
 example, if Charmander receives Levitate, Charmeleon and Charizard also have
 Levitate.
 

@@ -47,8 +47,8 @@
 #define TEST_START_WITH_RAYQUAZA TRUE
 #define TEST_FLY_DESTINATIONS_UNRESTRICTED TRUE
 #define TEST_DISABLE_OBEDIENCE TRUE
-#define TEST_START_WITH_EMERALD_KEY_ITEMS TRUE
-#define TEST_START_WITH_ALL_HM_ACCESS TRUE
+#define TEST_START_WITH_EMERALD_KEY_ITEMS FALSE
+#define TEST_START_WITH_ALL_HM_ACCESS FALSE
 
 // Various undefined behavior bugs may or may not prevent compilation with
 // newer compilers. So always fix them when using a modern compiler.

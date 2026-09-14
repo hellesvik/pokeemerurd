@@ -842,6 +842,7 @@
 	waitbuttonpress
 	closemessage
 .Lskip_level_cap_message_\@:
+	special RestoreResultAfterLevelCapIncreaseMessage
 	.endm
 
 	@ Goes to address after the trainerbattle command (called by the battle functions, see battle_setup.c)

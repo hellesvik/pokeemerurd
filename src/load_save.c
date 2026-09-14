@@ -3,6 +3,7 @@
 #include "berry_powder.h"
 #include "fake_rtc.h"
 #include "follower_npc.h"
+#include "fork_randomizer_catalog.h"
 #include "item.h"
 #include "load_save.h"
 #include "main.h"
@@ -254,6 +255,7 @@ void CopyPartyAndObjectsFromSave(void)
     LoadObjectEvents();
     ForkEnsureKeyItemsPresent();
     ForkInvalidateOwnedFamilyCache();
+    ForkRandomizerCatalog_EnsureInitialized();
 }
 
 void LoadPlayerBag(void)

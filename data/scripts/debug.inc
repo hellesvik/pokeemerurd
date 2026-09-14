@@ -33,19 +33,9 @@ Debug_CheatStart::
 	setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 2 @ 2: Met Rival's Mom (and is corresponding gender)
 	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 2 @ 2: Met Rival's Mom (and is corresponding gender)
 	setvar VAR_LITTLEROOT_RIVAL_STATE, 4 @ 4: Received Pokedex
-	setflag FLAG_RECEIVED_BIKE
-	additem ITEM_ACRO_BIKE
 	setvar VAR_BRINEY_HOUSE_STATE, 1
 	setvar VAR_ROUTE116_STATE, 2
 	setflag FLAG_HIDE_ROUTE_116_MR_BRINEY
-	setflag FLAG_BADGE01_GET
-	setflag FLAG_BADGE02_GET
-	setflag FLAG_BADGE03_GET
-	setflag FLAG_BADGE04_GET
-	setflag FLAG_BADGE05_GET
-	setflag FLAG_BADGE06_GET
-	setflag FLAG_BADGE07_GET
-	setflag FLAG_BADGE08_GET
 	setflag FLAG_VISITED_LITTLEROOT_TOWN
 	setflag FLAG_VISITED_OLDALE_TOWN
 	setflag FLAG_VISITED_DEWFORD_TOWN
@@ -92,17 +82,6 @@ Debug_CheatStartFrlg::
 	setflag FLAG_SYS_NATIONAL_DEX
 	special EnableNationalPokedex
 	setflag FLAG_SYS_B_DASH
-	setflag FLAG_BADGE01_GET
-	setflag FLAG_BADGE02_GET
-	setflag FLAG_BADGE03_GET
-	setflag FLAG_BADGE04_GET
-	setflag FLAG_BADGE05_GET
-	setflag FLAG_BADGE06_GET
-	setflag FLAG_BADGE07_GET
-	setflag FLAG_BADGE08_GET
-	setflag FLAG_GOT_BIKE_VOUCHER
-	setflag FLAG_GOT_BICYCLE
-	additem ITEM_BICYCLE
 	setflag FLAG_WORLD_MAP_PALLET_TOWN
 	setflag FLAG_WORLD_MAP_VIRIDIAN_CITY
 	setflag FLAG_WORLD_MAP_PEWTER_CITY

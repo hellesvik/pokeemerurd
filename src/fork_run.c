@@ -1,5 +1,6 @@
 #include "global.h"
 #include "fork_run.h"
+#include "fork_randomizer_catalog.h"
 #include "battle.h"
 #include "daycare.h"
 #include "event_data.h"
@@ -172,6 +173,7 @@ void ForkConfigureGameplayOptions(bool32 catchLimitEnabled, bool32 levelCapEnabl
     gSaveBlock3Ptr->forkRandomAbilitiesEnabled = randomAbilitiesEnabled;
     gSaveBlock3Ptr->forkMegaEvolutionEnabled = megaEvolutionEnabled;
     gSaveBlock3Ptr->forkReusableTMsEnabled = reusableTMsEnabled;
+    ForkRandomizerCatalog_EnsureInitialized();
 }
 
 static void EnsureAreaStateInitialized(void)

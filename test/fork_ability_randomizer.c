@@ -94,6 +94,29 @@ TEST("Unavailable regional forms do not contribute abilities to the randomizer p
         EXPECT_NE(GetForkAbilityPoolEntry(i), ABILITY_GALVANIZE);
 }
 
+TEST("Reachable regional evolutions participate in their available family")
+{
+    ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
+                                 FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,
+                                 TRUE, GEN_7, TRUE, FALSE);
+    gSaveBlock3Ptr->forkItemRandomizerSeed = 0xA11B17E5;
+
+    EXPECT_EQ(IsForkAbilityRandomizedSpecies(SPECIES_RAICHU_ALOLA), TRUE);
+    EXPECT_EQ(GetForkRandomizedAbility(SPECIES_PIKACHU),
+              GetForkRandomizedAbility(SPECIES_RAICHU_ALOLA));
+}
+
+TEST("Regional evolutions require the generation that introduced the form")
+{
+    ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
+                                 FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,
+                                 TRUE, GEN_4, TRUE, FALSE);
+
+    EXPECT_EQ(IsForkAbilityRandomizedSpecies(SPECIES_RAICHU_ALOLA), FALSE);
+    for (u16 i = 0; i < GetForkAbilityPoolCount(); i++)
+        EXPECT_NE(GetForkAbilityPoolEntry(i), ABILITY_SURGE_SURFER);
+}
+
 TEST("Generation 4 ability randomizer prints its finalized ability pool")
 {
     ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,

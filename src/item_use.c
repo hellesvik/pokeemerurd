@@ -1055,7 +1055,9 @@ static void Task_UseRepel(u8 taskId)
         #endif
             RemoveUsedItem();
         }
-        if (CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE)
+        if (gTasks[taskId].tUsingRegisteredKeyItem)
+            DisplayItemMessageOnField(taskId, gStringVar4, Task_CloseCantUseKeyItemMessage);
+        else if (CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE)
             DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, CloseItemMessage);
         else
             DisplayItemMessageInBattlePyramid(taskId, gStringVar4, Task_CloseBattlePyramidBagMessage);

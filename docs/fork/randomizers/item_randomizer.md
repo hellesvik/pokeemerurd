@@ -55,25 +55,31 @@ the scrollable menu allows all eleven prizes to be selected.
 
 ## Replacement pool
 
-The pool contains 378 items. It consists of:
+The pool contains 384 item entries before eligibility filtering. It consists of:
 
 - Mega Stones.
-- Evolution items needed by Pokémon within the selected generation limit,
-  including the Key Item-pocket Scroll of Darkness and Scroll of Waters when
-  their Pokémon are eligible. Evolution items that also function as battle
-  held items remain eligible independently.
-- Mega Stones whose corresponding Pokémon are within the selected generation
-  limit. Mega Stones are omitted entirely when Mega Evolution is disabled.
+- Single-purpose evolution items needed by obtainable randomized Pokémon in
+  the selected generation range. An obtainable pre-evolution counts, but a
+  species excluded by the encounter BST rules does not. Evolution items that
+  also function as battle held items remain eligible independently.
+- Mega Stones whose evolutionary family is obtainable through randomized
+  encounters in the selected generation range. Eligible 550–600 BST special
+  static encounters count. Mega Stones are omitted entirely when Mega
+  Evolution is disabled.
 - Form- and species-specific items, such as Memories, Drives, Orbs, Masks, and
-  Nectars.
+  Nectars, only when their required Pokémon can be obtained under the same
+  generation and BST rules. Items requiring multiple Pokémon require all of
+  them.
 - Battle held items.
 - `ITEM_TM01` through `ITEM_TM130`.
 
 The pool deliberately excludes all fossils, Plates, and Incenses. It also
 excludes HMs, ordinary Key Items, consumable medicine and ball items,
 vendor-value filler, Tera Orb, and Dynamax Band. The Scroll of Darkness and
-Scroll of Waters are explicit Key Item exceptions because Kubfu requires them
-to evolve.
+Scroll of Waters are Key Item exceptions and become eligible in Generation 8:
+Urshifu qualifies for the 550–600 BST special-static pool, making its family
+obtainable. Likewise, items for standalone Pokémon above the maximum BST, such
+as Mewtwo's Mega Stones and the Red and Blue Orbs, never appear.
 
 ## Hidden-item pool
 

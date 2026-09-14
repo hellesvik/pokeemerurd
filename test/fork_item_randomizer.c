@@ -192,20 +192,6 @@ TEST("Fork hidden items use repeatable ball and treasure rewards")
     EXPECT_EQ(firstVisibleItem, repeatedVisibleItem);
 }
 
-TEST("Fork item randomizer randomizes Brendans room hidden-item test source")
-{
-    enum Item item1;
-    enum Item item2;
-
-    gSaveBlock3Ptr->forkItemRandomizerSeed = 13579;
-    ResetForkItemRandomizerState();
-    item1 = ResolveForkRandomizedHiddenItem(ITEM_POTION, FLAG_HIDDEN_ITEM_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F_TEST);
-    item2 = ResolveForkRandomizedHiddenItem(ITEM_POTION, FLAG_HIDDEN_ITEM_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F_TEST);
-
-    EXPECT_EQ(item1, item2);
-    EXPECT_NE(item1, ITEM_POTION);
-}
-
 TEST("Fork item randomizer scripted poke balls stay vanilla")
 {
     static const u8 sFakeScript[] = {0x00};
@@ -359,21 +345,25 @@ TEST("Fork item randomizer includes every randomized TM")
     EXPECT_EQ(randomizedTMCount, 80);
 }
 
-TEST("Fork item randomizer includes every DLC evolution item")
+TEST("Fork item randomizer includes obtainable DLC evolution items")
 {
     static const enum Item evolutionItems[] =
     {
-        ITEM_SCROLL_OF_DARKNESS,
-        ITEM_SCROLL_OF_WATERS,
         ITEM_SYRUPY_APPLE,
         ITEM_UNREMARKABLE_TEACUP,
-        ITEM_MASTERPIECE_TEACUP,
         ITEM_METAL_ALLOY,
     };
     bool8 found[ARRAY_COUNT(evolutionItems)] = {FALSE};
 
     ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
         FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, GEN_9, TRUE, FALSE);
+
+    EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_SCROLL_OF_DARKNESS));
+    EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_SCROLL_OF_WATERS));
+    EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_SYRUPY_APPLE));
+    EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_UNREMARKABLE_TEACUP));
+    EXPECT(!IsForkItemEligibleForRandomizerPool(ITEM_MASTERPIECE_TEACUP));
+    EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_METAL_ALLOY));
     gSaveBlock3Ptr->forkItemRandomizerSeed = 77779;
     ResetForkItemRandomizerState();
 
@@ -398,6 +388,8 @@ TEST("Single-purpose evolution items follow the Pokemon randomizer pool")
     EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_FIRE_STONE));
     EXPECT(!IsForkItemEligibleForRandomizerPool(ITEM_METAL_ALLOY));
     EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_DEEP_SEA_TOOTH));
+    EXPECT(!IsForkItemEligibleForRandomizerPool(ITEM_DUSK_STONE));
+    EXPECT(!IsForkItemEligibleForRandomizerPool(ITEM_SHINY_STONE));
 
     ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
         FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, GEN_9, TRUE, FALSE);
@@ -417,10 +409,37 @@ TEST("Mega Stones follow the Pokemon randomizer pool")
     ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
         FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, GEN_9, TRUE, FALSE);
     EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_BAXCALIBRITE));
+    EXPECT(!IsForkItemEligibleForRandomizerPool(ITEM_MEWTWONITE_X));
+    EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_DIANCITE));
 
     ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
         FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, GEN_9, FALSE, FALSE);
     EXPECT(!IsForkItemEligibleForRandomizerPool(ITEM_SCEPTILITE));
+}
+
+TEST("Species-specific items require obtainable Pokemon in the selected generation")
+{
+    ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
+        FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, GEN_5, TRUE, FALSE);
+
+    EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_SOUL_DEW));
+    EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_ROTOM_CATALOG));
+    EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_REVEAL_GLASS));
+    EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_BURN_DRIVE));
+    EXPECT(!IsForkItemEligibleForRandomizerPool(ITEM_ZYGARDE_CUBE));
+    EXPECT(!IsForkItemEligibleForRandomizerPool(ITEM_BUG_MEMORY));
+
+    ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
+        FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, GEN_9, TRUE, FALSE);
+
+    EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_ZYGARDE_CUBE));
+    EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_BUG_MEMORY));
+    EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_WELLSPRING_MASK));
+    EXPECT(!IsForkItemEligibleForRandomizerPool(ITEM_DNA_SPLICERS));
+    EXPECT(!IsForkItemEligibleForRandomizerPool(ITEM_REINS_OF_UNITY));
+    EXPECT(!IsForkItemEligibleForRandomizerPool(ITEM_RED_ORB));
+    EXPECT(!IsForkItemEligibleForRandomizerPool(ITEM_ADAMANT_CRYSTAL));
+    EXPECT(!IsForkItemEligibleForRandomizerPool(ITEM_RUSTED_SWORD));
 }
 
 TEST("Fork item randomizer does not yield Plates or Incenses")

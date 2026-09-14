@@ -75,6 +75,7 @@ gSpecials::
 	def_special ShowTrainerIntroSpeech
 	def_special ShowTrainerCantBattleSpeech
 	def_special ShowQueuedLevelCapIncreaseMessage
+	def_special RestoreResultAfterLevelCapIncreaseMessage
 	def_special GetTrainerFlag
 	def_special DoTrainerApproach, waitstate=1
 	def_special PlayTrainerEncounterMusic

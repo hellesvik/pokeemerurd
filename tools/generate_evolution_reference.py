@@ -393,6 +393,7 @@ def render_markdown(entries: list[EvolutionEntry]) -> str:
         "# Pokémon Evolution Reference", "",
         "This page is generated from the game's species data. It lists every National Dex Pokémon enabled in the fork, plus separately named regional forms. Battle-only and cosmetic forms are folded into their base Pokémon so the table stays useful to players.", "",
         "Regional forms are listed under the generation in which that form debuted. When an evolution only works for a particular non-regional form, the required form is stated in the method. The evolution method column is empty when that Pokémon cannot evolve; multiple methods are shown on separate lines.", "",
+        "For regional branch evolutions that normally require being in Alola, Galar, or Hisui, this game uses the Trick House as the regional location. All other listed requirements—such as level, evolution item, time of day, known move, or weather—still apply.", "",
         '<div class="table-scroll">', "<table>",
         "<thead><tr><th>Pokémon</th><th>Evolution method</th></tr></thead>", "<tbody>",
     ]

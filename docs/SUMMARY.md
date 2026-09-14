@@ -3,7 +3,6 @@
 - [README](./README.md)
 - [FEATURES](./FEATURES.md)
 - [Emerurd Fork Documentation](./fork/index.md)
-    - [Fork Site Navigation](fork/SUMMARY.md)
     - [Gameplay Rules](fork/gameplay/index.md)
         - [Story Battles](fork/gameplay/story_battles.md)
         - [One Catch Per Area](fork/gameplay/one_catch_per_area.md)

@@ -27,5 +27,3 @@ player's party.
 ## Developer reference
 
 Implementation files and tests are linked from the individual feature pages.
-The original AI-generated design summary is retained in
-[`ai-remake-summary.txt`](ai-remake-summary.txt) for historical reference.

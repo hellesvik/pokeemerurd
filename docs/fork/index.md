@@ -33,7 +33,41 @@ The CSV files are generated/reviewable reference data, not hand-written
 player configuration. Their generation and source-of-truth notes are
 documented in the [reference index](./reference/index.md).
 
-## Errata changelog
+## Fork changelog
+
+### 2026-09-14
+
+- Reworked the shared Pokémon randomizer catalog so ability pools, evolution
+  items, species-specific items, and Mega Stones use the same generation- and
+  availability-aware family data. Unavailable regional forms and Mega forms
+  no longer contribute Abilities, and Mega Pokémon retain their native
+  Abilities.
+- Fixed the Mauville Wally battle failing to complete when the level-cap
+  notification overwrote the battle script result. Post-battle notifications
+  now preserve `VAR_RESULT`.
+- Changed New Mauville's land and encounter-method assignments to use the City
+  biome.
+- Fixed the Lilycove Department Store TM clerks so their menus display the
+  seeded TM assignments, award those exact TMs, limit each listing to one
+  purchase, and show sold-out listings correctly.
+- Updated every Gym Leader's reward explanation to name the item actually
+  awarded, including randomized rewards.
+- Changed Metronome to use its normal selection behavior 75% of the time and
+  a curated signature/chaos move pool 25% of the time.
+- Disabled the remaining playable-ROM test helpers. New games no longer
+  receive a test Rayquaza, ignore obedience, or unlock every Fly destination;
+  startup badges and progression key items also remain disabled.
+
+### 2026-09-13
+
+- Regional branch evolutions that normally depend on being in Alola, Galar,
+  or Hisui now use the Trick House as their location requirement while
+  retaining their normal level, item, time, move, and weather requirements.
+- Added evolution items, Kubfu's Scrolls, species-specific form items, and
+  Mega Stones to the item-randomizer master pool. Single-purpose evolution
+  items and Mega Stones are eligible only when their associated evolutionary
+  family is available under the selected generation and randomizer BST rules.
+  Mega Stones are also excluded when Mega Evolution is disabled.
 
 ### 2026-09-12
 

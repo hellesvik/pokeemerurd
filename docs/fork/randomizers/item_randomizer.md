@@ -8,9 +8,11 @@ The randomizer is initialized once for each new save. Its seed is derived from t
 game RNG, Trainer ID, and daily seed. Item assignments are stored in `SaveBlock3`,
 so they remain stable after saving, reloading, and revisiting a source.
 
-Each eligible visible item ball is assigned an item from one shared pool. The
-pool contains 378 candidates, and replacements are unique until that pool is
-exhausted. Any later visible item-ball sources retain their original item.
+Each eligible visible item ball is assigned an item from one shared master
+pool. The master pool contains 384 entries before generation, species,
+evolution, and Mega Evolution eligibility filters are applied. Eligible
+replacements are unique until they are exhausted; any later visible item-ball
+sources retain their original item.
 
 Assignments are deterministic for a given save seed and source ID. They are not
 precomputed into map data and are resolved when the reward is received.
@@ -27,6 +29,9 @@ The implementation handles these source types:
 For item balls and hidden items, the item shown in the pickup message is the
 exact item added to the bag. A one-use guard prevents the ordinary `additem`
 script command from randomizing that same pickup a second time.
+
+Gym Leader reward dialogue buffers the resolved item name after the reward is
+given, so the explanation names the item the player actually received.
 
 ## Protected rewards
 
@@ -47,7 +52,7 @@ Shops and berry-tree yields are not routed through the item-randomizer code.
 Mauville Game Corner always offers the ten evolution stones and Linking Cord
 for 4,000 coins each, regardless of randomizer settings.
 
-## Mauville Game Corner catalog
+## Mauville Game Corner stock
 
 The Mauville Game Corner sells Fire, Water, Thunder, Leaf, Ice, Sun, Moon,
 Shiny, Dusk, and Dawn Stones, plus Linking Cord. Each costs 4,000 coins, and
@@ -95,19 +100,20 @@ with that list.
 ## Save compatibility
 
 The saved state has a randomizer version. When this version changes, the game
-clears saved source assignments, pool claims, and the Game Corner catalog while
-retaining the save's seed. This safely regenerates the layout when the pool or
-assignment algorithm changes. The current implementation version is 9.
+clears saved source assignments and pool claims while retaining the save's
+seed. This safely regenerates the layout when the pool or assignment algorithm
+changes. The current implementation version is 12.
 
 ## Implementation and tests
 
 - `src/item_ball.c` resolves item-ball, hidden-item, and scripted rewards.
-- `data/maps/MauvilleCity_GameCorner/scripts.inc` displays and sells the saved
-  randomized Game Corner catalog.
+- `data/maps/MauvilleCity_GameCorner/scripts.inc` displays and sells the fixed
+  evolution-stone and Linking Cord stock.
 - `src/scrcmd.c` consumes item-ball and hidden-item one-use guards before
   ordinary scripted item randomization.
 - `data/scripts/obtain_item.inc` clears that guard at the end of an item-ball
   pickup flow.
 - `test/fork_item_randomizer.c` verifies stability, protections, uniqueness
-  before overflow, valid TMs, item-ball message/bag agreement, Game Corner
-  reservations, and the absence of Plates and Incenses.
+  before overflow, valid TMs, item-ball message/bag agreement, fixed Game
+  Corner stock, conditional evolution/form items and Mega Stones, and the
+  absence of Plates and Incenses.

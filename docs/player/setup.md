@@ -39,3 +39,11 @@ through GEN 9.
 
 For the full setting descriptions and CUSTOM defaults, see [New-Game Feature
 Options](../fork/configuration/new_game_options.md).
+
+## Release start state
+
+A new game begins with normal story progression: no badges, progression key
+items, test Pokémon, or undiscovered Fly destinations are unlocked. Standard
+obedience rules apply. The Running Shoes and any quality-of-life key items
+enabled by the selected preset are intentional player features, not test-mode
+grants.

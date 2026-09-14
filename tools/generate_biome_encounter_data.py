@@ -31,6 +31,8 @@ def biome_for(name: str, method: str) -> str:
         return "Ocean"
     if "FORTREE_CITY" in upper:
         return "Forest"
+    if "NEW_MAUVILLE" in upper:
+        return "City"
     if "_TOWN" in upper or "_CITY" in upper:
         return "City"
     if method in ("water_mons", "fishing_mons"):

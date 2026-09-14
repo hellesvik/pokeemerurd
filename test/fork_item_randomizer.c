@@ -6,6 +6,7 @@
 #include "malloc.h"
 #include "random.h"
 #include "script_menu.h"
+#include "test/overworld_script.h"
 #include "test/test.h"
 #include "constants/items.h"
 #include "constants/moves.h"
@@ -222,6 +223,23 @@ TEST("Fork item randomizer includes gym leader TM gifts")
     randomizedItem = ResolveForkRandomizedScriptItem(ITEM_TM_ROCK_TOMB, sFakeScript);
 
     EXPECT_NE(randomizedItem, ITEM_TM_ROCK_TOMB);
+}
+
+TEST("Gym leader item gifts expose the item actually added to the bag")
+{
+    enum Item awardedItem;
+
+    gSaveBlock3Ptr->forkItemRandomizerSeed = 11113;
+    ResetForkItemRandomizerState();
+    gSpecialVar_0x8000 = ITEM_TM_ROCK_TOMB;
+
+    RUN_OVERWORLD_SCRIPT(
+        additem VAR_0x8000;
+    );
+
+    awardedItem = gSpecialVar_0x8000;
+    EXPECT_NE(awardedItem, ITEM_TM_ROCK_TOMB);
+    EXPECT(CheckBagHasItem(awardedItem, 1));
 }
 
 TEST("Fork item randomizer does not duplicate early source assignments")

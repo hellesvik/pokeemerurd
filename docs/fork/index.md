@@ -62,8 +62,9 @@ documented in the [reference index](./reference/index.md).
 - Fixed ordinary battle knockouts bypassing the ON FAINT loss rule.
 - Special-static-pool Pokémon (550–600 BST) now both contribute their normal
   Abilities to the ability pool and receive seeded randomized Abilities.
-- Lilycove Department Store 4F now sells eight seeded randomized TMs. Each
-  listing can be purchased once per save and then shows as sold out.
+- Lilycove Department Store 4F now sells eight distinct, seeded TMs selected
+  from TM01–TM130. Each listing can be purchased once per save and then shows
+  as sold out.
 - Overworld movement now runs by default. Hold B to walk where running is
   normally permitted.
 - Hardened fork randomizers and item-ball handling against invalid save or

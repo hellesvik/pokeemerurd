@@ -46,6 +46,14 @@ class CityBiomeTests(unittest.TestCase):
             with self.subTest(method=method):
                 self.assertEqual(GENERATOR.biome_for("MAP_PACIFIDLOG_TOWN", method), "Ocean")
 
+    def test_new_mauville_uses_city_biome(self):
+        maps = ("MAP_NEW_MAUVILLE_ENTRANCE", "MAP_NEW_MAUVILLE_INSIDE")
+
+        for map_name in maps:
+            for method in ("land_mons", "water_mons", "rock_smash_mons", "fishing_mons"):
+                with self.subTest(map_name=map_name, method=method):
+                    self.assertEqual(GENERATOR.biome_for(map_name, method), "City")
+
 
 class StoryProgressionBstTests(unittest.TestCase):
     def test_bst_ranges_follow_main_story_order(self):

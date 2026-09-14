@@ -2,6 +2,7 @@
 #include "item.h"
 #include "script.h"
 #include "event_data.h"
+#include "fork_tm_randomizer.h"
 #include "malloc.h"
 #include "shop_criteria.h"
 
@@ -22,6 +23,8 @@ void TryBuildDynamicShopItemList(const u16 **ogItemList, u16 *resultingTotal)
     while (idx < *resultingTotal)
     {
         enum Item item = sDynamicShopItemListRef[idx];
+
+        item = ResolveForkLilycoveTmShopItem(item);
 
         if (IsItemShopCriteriaFulfilled(item))
         {

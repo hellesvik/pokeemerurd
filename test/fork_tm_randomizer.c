@@ -10,16 +10,25 @@ void InitForkRandomizedTMMoves(void);
 
 TEST("Lilycove TM shop sells each randomized TM only once")
 {
+    enum Item stock[FORK_LILYCOVE_TM_SHOP_ITEM_COUNT];
+
+    gSaveBlock3Ptr->forkItemRandomizerSeed = 12345;
     gSaveBlock3Ptr->forkLilycoveTmShopPurchases = 0;
 
-    EXPECT(IsForkLilycoveTmShopItem(ITEM_TM51));
-    EXPECT(!IsForkLilycoveTmShopItem(ITEM_TM59));
-    EXPECT(!HasForkLilycoveTmShopItemBeenPurchased(ITEM_TM51));
+    for (u32 i = 0; i < ARRAY_COUNT(stock); i++)
+    {
+        stock[i] = ResolveForkLilycoveTmShopItem(ITEM_TM51 + i);
+        EXPECT(IsForkLilycoveTmShopItem(stock[i]));
+        for (u32 j = 0; j < i; j++)
+            EXPECT_NE(stock[i], stock[j]);
+    }
+    EXPECT_NE(stock[0], ITEM_TM51);
+    EXPECT(!HasForkLilycoveTmShopItemBeenPurchased(stock[0]));
 
-    MarkForkLilycoveTmShopItemPurchased(ITEM_TM51);
+    MarkForkLilycoveTmShopItemPurchased(stock[0]);
 
-    EXPECT(HasForkLilycoveTmShopItemBeenPurchased(ITEM_TM51));
-    EXPECT(!HasForkLilycoveTmShopItemBeenPurchased(ITEM_TM52));
+    EXPECT(HasForkLilycoveTmShopItemBeenPurchased(stock[0]));
+    EXPECT(!HasForkLilycoveTmShopItemBeenPurchased(stock[1]));
 }
 
 TEST("Fork TM randomizer assigns distinct normally teachable moves")

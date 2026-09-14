@@ -118,6 +118,7 @@ SootopolisCity_Gym_1F_EventScript_JuanDefeated::
 SootopolisCity_Gym_1F_EventScript_GiveWaterPulse::
 	giveitem ITEM_TM_WATER_PULSE
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
+	bufferitemname STR_VAR_1, VAR_0x8000
 	msgbox SootopolisCity_Gym_1F_Text_ExplainWaterPulse, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_TM_WATER_PULSE
 	return
@@ -125,6 +126,7 @@ SootopolisCity_Gym_1F_EventScript_GiveWaterPulse::
 SootopolisCity_Gym_1F_EventScript_GiveWaterPulse2::
 	giveitem ITEM_TM_WATER_PULSE
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	bufferitemname STR_VAR_1, VAR_0x8000
 	msgbox SootopolisCity_Gym_1F_Text_ExplainWaterPulse, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_TM_WATER_PULSE
 	release
@@ -247,11 +249,9 @@ SootopolisCity_Gym_1F_Text_ExplainRainBadgeTakeThis:
 	.string "battle we shared, take this…$"
 
 SootopolisCity_Gym_1F_Text_ExplainWaterPulse:
-	.string "The TECHNICAL MACHINE I handed you\n"
-	.string "contains WATER PULSE.\p"
-	.string "In use, it will occasionally confuse\n"
-	.string "the target with ultrasonic waves.\p"
-	.string "… … … … … …$"
+	.string "The item I handed you is\n"
+	.string "{STR_VAR_1}.\p"
+	.string "May it remind you of our battle.$"
 
 SootopolisCity_Gym_1F_Text_RegisteredJuan:
 	.string "Registered GYM LEADER JUAN\n"
@@ -316,4 +316,3 @@ SootopolisCity_Gym_1F_Text_JuanRematchNeedTwoMons:
 	.string "You have with you but one POKéMON.\p"
 	.string "I wish that you would return with\n"
 	.string "two, perhaps more, POKéMON, please.$"
-

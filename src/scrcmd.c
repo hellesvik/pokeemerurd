@@ -624,7 +624,8 @@ bool8 ScrCmd_random(struct ScriptContext *ctx)
 
 bool8 ScrCmd_additem(struct ScriptContext *ctx)
 {
-    enum Item itemId = VarGet(ScriptReadHalfword(ctx));
+    u16 itemIdVar = ScriptReadHalfword(ctx);
+    enum Item itemId = VarGet(itemIdVar);
     u32 quantity = VarGet(ScriptReadHalfword(ctx));
     const u8 *scriptPtr = ctx->scriptPtr;
 
@@ -632,6 +633,11 @@ bool8 ScrCmd_additem(struct ScriptContext *ctx)
 
     if (!IS_FRLG && !ConsumeForkItemBallRandomizationGuard() && !ConsumeForkHiddenItemRandomizationGuard())
         itemId = ResolveForkRandomizedScriptItem(itemId, scriptPtr);
+
+    // Standard item-gift scripts keep their item in VAR_0x8000. Keep that
+    // variable synchronized so their messages describe the randomized item.
+    if (itemIdVar == VAR_0x8000)
+        VarSet(itemIdVar, itemId);
 
     gSpecialVar_Result = AddBagItem(itemId, quantity);
     return FALSE;

@@ -12,6 +12,7 @@ enum Move GetForkRandomizedTMMove(enum Item item);
 enum Item GetForkRandomizedTMItem(u16 tmNumber);
 enum Item GetForkRandomizedTMItemFromMoveId(enum Move move);
 bool32 IsForkLilycoveTmShopItem(enum Item item);
+enum Item ResolveForkLilycoveTmShopItem(enum Item item);
 bool32 HasForkLilycoveTmShopItemBeenPurchased(enum Item item);
 void MarkForkLilycoveTmShopItemPurchased(enum Item item);
 

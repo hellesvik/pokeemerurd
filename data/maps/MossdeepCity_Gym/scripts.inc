@@ -97,6 +97,7 @@ MossdeepCity_Gym_EventScript_TateAndLizaDefeated::
 MossdeepCity_Gym_EventScript_GiveCalmMind2::
 	giveitem ITEM_TM_CALM_MIND
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	bufferitemname STR_VAR_1, VAR_0x8000
 	msgbox MossdeepCity_Gym_Text_ExplainCalmMind, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_TM_CALM_MIND
 	release
@@ -105,6 +106,7 @@ MossdeepCity_Gym_EventScript_GiveCalmMind2::
 MossdeepCity_Gym_EventScript_GiveCalmMind::
 	giveitem ITEM_TM_CALM_MIND
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
+	bufferitemname STR_VAR_1, VAR_0x8000
 	msgbox MossdeepCity_Gym_Text_ExplainCalmMind, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_TM_CALM_MIND
 	return
@@ -582,13 +584,10 @@ MossdeepCity_Gym_Text_ExplainMindBadgeTakeThis:
 	.string "TATE: You should also take this, too.$"
 
 MossdeepCity_Gym_Text_ExplainCalmMind:
-	.string "TATE: That TM04 contains…\n"
-	.string "LIZA: CALM MIND!\p"
-	.string "TATE: It raises SP. ATK and…\n"
-	.string "LIZA: It raises SP. DEF!\p"
-	.string "TATE: It's a move that's perfect…\n"
-	.string "LIZA: For PSYCHIC POKéMON!\p"
-	.string "… … … … … …$"
+	.string "TATE: The item we gave you is…\n"
+	.string "LIZA: {STR_VAR_1}!\p"
+	.string "TATE: We hope it is perfect…\n"
+	.string "LIZA: For your POKéMON!$"
 
 MossdeepCity_Gym_Text_RegisteredTateAndLiza:
 	.string "Registered GYM LEADERS TATE & LIZA\n"

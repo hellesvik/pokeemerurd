@@ -9,10 +9,11 @@ game is reloaded.
 
 ## Lilycove Department Store
 
-The two TM clerks on Lilycove Department Store 4F sell TM51–TM58. Their moves
-come from the save's seeded TM randomizer. Each of these eight shop TMs can be
-purchased once per save. After purchase, its listing shows **SOLD OUT** and
-selecting it displays the standard sold-out message.
+The two TM clerks on Lilycove Department Store 4F sell eight distinct TMs
+selected from TM01–TM130 by the save's seed. The shop displays and awards the
+resolved TM rather than the internal TM51–TM58 stock-slot placeholders. Each
+listing sells exactly one copy per save. After purchase, its listing shows
+**SOLD OUT** and selecting it displays the standard sold-out message.
 
 ## Move pool and teaching
 

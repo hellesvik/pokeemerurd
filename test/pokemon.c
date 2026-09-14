@@ -663,20 +663,12 @@ TEST("Portable PC is a reusable key item that opens Pokemon storage")
     EXPECT_EQ(GetItemFieldFunc(ITEM_POKEMON_BOX_LINK), ItemUseOutOfBattle_PokemonBoxLink);
 }
 
-TEST("Temporary startup Rayquaza is stored in every box")
+TEST("A new game does not put a test Rayquaza in storage")
 {
     NewGameInitData();
 
     for (u32 box = 0; box < TOTAL_BOXES_COUNT; box++)
-    {
-        struct BoxPokemon *mon = GetBoxedMonPtr(box, 0);
-
-        EXPECT_EQ(GetBoxMonData(mon, MON_DATA_SPECIES), SPECIES_RAYQUAZA);
-        EXPECT_EQ(GetLevelFromBoxMonExp(mon), 100);
-        EXPECT_EQ(GetBoxMonData(mon, MON_DATA_HELD_ITEM), ITEM_NONE);
-        EXPECT_EQ(GetBoxMonData(mon, MON_DATA_MOVE1), MOVE_ACROBATICS);
-        EXPECT_EQ(GetBoxMonData(mon, MON_DATA_MOVE2), MOVE_METRONOME);
-    }
+        EXPECT_EQ(GetBoxMonData(GetBoxedMonPtr(box, 0), MON_DATA_SPECIES), SPECIES_NONE);
 }
 
 TEST("Running Shoes are available at the start of a new game")

@@ -9,7 +9,7 @@
 #include "constants/battle_move_resolution.h"
 #include "constants/flags.h"
 
-TEST("Temporary test mode makes an overleveled outsider obey")
+TEST("An overleveled outsider can disobey without badges")
 {
     gBattleTypeFlags = 0;
     gBattlerAttacker = B_BATTLER_0;
@@ -31,7 +31,7 @@ TEST("Temporary test mode makes an overleveled outsider obey")
     SeedRng(1);
     AllocateBattleResources();
 
-    EXPECT_EQ(GetAttackerObedienceForAction(), OBEYS);
+    EXPECT_NE(GetAttackerObedienceForAction(), OBEYS);
 
     FreeBattleResources();
 }

@@ -42,11 +42,10 @@
 // Uncomment to fix some identified minor bugs
 #define BUGFIX
 
-// Temporary playtesting helpers. These must live in the normal configuration,
-// rather than config/test.h, so they are also enabled in the playable ROM.
-#define TEST_START_WITH_RAYQUAZA TRUE
-#define TEST_FLY_DESTINATIONS_UNRESTRICTED TRUE
-#define TEST_DISABLE_OBEDIENCE TRUE
+// Temporary playtesting helpers. Keep these disabled for release builds.
+#define TEST_START_WITH_RAYQUAZA FALSE
+#define TEST_FLY_DESTINATIONS_UNRESTRICTED FALSE
+#define TEST_DISABLE_OBEDIENCE FALSE
 #define TEST_START_WITH_EMERALD_KEY_ITEMS FALSE
 #define TEST_START_WITH_ALL_HM_ACCESS FALSE
 

@@ -22,6 +22,22 @@ SINGLE_BATTLE_TEST("Metronome picks a random move")
     }
 }
 
+SINGLE_BATTLE_TEST("Metronome has a one-in-four special move branch")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_METRONOME, WITH_RNG(RNG_METRONOME_SPECIAL_CHANCE, 0)); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Metronome!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_METRONOME, player);
+        MESSAGE("Waggling a finger let it use Origin Pulse!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ORIGIN_PULSE, player);
+        HP_BAR(opponent);
+    }
+}
+
 SINGLE_BATTLE_TEST("Metronome's called powder move fails against Grass Types")
 {
     GIVEN {

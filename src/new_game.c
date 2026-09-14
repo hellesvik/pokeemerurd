@@ -121,7 +121,7 @@ static void GiveTemporaryTestRayquazaToEveryBox(void)
     for (u8 i = 0; i < MAX_MON_MOVES; i++)
         SetMonMoveSlot(&mon, MOVE_NONE, i);
     SetMonMoveSlot(&mon, MOVE_ACROBATICS, 0);
-    SetMonMoveSlot(&mon, MOVE_DRAGON_DANCE, 1);
+    SetMonMoveSlot(&mon, MOVE_METRONOME, 1);
     SetMonMoveSlot(&mon, MOVE_DRAGON_CLAW, 2);
     SetMonMoveSlot(&mon, MOVE_FLY, 3);
     SetMonData(&mon, MON_DATA_ABILITY_NUM, &abilityNum);

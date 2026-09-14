@@ -675,6 +675,7 @@ TEST("Temporary startup Rayquaza is stored in every box")
         EXPECT_EQ(GetLevelFromBoxMonExp(mon), 100);
         EXPECT_EQ(GetBoxMonData(mon, MON_DATA_HELD_ITEM), ITEM_NONE);
         EXPECT_EQ(GetBoxMonData(mon, MON_DATA_MOVE1), MOVE_ACROBATICS);
+        EXPECT_EQ(GetBoxMonData(mon, MON_DATA_MOVE2), MOVE_METRONOME);
     }
 }
 

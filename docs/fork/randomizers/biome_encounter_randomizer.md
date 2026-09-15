@@ -70,9 +70,10 @@ Water, Fighting, Poison, Flying, Psychic, Bug, Ghost, Dark, Steel, and Fairy
 types. Forest can contain Bug-, Grass-, Flying-, Poison-, and Normal-type
 Pokémon. A Pokémon may belong to more than one biome.
 
-Every encounter method in a town, city, or New Mauville uses the City biome,
-except Fortree City, which uses Forest, and Pacifidlog Town, which uses Ocean.
-This includes land, surfing, fishing, and Rock Smash tables where present. The
+Every encounter method in a town, city, or New Mauville normally uses the City
+biome. Dewford, Lilycove, Mossdeep, and Sootopolis use Beach/Coast; Lavaridge
+uses Volcanic; Ever Grande uses Mountain; Fortree uses Forest; and Pacifidlog
+uses Ocean. This includes land, surfing, fishing, and Rock Smash tables where present. The
 normal method-compatibility filter permits Water or Flying types for surfing,
 requires Water types for fishing, and requires Rock, Ground, or Steel types for
 Rock Smash.

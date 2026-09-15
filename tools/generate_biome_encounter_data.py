@@ -27,6 +27,14 @@ METHODS = {
 
 def biome_for(name: str, method: str) -> str:
     upper = name.upper()
+    if "SHOAL_CAVE" in upper:
+        return "Snow and Ice"
+    if "LAVARIDGE_TOWN" in upper:
+        return "Volcanic"
+    if any(token in upper for token in ("DEWFORD_TOWN", "LILYCOVE_CITY", "MOSSDEEP_CITY", "SOOTOPOLIS_CITY")):
+        return "Beach and Coast"
+    if "EVER_GRANDE_CITY" in upper:
+        return "Mountain"
     if "PACIFIDLOG_TOWN" in upper:
         return "Ocean"
     if "FORTREE_CITY" in upper:
@@ -39,7 +47,7 @@ def biome_for(name: str, method: str) -> str:
         if any(token in upper for token in ("ROUTE105", "ROUTE106", "ROUTE107", "ROUTE108", "ROUTE109", "ROUTE124", "ROUTE125", "ROUTE126", "ROUTE127", "ROUTE128", "ROUTE129", "ROUTE130", "ROUTE131", "ROUTE132", "ROUTE133", "ROUTE134", "PACIFIDLOG", "DEWFORD", "SLATEPORT", "LILYCOVE", "MOSSDEEP", "SOOTOPOLIS", "EVER_GRANDE", "SEAFLOOR", "UNDERWATER", "ABANDONED_SHIP", "MARINE_CAVE", "NAVEL_ROCK", "BIRTH_ISLAND")):
             return "Ocean"
         return "Freshwater"
-    if any(token in upper for token in ("DESERT", "ROUTE111")):
+    if any(token in upper for token in ("DESERT", "ROUTE111", "MIRAGE_TOWER")):
         return "Desert"
     if any(token in upper for token in ("FIERY", "LAVARIDGE", "CHIMNEY", "JAGGED", "ROUTE113", "VOLCANO")):
         return "Volcanic"

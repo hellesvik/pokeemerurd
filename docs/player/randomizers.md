@@ -10,9 +10,10 @@ Each area has its own gradually increasing BST range based on main-story access
 order; areas may overlap. Late routes reach 460–560, Ever Grande uses 470–560,
 and Victory Road uses 490–560. The minimum configured range is 150.
 
-Towns, cities, and New Mauville use a dedicated City biome for land, surfing,
-fishing, and Rock Smash encounters. Fortree City instead uses Forest, while
-Pacifidlog Town uses Ocean. Surf encounters permit Water or Flying types;
+Towns, cities, and New Mauville normally use a dedicated City biome for land,
+surfing, fishing, and Rock Smash encounters. Dewford, Lilycove, Mossdeep, and
+Sootopolis use Beach/Coast; Lavaridge uses Volcanic; Ever Grande uses Mountain;
+Fortree uses Forest; and Pacifidlog uses Ocean. Surf encounters permit Water or Flying types;
 fishing remains Water-only. Rock Smash requires Rock, Ground, or Steel types.
 
 The selected maximum generation limits randomized species. Eggs, gifts,

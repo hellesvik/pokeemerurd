@@ -1038,6 +1038,8 @@ bool8 UpdateRepelCounter(void)
         return FALSE;
     if (InUnionRoom() == TRUE)
         return FALSE;
+    if (repelLureVar == INFINITE_REPEL_STEP_COUNT)
+        return FALSE;
 
     if (steps != 0)
     {

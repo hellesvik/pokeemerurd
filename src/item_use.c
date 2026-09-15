@@ -991,13 +991,13 @@ static void RemoveUsedItem(void)
 
 bool32 ToggleInfiniteRepelState(void)
 {
-    if (VarGet(VAR_REPEL_STEP_COUNT) == 0x7FFF)
+    if (VarGet(VAR_REPEL_STEP_COUNT) == INFINITE_REPEL_STEP_COUNT)
     {
         VarSet(VAR_REPEL_STEP_COUNT, 0);
         return FALSE;
     }
 
-    VarSet(VAR_REPEL_STEP_COUNT, 0x7FFF);
+    VarSet(VAR_REPEL_STEP_COUNT, INFINITE_REPEL_STEP_COUNT);
     return TRUE;
 }
 

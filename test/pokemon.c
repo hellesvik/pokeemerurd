@@ -724,7 +724,19 @@ TEST("Fork rules let Infinite Repel toggle off when used again")
 {
     VarSet(VAR_REPEL_STEP_COUNT, 0);
     EXPECT_EQ(ToggleInfiniteRepelState(), TRUE);
-    EXPECT_EQ(VarGet(VAR_REPEL_STEP_COUNT), 0x7FFF);
+    EXPECT_EQ(VarGet(VAR_REPEL_STEP_COUNT), INFINITE_REPEL_STEP_COUNT);
+
+    EXPECT_EQ(ToggleInfiniteRepelState(), FALSE);
+    EXPECT_EQ(VarGet(VAR_REPEL_STEP_COUNT), 0);
+}
+
+TEST("Fork Infinite Repel remains recognizable after overworld steps")
+{
+    VarSet(VAR_REPEL_STEP_COUNT, 0);
+    EXPECT_EQ(ToggleInfiniteRepelState(), TRUE);
+
+    EXPECT_EQ(UpdateRepelCounter(), FALSE);
+    EXPECT_EQ(VarGet(VAR_REPEL_STEP_COUNT), INFINITE_REPEL_STEP_COUNT);
 
     EXPECT_EQ(ToggleInfiniteRepelState(), FALSE);
     EXPECT_EQ(VarGet(VAR_REPEL_STEP_COUNT), 0);

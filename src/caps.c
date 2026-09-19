@@ -19,7 +19,7 @@ struct LevelCapMilestone
 
 static EWRAM_DATA u8 sQueuedLevelCapIncrease = 0;
 static EWRAM_DATA u16 sResultBeforeLevelCapIncreaseMessage = 0;
-static const u8 sText_LevelCapRaised[] = _("LEVEL CAP RAISED!\nYour POKéMON can now reach\nLv. {STR_VAR_1}.");
+static const u8 sText_LevelCapRaised[] = _("LEVEL CAP RAISED!\nYour POKéMON can reach Lv. {STR_VAR_1}.");
 
 static bool32 HasAnyTrainerBeenFought(const u16 *trainerIds)
 {

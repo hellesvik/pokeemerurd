@@ -48,6 +48,11 @@ documented in the [reference index](./reference/index.md).
   compiler's Hardy default so rivals and admins cannot silently diverge.
 - Nuzlite and Nuzlocke now default the randomizer generation limit to Gen 9
   in the new-game menu. Normal and Custom continue to default to Gen 3.
+- Fixed level-cap notifications hiding the newly unlocked level below the
+  two-line message box. The message now displays the exact level inline.
+- Streamlined the boss reference by removing calculated stat totals and the
+  duplicate rival summary tables; rival sections now lead directly into the
+  complete starter-specific teams.
 
 ### 2026-09-16
 

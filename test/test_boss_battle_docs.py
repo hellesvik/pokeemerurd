@@ -43,35 +43,14 @@ class BossBattleDocsTests(unittest.TestCase):
             self.markdown,
         )
 
-    def test_lists_every_starter_and_rival_variant(self):
-        expected_rows = {
-            "## Rustboro rival": (
-                "| Treecko | Taillow Lv. 13<br>Shroomish Lv. 13<br>Lotad Lv. 14<br>Combusken Lv. 16 | Taillow Lv. 13<br>Shroomish Lv. 13<br>Lotad Lv. 14<br>Combusken Lv. 16 |",
-                "| Torchic | Taillow Lv. 13<br>Shroomish Lv. 13<br>Lotad Lv. 14<br>Marshtomp Lv. 16 | Taillow Lv. 13<br>Shroomish Lv. 13<br>Lotad Lv. 14<br>Marshtomp Lv. 16 |",
-                "| Mudkip | Taillow Lv. 13<br>Shroomish Lv. 13<br>Lotad Lv. 14<br>Grovyle Lv. 16 | Taillow Lv. 13<br>Shroomish Lv. 13<br>Lotad Lv. 14<br>Grovyle Lv. 16 |",
-            ),
-            "## Route 110 rival": (
-                "| Treecko | Roselia Lv. 16<br>Lombre Lv. 17<br>Electrike Lv. 17<br>Aron Lv. 19<br>Combusken Lv. 20 | Roselia Lv. 16<br>Lombre Lv. 17<br>Electrike Lv. 17<br>Aron Lv. 19<br>Combusken Lv. 20 |",
-                "| Torchic | Shroomish Lv. 16<br>Electrike Lv. 17<br>Gulpin Lv. 17<br>Aron Lv. 19<br>Marshtomp Lv. 20 | Shroomish Lv. 16<br>Electrike Lv. 17<br>Gulpin Lv. 17<br>Aron Lv. 19<br>Marshtomp Lv. 20 |",
-                "| Mudkip | Taillow Lv. 16<br>Electrike Lv. 17<br>Volbeat Lv. 17<br>Aron Lv. 19<br>Grovyle Lv. 20 | Taillow Lv. 16<br>Electrike Lv. 17<br>Volbeat Lv. 17<br>Aron Lv. 19<br>Grovyle Lv. 20 |",
-            ),
-            "## Route 119 rival": (
-                "| Treecko | Trapinch Lv. 31<br>Loudred Lv. 31<br>Lombre Lv. 30<br>Tropius Lv. 30<br>Combusken Lv. 32 | Trapinch Lv. 31<br>Loudred Lv. 31<br>Lombre Lv. 30<br>Tropius Lv. 30<br>Combusken Lv. 32 |",
-                "| Torchic | Trapinch Lv. 31<br>Loudred Lv. 31<br>Breloom Lv. 30<br>Torkoal Lv. 30<br>Marshtomp Lv. 32 | Trapinch Lv. 31<br>Loudred Lv. 31<br>Breloom Lv. 30<br>Torkoal Lv. 30<br>Marshtomp Lv. 32 |",
-                "| Mudkip | Trapinch Lv. 31<br>Feebas Lv. 31<br>Swellow Lv. 30<br>Torkoal Lv. 30<br>Grovyle Lv. 32 | Trapinch Lv. 31<br>Feebas Lv. 31<br>Swellow Lv. 30<br>Torkoal Lv. 30<br>Grovyle Lv. 32 |",
-            ),
-            "## Lilycove rival": (
-                "| Treecko | Vibrava Lv. 32<br>Ludicolo Lv. 33<br>Tropius Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Blaziken Lv. 36 | Vibrava Lv. 32<br>Ludicolo Lv. 33<br>Tropius Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Blaziken Lv. 36 |",
-                "| Torchic | Vibrava Lv. 32<br>Torkoal Lv. 33<br>Breloom Lv. 33<br>Banette Lv. 34<br>Exploud Lv. 35<br>Swampert Lv. 36 | Vibrava Lv. 32<br>Torkoal Lv. 33<br>Breloom Lv. 33<br>Banette Lv. 34<br>Exploud Lv. 35<br>Swampert Lv. 36 |",
-                "| Mudkip | Vibrava Lv. 32<br>Relicanth Lv. 33<br>Torkoal Lv. 33<br>Grumpig Lv. 34<br>Swellow Lv. 35<br>Sceptile Lv. 36 | Vibrava Lv. 32<br>Relicanth Lv. 33<br>Torkoal Lv. 33<br>Grumpig Lv. 34<br>Swellow Lv. 35<br>Sceptile Lv. 36 |",
-            ),
-        }
-        for heading, rows in expected_rows.items():
+    def test_rival_sections_use_full_variant_tables_without_summary_tables(self):
+        for heading in ("## Rustboro rival", "## Route 110 rival", "## Route 119 rival", "## Lilycove rival"):
             section = self.section(heading)
-            self.assertIn("| Player chose | Brendan's team | May's team |", section)
-            for row in rows:
-                with self.subTest(heading=heading, row=row):
-                    self.assertIn(row, section)
+            with self.subTest(heading=heading):
+                self.assertNotIn("| Player chose | Brendan's team | May's team |", section)
+                self.assertEqual(section.count("### Player chose "), 3)
+                for starter in ("Treecko", "Torchic", "Mudkip"):
+                    self.assertIn(f"### Player chose {starter}", section)
 
     def test_league_level_progression_matches_the_game_design(self):
         trainer_data = TRAINERS.read_text()

@@ -6,9 +6,16 @@ ROOT = Path(__file__).resolve().parents[1]
 EVENT_MACROS = ROOT / "asm/macros/event.inc"
 SCRIPT_COMMANDS = ROOT / "src/scrcmd.c"
 TRAINER_SCRIPTS = ROOT / "data/scripts/trainer_battle.inc"
+CAPS = ROOT / "src/caps.c"
 
 
 class LevelCapMessageOrderTests(unittest.TestCase):
+    def test_notification_keeps_the_new_level_on_a_visible_line(self):
+        self.assertIn(
+            '_("LEVEL CAP RAISED!\\nYour POKéMON can reach Lv. {STR_VAR_1}.")',
+            CAPS.read_text(),
+        )
+
     def test_notification_runs_when_the_post_battle_script_ends(self):
         macros = EVENT_MACROS.read_text()
         dotrainer_start = macros.index("\t.macro dotrainerbattle")

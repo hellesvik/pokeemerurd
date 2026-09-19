@@ -4,6 +4,7 @@
 #include "battle_util.h"
 #include "berry.h"
 #include "clock.h"
+#include "caps.h"
 #include "coins.h"
 #include "contest.h"
 #include "contest_util.h"
@@ -125,6 +126,9 @@ bool8 ScrCmd_nop1(struct ScriptContext *ctx)
 bool8 ScrCmd_end(struct ScriptContext *ctx)
 {
     Script_RequestEffects(SCREFF_V1);
+
+    if (TryRunQueuedLevelCapIncreaseMessage(ctx))
+        return FALSE;
 
     FlagClear(FLAG_SAFE_FOLLOWER_MOVEMENT);
     StopScript(ctx);
@@ -635,9 +639,13 @@ bool8 ScrCmd_additem(struct ScriptContext *ctx)
         itemId = ResolveForkRandomizedScriptItem(itemId, scriptPtr);
 
     // Standard item-gift scripts keep their item in VAR_0x8000. Keep that
-    // variable synchronized so their messages describe the randomized item.
+    // variable and the obtain-item display variable synchronized so their
+    // messages describe the randomized item.
     if (itemIdVar == VAR_0x8000)
+    {
         VarSet(itemIdVar, itemId);
+        gSpecialVar_0x8006 = itemId;
+    }
 
     gSpecialVar_Result = AddBagItem(itemId, quantity);
     return FALSE;

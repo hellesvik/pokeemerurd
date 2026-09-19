@@ -74,11 +74,18 @@ bool8 ForkNewGameOptionsCanEditIndex(u8 settings, u8 index)
 
 u16 ForkNewGameOptionsPresetValues(u8 settings)
 {
+    u16 values;
+
     if (settings == 0)
-        return 0xCBE7; // Catch limit + level cap + conveniences + all randomizers + Mega Evolution, Gen 3.
-    if (settings == 1)
-        return 0xCBEB; // Catch limit + level cap + ON FAINT + conveniences + all randomizers + Mega Evolution, Gen 3.
-    return settings == 2 ? 0x810 : 0x800; // NORMAL keeps battle items enabled; generation defaults to Gen 3.
+        values = 0xCBE7; // Catch limit + level cap + conveniences + all randomizers + Mega Evolution.
+    else if (settings == 1)
+        values = 0xCBEB; // Catch limit + level cap + ON FAINT + conveniences + all randomizers + Mega Evolution.
+    else
+        values = settings == 2 ? 0x810 : 0x800; // NORMAL keeps battle items enabled.
+
+    values &= ~(0xF << 10);
+    values |= (settings <= 1 ? GEN_9 : GEN_3) << 10;
+    return values;
 }
 
 bool8 ForkNewGameOptionsPresetReusableTMs(u8 settings)

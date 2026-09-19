@@ -405,7 +405,7 @@ PetalburgCity_Gym_EventScript_GiveFacade::
 	giveitem ITEM_TM_FACADE
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
 	setflag FLAG_RECEIVED_TM_FACADE
-	bufferitemname STR_VAR_1, VAR_0x8000
+	bufferitemname STR_VAR_1, VAR_0x8006
 	msgbox PetalburgCity_Gym_Text_ExplainFacade, MSGBOX_DEFAULT
 	return
 

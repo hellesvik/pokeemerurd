@@ -35,6 +35,34 @@ documented in the [reference index](./reference/index.md).
 
 ## Fork changelog
 
+### 2026-09-19
+
+- Rebuilt Brendan and May's Rustboro, Route 110, Route 119, and Lilycove
+  rival teams for every player-starter choice, with the configured species,
+  levels, held items, moves, 31 IVs, and randomized Abilities. The player boss
+  reference now shows every variant with Pokémon and type sprites.
+- Replaced U-Turn with Tailwind on Winona's Swellow and updated the boss
+  reference to match.
+- Standardized the boss reference on the game's Hardy-nature behavior. A
+  regression now checks both the runtime boss override and the trainer-party
+  compiler's Hardy default so rivals and admins cannot silently diverge.
+- Nuzlite and Nuzlocke now default the randomizer generation limit to Gen 9
+  in the new-game menu. Normal and Custom continue to default to Gen 3.
+
+### 2026-09-16
+
+- Randomized TM51–TM130 entries now display their assigned move descriptions
+  in the Bag instead of placeholder text.
+- Level-cap increase notices now appear after the complete post-battle event,
+  including badge, reward, and other trainer dialogue.
+- Gym Leader reward dialogue and acquisition displays now name the item
+  actually awarded when the item randomizer replaces the original TM.
+
+### 2026-09-15
+
+- Fixed Infinite Repel sometimes requiring multiple uses to turn off after
+  walking. Its active state is no longer decremented by overworld steps.
+
 ### 2026-09-14
 
 - Reworked the shared Pokémon randomizer catalog so ability pools, evolution

@@ -36,9 +36,17 @@ TEST("New game options presets lock custom rules")
     EXPECT_EQ(ForkNewGameOptionsCanEdit(1), FALSE);
     EXPECT_EQ(ForkNewGameOptionsCanEdit(2), FALSE);
     EXPECT_EQ(ForkNewGameOptionsCanEdit(3), TRUE);
-    EXPECT_EQ(ForkNewGameOptionsPresetValues(0), 52199);
-    EXPECT_EQ(ForkNewGameOptionsPresetValues(1), 52203);
+    EXPECT_EQ(ForkNewGameOptionsPresetValues(0), 58343);
+    EXPECT_EQ(ForkNewGameOptionsPresetValues(1), 58347);
     EXPECT_EQ(ForkNewGameOptionsPresetValues(2), 2064);
+}
+
+TEST("Nuzlite and Nuzlocke default to Generation 9")
+{
+    EXPECT_EQ((ForkNewGameOptionsPresetValues(0) >> 10) & 0xF, GEN_9);
+    EXPECT_EQ((ForkNewGameOptionsPresetValues(1) >> 10) & 0xF, GEN_9);
+    EXPECT_EQ((ForkNewGameOptionsPresetValues(2) >> 10) & 0xF, GEN_3);
+    EXPECT_EQ((ForkNewGameOptionsPresetValues(3) >> 10) & 0xF, GEN_3);
 }
 
 TEST("Randomizer max generation remains editable in every mode")

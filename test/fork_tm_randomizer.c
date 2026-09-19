@@ -1,5 +1,6 @@
 #include "global.h"
 #include "item.h"
+#include "move.h"
 #include "pokemon.h"
 #include "test/test.h"
 #include "constants/items.h"
@@ -7,6 +8,21 @@
 #include "constants/tms_hms.h"
 
 void InitForkRandomizedTMMoves(void);
+
+TEST("Fork randomized TMs use their assigned move descriptions")
+{
+    gSaveBlock3Ptr->forkItemRandomizerSeed = 12345;
+    InitForkRandomizedTMMoves();
+
+    for (u16 tm = 51; tm <= 130; tm++)
+    {
+        enum Item item = GetForkRandomizedTMItem(tm);
+        enum Move move = GetForkRandomizedTMMove(item);
+
+        EXPECT_NE(move, MOVE_NONE);
+        EXPECT_EQ(GetItemDescription(item), GetMoveDescription(move));
+    }
+}
 
 TEST("Lilycove TM shop sells each randomized TM only once")
 {

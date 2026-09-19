@@ -1,8 +1,8 @@
 # Boss Battle Reference
 
-This page shows the main first-clear boss battles exactly as configured. It is designed for GitHub Pages and includes the battle format, sprite, level, ability, held item, IVs, nature, and moves for every Pokémon.
+This page shows the main first-clear boss battles exactly as configured. It is designed for GitHub Pages and includes the battle format, sprite, typing, level, ability, held item, IV policy, nature, and moves for every Pokémon.
 
-All listed boss Pokémon use 31 IVs in every stat and Hardy (neutral) nature in battle. Abilities shown by name are fixed team overrides. **Randomized** abilities use the save's seeded species-family ability roll when Random Abilities is enabled; otherwise they use the species' normal ability.
+All listed boss Pokémon use 31 IVs in every stat and a Hardy (neutral) nature. Abilities shown by name are fixed team overrides. **Randomized** abilities use the save's seeded species-family ability roll when Random Abilities is enabled; otherwise they use the species' normal ability.
 
 Boss trainers do not carry battle-item inventories, so they cannot use Potions or other bag items. Their Pokémon still use the held items listed below.
 
@@ -50,28 +50,51 @@ The cap ladder includes every required story battle that advances the level cap.
 | Moves | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/bug.png" alt="Bug" width="32"> Fury Cutter<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/rock.png" alt="Rock" width="32"> Ancient Power<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="32"> Water Gun<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="32"> Mud Slap | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="32"> Absorb<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/rock.png" alt="Rock" width="32"> Ancient Power<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="32"> Ingrain<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="32"> Withdraw | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/rock.png" alt="Rock" width="32"> Ancient Power<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/rock.png" alt="Rock" width="32"> Rock Tomb<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32"> Block<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="32"> Mud Slap |
 
 ## Rustboro rival — Single battle (Brendan/May variants)
-<p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/brendan.png" alt="brendan" width="96"></p>
+<p><strong>Trainers:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/brendan.png" alt="Brendan" width="96"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/may.png" alt="May" width="96"></p>
 
-The rival's team depends on the player's chosen starter and whether the rival is Brendan or May. Pokémon are sent out in the order shown.
+Brendan and May use the same party for each player starter. Every Pokémon has 31 IVs, a Hardy nature, and its save-seeded randomized family ability.
 
 | Player chose | Brendan's team | May's team |
 | --- | --- | --- |
-| Treecko | Lotad Lv. 13<br>Torchic Lv. 15 | Lotad Lv. 13<br>Torchic Lv. 15 |
-| Torchic | Slugma Lv. 13<br>Mudkip Lv. 15 | Torkoal Lv. 13<br>Mudkip Lv. 15 |
-| Mudkip | Wingull Lv. 13<br>Treecko Lv. 15 | Wingull Lv. 13<br>Treecko Lv. 15 |
+| Treecko | Taillow Lv. 13<br>Shroomish Lv. 13<br>Lotad Lv. 14<br>Combusken Lv. 16 | Taillow Lv. 13<br>Shroomish Lv. 13<br>Lotad Lv. 14<br>Combusken Lv. 16 |
+| Torchic | Taillow Lv. 13<br>Shroomish Lv. 13<br>Lotad Lv. 14<br>Marshtomp Lv. 16 | Taillow Lv. 13<br>Shroomish Lv. 13<br>Lotad Lv. 14<br>Marshtomp Lv. 16 |
+| Mudkip | Taillow Lv. 13<br>Shroomish Lv. 13<br>Lotad Lv. 14<br>Grovyle Lv. 16 | Taillow Lv. 13<br>Shroomish Lv. 13<br>Lotad Lv. 14<br>Grovyle Lv. 16 |
 
-The detailed table below shows the shared Mudkip-player variant.
+### Player chose Treecko
 
-| | Wingull | Treecko |
-| --- | --- | --- |
-| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/wingull/anim_front.png" alt="Wingull" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/treecko/anim_front.png" alt="Treecko" width="64"> |
-| Level | 13 | 15 |
-| Stats | Total: 118<br>HP: 33<br>ATK: 13<br>DEF: 13<br>SpA: 27<br>SpD: 19<br>Spe: 13 | Total: 145<br>HP: 37<br>ATK: 19<br>DEF: 16<br>SpA: 26<br>SpD: 25<br>Spe: 22 |
-| Ability | Randomized | Randomized |
-| Nature | Random nature | Random nature |
-| Moves | Default generated moveset | Default generated moveset |
+| | Taillow | Shroomish | Lotad | Combusken |
+| --- | --- | --- | --- | --- |
+| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/taillow/anim_front.png" alt="Taillow" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/shroomish/anim_front.png" alt="Shroomish" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/lotad/anim_front.png" alt="Lotad" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/combusken/anim_front.png" alt="Combusken" width="64"> |
+| Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fight.png" alt="Fighting" width="48"> |
+| Level | 13 | 13 | 14 | 16 |
+| Ability | Randomized | Randomized | Randomized | Randomized |
+| Held item | — | — | — | — |
+| Nature | Hardy | Hardy | Hardy | Hardy |
+| Moves | Peck<br>Quick Attack<br>Sand Attack<br>Growl | Leech Seed<br>Protect<br>Absorb<br>Cut | Water Gun<br>Absorb<br>Pound<br>Growl | Ember<br>Quick Attack<br>Peck<br>Growl |
 
+### Player chose Torchic
 
+| | Taillow | Shroomish | Lotad | Marshtomp |
+| --- | --- | --- | --- | --- |
+| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/taillow/anim_front.png" alt="Taillow" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/shroomish/anim_front.png" alt="Shroomish" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/lotad/anim_front.png" alt="Lotad" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/marshtomp/anim_front.png" alt="Marshtomp" width="64"> |
+| Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> |
+| Level | 13 | 13 | 14 | 16 |
+| Ability | Randomized | Randomized | Randomized | Randomized |
+| Held item | — | — | — | — |
+| Nature | Hardy | Hardy | Hardy | Hardy |
+| Moves | Peck<br>Quick Attack<br>Sand Attack<br>Growl | Leech Seed<br>Protect<br>Absorb<br>Cut | Water Gun<br>Absorb<br>Pound<br>Growl | Water Gun<br>Mud Shot<br>Tackle<br>Growl |
+
+### Player chose Mudkip
+
+| | Taillow | Shroomish | Lotad | Grovyle |
+| --- | --- | --- | --- | --- |
+| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/taillow/anim_front.png" alt="Taillow" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/shroomish/anim_front.png" alt="Shroomish" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/lotad/anim_front.png" alt="Lotad" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/grovyle/anim_front.png" alt="Grovyle" width="64"> |
+| Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="48"> |
+| Level | 13 | 13 | 14 | 16 |
+| Ability | Randomized | Randomized | Randomized | Randomized |
+| Held item | — | — | — | — |
+| Nature | Hardy | Hardy | Hardy | Hardy |
+| Moves | Peck<br>Quick Attack<br>Sand Attack<br>Growl | Leech Seed<br>Protect<br>Absorb<br>Cut | Water Gun<br>Absorb<br>Pound<br>Growl | Leafage<br>Quick Attack<br>Pound<br>Tail Whip |
 ## Brawley — Single battle
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_brawly.png" alt="Brawley" width="96"></p>
 
@@ -87,26 +110,51 @@ The detailed table below shows the shared Mudkip-player variant.
 | Moves | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32"> Fake Out<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32"> Hidden Power<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/psychic.png" alt="Psychic" width="32"> Confusion<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fight.png" alt="Fighting" width="32"> Arm Thrust | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="32"> Aerial Ace<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fight.png" alt="Fighting" width="32"> Double Kick<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="32"> Ember<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32"> Quick Attack | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fight.png" alt="Fighting" width="32"> Bulk Up<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fight.png" alt="Fighting" width="32"> Arm Thrust<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32"> Fake Out<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dark.png" alt="Dark" width="32"> Knock Off |
 
 ## Route 110 rival — Single battle (Brendan/May variants)
-<p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/brendan.png" alt="brendan" width="96"></p>
+<p><strong>Trainers:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/brendan.png" alt="Brendan" width="96"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/may.png" alt="May" width="96"></p>
+
+Brendan and May use the same party for each player starter. Every Pokémon has 31 IVs, a Hardy nature, and its save-seeded randomized family ability.
 
 | Player chose | Brendan's team | May's team |
 | --- | --- | --- |
-| Treecko | Wingull Lv. 18<br>Lombre Lv. 18<br>Combusken Lv. 20 | Wingull Lv. 18<br>Lombre Lv. 18<br>Combusken Lv. 20 |
-| Torchic | Lombre Lv. 18<br>Slugma Lv. 18<br>Marshtomp Lv. 20 | Lombre Lv. 18<br>Slugma Lv. 18<br>Marshtomp Lv. 20 |
-| Mudkip | Slugma Lv. 18<br>Wingull Lv. 18<br>Grovyle Lv. 20 | Wingull Lv. 18<br>Slugma Lv. 18<br>Grovyle Lv. 20 |
+| Treecko | Roselia Lv. 16<br>Lombre Lv. 17<br>Electrike Lv. 17<br>Aron Lv. 19<br>Combusken Lv. 20 | Roselia Lv. 16<br>Lombre Lv. 17<br>Electrike Lv. 17<br>Aron Lv. 19<br>Combusken Lv. 20 |
+| Torchic | Shroomish Lv. 16<br>Electrike Lv. 17<br>Gulpin Lv. 17<br>Aron Lv. 19<br>Marshtomp Lv. 20 | Shroomish Lv. 16<br>Electrike Lv. 17<br>Gulpin Lv. 17<br>Aron Lv. 19<br>Marshtomp Lv. 20 |
+| Mudkip | Taillow Lv. 16<br>Electrike Lv. 17<br>Volbeat Lv. 17<br>Aron Lv. 19<br>Grovyle Lv. 20 | Taillow Lv. 16<br>Electrike Lv. 17<br>Volbeat Lv. 17<br>Aron Lv. 19<br>Grovyle Lv. 20 |
 
-The detailed table below shows Brendan's Mudkip-player variant.
+### Player chose Treecko
 
-| | Slugma | Wingull | Grovyle |
-| --- | --- | --- | --- |
-| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/slugma/anim_front.png" alt="Slugma" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/wingull/anim_front.png" alt="Wingull" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/grovyle/anim_front.png" alt="Grovyle" width="64"> |
-| Level | 18 | 18 | 20 |
-| Stats | Total: 147<br>HP: 43<br>ATK: 20<br>DEF: 20<br>SpA: 13<br>SpD: 31<br>Spe: 20 | Total: 152<br>HP: 43<br>ATK: 16<br>DEF: 16<br>SpA: 36<br>SpD: 25<br>Spe: 16 | Total: 229<br>HP: 52<br>ATK: 33<br>DEF: 25<br>SpA: 45<br>SpD: 41<br>Spe: 33 |
-| Ability | Randomized | Randomized | Randomized |
-| Nature | Random nature | Random nature | Random nature |
-| Moves | Default generated moveset | Default generated moveset | Default generated moveset |
+| | Roselia | Lombre | Electrike | Aron | Combusken |
+| --- | --- | --- | --- | --- | --- |
+| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/roselia/anim_front.png" alt="Roselia" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/lombre/anim_front.png" alt="Lombre" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/electrike/anim_front.png" alt="Electrike" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/aron/anim_front.png" alt="Aron" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/combusken/anim_front.png" alt="Combusken" width="64"> |
+| Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/poison.png" alt="Poison" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/electric.png" alt="Electric" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/steel.png" alt="Steel" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/rock.png" alt="Rock" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fight.png" alt="Fighting" width="48"> |
+| Level | 16 | 17 | 17 | 19 | 20 |
+| Ability | Randomized | Randomized | Randomized | Randomized | Randomized |
+| Held item | — | — | — | — | Oran Berry |
+| Nature | Hardy | Hardy | Hardy | Hardy | Hardy |
+| Moves | Mega Drain<br>Leech Seed<br>Sludge<br>Sleep Powder | Mega Drain<br>Water Gun<br>Fake Out<br>Cut | Spark<br>Quick Attack<br>Thunder Wave<br>Flash | Headbutt<br>Rock Smash<br>Rock Tomb<br>Iron Defense | Double Kick<br>Flame Charge<br>Quick Attack<br>Peck |
 
+### Player chose Torchic
 
+| | Shroomish | Electrike | Gulpin | Aron | Marshtomp |
+| --- | --- | --- | --- | --- | --- |
+| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/shroomish/anim_front.png" alt="Shroomish" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/electrike/anim_front.png" alt="Electrike" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/gulpin/anim_front.png" alt="Gulpin" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/aron/anim_front.png" alt="Aron" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/marshtomp/anim_front.png" alt="Marshtomp" width="64"> |
+| Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/electric.png" alt="Electric" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/poison.png" alt="Poison" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/steel.png" alt="Steel" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/rock.png" alt="Rock" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> |
+| Level | 16 | 17 | 17 | 19 | 20 |
+| Ability | Randomized | Randomized | Randomized | Randomized | Randomized |
+| Held item | — | — | — | — | — |
+| Nature | Hardy | Hardy | Hardy | Hardy | Hardy |
+| Moves | Spore<br>Absorb<br>Cut<br>Leech Seed | Spark<br>Quick Attack<br>Thunder Wave<br>Flash | Sludge<br>Stockpile<br>Swallow<br>Spit Up | Headbutt<br>Rock Smash<br>Rock Tomb<br>Iron Defense | Mud Shot<br>Water Gun<br>Mud Slap<br>Rock Tomb |
+
+### Player chose Mudkip
+
+| | Taillow | Electrike | Volbeat | Aron | Grovyle |
+| --- | --- | --- | --- | --- | --- |
+| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/taillow/anim_front.png" alt="Taillow" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/electrike/anim_front.png" alt="Electrike" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/volbeat/anim_front.png" alt="Volbeat" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/aron/anim_front.png" alt="Aron" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/grovyle/anim_front.png" alt="Grovyle" width="64"> |
+| Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/electric.png" alt="Electric" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/bug.png" alt="Bug" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/steel.png" alt="Steel" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/rock.png" alt="Rock" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="48"> |
+| Level | 16 | 17 | 17 | 19 | 20 |
+| Ability | Randomized | Randomized | Randomized | Randomized | Randomized |
+| Held item | — | — | — | — | Lum Berry |
+| Nature | Hardy | Hardy | Hardy | Hardy | Hardy |
+| Moves | Aerial Ace<br>Quick Attack<br>Agility<br>Mud Slap | Spark<br>Quick Attack<br>Thunder Wave<br>Flash | Silver Wind<br>Stun Spore<br>Cut<br>Confuse Ray | Headbutt<br>Rock Smash<br>Rock Tomb<br>Iron Defense | Quick Attack<br>Leafage<br>Aerial Ace<br>Fury Cutter |
 ## Wattson — Double battle
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_wattson.png" alt="Wattson" width="96"></p>
 
@@ -179,39 +227,51 @@ The detailed table below shows Brendan's Mudkip-player variant.
 | Moves | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/rock.png" alt="Rock" width="32"> Wide Guard<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water in rain" width="32"> Weather Ball<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ice.png" alt="Ice" width="32"> Icy Wind<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/psychic.png" alt="Psychic" width="32"> Hypnosis | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water in rain" width="32"> Weather Ball<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="32"> Rain Dance<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ice.png" alt="Ice" width="32"> Icy Wind<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ice.png" alt="Ice" width="32"> Freeze-Dry | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/psychic.png" alt="Psychic" width="32"> Rest<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="32"> Aqua Jet<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="32"> Magnitude<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="32"> Dive | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dragon.png" alt="Dragon" width="32"> Dragon Rage<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dragon.png" alt="Dragon" width="32"> Dragon Tail<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="32"> Aqua Tail<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/electric.png" alt="Electric" width="32"> Thunder Wave | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ice.png" alt="Ice" width="32"> Ice Fang<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dark.png" alt="Dark" width="32"> Bite<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="32"> Dive<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/electric.png" alt="Electric" width="32"> Thunder Fang |
 
 ## Route 119 rival — Single battle (Brendan/May variants)
-<p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/brendan.png" alt="brendan" width="96"></p>
+<p><strong>Trainers:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/brendan.png" alt="Brendan" width="96"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/may.png" alt="May" width="96"></p>
+
+Brendan and May use the same party for each player starter. Every Pokémon has 31 IVs, a Hardy nature, and its save-seeded randomized family ability.
 
 | Player chose | Brendan's team | May's team |
 | --- | --- | --- |
-| Treecko | Pelipper Lv. 29<br>Lombre Lv. 29<br>Combusken Lv. 31 | Pelipper Lv. 29<br>Lombre Lv. 29<br>Combusken Lv. 31 |
-| Torchic | Lombre Lv. 29<br>Slugma Lv. 29<br>Marshtomp Lv. 31 | Lombre Lv. 29<br>Slugma Lv. 29<br>Marshtomp Lv. 31 |
-| Mudkip | Slugma Lv. 29<br>Pelipper Lv. 29<br>Grovyle Lv. 31 | Slugma Lv. 29<br>Lombre Lv. 29<br>Grovyle Lv. 31 |
+| Treecko | Trapinch Lv. 31<br>Loudred Lv. 31<br>Lombre Lv. 30<br>Tropius Lv. 30<br>Combusken Lv. 32 | Trapinch Lv. 31<br>Loudred Lv. 31<br>Lombre Lv. 30<br>Tropius Lv. 30<br>Combusken Lv. 32 |
+| Torchic | Trapinch Lv. 31<br>Loudred Lv. 31<br>Breloom Lv. 30<br>Torkoal Lv. 30<br>Marshtomp Lv. 32 | Trapinch Lv. 31<br>Loudred Lv. 31<br>Breloom Lv. 30<br>Torkoal Lv. 30<br>Marshtomp Lv. 32 |
+| Mudkip | Trapinch Lv. 31<br>Feebas Lv. 31<br>Swellow Lv. 30<br>Torkoal Lv. 30<br>Grovyle Lv. 32 | Trapinch Lv. 31<br>Feebas Lv. 31<br>Swellow Lv. 30<br>Torkoal Lv. 30<br>Grovyle Lv. 32 |
 
-### Example: Brendan when the player chose Mudkip
+### Player chose Treecko
 
-| | Slugma | Pelipper | Grovyle |
-| --- | --- | --- | --- |
-| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/slugma/anim_front.png" alt="Slugma" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/pelipper/anim_front.png" alt="Pelipper" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/grovyle/anim_front.png" alt="Grovyle" width="64"> |
-| Level | 29 | 29 | 31 |
-| Stats | Total: 227<br>HP: 65<br>ATK: 31<br>DEF: 31<br>SpA: 20<br>SpD: 49<br>Spe: 31 | Total: 338<br>HP: 77<br>ATK: 37<br>DEF: 66<br>SpA: 46<br>SpD: 63<br>Spe: 49 | Total: 347<br>HP: 77<br>ATK: 50<br>DEF: 38<br>SpA: 69<br>SpD: 63<br>Spe: 50 |
-| Ability | Randomized | Randomized | Randomized |
-| Nature | Random nature | Random nature | Random nature |
-| Moves | Default generated moveset | Default generated moveset | Default generated moveset |
+| | Trapinch | Loudred | Lombre | Tropius | Combusken |
+| --- | --- | --- | --- | --- | --- |
+| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/trapinch/anim_front.png" alt="Trapinch" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/loudred/anim_front.png" alt="Loudred" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/lombre/anim_front.png" alt="Lombre" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/tropius/anim_front.png" alt="Tropius" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/combusken/anim_front.png" alt="Combusken" width="64"> |
+| Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fight.png" alt="Fighting" width="48"> |
+| Level | 31 | 31 | 30 | 30 | 32 |
+| Ability | Randomized | Randomized | Randomized | Randomized | Randomized |
+| Held item | Yache Berry | Chople Berry | Coba Berry | Sitrus Berry | Liechi Berry |
+| Nature | Hardy | Hardy | Hardy | Hardy | Hardy |
+| Moves | Dig<br>Bite<br>Sand Tomb<br>Body Slam | Echoed Voice<br>Strength<br>Crunch<br>Shock Wave | Leech Seed<br>Fake Out<br>Surf<br>Mega Drain | Fly<br>Cut<br>Steel Wing<br>Magical Leaf | Rock Smash<br>Flame Charge<br>Flamethrower<br>Aerial Ace |
 
+### Player chose Torchic
 
-### Example: May when the player chose Mudkip
-<p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/may.png" alt="may" width="96"></p>
+| | Trapinch | Loudred | Breloom | Torkoal | Marshtomp |
+| --- | --- | --- | --- | --- | --- |
+| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/trapinch/anim_front.png" alt="Trapinch" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/loudred/anim_front.png" alt="Loudred" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/breloom/anim_front.png" alt="Breloom" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/torkoal/anim_front.png" alt="Torkoal" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/marshtomp/anim_front.png" alt="Marshtomp" width="64"> |
+| Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fight.png" alt="Fighting" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> |
+| Level | 31 | 31 | 30 | 30 | 32 |
+| Ability | Randomized | Randomized | Randomized | Randomized | Randomized |
+| Held item | Yache Berry | Chople Berry | Coba Berry | Sitrus Berry | Petaya Berry |
+| Nature | Hardy | Hardy | Hardy | Hardy | Hardy |
+| Moves | Dig<br>Bite<br>Sand Tomb<br>Body Slam | Echoed Voice<br>Strength<br>Crunch<br>Shock Wave | Mach Punch<br>Spore<br>Cut<br>Seed Bomb | Overheat<br>Weather Ball<br>Rapid Spin<br>Smokescreen | Surf<br>Muddy Water<br>Mud Shot<br>Rock Smash |
 
-| | Slugma | Lombre | Grovyle |
-| --- | --- | --- | --- |
-| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/slugma/anim_front.png" alt="Slugma" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/lombre/anim_front.png" alt="Lombre" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/grovyle/anim_front.png" alt="Grovyle" width="64"> |
-| Level | 29 | 29 | 31 |
-| Stats | Total: 227<br>HP: 65<br>ATK: 31<br>DEF: 31<br>SpA: 20<br>SpD: 49<br>Spe: 31 | Total: 280<br>HP: 77<br>ATK: 37<br>DEF: 37<br>SpA: 37<br>SpD: 43<br>Spe: 49 | Total: 347<br>HP: 77<br>ATK: 50<br>DEF: 38<br>SpA: 69<br>SpD: 63<br>Spe: 50 |
-| Ability | Randomized | Randomized | Randomized |
-| Nature | Random nature | Random nature | Random nature |
-| Moves | Default generated moveset | Default generated moveset | Default generated moveset |
+### Player chose Mudkip
 
-
+| | Trapinch | Feebas | Swellow | Torkoal | Grovyle |
+| --- | --- | --- | --- | --- | --- |
+| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/trapinch/anim_front.png" alt="Trapinch" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/feebas/anim_front.png" alt="Feebas" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/swellow/anim_front.png" alt="Swellow" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/torkoal/anim_front.png" alt="Torkoal" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/grovyle/anim_front.png" alt="Grovyle" width="64"> |
+| Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="48"> |
+| Level | 31 | 31 | 30 | 30 | 32 |
+| Ability | Randomized | Randomized | Randomized | Randomized | Randomized |
+| Held item | Yache Berry | Focus Sash | Wacan Berry | Sitrus Berry | Salac Berry |
+| Nature | Hardy | Hardy | Hardy | Hardy | Hardy |
+| Moves | Dig<br>Bite<br>Sand Tomb<br>Rock Smash | Surf<br>Flail | Fly<br>Quick Attack<br>Roost<br>Steel Wing | Overheat<br>Weather Ball<br>Rapid Spin<br>Smokescreen | Leaf Blade<br>Dragonbreath<br>Growth<br>Cut |
 ## Winona — Single battle
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_winona.png" alt="Winona" width="96"></p>
 
@@ -224,53 +284,54 @@ The detailed table below shows Brendan's Mudkip-player variant.
 | Ability | Guts | Harvest | Keen Eye | Intimidate | Pixilate |
 | Held item | Sharp Beak | Sitrus Berry | Wide Lens | Persim Berry | Altarianite |
 | Nature | Hardy | Hardy | Hardy | Hardy | Hardy |
-| Moves | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="32"> Aerial Ace<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32"> Quick Attack<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/bug.png" alt="Bug" width="32"> U-Turn<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dark.png" alt="Dark" width="32"> Beat Up | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="32"> Solarbeam<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="32"> Sunny Day<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="32"> Synthesis<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="32"> Air Slash | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="32"> Rain Dance<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="32"> Hydro Pump<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/electric.png" alt="Electric" width="32"> Thunder<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="32"> Hurricane | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dragon.png" alt="Dragon" width="32"> Outrage<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="32"> Fly | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dragon.png" alt="Dragon" width="32"> Dragonbreath<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="32"> Air Slash<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32"> Swift<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="32"> Roost |
+| Moves | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="32"> Aerial Ace<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32"> Quick Attack<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="32"> Tailwind<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dark.png" alt="Dark" width="32"> Beat Up | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="32"> Solarbeam<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="32"> Sunny Day<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="32"> Synthesis<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="32"> Air Slash | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="32"> Rain Dance<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="32"> Hydro Pump<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/electric.png" alt="Electric" width="32"> Thunder<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="32"> Hurricane | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dragon.png" alt="Dragon" width="32"> Outrage<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="32"> Fly | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dragon.png" alt="Dragon" width="32"> Dragonbreath<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="32"> Air Slash<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="32"> Swift<br><img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="32"> Roost |
 
 ## Lilycove rival — Single battle (Brendan/May variants)
-<p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/brendan.png" alt="brendan" width="96"></p>
+<p><strong>Trainers:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/brendan.png" alt="Brendan" width="96"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/may.png" alt="May" width="96"></p>
+
+Brendan and May use the same party for each player starter. Every Pokémon has 31 IVs, a Hardy nature, and its save-seeded randomized family ability.
 
 | Player chose | Brendan's team | May's team |
 | --- | --- | --- |
-| Treecko | Vibrava Lv. 32<br>Relicanth Lv. 33<br>Tropius Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Blaziken Lv. 36 | Vibrava Lv. 32<br>Relicanth Lv. 33<br>Tropius Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Blaziken Lv. 36 |
-| Torchic | Vibrava Lv. 32<br>Torkoal Lv. 33<br>Tropius Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Swampert Lv. 36 | Vibrava Lv. 32<br>Torkoal Lv. 33<br>Tropius Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Swampert Lv. 36 |
-| Mudkip | Vibrava Lv. 32<br>Relicanth Lv. 33<br>Torkoal Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Sceptile Lv. 36 | Vibrava Lv. 32<br>Relicanth Lv. 33<br>Torkoal Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Sceptile Lv. 36 |
-
-Brendan and May use the same party for each player starter. Every Pokémon has 31 IVs, a random nature, and its save-seeded randomized family ability.
-
-### Player chose Mudkip
-
-| | Vibrava | Relicanth | Torkoal | Chimecho | Exploud | Sceptile |
-| --- | --- | --- | --- | --- | --- | --- |
-| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/vibrava/anim_front.png" alt="Vibrava" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/relicanth/anim_front.png" alt="Relicanth" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/torkoal/anim_front.png" alt="Torkoal" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/chimecho/anim_front.png" alt="Chimecho" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/exploud/anim_front.png" alt="Exploud" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/sceptile/anim_front.png" alt="Sceptile" width="64"> |
-| Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dragon.png" alt="Dragon" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/rock.png" alt="Rock" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/psychic.png" alt="Psychic" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="48"> |
-| Level | 32 | 33 | 33 | 34 | 35 | 36 |
-| Ability | Randomized | Randomized | Randomized | Randomized | Randomized | Randomized |
-| Held item | Soft Sand | Water Gem | White Herb | Sitrus Berry | Expert Belt | Grass Gem |
-| Moves | Dig<br>Dragonbreath<br>Rock Slide<br>Fly | Surf<br>Dive<br>Head Smash<br>Take Down | Overheat<br>Shell Smash<br>Earth Power<br>Rock Smash | Extrasensory<br>Confuse Ray<br>Flash<br>Uproar | Boomburst<br>Focus Blast<br>Crunch<br>Strength | Leaf Blade<br>Dragon Tail<br>Cut<br>Pursuit |
-
-### Player chose Torchic
-
-| | Vibrava | Torkoal | Tropius | Chimecho | Exploud | Swampert |
-| --- | --- | --- | --- | --- | --- | --- |
-| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/vibrava/anim_front.png" alt="Vibrava" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/torkoal/anim_front.png" alt="Torkoal" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/tropius/anim_front.png" alt="Tropius" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/chimecho/anim_front.png" alt="Chimecho" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/exploud/anim_front.png" alt="Exploud" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/swampert/anim_front.png" alt="Swampert" width="64"> |
-| Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dragon.png" alt="Dragon" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/psychic.png" alt="Psychic" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> |
-| Level | 32 | 33 | 33 | 34 | 35 | 36 |
-| Ability | Randomized | Randomized | Randomized | Randomized | Randomized | Randomized |
-| Held item | Soft Sand | White Herb | Power Herb | Sitrus Berry | Expert Belt | Water Gem |
-| Moves | Dig<br>Dragonbreath<br>Rock Slide<br>Rock Smash | Overheat<br>Sunny Day<br>Earth Power<br>Shell Smash | Solarbeam<br>Fly<br>Cut<br>Steel Wing | Extrasensory<br>Confuse Ray<br>Flash<br>Uproar | Boomburst<br>Focus Blast<br>Crunch<br>Surf | Waterfall<br>Muddy Water<br>Strength<br>Earthquake |
+| Treecko | Vibrava Lv. 32<br>Ludicolo Lv. 33<br>Tropius Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Blaziken Lv. 36 | Vibrava Lv. 32<br>Ludicolo Lv. 33<br>Tropius Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Blaziken Lv. 36 |
+| Torchic | Vibrava Lv. 32<br>Torkoal Lv. 33<br>Breloom Lv. 33<br>Banette Lv. 34<br>Exploud Lv. 35<br>Swampert Lv. 36 | Vibrava Lv. 32<br>Torkoal Lv. 33<br>Breloom Lv. 33<br>Banette Lv. 34<br>Exploud Lv. 35<br>Swampert Lv. 36 |
+| Mudkip | Vibrava Lv. 32<br>Relicanth Lv. 33<br>Torkoal Lv. 33<br>Grumpig Lv. 34<br>Swellow Lv. 35<br>Sceptile Lv. 36 | Vibrava Lv. 32<br>Relicanth Lv. 33<br>Torkoal Lv. 33<br>Grumpig Lv. 34<br>Swellow Lv. 35<br>Sceptile Lv. 36 |
 
 ### Player chose Treecko
 
-| | Vibrava | Relicanth | Tropius | Chimecho | Exploud | Blaziken |
+| | Vibrava | Ludicolo | Tropius | Chimecho | Exploud | Blaziken |
 | --- | --- | --- | --- | --- | --- | --- |
-| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/vibrava/anim_front.png" alt="Vibrava" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/relicanth/anim_front.png" alt="Relicanth" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/tropius/anim_front.png" alt="Tropius" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/chimecho/anim_front.png" alt="Chimecho" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/exploud/anim_front.png" alt="Exploud" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/blaziken/anim_front.png" alt="Blaziken" width="64"> |
-| Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dragon.png" alt="Dragon" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/rock.png" alt="Rock" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/psychic.png" alt="Psychic" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fight.png" alt="Fighting" width="48"> |
+| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/vibrava/anim_front.png" alt="Vibrava" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/ludicolo/anim_front.png" alt="Ludicolo" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/tropius/anim_front.png" alt="Tropius" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/chimecho/anim_front.png" alt="Chimecho" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/exploud/anim_front.png" alt="Exploud" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/blaziken/anim_front.png" alt="Blaziken" width="64"> |
+| Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dragon.png" alt="Dragon" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/psychic.png" alt="Psychic" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fight.png" alt="Fighting" width="48"> |
 | Level | 32 | 33 | 33 | 34 | 35 | 36 |
 | Ability | Randomized | Randomized | Randomized | Randomized | Randomized | Randomized |
-| Held item | Soft Sand | Water Gem | Power Herb | Sitrus Berry | Expert Belt | Fire Gem |
-| Moves | Dig<br>Dragonbreath<br>Rock Slide<br>Rock Smash | Surf<br>Dive<br>Head Smash<br>Take Down | Solarbeam<br>Fly<br>Cut<br>Steel Wing | Extrasensory<br>Confuse Ray<br>Flash<br>Uproar | Boomburst<br>Focus Blast<br>Crunch<br>Strength | Blaze Kick<br>Sky Uppercut<br>Aerial Ace |
+| Held item | Soft Sand | Rocky Helmet | Power Herb | Sitrus Berry | Expert Belt | Fire Gem |
+| Nature | Hardy | Hardy | Hardy | Hardy | Hardy | Hardy |
+| Moves | Dig<br>Dragonbreath<br>Rock Slide<br>Rock Smash | Leech Seed<br>Fake Out<br>Surf<br>Giga Drain | Solarbeam<br>Fly<br>Cut<br>Steel Wing | Extrasensory<br>Confuse Ray<br>Flash<br>Uproar | Boomburst<br>Focus Blast<br>Crunch<br>Strength | Blaze Kick<br>Sky Uppercut<br>Aerial Ace<br>Return |
 
+### Player chose Torchic
 
+| | Vibrava | Torkoal | Breloom | Banette | Exploud | Swampert |
+| --- | --- | --- | --- | --- | --- | --- |
+| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/vibrava/anim_front.png" alt="Vibrava" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/torkoal/anim_front.png" alt="Torkoal" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/breloom/anim_front.png" alt="Breloom" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/banette/anim_front.png" alt="Banette" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/exploud/anim_front.png" alt="Exploud" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/swampert/anim_front.png" alt="Swampert" width="64"> |
+| Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dragon.png" alt="Dragon" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fight.png" alt="Fighting" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ghost.png" alt="Ghost" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> |
+| Level | 32 | 33 | 33 | 34 | 35 | 36 |
+| Ability | Randomized | Randomized | Randomized | Randomized | Randomized | Randomized |
+| Held item | Soft Sand | White Herb | Loaded Dice | Spell Tag | Expert Belt | Water Gem |
+| Nature | Hardy | Hardy | Hardy | Hardy | Hardy | Hardy |
+| Moves | Dig<br>Dragonbreath<br>Fly<br>Rock Smash | Overheat<br>Sunny Day<br>Earth Power<br>Shell Smash | Bullet Seed<br>Mach Punch<br>Cut<br>Spore | Sucker Punch<br>Shadow Sneak<br>Phantom Force<br>Play Rough | Boomburst<br>Focus Blast<br>Crunch<br>Surf | Waterfall<br>Muddy Water<br>Strength<br>Earthquake |
+
+### Player chose Mudkip
+
+| | Vibrava | Relicanth | Torkoal | Grumpig | Swellow | Sceptile |
+| --- | --- | --- | --- | --- | --- | --- |
+| Sprite | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/vibrava/anim_front.png" alt="Vibrava" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/relicanth/anim_front.png" alt="Relicanth" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/torkoal/anim_front.png" alt="Torkoal" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/grumpig/anim_front.png" alt="Grumpig" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/swellow/anim_front.png" alt="Swellow" width="64"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/pokemon/sceptile/anim_front.png" alt="Sceptile" width="64"> |
+| Type | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/ground.png" alt="Ground" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/dragon.png" alt="Dragon" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/water.png" alt="Water" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/rock.png" alt="Rock" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/fire.png" alt="Fire" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/psychic.png" alt="Psychic" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/normal.png" alt="Normal" width="48"> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/flying.png" alt="Flying" width="48"> | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/types/grass.png" alt="Grass" width="48"> |
+| Level | 32 | 33 | 33 | 34 | 35 | 36 |
+| Ability | Randomized | Randomized | Randomized | Randomized | Randomized | Randomized |
+| Held item | Soft Sand | Rocky Helmet | White Herb | Sitrus Berry | Sharp Beak | Grass Gem |
+| Nature | Hardy | Hardy | Hardy | Hardy | Hardy | Hardy |
+| Moves | Dig<br>Dragonbreath<br>Rock Slide<br>Rock Smash | Surf<br>Dive<br>Head Smash<br>Strength | Overheat<br>Shell Smash<br>Earth Power<br>Sunny Day | Zen Headbutt<br>Bounce<br>Flash<br>Body Slam | Fly<br>Extreme Speed<br>Aerial Ace<br>Pursuit | Leaf Blade<br>Dragon Tail<br>Cut<br>Pursuit |
 ## Maxie — Magma Hideout — Single battle
 <p><strong>Trainer:</strong> <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/magma_leader_maxie.png" alt="Maxie" width="96"></p>
 

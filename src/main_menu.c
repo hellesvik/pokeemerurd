@@ -1734,11 +1734,11 @@ static void Task_NewGameFeatureOptions_Init(u8 taskId)
     ShowBg(0);
     HideBg(1);
     gTasks[taskId].data[0] = 0;
-    gTasks[taskId].data[1] = 0xCBF7;
+    gTasks[taskId].data[1] = (0xCBF7 & ~(0xF << 10)) | (GEN_9 << 10);
     gTasks[taskId].data[2] = 0;
     gTasks[taskId].data[3] = 0;
     gTasks[taskId].data[4] = FALSE;
-    NewGameBirchSpeech_ShowFeatureOptions(0, 0, 0xCBF7, 0, FALSE);
+    NewGameBirchSpeech_ShowFeatureOptions(0, 0, gTasks[taskId].data[1], 0, FALSE);
     gTasks[taskId].func = Task_NewGameBirchSpeech_FeatureOptions;
 }
 

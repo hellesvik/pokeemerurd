@@ -7,6 +7,7 @@ DOC = ROOT / "docs/player/boss_battles.md"
 TRAINERS = ROOT / "src/data/trainers.party"
 CAPS = ROOT / "src/caps.c"
 BATTLE_MAIN = ROOT / "src/battle_main.c"
+TRAINERPROC = ROOT / "tools/trainerproc/main.c"
 CHAMPION_SCRIPT = ROOT / "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
 
 
@@ -22,10 +23,10 @@ class BossBattleDocsTests(unittest.TestCase):
 
     def test_team_ability_rows_match_configured_overrides(self):
         expected_rows = {
-            "## Rustboro rival": "| Ability | Randomized | Randomized |",
-            "## Route 110 rival": "| Ability | Randomized | Randomized | Randomized |",
+            "## Rustboro rival": "| Ability | Randomized | Randomized | Randomized | Randomized |",
+            "## Route 110 rival": "| Ability | Randomized | Randomized | Randomized | Randomized | Randomized |",
             "## Maxie — Mt. Chimney": "| Ability | Intimidate | Reckless | Chlorophyll | Solid Rock |",
-            "## Route 119 rival": "| Ability | Randomized | Randomized | Randomized |",
+            "## Route 119 rival": "| Ability | Randomized | Randomized | Randomized | Randomized | Randomized |",
             "## Lilycove rival": "| Ability | Randomized | Randomized | Randomized | Randomized | Randomized | Randomized |",
             "## Maxie — Magma Hideout": "| Ability | Sand Spit | Sand Rush | Reckless | Storm Drain | Solid Rock → Sheer Force |",
             "### Tabitha's team": "| Ability | Sand Stream | Sand Veil | Speed Boost |",
@@ -45,24 +46,24 @@ class BossBattleDocsTests(unittest.TestCase):
     def test_lists_every_starter_and_rival_variant(self):
         expected_rows = {
             "## Rustboro rival": (
-                "| Treecko | Lotad Lv. 13<br>Torchic Lv. 15 | Lotad Lv. 13<br>Torchic Lv. 15 |",
-                "| Torchic | Slugma Lv. 13<br>Mudkip Lv. 15 | Torkoal Lv. 13<br>Mudkip Lv. 15 |",
-                "| Mudkip | Wingull Lv. 13<br>Treecko Lv. 15 | Wingull Lv. 13<br>Treecko Lv. 15 |",
+                "| Treecko | Taillow Lv. 13<br>Shroomish Lv. 13<br>Lotad Lv. 14<br>Combusken Lv. 16 | Taillow Lv. 13<br>Shroomish Lv. 13<br>Lotad Lv. 14<br>Combusken Lv. 16 |",
+                "| Torchic | Taillow Lv. 13<br>Shroomish Lv. 13<br>Lotad Lv. 14<br>Marshtomp Lv. 16 | Taillow Lv. 13<br>Shroomish Lv. 13<br>Lotad Lv. 14<br>Marshtomp Lv. 16 |",
+                "| Mudkip | Taillow Lv. 13<br>Shroomish Lv. 13<br>Lotad Lv. 14<br>Grovyle Lv. 16 | Taillow Lv. 13<br>Shroomish Lv. 13<br>Lotad Lv. 14<br>Grovyle Lv. 16 |",
             ),
             "## Route 110 rival": (
-                "| Treecko | Wingull Lv. 18<br>Lombre Lv. 18<br>Combusken Lv. 20 | Wingull Lv. 18<br>Lombre Lv. 18<br>Combusken Lv. 20 |",
-                "| Torchic | Lombre Lv. 18<br>Slugma Lv. 18<br>Marshtomp Lv. 20 | Lombre Lv. 18<br>Slugma Lv. 18<br>Marshtomp Lv. 20 |",
-                "| Mudkip | Slugma Lv. 18<br>Wingull Lv. 18<br>Grovyle Lv. 20 | Wingull Lv. 18<br>Slugma Lv. 18<br>Grovyle Lv. 20 |",
+                "| Treecko | Roselia Lv. 16<br>Lombre Lv. 17<br>Electrike Lv. 17<br>Aron Lv. 19<br>Combusken Lv. 20 | Roselia Lv. 16<br>Lombre Lv. 17<br>Electrike Lv. 17<br>Aron Lv. 19<br>Combusken Lv. 20 |",
+                "| Torchic | Shroomish Lv. 16<br>Electrike Lv. 17<br>Gulpin Lv. 17<br>Aron Lv. 19<br>Marshtomp Lv. 20 | Shroomish Lv. 16<br>Electrike Lv. 17<br>Gulpin Lv. 17<br>Aron Lv. 19<br>Marshtomp Lv. 20 |",
+                "| Mudkip | Taillow Lv. 16<br>Electrike Lv. 17<br>Volbeat Lv. 17<br>Aron Lv. 19<br>Grovyle Lv. 20 | Taillow Lv. 16<br>Electrike Lv. 17<br>Volbeat Lv. 17<br>Aron Lv. 19<br>Grovyle Lv. 20 |",
             ),
             "## Route 119 rival": (
-                "| Treecko | Pelipper Lv. 29<br>Lombre Lv. 29<br>Combusken Lv. 31 | Pelipper Lv. 29<br>Lombre Lv. 29<br>Combusken Lv. 31 |",
-                "| Torchic | Lombre Lv. 29<br>Slugma Lv. 29<br>Marshtomp Lv. 31 | Lombre Lv. 29<br>Slugma Lv. 29<br>Marshtomp Lv. 31 |",
-                "| Mudkip | Slugma Lv. 29<br>Pelipper Lv. 29<br>Grovyle Lv. 31 | Slugma Lv. 29<br>Lombre Lv. 29<br>Grovyle Lv. 31 |",
+                "| Treecko | Trapinch Lv. 31<br>Loudred Lv. 31<br>Lombre Lv. 30<br>Tropius Lv. 30<br>Combusken Lv. 32 | Trapinch Lv. 31<br>Loudred Lv. 31<br>Lombre Lv. 30<br>Tropius Lv. 30<br>Combusken Lv. 32 |",
+                "| Torchic | Trapinch Lv. 31<br>Loudred Lv. 31<br>Breloom Lv. 30<br>Torkoal Lv. 30<br>Marshtomp Lv. 32 | Trapinch Lv. 31<br>Loudred Lv. 31<br>Breloom Lv. 30<br>Torkoal Lv. 30<br>Marshtomp Lv. 32 |",
+                "| Mudkip | Trapinch Lv. 31<br>Feebas Lv. 31<br>Swellow Lv. 30<br>Torkoal Lv. 30<br>Grovyle Lv. 32 | Trapinch Lv. 31<br>Feebas Lv. 31<br>Swellow Lv. 30<br>Torkoal Lv. 30<br>Grovyle Lv. 32 |",
             ),
             "## Lilycove rival": (
-                "| Treecko | Vibrava Lv. 32<br>Relicanth Lv. 33<br>Tropius Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Blaziken Lv. 36 | Vibrava Lv. 32<br>Relicanth Lv. 33<br>Tropius Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Blaziken Lv. 36 |",
-                "| Torchic | Vibrava Lv. 32<br>Torkoal Lv. 33<br>Tropius Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Swampert Lv. 36 | Vibrava Lv. 32<br>Torkoal Lv. 33<br>Tropius Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Swampert Lv. 36 |",
-                "| Mudkip | Vibrava Lv. 32<br>Relicanth Lv. 33<br>Torkoal Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Sceptile Lv. 36 | Vibrava Lv. 32<br>Relicanth Lv. 33<br>Torkoal Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Sceptile Lv. 36 |",
+                "| Treecko | Vibrava Lv. 32<br>Ludicolo Lv. 33<br>Tropius Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Blaziken Lv. 36 | Vibrava Lv. 32<br>Ludicolo Lv. 33<br>Tropius Lv. 33<br>Chimecho Lv. 34<br>Exploud Lv. 35<br>Blaziken Lv. 36 |",
+                "| Torchic | Vibrava Lv. 32<br>Torkoal Lv. 33<br>Breloom Lv. 33<br>Banette Lv. 34<br>Exploud Lv. 35<br>Swampert Lv. 36 | Vibrava Lv. 32<br>Torkoal Lv. 33<br>Breloom Lv. 33<br>Banette Lv. 34<br>Exploud Lv. 35<br>Swampert Lv. 36 |",
+                "| Mudkip | Vibrava Lv. 32<br>Relicanth Lv. 33<br>Torkoal Lv. 33<br>Grumpig Lv. 34<br>Swellow Lv. 35<br>Sceptile Lv. 36 | Vibrava Lv. 32<br>Relicanth Lv. 33<br>Torkoal Lv. 33<br>Grumpig Lv. 34<br>Swellow Lv. 35<br>Sceptile Lv. 36 |",
             ),
         }
         for heading, rows in expected_rows.items():
@@ -105,23 +106,37 @@ class BossBattleDocsTests(unittest.TestCase):
         self.assertIn("case TRAINER_CLASS_RIVAL:", source[start:end])
         self.assertIn("u32 ivs = IsMaxIvTrainerClass(trainer->trainerClass)", source)
 
+    def test_all_bosses_use_hardy_nature(self):
+        battle_main = BATTLE_MAIN.read_text()
+        self.assertIn(
+            "if (IsStoryBossTrainerClass(trainer->trainerClass))\n"
+            "                ModifyPersonalityForNature(&personalityValue, NATURE_HARDY);",
+            battle_main,
+        )
+        self.assertIn(
+            'fprintf(f, "            .nature = NATURE_HARDY,\\n");',
+            TRAINERPROC.read_text(),
+        )
+        self.assertNotIn("Random nature", self.markdown)
+        self.assertNotIn("roll their natures normally", self.markdown)
+
     def test_lilycove_rival_parties_match_design(self):
         trainer_data = TRAINERS.read_text()
         expected = {
             "MUDKIP": (
-                "Vibrava @ Soft Sand", "Relicanth @ Water Gem", "Torkoal @ White Herb",
-                "Chimecho @ Sitrus Berry", "Exploud @ Expert Belt", "Sceptile @ Grass Gem",
-                "- Fly", "- Dive", "- Shell Smash", "- Flash", "- Boomburst", "- Leaf Blade",
+                "Vibrava @ Soft Sand", "Relicanth @ Rocky Helmet", "Torkoal @ White Herb",
+                "Grumpig @ Sitrus Berry", "Swellow @ Sharp Beak", "Sceptile @ Grass Gem",
+                "- Rock Smash", "- Dive", "- Shell Smash", "- Bounce", "- Extreme Speed", "- Leaf Blade",
             ),
             "TORCHIC": (
-                "Vibrava @ Soft Sand", "Torkoal @ White Herb", "Tropius @ Power Herb",
-                "Chimecho @ Sitrus Berry", "Exploud @ Expert Belt", "Swampert @ Water Gem",
-                "- Rock Smash", "- Sunny Day", "- Solarbeam", "- Flash", "- Surf", "- Earthquake",
+                "Vibrava @ Soft Sand", "Torkoal @ White Herb", "Breloom @ Loaded Dice",
+                "Banette @ Spell Tag", "Exploud @ Expert Belt", "Swampert @ Water Gem",
+                "- Fly", "- Sunny Day", "- Spore", "- Phantom Force", "- Surf", "- Earthquake",
             ),
             "TREECKO": (
-                "Vibrava @ Soft Sand", "Relicanth @ Water Gem", "Tropius @ Power Herb",
+                "Vibrava @ Soft Sand", "Ludicolo @ Rocky Helmet", "Tropius @ Power Herb",
                 "Chimecho @ Sitrus Berry", "Exploud @ Expert Belt", "Blaziken @ Fire Gem",
-                "- Rock Smash", "- Dive", "- Solarbeam", "- Flash", "- Strength", "- Blaze Kick",
+                "- Rock Smash", "- Giga Drain", "- Solarbeam", "- Flash", "- Strength", "- Return",
             ),
         }
         for rival in ("BRENDAN", "MAY"):
@@ -134,6 +149,43 @@ class BossBattleDocsTests(unittest.TestCase):
                 self.assertNotIn("Ability:", section, trainer)
                 for entry in entries:
                     self.assertIn(entry, section, trainer)
+
+    def test_story_rival_parties_match_current_design(self):
+        trainer_data = TRAINERS.read_text()
+        expected = {
+            "RUSTBORO": {
+                "TREECKO": ("Taillow\nLevel: 13", "Shroomish\nLevel: 13", "Lotad\nLevel: 14", "Combusken\nLevel: 16", "- Protect", "- Cut", "- Water Gun", "- Ember"),
+                "TORCHIC": ("Taillow\nLevel: 13", "Shroomish\nLevel: 13", "Lotad\nLevel: 14", "Marshtomp\nLevel: 16", "- Protect", "- Cut", "- Water Gun", "- Mud Shot"),
+                "MUDKIP": ("Taillow\nLevel: 13", "Shroomish\nLevel: 13", "Lotad\nLevel: 14", "Grovyle\nLevel: 16", "- Protect", "- Cut", "- Water Gun", "- Leafage"),
+            },
+            "ROUTE_110": {
+                "TREECKO": ("Roselia\nLevel: 16", "Lombre\nLevel: 17", "Electrike\nLevel: 17", "Aron\nLevel: 19", "Combusken @ Oran Berry\nLevel: 20", "- Sleep Powder", "- Cut", "- Flash", "- Iron Defense", "- Flame Charge"),
+                "TORCHIC": ("Shroomish\nLevel: 16", "Electrike\nLevel: 17", "Gulpin\nLevel: 17", "Aron\nLevel: 19", "Marshtomp\nLevel: 20", "- Spore", "- Flash", "- Stockpile", "- Iron Defense", "- Mud Shot"),
+                "MUDKIP": ("Taillow\nLevel: 16", "Electrike\nLevel: 17", "Volbeat\nLevel: 17", "Aron\nLevel: 19", "Grovyle @ Lum Berry\nLevel: 20", "- Agility", "- Flash", "- Silver Wind", "- Iron Defense", "- Fury Cutter"),
+            },
+            "ROUTE_119": {
+                "TREECKO": ("Trapinch @ Yache Berry\nLevel: 31", "Loudred @ Chople Berry\nLevel: 31", "Lombre @ Coba Berry\nLevel: 30", "Tropius @ Sitrus Berry\nLevel: 30", "Combusken @ Liechi Berry\nLevel: 32", "- Body Slam", "- Strength", "- Surf", "- Fly", "- Flamethrower"),
+                "TORCHIC": ("Trapinch @ Yache Berry\nLevel: 31", "Loudred @ Chople Berry\nLevel: 31", "Breloom @ Coba Berry\nLevel: 30", "Torkoal @ Sitrus Berry\nLevel: 30", "Marshtomp @ Petaya Berry\nLevel: 32", "- Body Slam", "- Strength", "- Spore", "- Rapid Spin", "- Muddy Water"),
+                "MUDKIP": ("Trapinch @ Yache Berry\nLevel: 31", "Feebas @ Focus Sash\nLevel: 31", "Swellow @ Wacan Berry\nLevel: 30", "Torkoal @ Sitrus Berry\nLevel: 30", "Grovyle @ Salac Berry\nLevel: 32", "- Rock Smash", "- Flail", "- Roost", "- Rapid Spin", "- Growth"),
+            },
+            "LILYCOVE": {
+                "TREECKO": ("Vibrava @ Soft Sand", "Ludicolo @ Rocky Helmet", "Tropius @ Power Herb", "Chimecho @ Sitrus Berry", "Exploud @ Expert Belt", "Blaziken @ Fire Gem", "- Return"),
+                "TORCHIC": ("Vibrava @ Soft Sand", "Torkoal @ White Herb", "Breloom @ Loaded Dice", "Banette @ Spell Tag", "Exploud @ Expert Belt", "Swampert @ Water Gem", "- Phantom Force"),
+                "MUDKIP": ("Vibrava @ Soft Sand", "Relicanth @ Rocky Helmet", "Torkoal @ White Herb", "Grumpig @ Sitrus Berry", "Swellow @ Sharp Beak", "Sceptile @ Grass Gem", "- Extreme Speed"),
+            },
+        }
+        for encounter, variants in expected.items():
+            for rival in ("BRENDAN", "MAY"):
+                for starter, entries in variants.items():
+                    trainer = f"TRAINER_{rival}_{encounter}_{starter}"
+                    start = trainer_data.index(f"=== {trainer} ===")
+                    end = trainer_data.find("\n=== TRAINER_", start + 4)
+                    section = trainer_data[start:end if end >= 0 else None]
+                    expected_count = 4 if encounter == "RUSTBORO" else 5 if encounter in ("ROUTE_110", "ROUTE_119") else 6
+                    self.assertEqual(section.count("IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"), expected_count, trainer)
+                    self.assertNotIn("Ability:", section, trainer)
+                    for entry in entries:
+                        self.assertIn(entry, section, trainer)
 
     def test_norman_uses_furret_with_linoones_set(self):
         trainer_data = TRAINERS.read_text()
@@ -151,11 +203,26 @@ class BossBattleDocsTests(unittest.TestCase):
         self.assertIn("HP: 91<br>ATK: 54<br>DEF: 47<br>SpA: 37<br>SpD: 43<br>Spe: 61", docs)
         self.assertNotIn("Linoone", docs)
 
+    def test_winonas_swellow_uses_tailwind(self):
+        trainer_data = TRAINERS.read_text()
+        start = trainer_data.index("=== TRAINER_WINONA_1 ===")
+        end = trainer_data.index("\n=== TRAINER_", start + 4)
+        section = trainer_data[start:end]
+        swellow = section[section.index("Swellow @ Sharp Beak"):section.index("\n\nTropius")]
+        self.assertIn("- Tailwind", swellow)
+        self.assertNotIn("- U-Turn", swellow)
+
+        docs = self.section("## Winona")
+        moves = docs[docs.index("| Moves |"):]
+        swellow_moves = moves.split(" | ", 2)[1]
+        self.assertIn("Tailwind", swellow_moves)
+        self.assertNotIn("U-Turn", swellow_moves)
+
     def test_lilycove_rival_tables_show_pokemon_and_type_sprites(self):
         docs = self.section("## Lilycove rival")
         self.assertEqual(docs.count("| Sprite |"), 3)
         self.assertEqual(docs.count("| Type |"), 3)
-        for pokemon in ("vibrava", "relicanth", "torkoal", "chimecho", "exploud", "sceptile", "tropius", "swampert", "blaziken"):
+        for pokemon in ("vibrava", "ludicolo", "tropius", "chimecho", "exploud", "blaziken", "torkoal", "breloom", "banette", "swampert", "relicanth", "grumpig", "swellow", "sceptile"):
             self.assertIn(f"graphics/pokemon/{pokemon}/anim_front.png", docs)
         for pokemon_type in ("ground", "dragon", "water", "rock", "fire", "psychic", "normal", "grass", "flying", "fight"):
             self.assertIn(f"graphics/types/{pokemon_type}.png", docs)

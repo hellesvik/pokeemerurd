@@ -114,7 +114,7 @@ MauvilleCity_Gym_EventScript_WattsonDefeated::
 MauvilleCity_Gym_EventScript_GiveShockWave2::
 	giveitem ITEM_TM_SHOCK_WAVE
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
-	bufferitemname STR_VAR_1, VAR_0x8000
+	bufferitemname STR_VAR_1, VAR_0x8006
 	msgbox MauvilleCity_Gym_Text_ExplainShockWave, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_TM_SHOCK_WAVE
 	release
@@ -123,7 +123,7 @@ MauvilleCity_Gym_EventScript_GiveShockWave2::
 MauvilleCity_Gym_EventScript_GiveShockWave::
 	giveitem ITEM_TM_SHOCK_WAVE
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
-	bufferitemname STR_VAR_1, VAR_0x8000
+	bufferitemname STR_VAR_1, VAR_0x8006
 	msgbox MauvilleCity_Gym_Text_ExplainShockWave, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_TM_SHOCK_WAVE
 	return

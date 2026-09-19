@@ -5161,7 +5161,7 @@ Level: 29
 IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
 - Aerial Ace
 - Quick Attack
-- U-Turn
+- Tailwind
 - Beat Up
 
 Tropius @ Sitrus Berry
@@ -9761,17 +9761,45 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Slugma
-Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Taillow
+Level: 16
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Aerial Ace
+- Quick Attack
+- Agility
+- Mud Slap
 
-Wingull
-Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Electrike
+Level: 17
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Spark
+- Quick Attack
+- Thunder Wave
+- Flash
 
-Grovyle
+Volbeat
+Level: 17
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Silver Wind
+- Stun Spore
+- Cut
+- Confuse Ray
+
+Aron
+Level: 19
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Headbutt
+- Rock Smash
+- Rock Tomb
+- Iron Defense
+
+Grovyle @ Lum Berry
 Level: 20
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Quick Attack
+- Leafage
+- Aerial Ace
+- Fury Cutter
 
 === TRAINER_BRENDAN_ROUTE_119_MUDKIP ===
 Name: BRENDAN
@@ -9782,17 +9810,43 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Slugma
-Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-
-Pelipper
-Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-
-Grovyle
+Trapinch @ Yache Berry
 Level: 31
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Dig
+- Bite
+- Sand Tomb
+- Rock Smash
+
+Feebas @ Focus Sash
+Level: 31
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Surf
+- Flail
+
+Swellow @ Wacan Berry
+Level: 30
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Fly
+- Quick Attack
+- Roost
+- Steel Wing
+
+Torkoal @ Sitrus Berry
+Level: 30
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Overheat
+- Weather Ball
+- Rapid Spin
+- Smokescreen
+
+Grovyle @ Salac Berry
+Level: 32
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Leaf Blade
+- Dragonbreath
+- Growth
+- Cut
 
 === TRAINER_BRENDAN_ROUTE_103_TREECKO ===
 Name: BRENDAN
@@ -9816,17 +9870,45 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Wingull
-Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Roselia
+Level: 16
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Mega Drain
+- Leech Seed
+- Sludge
+- Sleep Powder
 
 Lombre
-Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Level: 17
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Mega Drain
+- Water Gun
+- Fake Out
+- Cut
 
-Combusken
+Electrike
+Level: 17
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Spark
+- Quick Attack
+- Thunder Wave
+- Flash
+
+Aron
+Level: 19
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Headbutt
+- Rock Smash
+- Rock Tomb
+- Iron Defense
+
+Combusken @ Oran Berry
 Level: 20
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Double Kick
+- Flame Charge
+- Quick Attack
+- Peck
 
 === TRAINER_BRENDAN_ROUTE_119_TREECKO ===
 Name: BRENDAN
@@ -9837,17 +9919,45 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Pelipper
-Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-
-Lombre
-Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-
-Combusken
+Trapinch @ Yache Berry
 Level: 31
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Dig
+- Bite
+- Sand Tomb
+- Body Slam
+
+Loudred @ Chople Berry
+Level: 31
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Echoed Voice
+- Strength
+- Crunch
+- Shock Wave
+
+Lombre @ Coba Berry
+Level: 30
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Leech Seed
+- Fake Out
+- Surf
+- Mega Drain
+
+Tropius @ Sitrus Berry
+Level: 30
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Fly
+- Cut
+- Steel Wing
+- Magical Leaf
+
+Combusken @ Liechi Berry
+Level: 32
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Rock Smash
+- Flame Charge
+- Flamethrower
+- Aerial Ace
 
 === TRAINER_BRENDAN_ROUTE_103_TORCHIC ===
 Name: BRENDAN
@@ -9871,17 +9981,45 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Lombre
-Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Shroomish
+Level: 16
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Spore
+- Absorb
+- Cut
+- Leech Seed
 
-Slugma
-Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Electrike
+Level: 17
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Spark
+- Quick Attack
+- Thunder Wave
+- Flash
+
+Gulpin
+Level: 17
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Sludge
+- Stockpile
+- Swallow
+- Spit Up
+
+Aron
+Level: 19
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Headbutt
+- Rock Smash
+- Rock Tomb
+- Iron Defense
 
 Marshtomp
 Level: 20
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Mud Shot
+- Water Gun
+- Mud Slap
+- Rock Tomb
 
 === TRAINER_BRENDAN_ROUTE_119_TORCHIC ===
 Name: BRENDAN
@@ -9892,17 +10030,45 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Lombre
-Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-
-Slugma
-Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-
-Marshtomp
+Trapinch @ Yache Berry
 Level: 31
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Dig
+- Bite
+- Sand Tomb
+- Body Slam
+
+Loudred @ Chople Berry
+Level: 31
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Echoed Voice
+- Strength
+- Crunch
+- Shock Wave
+
+Breloom @ Coba Berry
+Level: 30
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Mach Punch
+- Spore
+- Cut
+- Seed Bomb
+
+Torkoal @ Sitrus Berry
+Level: 30
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Overheat
+- Weather Ball
+- Rapid Spin
+- Smokescreen
+
+Marshtomp @ Petaya Berry
+Level: 32
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Surf
+- Muddy Water
+- Mud Shot
+- Rock Smash
 
 === TRAINER_MAY_ROUTE_103_MUDKIP ===
 Name: MAY
@@ -9926,17 +10092,45 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Wingull
-Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Taillow
+Level: 16
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Aerial Ace
+- Quick Attack
+- Agility
+- Mud Slap
 
-Slugma
-Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Electrike
+Level: 17
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Spark
+- Quick Attack
+- Thunder Wave
+- Flash
 
-Grovyle
+Volbeat
+Level: 17
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Silver Wind
+- Stun Spore
+- Cut
+- Confuse Ray
+
+Aron
+Level: 19
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Headbutt
+- Rock Smash
+- Rock Tomb
+- Iron Defense
+
+Grovyle @ Lum Berry
 Level: 20
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Quick Attack
+- Leafage
+- Aerial Ace
+- Fury Cutter
 
 === TRAINER_MAY_ROUTE_119_MUDKIP ===
 Name: MAY
@@ -9947,17 +10141,43 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Slugma
-Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-
-Lombre
-Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-
-Grovyle
+Trapinch @ Yache Berry
 Level: 31
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Dig
+- Bite
+- Sand Tomb
+- Rock Smash
+
+Feebas @ Focus Sash
+Level: 31
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Surf
+- Flail
+
+Swellow @ Wacan Berry
+Level: 30
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Fly
+- Quick Attack
+- Roost
+- Steel Wing
+
+Torkoal @ Sitrus Berry
+Level: 30
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Overheat
+- Weather Ball
+- Rapid Spin
+- Smokescreen
+
+Grovyle @ Salac Berry
+Level: 32
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Leaf Blade
+- Dragonbreath
+- Growth
+- Cut
 
 === TRAINER_MAY_ROUTE_103_TREECKO ===
 Name: MAY
@@ -9981,17 +10201,45 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Wingull
-Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Roselia
+Level: 16
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Mega Drain
+- Leech Seed
+- Sludge
+- Sleep Powder
 
 Lombre
-Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Level: 17
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Mega Drain
+- Water Gun
+- Fake Out
+- Cut
 
-Combusken
+Electrike
+Level: 17
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Spark
+- Quick Attack
+- Thunder Wave
+- Flash
+
+Aron
+Level: 19
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Headbutt
+- Rock Smash
+- Rock Tomb
+- Iron Defense
+
+Combusken @ Oran Berry
 Level: 20
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Double Kick
+- Flame Charge
+- Quick Attack
+- Peck
 
 === TRAINER_MAY_ROUTE_119_TREECKO ===
 Name: MAY
@@ -10002,17 +10250,45 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Pelipper
-Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-
-Lombre
-Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-
-Combusken
+Trapinch @ Yache Berry
 Level: 31
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Dig
+- Bite
+- Sand Tomb
+- Body Slam
+
+Loudred @ Chople Berry
+Level: 31
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Echoed Voice
+- Strength
+- Crunch
+- Shock Wave
+
+Lombre @ Coba Berry
+Level: 30
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Leech Seed
+- Fake Out
+- Surf
+- Mega Drain
+
+Tropius @ Sitrus Berry
+Level: 30
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Fly
+- Cut
+- Steel Wing
+- Magical Leaf
+
+Combusken @ Liechi Berry
+Level: 32
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Rock Smash
+- Flame Charge
+- Flamethrower
+- Aerial Ace
 
 === TRAINER_MAY_ROUTE_103_TORCHIC ===
 Name: MAY
@@ -10036,17 +10312,45 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Lombre
-Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Shroomish
+Level: 16
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Spore
+- Absorb
+- Cut
+- Leech Seed
 
-Slugma
-Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Electrike
+Level: 17
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Spark
+- Quick Attack
+- Thunder Wave
+- Flash
+
+Gulpin
+Level: 17
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Sludge
+- Stockpile
+- Swallow
+- Spit Up
+
+Aron
+Level: 19
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Headbutt
+- Rock Smash
+- Rock Tomb
+- Iron Defense
 
 Marshtomp
 Level: 20
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Mud Shot
+- Water Gun
+- Mud Slap
+- Rock Tomb
 
 === TRAINER_MAY_ROUTE_119_TORCHIC ===
 Name: MAY
@@ -10057,17 +10361,45 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Lombre
-Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-
-Slugma
-Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-
-Marshtomp
+Trapinch @ Yache Berry
 Level: 31
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Dig
+- Bite
+- Sand Tomb
+- Body Slam
+
+Loudred @ Chople Berry
+Level: 31
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Echoed Voice
+- Strength
+- Crunch
+- Shock Wave
+
+Breloom @ Coba Berry
+Level: 30
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Mach Punch
+- Spore
+- Cut
+- Seed Bomb
+
+Torkoal @ Sitrus Berry
+Level: 30
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Overheat
+- Weather Ball
+- Rapid Spin
+- Smokescreen
+
+Marshtomp @ Petaya Berry
+Level: 32
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Surf
+- Muddy Water
+- Mud Shot
+- Rock Smash
 
 === TRAINER_ISAAC_1 ===
 Name: ISAAC
@@ -11089,13 +11421,37 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Lotad
+Taillow
 Level: 13
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Peck
+- Quick Attack
+- Sand Attack
+- Growl
 
-Torchic
-Level: 15
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Shroomish
+Level: 13
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Leech Seed
+- Protect
+- Absorb
+- Cut
+
+Lotad
+Level: 14
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Water Gun
+- Absorb
+- Pound
+- Growl
+
+Combusken
+Level: 16
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Ember
+- Quick Attack
+- Peck
+- Growl
 
 === TRAINER_BRENDAN_RUSTBORO_MUDKIP ===
 Name: BRENDAN
@@ -11106,13 +11462,37 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Wingull
+Taillow
 Level: 13
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Peck
+- Quick Attack
+- Sand Attack
+- Growl
 
-Treecko
-Level: 15
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Shroomish
+Level: 13
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Leech Seed
+- Protect
+- Absorb
+- Cut
+
+Lotad
+Level: 14
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Water Gun
+- Absorb
+- Pound
+- Growl
+
+Grovyle
+Level: 16
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Leafage
+- Quick Attack
+- Pound
+- Tail Whip
 
 === TRAINER_PAXTON ===
 Name: PAXTON
@@ -11213,13 +11593,37 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Slugma
+Taillow
 Level: 13
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Peck
+- Quick Attack
+- Sand Attack
+- Growl
 
-Mudkip
-Level: 15
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Shroomish
+Level: 13
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Leech Seed
+- Protect
+- Absorb
+- Cut
+
+Lotad
+Level: 14
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Water Gun
+- Absorb
+- Pound
+- Growl
+
+Marshtomp
+Level: 16
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Water Gun
+- Mud Shot
+- Tackle
+- Growl
 
 === TRAINER_MAY_RUSTBORO_MUDKIP ===
 Name: MAY
@@ -11230,13 +11634,37 @@ Music: Female
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Force Setup First Turn
 
-Wingull
+Taillow
 Level: 13
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Peck
+- Quick Attack
+- Sand Attack
+- Growl
 
-Treecko
-Level: 15
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Shroomish
+Level: 13
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Leech Seed
+- Protect
+- Absorb
+- Cut
+
+Lotad
+Level: 14
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Water Gun
+- Absorb
+- Pound
+- Growl
+
+Grovyle
+Level: 16
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Leafage
+- Quick Attack
+- Pound
+- Tail Whip
 
 === TRAINER_MAXIE_MAGMA_HIDEOUT ===
 Name: MAXIE
@@ -12553,15 +12981,15 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Dig
 - Dragonbreath
 - Rock Slide
-- Fly
+- Rock Smash
 
-Relicanth @ Water Gem
+Relicanth @ Rocky Helmet
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Surf
 - Dive
 - Head Smash
-- Take Down
+- Strength
 
 Torkoal @ White Herb
 Level: 33
@@ -12569,23 +12997,23 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Overheat
 - Shell Smash
 - Earth Power
-- Rock Smash
+- Sunny Day
 
-Chimecho @ Sitrus Berry
+Grumpig @ Sitrus Berry
 Level: 34
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Extrasensory
-- Confuse Ray
+- Zen Headbutt
+- Bounce
 - Flash
-- Uproar
+- Body Slam
 
-Exploud @ Expert Belt
+Swellow @ Sharp Beak
 Level: 35
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Boomburst
-- Focus Blast
-- Crunch
-- Strength
+- Fly
+- Extreme Speed
+- Aerial Ace
+- Pursuit
 
 Sceptile @ Grass Gem
 Level: 36
@@ -12612,13 +13040,13 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Rock Slide
 - Rock Smash
 
-Relicanth @ Water Gem
+Ludicolo @ Rocky Helmet
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Leech Seed
+- Fake Out
 - Surf
-- Dive
-- Head Smash
-- Take Down
+- Giga Drain
 
 Tropius @ Power Herb
 Level: 33
@@ -12650,6 +13078,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Blaze Kick
 - Sky Uppercut
 - Aerial Ace
+- Return
 
 === TRAINER_BRENDAN_LILYCOVE_TORCHIC ===
 Name: BRENDAN
@@ -12665,7 +13094,7 @@ Level: 32
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Dig
 - Dragonbreath
-- Rock Slide
+- Fly
 - Rock Smash
 
 Torkoal @ White Herb
@@ -12676,21 +13105,21 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Earth Power
 - Shell Smash
 
-Tropius @ Power Herb
+Breloom @ Loaded Dice
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Solarbeam
-- Fly
+- Bullet Seed
+- Mach Punch
 - Cut
-- Steel Wing
+- Spore
 
-Chimecho @ Sitrus Berry
+Banette @ Spell Tag
 Level: 34
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Extrasensory
-- Confuse Ray
-- Flash
-- Uproar
+- Sucker Punch
+- Shadow Sneak
+- Phantom Force
+- Play Rough
 
 Exploud @ Expert Belt
 Level: 35
@@ -12723,15 +13152,15 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Dig
 - Dragonbreath
 - Rock Slide
-- Fly
+- Rock Smash
 
-Relicanth @ Water Gem
+Relicanth @ Rocky Helmet
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Surf
 - Dive
 - Head Smash
-- Take Down
+- Strength
 
 Torkoal @ White Herb
 Level: 33
@@ -12739,23 +13168,23 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Overheat
 - Shell Smash
 - Earth Power
-- Rock Smash
+- Sunny Day
 
-Chimecho @ Sitrus Berry
+Grumpig @ Sitrus Berry
 Level: 34
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Extrasensory
-- Confuse Ray
+- Zen Headbutt
+- Bounce
 - Flash
-- Uproar
+- Body Slam
 
-Exploud @ Expert Belt
+Swellow @ Sharp Beak
 Level: 35
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Boomburst
-- Focus Blast
-- Crunch
-- Strength
+- Fly
+- Extreme Speed
+- Aerial Ace
+- Pursuit
 
 Sceptile @ Grass Gem
 Level: 36
@@ -12782,13 +13211,13 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Rock Slide
 - Rock Smash
 
-Relicanth @ Water Gem
+Ludicolo @ Rocky Helmet
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Leech Seed
+- Fake Out
 - Surf
-- Dive
-- Head Smash
-- Take Down
+- Giga Drain
 
 Tropius @ Power Herb
 Level: 33
@@ -12820,6 +13249,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Blaze Kick
 - Sky Uppercut
 - Aerial Ace
+- Return
 
 === TRAINER_MAY_LILYCOVE_TORCHIC ===
 Name: MAY
@@ -12835,7 +13265,7 @@ Level: 32
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Dig
 - Dragonbreath
-- Rock Slide
+- Fly
 - Rock Smash
 
 Torkoal @ White Herb
@@ -12846,21 +13276,21 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Earth Power
 - Shell Smash
 
-Tropius @ Power Herb
+Breloom @ Loaded Dice
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Solarbeam
-- Fly
+- Bullet Seed
+- Mach Punch
 - Cut
-- Steel Wing
+- Spore
 
-Chimecho @ Sitrus Berry
+Banette @ Spell Tag
 Level: 34
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Extrasensory
-- Confuse Ray
-- Flash
-- Uproar
+- Sucker Punch
+- Shadow Sneak
+- Phantom Force
+- Play Rough
 
 Exploud @ Expert Belt
 Level: 35
@@ -14626,13 +15056,37 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Lotad
+Taillow
 Level: 13
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Peck
+- Quick Attack
+- Sand Attack
+- Growl
 
-Torchic
-Level: 15
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Shroomish
+Level: 13
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Leech Seed
+- Protect
+- Absorb
+- Cut
+
+Lotad
+Level: 14
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Water Gun
+- Absorb
+- Pound
+- Growl
+
+Combusken
+Level: 16
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Ember
+- Quick Attack
+- Peck
+- Growl
 
 === TRAINER_MAY_RUSTBORO_TORCHIC ===
 Name: MAY
@@ -14643,13 +15097,37 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Torkoal
+Taillow
 Level: 13
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Peck
+- Quick Attack
+- Sand Attack
+- Growl
 
-Mudkip
-Level: 15
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Shroomish
+Level: 13
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Leech Seed
+- Protect
+- Absorb
+- Cut
+
+Lotad
+Level: 14
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Water Gun
+- Absorb
+- Pound
+- Growl
+
+Marshtomp
+Level: 16
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Water Gun
+- Mud Shot
+- Tackle
+- Growl
 
 === TRAINER_ROXANNE_2 ===
 Name: ROXANNE

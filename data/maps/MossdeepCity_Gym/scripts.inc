@@ -97,7 +97,7 @@ MossdeepCity_Gym_EventScript_TateAndLizaDefeated::
 MossdeepCity_Gym_EventScript_GiveCalmMind2::
 	giveitem ITEM_TM_CALM_MIND
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
-	bufferitemname STR_VAR_1, VAR_0x8000
+	bufferitemname STR_VAR_1, VAR_0x8006
 	msgbox MossdeepCity_Gym_Text_ExplainCalmMind, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_TM_CALM_MIND
 	release
@@ -106,7 +106,7 @@ MossdeepCity_Gym_EventScript_GiveCalmMind2::
 MossdeepCity_Gym_EventScript_GiveCalmMind::
 	giveitem ITEM_TM_CALM_MIND
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
-	bufferitemname STR_VAR_1, VAR_0x8000
+	bufferitemname STR_VAR_1, VAR_0x8006
 	msgbox MossdeepCity_Gym_Text_ExplainCalmMind, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_TM_CALM_MIND
 	return

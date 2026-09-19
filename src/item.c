@@ -11,6 +11,7 @@
 #include "party_menu.h"
 #include "strings.h"
 #include "load_save.h"
+#include "move.h"
 #include "item_use.h"
 #include "battle_pyramid.h"
 #include "battle_pyramid_bag.h"
@@ -860,6 +861,10 @@ u32 GetItemHoldEffectParam(enum Item itemId)
 
 const u8 *GetItemDescription(enum Item itemId)
 {
+    enum Move randomizedTMMove = GetForkRandomizedTMMove(itemId);
+
+    if (randomizedTMMove != MOVE_NONE)
+        return GetMoveDescription(randomizedTMMove);
     return gItemsInfo[SanitizeItemId(itemId)].description;
 }
 

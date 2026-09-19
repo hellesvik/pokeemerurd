@@ -29,7 +29,7 @@ RustboroCity_Gym_EventScript_GiveRockTomb::
 	giveitem ITEM_TM_ROCK_TOMB
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_TM_ROCK_TOMB
-	bufferitemname STR_VAR_1, VAR_0x8000
+	bufferitemname STR_VAR_1, VAR_0x8006
 	msgbox RustboroCity_Gym_Text_ExplainRockTomb, MSGBOX_DEFAULT
 	release
 	end

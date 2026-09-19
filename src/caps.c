@@ -2,10 +2,12 @@
 #include "battle_setup.h"
 #include "battle.h"
 #include "event_data.h"
+#include "event_scripts.h"
 #include "caps.h"
 #include "field_message_box.h"
 #include "pokemon.h"
 #include "fork_run.h"
+#include "script.h"
 #include "string_util.h"
 #include "constants/opponents.h"
 
@@ -177,6 +179,15 @@ void ShowQueuedLevelCapIncreaseMessage(void)
 void RestoreResultAfterLevelCapIncreaseMessage(void)
 {
     gSpecialVar_Result = sResultBeforeLevelCapIncreaseMessage;
+}
+
+bool8 TryRunQueuedLevelCapIncreaseMessage(struct ScriptContext *ctx)
+{
+    if (sQueuedLevelCapIncrease == 0)
+        return FALSE;
+
+    ScriptJump(ctx, EventScript_ShowQueuedLevelCapIncreaseMessage);
+    return TRUE;
 }
 
 u32 GetSoftLevelCapExpValue(u32 level, u32 expValue)

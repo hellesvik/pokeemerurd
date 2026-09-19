@@ -126,6 +126,18 @@ EventScript_EndTrainerBattle::
 	releaseall
 	end
 
+EventScript_ShowQueuedLevelCapIncreaseMessage::
+	lockall
+	special ShowQueuedLevelCapIncreaseMessage
+	goto_if_eq VAR_RESULT, FALSE, EventScript_LevelCapIncreaseMessageDone
+	waitmessage
+	waitbuttonpress
+	closemessage
+EventScript_LevelCapIncreaseMessageDone::
+	special RestoreResultAfterLevelCapIncreaseMessage
+	releaseall
+	end
+
 Std_MsgboxAutoclose::
 	message NULL
 	waitmessage

@@ -21,4 +21,4 @@ def test_every_gym_leader_names_the_item_actually_awarded():
         text = source.split(f"{label}:", 1)[1].split("\n\n", 1)[0]
 
         assert "{STR_VAR_1}" in text, relative_path
-        assert f"bufferitemname STR_VAR_1, VAR_0x8000\n\tmsgbox {label}" in source, relative_path
+        assert f"bufferitemname STR_VAR_1, VAR_0x8006\n\tmsgbox {label}" in source, relative_path

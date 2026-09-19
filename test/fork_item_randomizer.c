@@ -232,6 +232,7 @@ TEST("Gym leader item gifts expose the item actually added to the bag")
     gSaveBlock3Ptr->forkItemRandomizerSeed = 11113;
     ResetForkItemRandomizerState();
     gSpecialVar_0x8000 = ITEM_TM_ROCK_TOMB;
+    gSpecialVar_0x8006 = ITEM_TM_ROCK_TOMB;
 
     RUN_OVERWORLD_SCRIPT(
         additem VAR_0x8000;
@@ -239,6 +240,7 @@ TEST("Gym leader item gifts expose the item actually added to the bag")
 
     awardedItem = gSpecialVar_0x8000;
     EXPECT_NE(awardedItem, ITEM_TM_ROCK_TOMB);
+    EXPECT_EQ(gSpecialVar_0x8006, awardedItem);
     EXPECT(CheckBagHasItem(awardedItem, 1));
 }
 

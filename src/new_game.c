@@ -273,11 +273,6 @@ void NewGameInitData(void)
     ClearPokedexFlags();
     InitEventData();
     FlagSet(FLAG_SYS_B_DASH);
-#if TEST_START_WITH_ALL_HM_ACCESS
-    // Temporary test setup: all badges unlock every HM field move immediately.
-    for (u16 badge = FLAG_BADGE01_GET; badge < FLAG_BADGE01_GET + NUM_BADGES; badge++)
-        FlagSet(badge);
-#endif
     ClearTVShowData();
     ResetGabbyAndTy();
     ClearSecretBases();

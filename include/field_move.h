@@ -21,7 +21,11 @@ static inline bool32 SetUpFieldMove(enum FieldMove fieldMove)
 
 static inline bool32 IsFieldMoveUnlocked(enum FieldMove fieldMove)
 {
+#if TEST_START_WITH_ALL_HM_ACCESS
+    return TRUE;
+#else
     return gFieldMoveInfo[fieldMove].isUnlockedFunc();
+#endif
 }
 
 static inline u32 FieldMove_GetMoveId(enum FieldMove fieldMove)

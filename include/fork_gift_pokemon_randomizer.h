@@ -5,6 +5,7 @@
 
 enum Species GetForkRandomizedStarterSpecies(u8 slot);
 enum Species GetForkRandomizedStevenGiftSpecies(void);
+enum Species GetForkRandomizedWeatherInstituteGiftSpecies(void);
 enum Species GetForkRandomizedFortreeTradeSpecies(void);
 enum Ability GetForkRandomizedFortreeTradeAbility(void);
 bool8 GetForkRandomizedFortreeTradeIsShiny(void);

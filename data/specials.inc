@@ -631,6 +631,7 @@ gSpecials::
 	def_special DoPokemonLeagueLightingEffect
 	def_special GetStarterPokemon
 	def_special GetForkRandomizedStevenGiftSpecies
+	def_special GetForkRandomizedWeatherInstituteGiftSpecies
 	def_special GetForkMirageTowerFossilSpecial
 	def_special GetForkFossilRevivalSpeciesSpecial
 	def_special GetForkFirstRevivableFossilSpecial

@@ -1,8 +1,12 @@
 #include "global.h"
 #include "fork_gift_pokemon_randomizer.h"
+#include "fork_ability_randomizer.h"
 #include "fork_encounter_randomizer.h"
+#include "fork_randomizer_catalog.h"
+#include "fork_run.h"
 #include "pokemon.h"
 #include "test/test.h"
+#include "constants/abilities.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 
@@ -42,6 +46,79 @@ static bool8 IsOfficialStarterSpecies(enum Species species)
     default:
         return FALSE;
     }
+}
+
+static bool8 IsWeatherAbility(enum Ability ability)
+{
+    switch (ability)
+    {
+    case ABILITY_DRIZZLE:
+    case ABILITY_DROUGHT:
+    case ABILITY_SAND_STREAM:
+    case ABILITY_SNOW_WARNING:
+    case ABILITY_SAND_SPIT:
+    case ABILITY_PRIMORDIAL_SEA:
+    case ABILITY_DESOLATE_LAND:
+    case ABILITY_DELTA_STREAM:
+    case ABILITY_ORICHALCUM_PULSE:
+    case ABILITY_SWIFT_SWIM:
+    case ABILITY_RAIN_DISH:
+    case ABILITY_HYDRATION:
+    case ABILITY_DRY_SKIN:
+    case ABILITY_CHLOROPHYLL:
+    case ABILITY_SOLAR_POWER:
+    case ABILITY_LEAF_GUARD:
+    case ABILITY_FLOWER_GIFT:
+    case ABILITY_HARVEST:
+    case ABILITY_PROTOSYNTHESIS:
+    case ABILITY_SAND_VEIL:
+    case ABILITY_SAND_RUSH:
+    case ABILITY_SAND_FORCE:
+    case ABILITY_SNOW_CLOAK:
+    case ABILITY_ICE_BODY:
+    case ABILITY_SLUSH_RUSH:
+    case ABILITY_ICE_FACE:
+    case ABILITY_FORECAST:
+    case ABILITY_CLOUD_NINE:
+    case ABILITY_AIR_LOCK:
+    case ABILITY_OVERCOAT:
+    case ABILITY_TERAFORM_ZERO:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
+TEST("Weather Institute gives Castform when Pokemon randomization is disabled")
+{
+    ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
+                                 FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,
+                                 TRUE, GEN_9, TRUE, FALSE);
+
+    EXPECT_EQ(GetForkRandomizedWeatherInstituteGiftSpecies(), SPECIES_CASTFORM);
+}
+
+TEST("Weather Institute randomized gift has a weather ability")
+{
+    enum Species first;
+    enum Species second;
+    enum Ability ability;
+
+    ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
+                                 FALSE, FALSE, FALSE, FALSE, FALSE, TRUE,
+                                 TRUE, GEN_9, TRUE, FALSE);
+    gSaveBlock3Ptr->forkItemRandomizerSeed = 0x57454154;
+
+    first = GetForkRandomizedWeatherInstituteGiftSpecies();
+    second = GetForkRandomizedWeatherInstituteGiftSpecies();
+    ability = GetForkRandomizedAbility(first);
+
+    EXPECT_EQ(first, second);
+    EXPECT(ForkRandomizerCatalog_IsSpeciesAvailable(first));
+    EXPECT_EQ(first, GET_BASE_SPECIES_ID(first));
+    EXPECT(IsWeatherAbility(ability));
+    Test_MgbaPrintf("Weather Institute test gift: %S with %S\n",
+                    gSpeciesInfo[first].speciesName, gAbilitiesInfo[ability].name);
 }
 
 TEST("Fork starter choices use distinct Generation 3 Pokémon from 275 to 325 BST")

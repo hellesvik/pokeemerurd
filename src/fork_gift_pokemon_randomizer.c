@@ -2,6 +2,7 @@
 #include "fork_ability_randomizer.h"
 #include "fork_encounter_randomizer.h"
 #include "fork_gift_pokemon_randomizer.h"
+#include "fork_randomizer_catalog.h"
 #include "fork_run.h"
 #include "pokemon.h"
 #include "random.h"
@@ -11,6 +12,7 @@
 
 #define FORK_STARTER_CHOICE_COUNT 3
 #define FORK_STARTER_IV_SALT 0x53544956
+#define FORK_WEATHER_INSTITUTE_GIFT_SALT 0x57454154
 
 static const enum Species sPseudoLegendaryFirstStages[] =
 {
@@ -65,6 +67,54 @@ static bool8 IsEligibleGiftSpecies(enum Species species)
 {
     return IsSpeciesEnabled(species)
         && gSpeciesInfo[species].natDexNum <= GetForkMaxNationalDex();
+}
+
+static bool8 IsWeatherAbility(enum Ability ability)
+{
+    switch (ability)
+    {
+    case ABILITY_DRIZZLE:
+    case ABILITY_DROUGHT:
+    case ABILITY_SAND_STREAM:
+    case ABILITY_SNOW_WARNING:
+    case ABILITY_SAND_SPIT:
+    case ABILITY_PRIMORDIAL_SEA:
+    case ABILITY_DESOLATE_LAND:
+    case ABILITY_DELTA_STREAM:
+    case ABILITY_ORICHALCUM_PULSE:
+    case ABILITY_SWIFT_SWIM:
+    case ABILITY_RAIN_DISH:
+    case ABILITY_HYDRATION:
+    case ABILITY_DRY_SKIN:
+    case ABILITY_CHLOROPHYLL:
+    case ABILITY_SOLAR_POWER:
+    case ABILITY_LEAF_GUARD:
+    case ABILITY_FLOWER_GIFT:
+    case ABILITY_HARVEST:
+    case ABILITY_PROTOSYNTHESIS:
+    case ABILITY_SAND_VEIL:
+    case ABILITY_SAND_RUSH:
+    case ABILITY_SAND_FORCE:
+    case ABILITY_SNOW_CLOAK:
+    case ABILITY_ICE_BODY:
+    case ABILITY_SLUSH_RUSH:
+    case ABILITY_ICE_FACE:
+    case ABILITY_FORECAST:
+    case ABILITY_CLOUD_NINE:
+    case ABILITY_AIR_LOCK:
+    case ABILITY_OVERCOAT:
+    case ABILITY_TERAFORM_ZERO:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
+static bool8 IsEligibleWeatherInstituteGift(enum Species species)
+{
+    return ForkRandomizerCatalog_IsSpeciesAvailable(species)
+        && species == GET_BASE_SPECIES_ID(species)
+        && IsWeatherAbility(GetForkRandomizedAbility(species));
 }
 
 static bool8 IsAlreadySelected(enum Species species, const enum Species *selected, u8 selectedCount)
@@ -164,6 +214,31 @@ enum Species GetForkRandomizedStevenGiftSpecies(void)
     if (!ForkAreRandomEncountersEnabled())
         return SPECIES_BELDUM;
     return SelectRandomGiftSpecies(sPseudoLegendaryFirstStages, ARRAY_COUNT(sPseudoLegendaryFirstStages), 0x53544556, 0, SPECIES_BELDUM);
+}
+
+enum Species GetForkRandomizedWeatherInstituteGiftSpecies(void)
+{
+    rng_value_t rng;
+    u16 candidateCount = 0;
+    u16 candidateIndex;
+
+    if (!ForkAreRandomEncountersEnabled())
+        return SPECIES_CASTFORM;
+
+    for (enum Species species = SPECIES_BULBASAUR; species < NUM_SPECIES; species++)
+        if (IsEligibleWeatherInstituteGift(species))
+            candidateCount++;
+
+    if (candidateCount == 0)
+        return SPECIES_CASTFORM;
+
+    rng = LocalRandomSeed(gSaveBlock3Ptr->forkItemRandomizerSeed ^ FORK_WEATHER_INSTITUTE_GIFT_SALT);
+    candidateIndex = LocalRandom(&rng) % candidateCount;
+    for (enum Species species = SPECIES_BULBASAUR; species < NUM_SPECIES; species++)
+        if (IsEligibleWeatherInstituteGift(species) && candidateIndex-- == 0)
+            return species;
+
+    return SPECIES_CASTFORM;
 }
 
 static const struct FortreeTradeCandidate *GetFortreeTradeCandidate(void)

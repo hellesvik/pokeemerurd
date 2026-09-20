@@ -35,6 +35,12 @@ documented in the [reference index](./reference/index.md).
 
 ## Fork changelog
 
+### 2026-09-20
+
+- Fixed a post-battle black screen after the Route 110 rival fight. Queued
+  level-cap notifications now wait for the resumed post-battle event script
+  and can no longer interrupt synchronous map-resume scripts.
+
 ### 2026-09-19
 
 - Rebuilt Brendan and May's Rustboro, Route 110, Route 119, and Lilycove

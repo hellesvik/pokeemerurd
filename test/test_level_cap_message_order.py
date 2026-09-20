@@ -7,6 +7,7 @@ EVENT_MACROS = ROOT / "asm/macros/event.inc"
 SCRIPT_COMMANDS = ROOT / "src/scrcmd.c"
 TRAINER_SCRIPTS = ROOT / "data/scripts/trainer_battle.inc"
 CAPS = ROOT / "src/caps.c"
+SCRIPT_ENGINE = ROOT / "src/script.c"
 
 
 class LevelCapMessageOrderTests(unittest.TestCase):
@@ -41,6 +42,20 @@ class LevelCapMessageOrderTests(unittest.TestCase):
         notification = trainer_scripts[notification_start:notification_end]
         self.assertIn("special ShowQueuedLevelCapIncreaseMessage", notification)
         self.assertIn("special RestoreResultAfterLevelCapIncreaseMessage", notification)
+
+    def test_notification_does_not_hijack_immediate_map_header_scripts(self):
+        caps = CAPS.read_text()
+        function_start = caps.index("bool8 TryRunQueuedLevelCapIncreaseMessage(")
+        function_end = caps.index("\n}\n", function_start)
+        function = caps[function_start:function_end]
+
+        self.assertIn("ScriptContext_IsGlobal(ctx)", function)
+
+        script_engine = SCRIPT_ENGINE.read_text()
+        identity_start = script_engine.index("bool8 ScriptContext_IsGlobal(")
+        identity_end = script_engine.index("\n}\n", identity_start)
+        identity = script_engine[identity_start:identity_end]
+        self.assertIn("ctx == &sGlobalScriptContext", identity)
 
 
 if __name__ == "__main__":

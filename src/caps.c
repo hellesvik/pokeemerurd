@@ -183,7 +183,7 @@ void RestoreResultAfterLevelCapIncreaseMessage(void)
 
 bool8 TryRunQueuedLevelCapIncreaseMessage(struct ScriptContext *ctx)
 {
-    if (sQueuedLevelCapIncrease == 0)
+    if (!ScriptContext_IsGlobal(ctx) || sQueuedLevelCapIncrease == 0)
         return FALSE;
 
     ScriptJump(ctx, EventScript_ShowQueuedLevelCapIncreaseMessage);

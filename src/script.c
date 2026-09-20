@@ -241,6 +241,11 @@ bool8 ScriptContext_IsEnabled(void)
         return FALSE;
 }
 
+bool8 ScriptContext_IsGlobal(const struct ScriptContext *ctx)
+{
+    return ctx == &sGlobalScriptContext;
+}
+
 // Re-initializes the global script context to zero.
 void ScriptContext_Init(void)
 {

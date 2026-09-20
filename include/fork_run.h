@@ -3,6 +3,7 @@
 
 #include "global.h"
 #include "pokemon.h"
+#include "constants/battle.h"
 
 enum ForkFaintRule
 {
@@ -30,10 +31,12 @@ bool32 ForkAreMegaEvolutionsEnabled(void);
 bool32 ForkAreTMsReusable(void);
 u8 ForkGetFaintRule(void);
 void ForkApplySoftNuzlockeFaintPenalty(u8 partySlot);
+void ForkApplySoftNuzlockeFaintPenaltyForBattler(enum BattlerId battler);
 bool32 ForkIsAreaEncounterSpent(mapsec_u8_t mapSecId);
 void ForkSetAreaEncounterSpent(mapsec_u8_t mapSecId);
 bool32 ForkPlayerOwnsSpeciesFamily(enum Species species);
 bool32 ForkIsSoftNuzlockeMon(struct Pokemon *mon);
+bool32 ForkCanReviveMon(struct Pokemon *mon);
 void ForkEnsureKeyItemsPresent(void);
 void ForkInvalidateOwnedFamilyCache(void);
 void ForkRecordOwnedSpecies(enum Species species);

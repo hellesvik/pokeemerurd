@@ -1,4 +1,7 @@
 import importlib.util
+import csv
+import re
+import sys
 import unittest
 from pathlib import Path
 
@@ -10,9 +13,32 @@ SPEC = importlib.util.spec_from_file_location(
 )
 GENERATOR = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(GENERATOR)
+CATALOG_SPEC = importlib.util.spec_from_file_location(
+    "generate_biome_species_catalog",
+    ROOT / "tools/generate_biome_species_catalog.py",
+)
+CATALOG_GENERATOR = importlib.util.module_from_spec(CATALOG_SPEC)
+sys.modules[CATALOG_SPEC.name] = CATALOG_GENERATOR
+CATALOG_SPEC.loader.exec_module(CATALOG_GENERATOR)
 
 
 class CityBiomeTests(unittest.TestCase):
+    def test_species_catalog_excludes_mega_forms(self):
+        species = CATALOG_GENERATOR.read_canonical_species()
+
+        self.assertFalse(
+            [entry.constant for entry in species if entry.constant.endswith("_MEGA")]
+        )
+        species_constants = {entry.constant for entry in species}
+        self.assertIn("CLEFABLE", species_constants)
+        self.assertIn("FLOETTE", species_constants)
+        with CATALOG_GENERATOR.OUTPUT_CSV.open(newline="") as catalog:
+            constants = [row["species_constant"] for row in csv.DictReader(catalog)]
+        self.assertFalse([constant for constant in constants if constant.endswith("_MEGA")])
+        self.assertIsNone(
+            re.search(r"SPECIES_[A-Z0-9_]*_MEGA(?:,|\s)", GENERATOR.OUTPUT.read_text())
+        )
+
     def test_town_and_city_encounters_use_city_biome(self):
         maps = (
             "MAP_LITTLEROOT_TOWN",
@@ -56,6 +82,31 @@ class CityBiomeTests(unittest.TestCase):
 
 
 class StoryProgressionBstTests(unittest.TestCase):
+    def test_method_specific_ranges_supply_unique_encounter_slots(self):
+        self.assertEqual(
+            GENERATOR.bst_range_for_encounter("MAP_ROUTE103", "fishing_mons"),
+            (160, 270),
+        )
+        self.assertEqual(
+            GENERATOR.bst_range_for_encounter("MAP_ROUTE103", "land_mons"),
+            (160, 260),
+        )
+
+        for method in ("water_mons", "fishing_mons"):
+            with self.subTest(method=method):
+                self.assertEqual(
+                    GENERATOR.bst_range_for_encounter(
+                        "MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM", method
+                    ),
+                    (290, 535),
+                )
+        self.assertEqual(
+            GENERATOR.bst_range_for_encounter(
+                "MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM", "land_mons"
+            ),
+            (380, 480),
+        )
+
     def test_bst_ranges_follow_main_story_order(self):
         expected = (
             ("MAP_ROUTE101", (150, 250)),

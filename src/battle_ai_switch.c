@@ -11,6 +11,7 @@
 #include "battle_setup.h"
 #include "data.h"
 #include "item.h"
+#include "fork_run.h"
 #include "party_menu.h"
 #include "pokemon.h"
 #include "random.h"
@@ -2648,8 +2649,8 @@ u32 AI_SelectRevivalBlessingMon(enum BattlerId battler)
 
     for (u32 monIndex = 0; monIndex < lastId; monIndex++)
     {
-        if (GetMonData(&party[monIndex], MON_DATA_HP) != 0)
-            continue; // Only consider fainted mons
+        if (!ForkCanReviveMon(&party[monIndex]))
+            continue;
 
         bool32 isAceMon = IsAceMon(battler, monIndex);
 

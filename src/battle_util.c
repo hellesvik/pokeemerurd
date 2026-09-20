@@ -11022,7 +11022,7 @@ void SetValuesOnFaint(enum BattlerId battler)
 
     if (IsOnPlayerSide(battler))
     {
-        ForkApplySoftNuzlockeFaintPenalty(gBattlerPartyIndexes[battler]);
+        ForkApplySoftNuzlockeFaintPenaltyForBattler(battler);
         gHitMarker |= HITMARKER_PLAYER_FAINTED;
         if (gBattleResults.playerFaintCounter < 255)
             gBattleResults.playerFaintCounter++;

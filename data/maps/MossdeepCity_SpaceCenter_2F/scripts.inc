@@ -252,6 +252,7 @@ MossdeepCity_SpaceCenter_2F_EventScript_DoStevenMultiBattle::
 	special SetCB2WhiteOut
 
 MossdeepCity_SpaceCenter_2F_EventScript_DefeatedMaxieTabitha::
+	special CompleteMossdeepMaxieTabithaBattle
 	msgbox MossdeepCity_SpaceCenter_2F_Text_MaxieWeFailedIsAquaAlsoMisguided, MSGBOX_DEFAULT
 	closemessage
 	delay 20

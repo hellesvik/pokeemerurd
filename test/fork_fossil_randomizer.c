@@ -1,6 +1,8 @@
 #include "global.h"
 #include "event_data.h"
+#include "fork_encounter_randomizer.h"
 #include "fork_fossil_randomizer.h"
+#include "fork_run.h"
 #include "item_ball.h"
 #include "pokemon.h"
 #include "script.h"
@@ -47,6 +49,27 @@ TEST("Mirage Tower offers two distinct revival fossils")
     EXPECT(IsRevivalFossil(first));
     EXPECT(IsRevivalFossil(second));
     EXPECT_NE(first, second);
+}
+
+TEST("Mirage Tower fossils obey the configured generation limit")
+{
+    for (u8 generation = GEN_3; generation <= GEN_9; generation++)
+    {
+        ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
+            FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, generation, TRUE, FALSE);
+
+        for (u32 seed = 1; seed <= 64; seed++)
+        {
+            gSaveBlock3Ptr->forkItemRandomizerSeed = seed;
+            for (u8 choice = 0; choice < 2; choice++)
+            {
+                enum Species species = GetForkFossilRevivalSpecies(GetForkMirageTowerFossil(choice));
+
+                EXPECT_NE(species, SPECIES_NONE);
+                EXPECT_LE((u16)gSpeciesInfo[species].natDexNum, GetForkMaxNationalDex());
+            }
+        }
+    }
 }
 
 TEST("Every Mirage Tower fossil has its matching revival Pokémon")

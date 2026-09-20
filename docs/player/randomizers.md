@@ -36,15 +36,18 @@ Each map and method receives its own deterministic selections for that save.
 | --- | --- |
 | Land, including grass and cave floors | Three distinct species from the map's biome and BST range. The normal twelve weighted slots repeat those three species. No additional type requirement. |
 | Surf | Three distinct Water- or Flying-type species from the map's biome and BST range. The normal five weighted slots repeat those three species. |
-| Fishing | Six distinct Water-type species from the map's biome and BST range when enough candidates exist: two for the Old Rod, two for the Good Rod, and two for the Super Rod. Each rod repeats its pair across its normal weighted slots. |
+| Fishing | Six distinct Water-type species from the map's biome and BST range: two for the Old Rod, two for the Good Rod, and two for the Super Rod. Each rod repeats its pair across its normal weighted slots. |
 | Rock Smash | Three distinct Rock-, Ground-, or Steel-type species from the map's biome and BST range. The normal weighted slots repeat those three species. |
 | Hatched Eggs | One base-form species from any biome, using BST 100–550. The result is chosen when the Egg hatches. Ordinary special-species exclusions apply. |
 | Ordinary static encounters | One species from the current map's land biome and BST range. Kecleon, Voltorb, and Electrode use this rule. If the map has no land assignment, the original species remains. |
 | Special static encounters | Regirock, Regice, Registeel, Groudon, Kyogre, and Rayquaza use BST 550–600. Special species are permitted, but the generation limit still applies. |
 | Birch's Route 101 starters | Three distinct base-form species using BST 275–325. The selected generation limit applies. The chosen starter receives at least two perfect IVs. |
 
-If a pool has too few eligible candidates, the game keeps the original species
-for any selection it cannot fill.
+Every supported generation setting is tested against every assignment. A build
+fails its tests if a pool cannot provide all of that method's distinct species.
+Route 103 fishing therefore uses BST 160–270, while its other methods use
+160–260. Shoal Cave Surfing and fishing use 290–535, while its land encounters
+use 380–480.
 
 | BST range | Encounters, routes, and places |
 | ---: | --- |

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "event_data.h"
+#include "fork_encounter_randomizer.h"
 #include "fork_fossil_randomizer.h"
 #include "fork_run.h"
 #include "item.h"
@@ -32,11 +33,23 @@ enum Item GetForkMirageTowerFossil(u8 choice)
 
     for (u8 selectedCount = 0; selectedCount <= choice; selectedCount++)
     {
-        u16 index = LocalRandom(&rng) % ARRAY_COUNT(sRevivableFossils);
+        enum Item eligible[ARRAY_COUNT(sRevivableFossils)];
+        u16 eligibleCount = 0;
 
-        while (selectedCount != 0 && sRevivableFossils[index] == selected[0])
-            index = (index + 1) % ARRAY_COUNT(sRevivableFossils);
-        selected[selectedCount] = sRevivableFossils[index];
+        for (u16 i = 0; i < ARRAY_COUNT(sRevivableFossils); i++)
+        {
+            enum Item fossil = sRevivableFossils[i];
+            enum Species species = GetForkFossilRevivalSpecies(fossil);
+
+            if (IsSpeciesEnabled(species)
+             && gSpeciesInfo[species].natDexNum <= GetForkMaxNationalDex()
+             && (selectedCount == 0 || fossil != selected[0]))
+                eligible[eligibleCount++] = fossil;
+        }
+
+        if (eligibleCount == 0)
+            return ITEM_NONE;
+        selected[selectedCount] = eligible[LocalRandom(&rng) % eligibleCount];
     }
 
     return selected[choice];

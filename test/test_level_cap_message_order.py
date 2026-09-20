@@ -57,6 +57,21 @@ class LevelCapMessageOrderTests(unittest.TestCase):
         identity = script_engine[identity_start:identity_end]
         self.assertIn("ctx == &sGlobalScriptContext", identity)
 
+    def test_notification_waits_for_an_available_message_box_without_retrying_itself(self):
+        caps = CAPS.read_text()
+
+        show_start = caps.index("void ShowQueuedLevelCapIncreaseMessage(")
+        show_end = caps.index("\n}\n", show_start)
+        show = caps[show_start:show_end]
+        self.assertNotIn("ConsumeQueuedLevelCapIncrease()", show)
+        self.assertLess(show.index("ShowFieldMessage("), show.index("sQueuedLevelCapIncrease = 0"))
+
+        run_start = caps.index("bool8 TryRunQueuedLevelCapIncreaseMessage(")
+        run_end = caps.index("\n}\n", run_start)
+        run = caps[run_start:run_end]
+        self.assertIn("IsFieldMessageBoxHidden()", run)
+        self.assertIn("sLevelCapNotificationRunning", run)
+
 
 if __name__ == "__main__":
     unittest.main()

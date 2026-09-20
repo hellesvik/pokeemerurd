@@ -19,6 +19,7 @@ struct LevelCapMilestone
 
 static EWRAM_DATA u8 sQueuedLevelCapIncrease = 0;
 static EWRAM_DATA u16 sResultBeforeLevelCapIncreaseMessage = 0;
+static EWRAM_DATA bool8 sLevelCapNotificationRunning = FALSE;
 static const u8 sText_LevelCapRaised[] = _("LEVEL CAP RAISED!\nYour POKéMON can reach Lv. {STR_VAR_1}.");
 
 static bool32 HasAnyTrainerBeenFought(const u16 *trainerIds)
@@ -148,7 +149,7 @@ bool8 QueueLevelCapIncreaseMessage(u32 previousCap)
 {
     u32 newCap = GetCurrentLevelCap();
 
-    if (!ForkIsLevelCapEnabled() || newCap <= previousCap)
+    if (!ForkIsLevelCapEnabled() || newCap <= previousCap || newCap == MAX_LEVEL)
         return FALSE;
 
     sQueuedLevelCapIncrease = newCap;
@@ -162,9 +163,18 @@ u32 ConsumeQueuedLevelCapIncrease(void)
     return cap;
 }
 
+void CompleteMossdeepMaxieTabithaBattle(void)
+{
+    u32 previousCap = GetCurrentLevelCap();
+
+    SetTrainerFlag(TRAINER_MAXIE_MOSSDEEP);
+    SetTrainerFlag(TRAINER_TABITHA_MOSSDEEP);
+    QueueLevelCapIncreaseMessage(previousCap);
+}
+
 void ShowQueuedLevelCapIncreaseMessage(void)
 {
-    u32 cap = ConsumeQueuedLevelCapIncrease();
+    u32 cap = sQueuedLevelCapIncrease;
 
     sResultBeforeLevelCapIncreaseMessage = gSpecialVar_Result;
     gSpecialVar_Result = FALSE;
@@ -173,7 +183,10 @@ void ShowQueuedLevelCapIncreaseMessage(void)
 
     ConvertIntToDecimalStringN(gStringVar1, cap, STR_CONV_MODE_LEFT_ALIGN, 3);
     if (ShowFieldMessage(sText_LevelCapRaised))
+    {
+        sQueuedLevelCapIncrease = 0;
         gSpecialVar_Result = TRUE;
+    }
 }
 
 void RestoreResultAfterLevelCapIncreaseMessage(void)
@@ -183,9 +196,19 @@ void RestoreResultAfterLevelCapIncreaseMessage(void)
 
 bool8 TryRunQueuedLevelCapIncreaseMessage(struct ScriptContext *ctx)
 {
-    if (!ScriptContext_IsGlobal(ctx) || sQueuedLevelCapIncrease == 0)
+    if (!ScriptContext_IsGlobal(ctx))
         return FALSE;
 
+    if (sLevelCapNotificationRunning)
+    {
+        sLevelCapNotificationRunning = FALSE;
+        return FALSE;
+    }
+
+    if (sQueuedLevelCapIncrease == 0 || !IsFieldMessageBoxHidden())
+        return FALSE;
+
+    sLevelCapNotificationRunning = TRUE;
     ScriptJump(ctx, EventScript_ShowQueuedLevelCapIncreaseMessage);
     return TRUE;
 }

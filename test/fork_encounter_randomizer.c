@@ -6,6 +6,35 @@
 #include "fork_run.h"
 #include "constants/map_groups.h"
 
+enum ForkEncounterBiomeForTest
+{
+    FORK_BIOME_CITY,
+    FORK_BIOME_GRASSL,
+    FORK_BIOME_FOREST,
+    FORK_BIOME_MOUNTAIN,
+    FORK_BIOME_CAVE,
+    FORK_BIOME_DESERT,
+    FORK_BIOME_VOLCANIC,
+    FORK_BIOME_SNOW__ICE,
+    FORK_BIOME_MARSH__SWAMP,
+    FORK_BIOME_FRESHWATER,
+    FORK_BIOME_OCEAN,
+    FORK_BIOME_BEACH__COAST,
+};
+
+struct ForkEncounterAssignment
+{
+    u8 mapGroup;
+    u8 mapNum;
+    u8 area;
+    u8 biome;
+    u16 minBst;
+    u16 maxBst;
+    u8 slots;
+};
+
+#include "../src/data/fork_biome_encounter_data.h"
+
 static u16 GetSpeciesBst(enum Species species)
 {
     return gSpeciesInfo[species].baseHP
@@ -14,6 +43,51 @@ static u16 GetSpeciesBst(enum Species species)
          + gSpeciesInfo[species].baseSpeed
          + gSpeciesInfo[species].baseSpAttack
          + gSpeciesInfo[species].baseSpDefense;
+}
+
+TEST("Every biome assignment has enough distinct candidates in every generation")
+{
+    for (u8 generation = GEN_3; generation <= GEN_9; generation++)
+    {
+        ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
+            FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, generation, TRUE, FALSE);
+        gSaveBlock3Ptr->forkEncounterRandomizerSeed = 0x4153534E;
+
+        for (u32 assignmentIndex = 0; assignmentIndex < ARRAY_COUNT(sForkEncounterAssignments); assignmentIndex++)
+        {
+            const struct ForkEncounterAssignment *assignment = &sForkEncounterAssignments[assignmentIndex];
+            enum Species selected[FORK_FISHING_RANDOMIZED_SLOT_COUNT];
+
+            EXPECT_LE(assignment->slots, ARRAY_COUNT(selected));
+            for (u8 slot = 0; slot < assignment->slots; slot++)
+            {
+                u8 encounterSlot = slot;
+
+                if (assignment->area == WILD_AREA_FISHING && slot >= 4)
+                    encounterSlot++;
+                selected[slot] = ResolveForkRandomizedEncounterSpecies(
+                    assignment->mapGroup, assignment->mapNum, assignment->area,
+                    encounterSlot, SPECIES_NONE);
+                if (selected[slot] == SPECIES_NONE)
+                {
+                    Test_MgbaPrintf("Empty biome assignment: gen=%d index=%d map=%d/%d area=%d slot=%d\n",
+                        generation, assignmentIndex, assignment->mapGroup, assignment->mapNum, assignment->area, slot);
+                    for (u8 previous = 0; previous < slot; previous++)
+                        Test_MgbaPrintf("  selected[%d]=%S (%d)\n", previous,
+                            gSpeciesInfo[selected[previous]].speciesName, selected[previous]);
+                }
+                EXPECT_NE(selected[slot], SPECIES_NONE);
+                for (u8 previous = 0; previous < slot; previous++)
+                {
+                    if (selected[slot] == selected[previous])
+                        Test_MgbaPrintf("Duplicate biome assignment: gen=%d index=%d map=%d/%d area=%d slots=%d/%d species=%d\n",
+                            generation, assignmentIndex, assignment->mapGroup, assignment->mapNum,
+                            assignment->area, previous, slot, selected[slot]);
+                    EXPECT_NE(selected[slot], selected[previous]);
+                }
+            }
+        }
+    }
 }
 
 TEST("Biome encounter randomizer is stable for one save seed")

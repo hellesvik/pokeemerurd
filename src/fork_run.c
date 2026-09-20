@@ -2,6 +2,7 @@
 #include "fork_run.h"
 #include "fork_randomizer_catalog.h"
 #include "battle.h"
+#include "battle_controllers.h"
 #include "daycare.h"
 #include "event_data.h"
 #include "item.h"
@@ -388,6 +389,16 @@ bool32 ForkIsSoftNuzlockeMon(struct Pokemon *mon)
     return GetMonData(mon, MON_DATA_SOFT_NUZLOCKE);
 }
 
+bool32 ForkCanReviveMon(struct Pokemon *mon)
+{
+    enum Species species = GetMonData(mon, MON_DATA_SPECIES_OR_EGG);
+
+    return species != SPECIES_NONE
+        && species != SPECIES_EGG
+        && GetMonData(mon, MON_DATA_HP) == 0
+        && !ForkIsSoftNuzlockeMon(mon);
+}
+
 void ForkEnsureKeyItemsPresent(void)
 {
     if (!CheckBagHasItem(ITEM_HEART_CHARM, 1))
@@ -517,6 +528,8 @@ void ForkApplySoftNuzlockeWhiteOutPenalty(void)
             continue;
         if (GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_IS_EGG))
             continue;
+        if (ForkIsSoftNuzlockeMon(&gParties[B_TRAINER_PLAYER][i]))
+            continue;
         candidates[candidateCount++] = i;
     }
 
@@ -545,4 +558,12 @@ void ForkApplySoftNuzlockeFaintPenalty(u8 partySlot)
 
     SetMonData(mon, MON_DATA_SOFT_NUZLOCKE, &softNuzlocke);
     SetMonData(mon, MON_DATA_HP, &hp);
+}
+
+void ForkApplySoftNuzlockeFaintPenaltyForBattler(enum BattlerId battler)
+{
+    if (battler >= MAX_BATTLERS_COUNT || GetBattlerTrainer(battler) != B_TRAINER_PLAYER)
+        return;
+
+    ForkApplySoftNuzlockeFaintPenalty(gBattlerPartyIndexes[battler]);
 }

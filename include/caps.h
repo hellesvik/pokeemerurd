@@ -25,6 +25,7 @@ u32 GetSoftLevelCapExpValue(u32 level, u32 expValue);
 u32 GetCurrentEVCap(void);
 bool8 QueueLevelCapIncreaseMessage(u32 previousCap);
 u32 ConsumeQueuedLevelCapIncrease(void);
+void CompleteMossdeepMaxieTabithaBattle(void);
 void ShowQueuedLevelCapIncreaseMessage(void);
 void RestoreResultAfterLevelCapIncreaseMessage(void);
 bool8 TryRunQueuedLevelCapIncreaseMessage(struct ScriptContext *ctx);

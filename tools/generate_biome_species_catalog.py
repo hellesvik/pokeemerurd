@@ -88,8 +88,10 @@ MACRO_INITIALIZER_SPECIES = {
     "NATIONAL_DEX_ALCREMIE": ("ALCREMIE", "Alcremie", ("FAIRY",), False),
     "NATIONAL_DEX_ARCEUS": ("ARCEUS", "Arceus", ("NORMAL",), True),
     "NATIONAL_DEX_CLEFAIRY": ("CLEFAIRY", "Clefairy", ("FAIRY",), False),
+    "NATIONAL_DEX_CLEFABLE": ("CLEFABLE", "Clefable", ("FAIRY",), False),
     "NATIONAL_DEX_CLEFFA": ("CLEFFA", "Cleffa", ("FAIRY",), False),
     "NATIONAL_DEX_FLABEBE": ("FLABEBE", "Flabébé", ("FAIRY",), False),
+    "NATIONAL_DEX_FLOETTE": ("FLOETTE", "Floette", ("FAIRY",), False),
     "NATIONAL_DEX_FLORGES": ("FLORGES", "Florges", ("FAIRY",), False),
     "NATIONAL_DEX_FURFROU": ("FURFROU", "Furfrou", ("NORMAL",), False),
     "NATIONAL_DEX_GENESECT": ("GENESECT", "Genesect", ("BUG", "STEEL"), True),
@@ -145,6 +147,8 @@ def read_canonical_species() -> list[Species]:
     by_national_dex: dict[str, Species] = {}
     for path in sorted(SPECIES_INFO_DIR.glob("gen_*_families.h")):
         for constant, block in c_initializer_blocks(path.read_text()):
+            if "_MEGA" in constant:
+                continue
             national_dex = get_field(r"\.natDexNum\s*=\s*(NATIONAL_DEX_[A-Z0-9_]+)", block)
             name = get_field(r'\.speciesName\s*=\s*_\("([^"]+)"\)', block)
             types_field = get_field(r"\.types\s*=\s*MON_TYPES\(([^)]*)\)", block)

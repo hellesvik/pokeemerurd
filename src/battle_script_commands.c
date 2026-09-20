@@ -11178,13 +11178,8 @@ u8 GetFirstFaintedPartyIndex(enum BattlerId battler)
     // Loop through to find fainted battler.
     for (i = start; i < end; ++i)
     {
-        enum Species species = GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG);
-        if (species != SPECIES_NONE
-            && species != SPECIES_EGG
-            && GetMonData(&party[i], MON_DATA_HP) == 0)
-        {
+        if (ForkCanReviveMon(&party[i]))
             return i;
-        }
     }
 
     // Returns PARTY_SIZE if none found.
@@ -11992,6 +11987,15 @@ void BS_TryRevivalBlessing(void)
     if (gSelectedMonPartyId != PARTY_SIZE)
     {
         struct Pokemon *party = GetBattlerParty(gBattlerAttacker);
+
+        // Do not trust a controller-provided party index without validating it.
+        // The party may also have changed since the selection menu was opened.
+        if (gSelectedMonPartyId >= PARTY_SIZE || !ForkCanReviveMon(&party[gSelectedMonPartyId]))
+        {
+            gSelectedMonPartyId = PARTY_SIZE;
+            gBattlescriptCurrInstr = cmd->failInstr;
+            return;
+        }
 
         u16 hp = GetMonData(&party[gSelectedMonPartyId], MON_DATA_MAX_HP) / 2;
         BtlController_EmitSetMonData(gBattlerAttacker, B_COMM_TO_CONTROLLER, REQUEST_HP_BATTLE, 1u << gSelectedMonPartyId, sizeof(hp), &hp);

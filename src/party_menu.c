@@ -1593,11 +1593,10 @@ static void HandleChooseMonSelection(u8 taskId, s8 *slotPtr)
             s8 partySlot = 0;
             GetPartyAndSlotFromPartyMenuId(*slotPtr, &party, &partySlot);
 
-            if (GetMonData(&party[partySlot], MON_DATA_HP) > 0
-             || GetMonData(&party[partySlot], MON_DATA_SPECIES_OR_EGG) == SPECIES_EGG
+            if (!ForkCanReviveMon(&party[partySlot])
              || ((gBattleTypeFlags & BATTLE_TYPE_MULTI) && partyId >= (PARTY_SIZE / 2)))
             {
-                // Can't select if egg, alive, or doesn't belong to you
+                // Can't select if it isn't revivable or doesn't belong to you.
                 PlaySE(SE_FAILURE);
             }
             else

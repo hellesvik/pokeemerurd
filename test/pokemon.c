@@ -5,6 +5,7 @@
 #include "caps.h"
 #include "egg_hatch.h"
 #include "event_data.h"
+#include "field_message_box.h"
 #include "fork_run.h"
 #include "item_use.h"
 #include "load_save.h"
@@ -14,6 +15,7 @@
 #include "pokedex.h"
 #include "pokemon.h"
 #include "pokemon_storage_system.h"
+#include "random.h"
 #include "safari_zone.h"
 #include "test/overworld_script.h"
 #include "test/test.h"
@@ -95,6 +97,7 @@ static void ClearForkLevelCapTrainerFlags(void)
         TRAINER_MATT,
         TRAINER_TATE_AND_LIZA_1,
         TRAINER_MAXIE_MOSSDEEP,
+        TRAINER_TABITHA_MOSSDEEP,
         TRAINER_SHELLY_SEAFLOOR_CAVERN,
         TRAINER_ARCHIE,
         TRAINER_JUAN_1,
@@ -230,6 +233,99 @@ TEST("Level cap notifications preserve VAR_RESULT")
     RestoreResultAfterLevelCapIncreaseMessage();
 
     EXPECT_EQ(gSpecialVar_Result, 1);
+}
+
+TEST("Busy message box defers a level cap notification")
+{
+    static const u8 sBusyMessage[] = _("BUSY");
+    u32 previousCap;
+
+    ClearForkLevelCapTrainerFlags();
+    ForkConfigureGameplayOptions(TRUE, TRUE, FORK_FAINT_RULE_WHITEOUT, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, GEN_3, TRUE, FALSE);
+    previousCap = GetCurrentLevelCap();
+    SetTrainerFlag(TRAINER_ROXANNE_1);
+    EXPECT(QueueLevelCapIncreaseMessage(previousCap));
+
+    InitFieldMessageBox();
+    EXPECT(ShowFieldMessage(sBusyMessage));
+    ShowQueuedLevelCapIncreaseMessage();
+
+    EXPECT_EQ(gSpecialVar_Result, FALSE);
+    EXPECT_EQ(ConsumeQueuedLevelCapIncrease(), 16);
+    HideFieldMessageBox();
+}
+
+TEST("Mossdeep multi battle completes its level cap milestone")
+{
+    static const u16 sCompletedMilestones[] =
+    {
+        TRAINER_ROXANNE_1,
+        TRAINER_MAY_RUSTBORO_TREECKO,
+        TRAINER_BRAWLY_1,
+        TRAINER_MAY_ROUTE_110_TREECKO,
+        TRAINER_WATTSON_1,
+        TRAINER_MAXIE_MT_CHIMNEY,
+        TRAINER_FLANNERY_1,
+        TRAINER_NORMAN_1,
+        TRAINER_SHELLY_WEATHER_INSTITUTE,
+        TRAINER_MAY_ROUTE_119_TREECKO,
+        TRAINER_WINONA_1,
+        TRAINER_MAY_LILYCOVE_TREECKO,
+        TRAINER_MAXIE_MAGMA_HIDEOUT,
+        TRAINER_TATE_AND_LIZA_1,
+    };
+
+    ClearForkLevelCapTrainerFlags();
+    ForkConfigureGameplayOptions(TRUE, TRUE, FORK_FAINT_RULE_WHITEOUT, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, GEN_3, TRUE, FALSE);
+    for (u32 i = 0; i < ARRAY_COUNT(sCompletedMilestones); i++)
+        SetTrainerFlag(sCompletedMilestones[i]);
+
+    EXPECT_EQ(GetCurrentLevelCap(), 44);
+    CompleteMossdeepMaxieTabithaBattle();
+
+    EXPECT(HasTrainerBeenFought(TRAINER_MAXIE_MOSSDEEP));
+    EXPECT(HasTrainerBeenFought(TRAINER_TABITHA_MOSSDEEP));
+    EXPECT_EQ(GetCurrentLevelCap(), 45);
+    EXPECT_EQ(ConsumeQueuedLevelCapIncrease(), 45);
+}
+
+TEST("Final level cap unlock does not queue a notification")
+{
+    static const u16 sCompletedMilestones[] =
+    {
+        TRAINER_ROXANNE_1,
+        TRAINER_MAY_RUSTBORO_TREECKO,
+        TRAINER_BRAWLY_1,
+        TRAINER_MAY_ROUTE_110_TREECKO,
+        TRAINER_WATTSON_1,
+        TRAINER_MAXIE_MT_CHIMNEY,
+        TRAINER_FLANNERY_1,
+        TRAINER_NORMAN_1,
+        TRAINER_SHELLY_WEATHER_INSTITUTE,
+        TRAINER_MAY_ROUTE_119_TREECKO,
+        TRAINER_WINONA_1,
+        TRAINER_MAY_LILYCOVE_TREECKO,
+        TRAINER_MAXIE_MAGMA_HIDEOUT,
+        TRAINER_TATE_AND_LIZA_1,
+        TRAINER_MAXIE_MOSSDEEP,
+        TRAINER_ARCHIE,
+        TRAINER_JUAN_1,
+        TRAINER_WALLY_VR_1,
+    };
+    u32 previousCap;
+
+    ClearForkLevelCapTrainerFlags();
+    ForkConfigureGameplayOptions(TRUE, TRUE, FORK_FAINT_RULE_WHITEOUT, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, GEN_3, TRUE, FALSE);
+    for (u32 i = 0; i < ARRAY_COUNT(sCompletedMilestones); i++)
+        SetTrainerFlag(sCompletedMilestones[i]);
+
+    previousCap = GetCurrentLevelCap();
+    EXPECT_EQ(previousCap, 80);
+    SetTrainerFlag(TRAINER_STEVEN);
+
+    EXPECT_EQ(GetCurrentLevelCap(), MAX_LEVEL);
+    EXPECT_EQ(QueueLevelCapIncreaseMessage(previousCap), FALSE);
+    EXPECT_EQ(ConsumeQueuedLevelCapIncrease(), 0);
 }
 
 TEST("Fork gameplay options gate the catch limit and level cap")
@@ -487,6 +583,40 @@ TEST("Fork faint penalty works when the catch limit is disabled")
     EXPECT_EQ(GetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_HP), 0);
 }
 
+TEST("Repeated whiteouts always mark a Pokemon that is not already lost")
+{
+    u32 softNuzlocke = TRUE;
+
+    ZeroPlayerPartyMons();
+    ForkConfigureGameplayOptions(TRUE, FALSE, FORK_FAINT_RULE_WHITEOUT, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, GEN_3, TRUE, FALSE);
+    FlagSet(FLAG_ADVENTURE_STARTED);
+    CreateMon(&gParties[B_TRAINER_PLAYER][0], SPECIES_EEVEE, 15, 0, OTID_STRUCT_PLAYER_ID);
+    CreateMon(&gParties[B_TRAINER_PLAYER][1], SPECIES_MUDKIP, 15, 0, OTID_STRUCT_PLAYER_ID);
+    SetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_SOFT_NUZLOCKE, &softNuzlocke);
+    SeedRng(0);
+
+    ForkApplySoftNuzlockeWhiteOutPenalty();
+
+    EXPECT_EQ(GetMonData(&gParties[B_TRAINER_PLAYER][1], MON_DATA_SOFT_NUZLOCKE), TRUE);
+}
+
+TEST("Fork faint penalty only marks Pokemon owned by the player trainer")
+{
+    ZeroPlayerPartyMons();
+    ForkConfigureGameplayOptions(TRUE, FALSE, FORK_FAINT_RULE_ON_FAINT, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, GEN_3, TRUE, FALSE);
+    FlagSet(FLAG_ADVENTURE_STARTED);
+    CreateMon(&gParties[B_TRAINER_PLAYER][0], SPECIES_EEVEE, 15, 0, OTID_STRUCT_PLAYER_ID);
+    gBattleTypeFlags = BATTLE_TYPE_MULTI | BATTLE_TYPE_INGAME_PARTNER;
+    gBattlerPartyIndexes[B_BATTLER_0] = 0;
+    gBattlerPartyIndexes[B_BATTLER_2] = 0;
+
+    ForkApplySoftNuzlockeFaintPenaltyForBattler(B_BATTLER_2);
+    EXPECT_EQ(GetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_SOFT_NUZLOCKE), FALSE);
+
+    ForkApplySoftNuzlockeFaintPenaltyForBattler(B_BATTLER_0);
+    EXPECT_EQ(GetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_SOFT_NUZLOCKE), TRUE);
+}
+
 TEST("Fork rules track one encounter per named area")
 {
     ForkResetAreaEncounterState();
@@ -592,6 +722,20 @@ TEST("Fork rules mark soft nuzlocke mons and stop further level gains")
     EXPECT_EQ(ForkIsSoftNuzlockeMon(&mon), TRUE);
     EXPECT_EQ(TryIncrementMonLevel(&mon), FALSE);
     EXPECT_EQ(GetMonData(&mon, MON_DATA_LEVEL), 10);
+}
+
+TEST("Fork revival eligibility excludes permanently lost Pokemon")
+{
+    struct Pokemon mon;
+    u32 hp = 0;
+    u32 softNuzlocke = TRUE;
+
+    CreateMon(&mon, SPECIES_WOBBUFFET, 10, 0, OTID_STRUCT_PLAYER_ID);
+    SetMonData(&mon, MON_DATA_HP, &hp);
+    EXPECT_EQ(ForkCanReviveMon(&mon), TRUE);
+
+    SetMonData(&mon, MON_DATA_SOFT_NUZLOCKE, &softNuzlocke);
+    EXPECT_EQ(ForkCanReviveMon(&mon), FALSE);
 }
 
 TEST("Fork rules zero EVs on newly obtained mons when player EVs are disabled")

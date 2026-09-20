@@ -141,6 +141,9 @@ The following table includes every BST-gated random encounter pool. A
 route/place limit applies to each configured encounter method there (land,
 water, fishing, or Rock Smash), and to ordinary static encounters resolved on
 that map. Areas with multiple floors are grouped where they share a limit.
+Route 103 fishing uses 160–270, and Shoal Cave Surfing and fishing use
+290–535, so every randomized encounter slot has enough distinct candidates.
+Their other encounter methods use the ranges shown in the table.
 
 | BST range | Encounters, routes, and places |
 | ---: | --- |

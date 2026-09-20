@@ -33,18 +33,21 @@ systems remain outside this feature.
 
 Eggs are resolved when they hatch, regardless of whether they came from the
 Day Care, a scripted gift, a trade, or another source. Egg results use a
-100–550 BST range and exclude Legendary, Mythical, Ultra Beast, and Paradox
-species.
+100–550 BST range, are limited to first-stage species that can evolve, and
+exclude species with no evolutions as well as Legendary, Mythical, Ultra Beast,
+and Paradox species.
 
 Static encounters use the current map's route/place BST range. Kecleon,
 Electrode, and Voltorb therefore follow the same range as the route where they
-appear. The Regi trio, Groudon, Kyogre, and Rayquaza instead use a 550–600 BST
-range and may resolve to any enabled species in that range, including special
-species.
+appear. The two Aqua Hideout Electrode are the exception: they use the
+Underwater biome with a 350–450 BST range because the hideout has no ordinary
+land encounter table. The Regi trio, Groudon, Kyogre, and Rayquaza instead use
+a 550–600 BST range and may resolve to any enabled species in that range,
+including special species.
 
 ## Biomes
 
-Each ordinary encounter table is assigned a biome. The initial biome set is:
+Each ordinary encounter table is assigned a biome. The biome set is:
 
 - City
 - Grassland
@@ -58,6 +61,7 @@ Each ordinary encounter table is assigned a biome. The initial biome set is:
 - Snow/ice
 - Freshwater
 - Ocean
+- Underwater
 
 The assignment is explicit map/method data in
 [`biome_encounter_assignments.csv`](../reference/biome_encounter_assignments.csv). The
@@ -69,6 +73,13 @@ Pokémon associated with urban land and waterways, including Normal, Electric,
 Water, Fighting, Poison, Flying, Psychic, Bug, Ghost, Dark, Steel, and Fairy
 types. Forest can contain Bug-, Grass-, Flying-, Poison-, and Normal-type
 Pokémon. A Pokémon may belong to more than one biome.
+
+Underwater is a curated pool of 200 species used by every encounter table on
+a Dive map. In addition to aquatic Pokémon, it includes selected ice-cavern,
+Dragon, fossil, ruin, abyssal, and freshwater species so submerged encounters
+remain distinct from the general Ocean biome. Underwater encounters may select
+non-Water and non-Flying species from this curated pool; ordinary Surf and
+fishing encounters retain their normal type-compatibility rules.
 
 Every encounter method in a town, city, or New Mauville normally uses the City
 biome. Dewford, Lilycove, Mossdeep, and Sootopolis use Beach/Coast; Lavaridge
@@ -87,6 +98,7 @@ method select the candidate pool used to fill that table:
 | --- | --- |
 | Land | Three randomized species generated separately for each route/map; every weighted land slot maps to one of them. |
 | Surf | Three randomized Water- or Flying-type species generated separately for each route/map with Surf encounters. |
+| Dive | Three randomized species from the curated Underwater pool for each underwater map. |
 | Fishing | Two randomized Water-type species per rod, for six across Old, Good, and Super Rod on each route/map. |
 | Rock Smash | Three randomized species generated separately for each route/map with Rock Smash encounters. |
 
@@ -169,7 +181,7 @@ Their other encounter methods use the ranges shown in the table.
 | 320–420 | Route 119, Safari Zone, Fortree City |
 | 330–430 | Route 120 |
 | 340–440 | Routes 121–122, Mt. Pyre |
-| 350–450 | Route 123, Lilycove City |
+| 350–450 | Route 123, Lilycove City, Aqua Hideout Electrode |
 | 360–460 | Route 124, Underwater Route 124, Magma Hideout |
 | 370–470 | Mossdeep City |
 | 380–480 | Route 125, Shoal Cave |

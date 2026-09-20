@@ -81,6 +81,40 @@ class CityBiomeTests(unittest.TestCase):
                     self.assertEqual(GENERATOR.biome_for(map_name, method), "City")
 
 
+class UnderwaterBiomeTests(unittest.TestCase):
+    def test_underwater_maps_use_underwater_biome(self):
+        encounter_data = GENERATOR.json.loads(GENERATOR.ENCOUNTERS.read_text())[
+            "wild_encounter_groups"
+        ][0]["encounters"]
+        underwater_encounters = [
+            entry for entry in encounter_data if entry["map"].startswith("MAP_UNDERWATER_")
+        ]
+
+        self.assertTrue(underwater_encounters)
+        for entry in underwater_encounters:
+            for method in GENERATOR.METHODS:
+                if method in entry:
+                    with self.subTest(map_name=entry["map"], method=method):
+                        self.assertEqual(
+                            GENERATOR.biome_for(entry["map"], method), "Underwater"
+                        )
+
+    def test_underwater_pool_is_curated_and_has_at_least_200_species(self):
+        species = CATALOG_GENERATOR.read_canonical_species()
+        underwater_species = {
+            entry.constant
+            for entry in species
+            if "Underwater" in CATALOG_GENERATOR.species_biomes(entry)
+        }
+
+        self.assertGreaterEqual(len(underwater_species), 200)
+        self.assertIn("MAGIKARP", underwater_species)
+        self.assertIn("ABOMASNOW", underwater_species)
+        self.assertIn("DRAGONITE", underwater_species)
+        self.assertIn("CHANDELURE", underwater_species)
+        self.assertNotIn("WINGULL", underwater_species)
+
+
 class StoryProgressionBstTests(unittest.TestCase):
     def test_method_specific_ranges_supply_unique_encounter_slots(self):
         self.assertEqual(

@@ -37,6 +37,16 @@ documented in the [reference index](./reference/index.md).
 
 ### 2026-09-20
 
+- Added a curated 200-species Underwater biome for all randomized Dive-map
+  encounters. Its pool includes aquatic Pokémon alongside selected Ice,
+  Dragon, fossil, ruin, abyssal, and freshwater species.
+- Randomized Eggs now select only first-stage Pokémon that can evolve. Species
+  with no evolutions and later evolutionary stages are excluded while the
+  existing BST, generation, and special-species restrictions remain in force.
+- Raised the Lilycove rival level-cap milestone from Lv. 34 to Lv. 36 to match
+  the rival's highest-level Pokémon.
+- Fixed the two Aqua Hideout Electrode remaining unchanged under encounter
+  randomization. They now use the Underwater pool with a 350–450 BST range.
 - Fixed a post-battle black screen after the Route 110 rival fight. Queued
   level-cap notifications now wait for the resumed post-battle event script
   and can no longer interrupt synchronous map-resume scripts.

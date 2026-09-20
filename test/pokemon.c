@@ -176,7 +176,7 @@ TEST("Fork rules enable a hard story-battle level cap while leaving one-use Rare
     EXPECT_EQ(GetCurrentLevelCap(), 33);
 
     SetTrainerFlag(TRAINER_WINONA_1);
-    EXPECT_EQ(GetCurrentLevelCap(), 34);
+    EXPECT_EQ(GetCurrentLevelCap(), 36);
 
     SetTrainerFlag(TRAINER_MAY_LILYCOVE_TREECKO);
     EXPECT_EQ(GetCurrentLevelCap(), 39);

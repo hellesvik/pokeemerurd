@@ -15,7 +15,7 @@ ENCOUNTERS = ROOT / "src/data/wild_encounters.json"
 OUTPUT = ROOT / "src/data/fork_biome_encounter_data.h"
 ASSIGNMENTS_CSV = ROOT / "docs/fork/reference/biome_encounter_assignments.csv"
 
-BIOMES = ("City", "Grassland", "Forest", "Mountain", "Cave", "Desert", "Volcanic", "Snow and Ice", "Marsh and Swamp", "Freshwater", "Ocean", "Beach and Coast")
+BIOMES = ("City", "Grassland", "Forest", "Mountain", "Cave", "Desert", "Volcanic", "Snow and Ice", "Marsh and Swamp", "Freshwater", "Ocean", "Beach and Coast", "Underwater")
 BIOME_ENUM = {biome: "FORK_BIOME_" + biome.upper().replace(" ", "_").replace("AND", "") for biome in BIOMES}
 METHODS = {
     "land_mons": ("WILD_AREA_LAND", "FORK_LAND_RANDOMIZED_SLOT_COUNT"),
@@ -27,6 +27,8 @@ METHODS = {
 
 def biome_for(name: str, method: str) -> str:
     upper = name.upper()
+    if "UNDERWATER" in upper:
+        return "Underwater"
     if "SHOAL_CAVE" in upper:
         return "Snow and Ice"
     if "LAVARIDGE_TOWN" in upper:

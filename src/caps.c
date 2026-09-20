@@ -106,7 +106,7 @@ static const struct LevelCapMilestone sLevelCapMilestones[] =
     { 32, sCapShellyWeatherInstitute },
     { 32, sCapRoute119Rival },
     { 33, sCapWinona },
-    { 34, sCapLilycoveRival },
+    { 36, sCapLilycoveRival },
     { 39, sCapMaxieMagmaHideout },
     { 42, sCapTateAndLiza },
     { 44, sCapMaxieTabithaMossdeep },

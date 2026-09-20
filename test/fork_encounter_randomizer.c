@@ -20,6 +20,7 @@ enum ForkEncounterBiomeForTest
     FORK_BIOME_FRESHWATER,
     FORK_BIOME_OCEAN,
     FORK_BIOME_BEACH__COAST,
+    FORK_BIOME_UNDERWATER,
 };
 
 struct ForkEncounterAssignment
@@ -180,6 +181,29 @@ TEST("Fishing randomizer remains Water-only")
     }
 }
 
+TEST("Underwater randomizer can select exotic non-Water non-Flying species")
+{
+    bool8 foundExotic = FALSE;
+
+    for (u32 seed = 1; seed <= 1024 && !foundExotic; seed++)
+    {
+        gSaveBlock3Ptr->forkEncounterRandomizerSeed = seed;
+        for (u8 slot = 0; slot < 3; slot++)
+        {
+            enum Species species = ResolveForkRandomizedEncounterSpecies(
+                MAP_GROUP(MAP_UNDERWATER_ROUTE126), MAP_NUM(MAP_UNDERWATER_ROUTE126),
+                WILD_AREA_WATER, slot, SPECIES_TENTACOOL);
+            bool8 isWater = gSpeciesInfo[species].types[0] == TYPE_WATER || gSpeciesInfo[species].types[1] == TYPE_WATER;
+            bool8 isFlying = gSpeciesInfo[species].types[0] == TYPE_FLYING || gSpeciesInfo[species].types[1] == TYPE_FLYING;
+
+            if (!isWater && !isFlying)
+                foundExotic = TRUE;
+        }
+    }
+
+    EXPECT(foundExotic);
+}
+
 TEST("Biome encounter randomizer avoids duplicate species within one land table")
 {
     enum Species species[3];
@@ -263,18 +287,23 @@ TEST("Configured encounter generation can reach Generation 8")
     EXPECT_EQ(GetForkMaxNationalDex(), NATIONAL_DEX_ENAMORUS);
 }
 
-TEST("Egg randomizer selects a non-restricted species within the egg BST range")
+TEST("Egg randomizer selects an evolvable first-stage species within the egg BST range")
 {
-    enum Species species;
+    for (u32 seed = 1; seed <= 128; seed++)
+    {
+        enum Species species;
 
-    gSaveBlock3Ptr->forkEncounterRandomizerSeed = 0x55667788;
-    species = ResolveForkRandomizedEggSpecies(SPECIES_WYNAUT);
+        gSaveBlock3Ptr->forkEncounterRandomizerSeed = seed;
+        species = ResolveForkRandomizedEggSpecies(SPECIES_WYNAUT);
 
-    EXPECT_GE(GetSpeciesBst(species), 100);
-    EXPECT_LE(GetSpeciesBst(species), 550);
-    EXPECT(!gSpeciesInfo[species].isRestrictedLegendary);
-    EXPECT(!gSpeciesInfo[species].isSubLegendary);
-    EXPECT(!gSpeciesInfo[species].isMythical);
+        EXPECT_GE(GetSpeciesBst(species), 100);
+        EXPECT_LE(GetSpeciesBst(species), 550);
+        EXPECT(!gSpeciesInfo[species].isRestrictedLegendary);
+        EXPECT(!gSpeciesInfo[species].isSubLegendary);
+        EXPECT(!gSpeciesInfo[species].isMythical);
+        EXPECT_EQ(GetSpeciesPreEvolution(species), SPECIES_NONE);
+        EXPECT_NE(GetSpeciesEvolutions(species), NULL);
+    }
 }
 
 TEST("Static encounter randomizer uses its route BST range")
@@ -288,6 +317,26 @@ TEST("Static encounter randomizer uses its route BST range")
 
     EXPECT_GE(GetSpeciesBst(species), 330);
     EXPECT_LE(GetSpeciesBst(species), 430);
+}
+
+TEST("Aqua Hideout Electrode uses the Underwater biome and a progression BST range")
+{
+    enum Species species;
+    bool8 foundInUnderwaterPool = FALSE;
+
+    gSaveBlock1Ptr->location.mapGroup = MAP_GROUP(MAP_AQUA_HIDEOUT_B1F);
+    gSaveBlock1Ptr->location.mapNum = MAP_NUM(MAP_AQUA_HIDEOUT_B1F);
+    gSaveBlock3Ptr->forkEncounterRandomizerSeed = 0xA0A0B1F0;
+    species = ResolveForkRandomizedStaticEncounterSpecies(SPECIES_ELECTRODE);
+
+    for (u32 i = 0; i < ARRAY_COUNT(sForkBiomePool_UNDERWATER); i++)
+        if (sForkBiomePool_UNDERWATER[i] == species)
+            foundInUnderwaterPool = TRUE;
+
+    EXPECT_NE(species, SPECIES_ELECTRODE);
+    EXPECT(foundInUnderwaterPool);
+    EXPECT_GE(GetSpeciesBst(species), 350);
+    EXPECT_LE(GetSpeciesBst(species), 450);
 }
 
 TEST("Special static encounter randomizer permits legendary BST range")

@@ -26,7 +26,7 @@ The cap ladder includes every required story battle that advances the level cap.
 | 9 | Shelly — Weather Institute | Double | 32 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/aqua_admin_f.png" alt="Shelly" width="64"> |
 | 10 | Route 119 rival | Single | 32 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/brendan.png" alt="Brendan or May" width="64"> |
 | 11 | Winona | Single | 33 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_winona.png" alt="Winona" width="64"> |
-| 12 | Lilycove rival | Single | 34 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/brendan.png" alt="Brendan or May" width="64"> |
+| 12 | Lilycove rival | Single | 36 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/brendan.png" alt="Brendan or May" width="64"> |
 | 13 | Maxie — Magma Hideout | Single | 39 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/magma_leader_maxie.png" alt="Maxie" width="64"> |
 | 14 | Tate & Liza | Double | 42 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/leader_tate_and_liza.png" alt="Tate and Liza" width="64"> |
 | 15 | Maxie & Tabitha — Mossdeep | Double | 44 | <img src="https://raw.githubusercontent.com/hellesvik/pokeemerurd/master/graphics/trainers/front_pics/magma_leader_maxie.png" alt="Maxie and Tabitha" width="64"> |

@@ -16,6 +16,11 @@ Sootopolis use Beach/Coast; Lavaridge uses Volcanic; Ever Grande uses Mountain;
 Fortree uses Forest; and Pacifidlog uses Ocean. Surf encounters permit Water or Flying types;
 fishing remains Water-only. Rock Smash requires Rock, Ground, or Steel types.
 
+Dive-map encounters use a separate curated Underwater biome containing 200
+species. It mixes aquatic Pokémon with selected Ice, Dragon, fossil, ruin,
+abyssal, and freshwater species. Unlike ordinary Surf encounters, Dive
+encounters may select non-Water and non-Flying species from that pool.
+
 The selected maximum generation limits randomized species. Eggs, gifts,
 fossils, and static encounters are randomized too. The table below includes
 every BST-gated pool. Fossil choices and Steven's postgame gift use separate
@@ -36,10 +41,11 @@ Each map and method receives its own deterministic selections for that save.
 | --- | --- |
 | Land, including grass and cave floors | Three distinct species from the map's biome and BST range. The normal twelve weighted slots repeat those three species. No additional type requirement. |
 | Surf | Three distinct Water- or Flying-type species from the map's biome and BST range. The normal five weighted slots repeat those three species. |
+| Dive | Three distinct species from the curated Underwater biome and the underwater map's BST range. Non-Water and non-Flying species are permitted. |
 | Fishing | Six distinct Water-type species from the map's biome and BST range: two for the Old Rod, two for the Good Rod, and two for the Super Rod. Each rod repeats its pair across its normal weighted slots. |
 | Rock Smash | Three distinct Rock-, Ground-, or Steel-type species from the map's biome and BST range. The normal weighted slots repeat those three species. |
-| Hatched Eggs | One base-form species from any biome, using BST 100–550. The result is chosen when the Egg hatches. Ordinary special-species exclusions apply. |
-| Ordinary static encounters | One species from the current map's land biome and BST range. Kecleon, Voltorb, and Electrode use this rule. If the map has no land assignment, the original species remains. |
+| Hatched Eggs | One first-stage species that can evolve, selected from any biome using BST 100–550. Species with no evolutions are excluded. The result is chosen when the Egg hatches. Ordinary special-species exclusions apply. |
+| Ordinary static encounters | One species from the current map's land biome and BST range. Kecleon, Voltorb, and Electrode use this rule. The two Aqua Hideout Electrode use the Underwater biome with a 350–450 BST range. If another map has no land assignment, the original species remains. |
 | Special static encounters | Regirock, Regice, Registeel, Groudon, Kyogre, and Rayquaza use BST 550–600. Special species are permitted, but the generation limit still applies. |
 | Birch's Route 101 starters | Three distinct base-form species using BST 275–325. The selected generation limit applies. The chosen starter receives at least two perfect IVs. |
 
@@ -73,7 +79,7 @@ use 380–480.
 | 320–420 | Route 119, Safari Zone, Fortree City |
 | 330–430 | Route 120 |
 | 340–440 | Routes 121–122, Mt. Pyre |
-| 350–450 | Route 123, Lilycove City |
+| 350–450 | Route 123, Lilycove City, Aqua Hideout Electrode |
 | 360–460 | Route 124, Underwater Route 124, Magma Hideout |
 | 370–470 | Mossdeep City |
 | 380–480 | Route 125, Shoal Cave |

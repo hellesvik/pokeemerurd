@@ -20,6 +20,7 @@ enum ForkEncounterBiome
     FORK_BIOME_FRESHWATER,
     FORK_BIOME_OCEAN,
     FORK_BIOME_BEACH__COAST,
+    FORK_BIOME_UNDERWATER,
 };
 
 struct ForkEncounterAssignment
@@ -34,6 +35,17 @@ struct ForkEncounterAssignment
 };
 
 #include "data/fork_biome_encounter_data.h"
+
+static const struct ForkEncounterAssignment sAquaHideoutElectrodeAssignment =
+{
+    MAP_GROUP(MAP_AQUA_HIDEOUT_B1F),
+    MAP_NUM(MAP_AQUA_HIDEOUT_B1F),
+    WILD_AREA_LAND,
+    FORK_BIOME_UNDERWATER,
+    350,
+    450,
+    1,
+};
 
 static u16 GetSpeciesBst(enum Species species)
 {
@@ -72,14 +84,17 @@ static const enum Species *GetBiomePool(u8 biome, u16 *count)
     case FORK_BIOME_MARSH__SWAMP: *count = ARRAY_COUNT(sForkBiomePool_MARSH__SWAMP); return sForkBiomePool_MARSH__SWAMP;
     case FORK_BIOME_FRESHWATER: *count = ARRAY_COUNT(sForkBiomePool_FRESHWATER); return sForkBiomePool_FRESHWATER;
     case FORK_BIOME_OCEAN: *count = ARRAY_COUNT(sForkBiomePool_OCEAN); return sForkBiomePool_OCEAN;
+    case FORK_BIOME_UNDERWATER: *count = ARRAY_COUNT(sForkBiomePool_UNDERWATER); return sForkBiomePool_UNDERWATER;
     default: *count = ARRAY_COUNT(sForkBiomePool_BEACH__COAST); return sForkBiomePool_BEACH__COAST;
     }
 }
 
-static bool8 IsMethodCompatible(enum Species species, enum WildPokemonArea area)
+static bool8 IsMethodCompatible(enum Species species, enum WildPokemonArea area, u8 biome)
 {
     enum Type type1 = gSpeciesInfo[species].types[0];
     enum Type type2 = gSpeciesInfo[species].types[1];
+    if (area == WILD_AREA_WATER && biome == FORK_BIOME_UNDERWATER)
+        return TRUE;
     if (area == WILD_AREA_WATER)
         return type1 == TYPE_WATER || type2 == TYPE_WATER || type1 == TYPE_FLYING || type2 == TYPE_FLYING;
     if (area == WILD_AREA_FISHING)
@@ -165,19 +180,41 @@ static enum Species SelectEncounterSpecies(const struct ForkEncounterAssignment 
         if (IsRegularEncounterSpecies(species)
          && GetSpeciesBst(species) >= assignment->minBst
          && GetSpeciesBst(species) <= assignment->maxBst
-         && IsMethodCompatible(species, area)
+         && IsMethodCompatible(species, area, assignment->biome)
          && !IsAlreadySelected(species, selected, selectedCount))
             return species;
     }
     return fallback;
 }
 
-static enum Species SelectSpeciesFromBstRange(u16 minBst, u16 maxBst, bool8 allowSpecial, u32 salt, enum Species fallback)
+static enum Species SelectSpeciesFromBstRange(u16 minBst, u16 maxBst, bool8 allowSpecial, bool8 evolvableFirstStageOnly, u32 salt, enum Species fallback)
 {
     enum Species selected = fallback;
     rng_value_t rng = LocalRandomSeed(gSaveBlock3Ptr->forkEncounterRandomizerSeed ^ salt);
+    u8 hasPreEvolution[(NUM_SPECIES + 7) / 8] = {0};
     u16 candidateCount = 0;
     u16 candidateIndex;
+
+    if (evolvableFirstStageOnly)
+    {
+        for (enum Species source = SPECIES_BULBASAUR; source < NUM_SPECIES; source++)
+        {
+            const struct Evolution *evolutions;
+
+            if (!IsSpeciesEnabled(source))
+                continue;
+            evolutions = GetSpeciesEvolutions(source);
+            if (evolutions == NULL)
+                continue;
+            for (u16 i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
+            {
+                enum Species target = SanitizeSpeciesId(evolutions[i].targetSpecies);
+
+                if (IsSpeciesEnabled(target))
+                    hasPreEvolution[target / 8] |= 1 << (target % 8);
+            }
+        }
+    }
 
     for (enum Species species = SPECIES_BULBASAUR; species < NUM_SPECIES; species++)
     {
@@ -186,6 +223,8 @@ static enum Species SelectSpeciesFromBstRange(u16 minBst, u16 maxBst, bool8 allo
         if (!IsSpeciesEnabled(species)
          || species != GET_BASE_SPECIES_ID(species)
          || !IsWithinForkMaxGeneration(species)
+         || (evolvableFirstStageOnly && (hasPreEvolution[species / 8] & (1 << (species % 8))))
+         || (evolvableFirstStageOnly && GetSpeciesEvolutions(species) == NULL)
          || GetSpeciesBst(species) < minBst
          || GetSpeciesBst(species) > maxBst)
             continue;
@@ -202,6 +241,8 @@ static enum Species SelectSpeciesFromBstRange(u16 minBst, u16 maxBst, bool8 allo
         if (!IsSpeciesEnabled(species)
          || species != GET_BASE_SPECIES_ID(species)
          || !IsWithinForkMaxGeneration(species)
+         || (evolvableFirstStageOnly && (hasPreEvolution[species / 8] & (1 << (species % 8))))
+         || (evolvableFirstStageOnly && GetSpeciesEvolutions(species) == NULL)
          || GetSpeciesBst(species) < minBst
          || GetSpeciesBst(species) > maxBst
          || (!allowSpecial && !IsRegularEncounterSpecies(species)))
@@ -279,7 +320,7 @@ enum Species ResolveForkRandomizedEggSpecies(enum Species fallback)
 {
     if (!ForkAreRandomEncountersEnabled())
         return fallback;
-    return SelectSpeciesFromBstRange(100, 550, FALSE, 0x45474700 ^ fallback, fallback);
+    return SelectSpeciesFromBstRange(100, 550, FALSE, TRUE, 0x45474700 ^ fallback, fallback);
 }
 
 enum Species ResolveForkRandomizedStaticEncounterSpecies(enum Species fallback)
@@ -290,9 +331,14 @@ enum Species ResolveForkRandomizedStaticEncounterSpecies(enum Species fallback)
     if (!ForkAreRandomEncountersEnabled())
         return fallback;
     if (IsSpecialStaticEncounter(fallback))
-        return SelectSpeciesFromBstRange(550, 600, TRUE, 0x53544154 ^ fallback, fallback);
+        return SelectSpeciesFromBstRange(550, 600, TRUE, FALSE, 0x53544154 ^ fallback, fallback);
 
-    assignment = FindAssignment(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, WILD_AREA_LAND);
+    if (fallback == SPECIES_ELECTRODE
+     && gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_AQUA_HIDEOUT_B1F)
+     && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_AQUA_HIDEOUT_B1F))
+        assignment = &sAquaHideoutElectrodeAssignment;
+    else
+        assignment = FindAssignment(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, WILD_AREA_LAND);
     if (assignment == NULL)
         return fallback;
     species = SelectEncounterSpecies(assignment,

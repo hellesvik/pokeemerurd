@@ -531,17 +531,62 @@ Class: Aqua Admin
 Pic: Aqua Admin M
 Gender: Male
 Music: Aqua
-Items: Super Potion
 Double Battle: No
 AI: Basic Trainer
 
-Mightyena
-Level: 34
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Aurorus @ Icy Rock
+Ability: Snow Warning
+Level: 37
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Aurora Veil
+- Power Gem
+- Stealth Rock
+- Weather Ball
 
-Golbat
-Level: 34
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Blastoise @ Lagging Tail
+Ability: Rain Dish
+Level: 37
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Aqua Tail
+- Ice Punch
+- Gyro Ball
+- Rapid Spin
+
+Sandslash-Alola @ Occa Berry
+Ability: Slush Rush
+Level: 38
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Ice Punch
+- Dig
+- Spiky Shield
+- Metal Claw
+
+Sealeo @ Leftovers
+Ability: Ice Body
+Level: 37
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Freeze Dry
+- Chilling Water
+- Protect
+- Body Slam
+
+Piloswine @ Eviolite
+Ability: Snow Cloak
+Level: 38
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Earthquake
+- Icicle Spear
+- Rest
+- Sleep Talk
+
+Gyarados @ Gyaradosite
+Ability: Intimidate
+Level: 40
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Blizzard
+- Surf
+- Dragonbreath
+- Snarl
 
 === TRAINER_ZANDER ===
 Name: ZANDER
@@ -4805,7 +4850,7 @@ Double Battle: No
 AI: Basic Trainer
 Mugshot: Pink
 
-Vanilluxe @ Focus Sash
+Vanilluxe @ Icy Rock
 Ability: Snow Warning
 Level: 77
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe

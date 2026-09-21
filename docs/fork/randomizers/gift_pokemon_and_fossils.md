@@ -5,9 +5,10 @@ choices are distinct base-form Pokémon selected within the configured
 generation limit and the 275–325 BST range. The chosen starter receives two
 guaranteed perfect IVs, with the guaranteed stats selected per save.
 
-Steven's postgame Mossdeep gift is randomized from the first stage of a
-pseudo-legendary line and is never single-stage. Castform, the Wynaut Egg, and
-Birch's post-upgrade Johto starter remain unchanged.
+Steven's Mossdeep gift becomes available after the eighth Badge and is
+randomized from the first stage of a pseudo-legendary line and is never
+single-stage. Castform, the Wynaut Egg, and Birch's post-upgrade Johto starter
+remain unchanged.
 
 Mirage Tower presents two distinct per-save randomized fossil choices. Fossils
 are excluded from the item randomizer, and the Devon researcher revives the

@@ -2351,9 +2351,9 @@ bool8 ScrCmd_checkfieldmove(struct ScriptContext *ctx)
         }
     }
 
-    // Field HMs are unlocked by badges in this fork. If no party Pokémon
-    // knows the HM, use the first non-egg party slot for the existing field
-    // effect plumbing; the HM itself is no longer a party requirement.
+    // Received field HMs are unlocked by their badges in this fork. If no
+    // party Pokémon knows the HM, use the first non-egg party slot for the
+    // existing field effect plumbing.
     if (gSpecialVar_Result == PARTY_SIZE
      && IsMoveHM(move)
      && IsFieldMoveUnlocked(fieldMove))

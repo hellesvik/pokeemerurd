@@ -23,8 +23,8 @@ encounters may select non-Water and non-Flying species from that pool.
 
 The selected maximum generation limits randomized species. Eggs, gifts,
 fossils, and static encounters are randomized too. The table below includes
-every BST-gated pool. Fossil choices and Steven's postgame gift use separate
-species rules rather than a BST range.
+every BST-gated pool. Fossil choices and Steven's Mossdeep gift, available
+after the eighth Badge, use separate species rules rather than a BST range.
 
 Ordinary static encounters such as Kecleon, Voltorb, and Electrode use the
 listed range for their current area. The bounds are inclusive.

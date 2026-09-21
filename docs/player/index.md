@@ -28,8 +28,9 @@ options do, what rules are active, and what to expect from important battles.
   NUZLOCKE, so the opening rival fight cannot end a run.
 - Those two modes force battle style to **Set**.
 - Running Shoes are available from the beginning.
-- HMs are usable after their badge requirement without teaching the move to a
-  Pokémon; interact with the relevant object or terrain.
+- HMs are usable after receiving the HM and meeting its badge requirement,
+  without teaching the move to a Pokémon; interact with the relevant object
+  or terrain.
 - TMs are single-use by default. The **Reusable TMs** option changes that.
 - Trainer abilities, held items, and moves may be intentionally unusual.
 

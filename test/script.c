@@ -1,5 +1,6 @@
 #include "global.h"
 #include "event_data.h"
+#include "field_move.h"
 #include "pokemon.h"
 #include "test/test.h"
 #include "test/overworld_script.h"
@@ -9,7 +10,7 @@
 #include "constants/field_move.h"
 #include "constants/moves.h"
 
-TEST("Badge-unlocked HMs do not require a Pokémon that knows the move")
+TEST("Received field HMs do not require a Pokémon that knows the move")
 {
     ZeroPlayerPartyMons();
     CreateMon(&gParties[B_TRAINER_PLAYER][0], SPECIES_WOBBUFFET, 10, 0, OTID_STRUCT_PLAYER_ID);
@@ -19,10 +20,54 @@ TEST("Badge-unlocked HMs do not require a Pokémon that knows the move")
     EXPECT_EQ(gSpecialVar_Result, PARTY_SIZE);
 
     FlagSet(FLAG_BADGE01_GET);
+    FlagClear(FLAG_RECEIVED_HM_CUT);
+    RUN_OVERWORLD_SCRIPT(checkfieldmove FIELD_MOVE_CUT, TRUE;);
+    EXPECT_EQ(gSpecialVar_Result, PARTY_SIZE);
+
+    FlagSet(FLAG_RECEIVED_HM_CUT);
     RUN_OVERWORLD_SCRIPT(checkfieldmove FIELD_MOVE_CUT, TRUE;);
     EXPECT_EQ(gSpecialVar_Result, 0);
 
     FlagClear(FLAG_BADGE01_GET);
+    FlagClear(FLAG_RECEIVED_HM_CUT);
+}
+
+TEST("Every Emerald HM field move requires both its badge and received flag")
+{
+    static const struct
+    {
+        enum FieldMove fieldMove;
+        u16 badgeFlag;
+        u16 receivedFlag;
+    } sFieldHms[] =
+    {
+        { FIELD_MOVE_CUT,        FLAG_BADGE01_GET, FLAG_RECEIVED_HM_CUT },
+        { FIELD_MOVE_FLASH,      FLAG_BADGE02_GET, FLAG_RECEIVED_HM_FLASH },
+        { FIELD_MOVE_ROCK_SMASH, FLAG_BADGE03_GET, FLAG_RECEIVED_HM_ROCK_SMASH },
+        { FIELD_MOVE_STRENGTH,   FLAG_BADGE04_GET, FLAG_RECEIVED_HM_STRENGTH },
+        { FIELD_MOVE_SURF,       FLAG_BADGE05_GET, FLAG_RECEIVED_HM_SURF },
+        { FIELD_MOVE_FLY,        FLAG_BADGE06_GET, FLAG_RECEIVED_HM_FLY },
+        { FIELD_MOVE_DIVE,       FLAG_BADGE07_GET, FLAG_RECEIVED_HM_DIVE },
+        { FIELD_MOVE_WATERFALL,  FLAG_BADGE08_GET, FLAG_RECEIVED_HM_WATERFALL },
+    };
+
+    for (u32 i = 0; i < ARRAY_COUNT(sFieldHms); i++)
+    {
+        FlagClear(sFieldHms[i].badgeFlag);
+        FlagClear(sFieldHms[i].receivedFlag);
+        EXPECT(!IsFieldMoveUnlocked(sFieldHms[i].fieldMove));
+
+        FlagSet(sFieldHms[i].badgeFlag);
+        EXPECT(!IsFieldMoveUnlocked(sFieldHms[i].fieldMove));
+
+        FlagSet(sFieldHms[i].receivedFlag);
+        EXPECT(IsFieldMoveUnlocked(sFieldHms[i].fieldMove));
+
+        FlagClear(sFieldHms[i].badgeFlag);
+        EXPECT(!IsFieldMoveUnlocked(sFieldHms[i].fieldMove));
+
+        FlagClear(sFieldHms[i].receivedFlag);
+    }
 }
 
 TEST("Script_HasNoEffect control flow")

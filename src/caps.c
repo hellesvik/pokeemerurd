@@ -86,6 +86,7 @@ static const u16 sCapNorman[] = { TRAINER_NORMAN_1, TRAINER_NONE };
 static const u16 sCapShellyWeatherInstitute[] = { TRAINER_SHELLY_WEATHER_INSTITUTE, TRAINER_NONE };
 static const u16 sCapWinona[] = { TRAINER_WINONA_1, TRAINER_NONE };
 static const u16 sCapMaxieMagmaHideout[] = { TRAINER_MAXIE_MAGMA_HIDEOUT, TRAINER_NONE };
+static const u16 sCapMatt[] = { TRAINER_MATT, TRAINER_NONE };
 static const u16 sCapTateAndLiza[] = { TRAINER_TATE_AND_LIZA_1, TRAINER_NONE };
 static const u16 sCapMaxieTabithaMossdeep[] = { TRAINER_MAXIE_MOSSDEEP, TRAINER_TABITHA_MOSSDEEP, TRAINER_NONE };
 static const u16 sCapArchie[] = { TRAINER_ARCHIE, TRAINER_NONE };
@@ -108,6 +109,7 @@ static const struct LevelCapMilestone sLevelCapMilestones[] =
     { 33, sCapWinona },
     { 36, sCapLilycoveRival },
     { 39, sCapMaxieMagmaHideout },
+    { 40, sCapMatt },
     { 42, sCapTateAndLiza },
     { 44, sCapMaxieTabithaMossdeep },
     { 45, sCapArchie },

@@ -52,14 +52,38 @@ static EWRAM_DATA u8 sOwnedFamilyRoots[(NUM_SPECIES + 7) / 8];
 bool32 ForkIsAreaEncounterSpent(mapsec_u8_t mapSecId);
 bool32 ForkPlayerOwnsSpeciesFamily(enum Species species);
 
+static mapsec_u8_t GetEncounterMapSec(mapsec_u8_t mapSecId)
+{
+    switch (mapSecId)
+    {
+    case MAPSEC_UNDERWATER_105:
+        return MAPSEC_ROUTE_105;
+    case MAPSEC_UNDERWATER_124:
+        return MAPSEC_ROUTE_124;
+    case MAPSEC_UNDERWATER_125:
+        return MAPSEC_ROUTE_125;
+    case MAPSEC_UNDERWATER_126:
+        return MAPSEC_ROUTE_126;
+    case MAPSEC_UNDERWATER_127:
+        return MAPSEC_ROUTE_127;
+    case MAPSEC_UNDERWATER_128:
+        return MAPSEC_ROUTE_128;
+    case MAPSEC_UNDERWATER_129:
+        return MAPSEC_ROUTE_129;
+    default:
+        return mapSecId;
+    }
+}
+
 static mapsec_u8_t ForkGetCurrentMapSec(void)
 {
     if (GetSafariZoneFlag())
         return MAPSEC_SAFARI_ZONE;
 
-    // Keep separate encounter areas distinct. CorrectSpecialMapSecId maps
-    // Petalburg Woods to Route 104 for region-map display purposes.
-    return GetCurrentRegionMapSectionId();
+    // Numbered routes share one encounter above and below the water. Other
+    // named areas stay distinct. CorrectSpecialMapSecId is intentionally not
+    // used because it also merges unrelated named areas for map display.
+    return GetEncounterMapSec(GetCurrentRegionMapSectionId());
 }
 
 bool32 ForkIsAreaEncounterRuleActive(void)

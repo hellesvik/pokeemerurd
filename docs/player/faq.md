@@ -2,9 +2,9 @@
 
 ## How do HMs work?
 
-After the relevant badge is earned, interact with the tree, rock, water, or
-other field object and choose the HM action. No Pokémon needs to know the HM,
-and HM moves can be replaced when teaching another move.
+After receiving the HM and earning the relevant badge, interact with the tree,
+rock, water, or other field object and choose the HM action. No Pokémon needs
+to know the move, and HM moves can be replaced when teaching another move.
 
 ## Are TMs reusable?
 

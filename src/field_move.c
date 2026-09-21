@@ -8,12 +8,18 @@
 #include "constants/moves.h"
 #include "constants/party_menu.h"
 
+static bool32 IsHmReceived(u16 receivedFlag)
+{
+    // The shared FRLG data does not define equivalent received-HM flags.
+    return IS_FRLG || FlagGet(receivedFlag);
+}
+
 static bool32 IsFieldMoveUnlocked_Cut(void)
 {
     if (IS_FRLG)
         return FlagGet(FLAG_BADGE02_GET);
 
-    return FlagGet(FLAG_BADGE01_GET);
+    return FlagGet(FLAG_BADGE01_GET) && IsHmReceived(FLAG_RECEIVED_HM_CUT);
 }
 
 static bool32 IsFieldMoveUnlocked_Flash(void)
@@ -21,7 +27,7 @@ static bool32 IsFieldMoveUnlocked_Flash(void)
     if (IS_FRLG)
         return FlagGet(FLAG_BADGE01_GET);
 
-    return FlagGet(FLAG_BADGE02_GET);
+    return FlagGet(FLAG_BADGE02_GET) && IsHmReceived(FLAG_RECEIVED_HM_FLASH);
 }
 
 static bool32 IsFieldMoveUnlocked_RockSmash(void)
@@ -29,17 +35,17 @@ static bool32 IsFieldMoveUnlocked_RockSmash(void)
     if (IS_FRLG)
         return FlagGet(FLAG_BADGE06_GET);
 
-    return FlagGet(FLAG_BADGE03_GET);
+    return FlagGet(FLAG_BADGE03_GET) && IsHmReceived(FLAG_RECEIVED_HM_ROCK_SMASH);
 }
 
 static bool32 IsFieldMoveUnlocked_Strength(void)
 {
-    return FlagGet(FLAG_BADGE04_GET);
+    return FlagGet(FLAG_BADGE04_GET) && IsHmReceived(FLAG_RECEIVED_HM_STRENGTH);
 }
 
 static bool32 IsFieldMoveUnlocked_Surf(void)
 {
-    return FlagGet(FLAG_BADGE05_GET);
+    return FlagGet(FLAG_BADGE05_GET) && IsHmReceived(FLAG_RECEIVED_HM_SURF);
 }
 
 static bool32 IsFieldMoveUnlocked_Fly(void)
@@ -47,12 +53,12 @@ static bool32 IsFieldMoveUnlocked_Fly(void)
     if (IS_FRLG)
         return FlagGet(FLAG_BADGE03_GET);
 
-    return FlagGet(FLAG_BADGE06_GET);
+    return FlagGet(FLAG_BADGE06_GET) && IsHmReceived(FLAG_RECEIVED_HM_FLY);
 }
 
 static bool32 IsFieldMoveUnlocked_Dive(void)
 {
-    return FlagGet(FLAG_BADGE07_GET);
+    return FlagGet(FLAG_BADGE07_GET) && IsHmReceived(FLAG_RECEIVED_HM_DIVE);
 }
 
 static bool32 IsFieldMoveUnlocked_Waterfall(void)
@@ -60,7 +66,7 @@ static bool32 IsFieldMoveUnlocked_Waterfall(void)
     if (IS_FRLG)
         return FlagGet(FLAG_BADGE07_GET);
 
-    return FlagGet(FLAG_BADGE08_GET);
+    return FlagGet(FLAG_BADGE08_GET) && IsHmReceived(FLAG_RECEIVED_HM_WATERFALL);
 }
 
 static bool32 IsFieldMoveUnlocked_RockClimb(void)

@@ -15,9 +15,9 @@ configuration.
 HM moves can be replaced when teaching a new move. They can also be forgotten
 through the game's other move-replacement interfaces.
 
-Field HMs are available after their normal badge requirement is met. The
-player can interact with the relevant object or terrain directly; no party
-Pokémon needs to know or hold the HM.
+Field HMs are available after the HM has been received and its normal badge
+requirement is met. The player can interact with the relevant object or
+terrain directly; no party Pokémon needs to know the move.
 
 ## Infinite key items
 

@@ -5,11 +5,22 @@ MossdeepCity_StevensHouse_MapScripts::
 	.byte 0
 
 MossdeepCity_StevensHouse_OnLoad:
-	call_if_unset FLAG_SYS_GAME_CLEAR, MossdeepCity_StevensHouse_EventScript_HideStevensNote
+	call_if_unset FLAG_BADGE08_GET, MossdeepCity_StevensHouse_EventScript_HideStevensNote
+	call_if_unset FLAG_BADGE08_GET, MossdeepCity_StevensHouse_EventScript_KeepGiftHidden
+	call_if_set FLAG_BADGE08_GET, MossdeepCity_StevensHouse_EventScript_UpdateGiftVisibility
 	end
 
 MossdeepCity_StevensHouse_EventScript_HideStevensNote::
 	setmetatile 6, 4, METATILE_GenericBuilding_TableEdge, TRUE
+	return
+
+MossdeepCity_StevensHouse_EventScript_UpdateGiftVisibility::
+	goto_if_set FLAG_RECEIVED_BELDUM, MossdeepCity_StevensHouse_EventScript_KeepGiftHidden
+	clearflag FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_BELDUM_POKEBALL
+	return
+
+MossdeepCity_StevensHouse_EventScript_KeepGiftHidden::
+	setflag FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_BELDUM_POKEBALL
 	return
 
 MossdeepCity_StevensHouse_OnTransition:

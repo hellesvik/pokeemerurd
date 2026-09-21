@@ -78,6 +78,43 @@ class BossBattleDocsTests(unittest.TestCase):
             CHAMPION_SCRIPT.read_text(),
         )
 
+    def test_glacias_vanilluxe_holds_icy_rock(self):
+        trainer_data = TRAINERS.read_text()
+        start = trainer_data.index("=== TRAINER_GLACIA ===")
+        end = trainer_data.find("\n=== TRAINER_", start + 4)
+        team = trainer_data[start:end if end >= 0 else None]
+
+        self.assertIn("Vanilluxe @ Icy Rock", team)
+        self.assertIn("| Held item | Icy Rock | Leftovers | Lum Berry | Choice Scarf | Choice Band | Glalitite |", self.section("## Glacia — Single battle"))
+
+    def test_aqua_admin_matt_team_and_level_cap_match_design(self):
+        trainer_data = TRAINERS.read_text()
+        start = trainer_data.index("=== TRAINER_MATT ===")
+        end = trainer_data.index("\n=== TRAINER_", start + 4)
+        team = trainer_data[start:end]
+
+        expected = (
+            "Aurorus @ Icy Rock", "Ability: Snow Warning", "Level: 37",
+            "Blastoise @ Lagging Tail", "Ability: Rain Dish",
+            "Sandslash-Alola @ Occa Berry", "Ability: Slush Rush", "Level: 38",
+            "Sealeo @ Leftovers", "Ability: Ice Body",
+            "Piloswine @ Eviolite", "Ability: Snow Cloak",
+            "Gyarados @ Gyaradosite", "Ability: Intimidate", "Level: 40",
+            "- Aurora Veil", "- Aqua Tail", "- Spiky Shield", "- Chilling Water",
+            "- Sleep Talk", "- Blizzard", "- Snarl",
+        )
+        self.assertEqual(team.count("IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"), 6)
+        for entry in expected:
+            self.assertIn(entry, team)
+
+        caps = CAPS.read_text()
+        self.assertIn("static const u16 sCapMatt[] = { TRAINER_MATT, TRAINER_NONE };", caps)
+        self.assertIn("{ 40, sCapMatt },", caps)
+
+        docs = self.section("## Aqua Admin Matt")
+        self.assertIn("| Level | 37 | 37 | 38 | 37 | 38 | 40 |", docs)
+        self.assertIn("| Held item | Icy Rock | Lagging Tail | Occa Berry | Leftovers | Eviolite | Gyaradosite |", docs)
+
     def test_rivals_receive_story_boss_ivs(self):
         source = BATTLE_MAIN.read_text()
         start = source.index("static bool32 IsMaxIvTrainerClass")

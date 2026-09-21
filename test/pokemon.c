@@ -182,6 +182,9 @@ TEST("Fork rules enable a hard story-battle level cap while leaving one-use Rare
     EXPECT_EQ(GetCurrentLevelCap(), 39);
 
     SetTrainerFlag(TRAINER_MAXIE_MAGMA_HIDEOUT);
+    EXPECT_EQ(GetCurrentLevelCap(), 40);
+
+    SetTrainerFlag(TRAINER_MATT);
     EXPECT_EQ(GetCurrentLevelCap(), 42);
 
     SetTrainerFlag(TRAINER_TATE_AND_LIZA_1);
@@ -272,6 +275,7 @@ TEST("Mossdeep multi battle completes its level cap milestone")
         TRAINER_WINONA_1,
         TRAINER_MAY_LILYCOVE_TREECKO,
         TRAINER_MAXIE_MAGMA_HIDEOUT,
+        TRAINER_MATT,
         TRAINER_TATE_AND_LIZA_1,
     };
 
@@ -624,6 +628,57 @@ TEST("Fork rules track one encounter per named area")
     ForkSetAreaEncounterSpent(MAPSEC_ROUTE_101);
     EXPECT_EQ(ForkIsAreaEncounterSpent(MAPSEC_ROUTE_101), TRUE);
     EXPECT_EQ(ForkIsAreaEncounterSpent(MAPSEC_ROUTE_102), FALSE);
+}
+
+TEST("Numbered underwater routes share their surface route encounter")
+{
+    static const struct
+    {
+        u16 map;
+        mapsec_u8_t underwater;
+        mapsec_u8_t surface;
+    } routes[] =
+    {
+        { MAP_UNDERWATER_ROUTE105, MAPSEC_UNDERWATER_105, MAPSEC_ROUTE_105 },
+        { MAP_UNDERWATER_ROUTE124, MAPSEC_UNDERWATER_124, MAPSEC_ROUTE_124 },
+        { MAP_UNDERWATER_ROUTE125, MAPSEC_UNDERWATER_125, MAPSEC_ROUTE_125 },
+        { MAP_UNDERWATER_ROUTE126, MAPSEC_UNDERWATER_126, MAPSEC_ROUTE_126 },
+        { MAP_UNDERWATER_ROUTE127, MAPSEC_UNDERWATER_127, MAPSEC_ROUTE_127 },
+        { MAP_UNDERWATER_ROUTE128, MAPSEC_UNDERWATER_128, MAPSEC_ROUTE_128 },
+        { MAP_UNDERWATER_ROUTE129, MAPSEC_UNDERWATER_129, MAPSEC_ROUTE_129 },
+    };
+
+    ForkConfigureGameplayOptions(TRUE, FALSE, FORK_FAINT_RULE_OFF, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, GEN_3, TRUE, FALSE);
+    FlagSet(FLAG_ADVENTURE_STARTED);
+
+    for (u32 i = 0; i < ARRAY_COUNT(routes); i++)
+    {
+        ForkResetAreaEncounterState();
+        gSaveBlock1Ptr->location.mapGroup = MAP_GROUP(routes[i].map);
+        gSaveBlock1Ptr->location.mapNum = MAP_NUM(routes[i].map);
+        ForkSpendCurrentAreaEncounter();
+
+        EXPECT_EQ(ForkIsAreaEncounterSpent(routes[i].surface), TRUE);
+        EXPECT_EQ(ForkIsAreaEncounterSpent(routes[i].underwater), FALSE);
+
+        ForkResetAreaEncounterState();
+        ForkSetAreaEncounterSpent(routes[i].surface);
+        EXPECT_EQ(ForkShouldBlockEggHatchInCurrentArea(), TRUE);
+    }
+}
+
+TEST("Named underwater locations keep their own encounter")
+{
+    ForkConfigureGameplayOptions(TRUE, FALSE, FORK_FAINT_RULE_OFF, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, GEN_3, TRUE, FALSE);
+    ForkResetAreaEncounterState();
+    FlagSet(FLAG_ADVENTURE_STARTED);
+    gSaveBlock1Ptr->location.mapGroup = MAP_GROUP(MAP_UNDERWATER_SOOTOPOLIS_CITY);
+    gSaveBlock1Ptr->location.mapNum = MAP_NUM(MAP_UNDERWATER_SOOTOPOLIS_CITY);
+
+    ForkSpendCurrentAreaEncounter();
+
+    EXPECT_EQ(ForkIsAreaEncounterSpent(MAPSEC_UNDERWATER_SOOTOPOLIS), TRUE);
+    EXPECT_EQ(ForkIsAreaEncounterSpent(MAPSEC_SOOTOPOLIS_CITY), FALSE);
 }
 
 TEST("Fork rules can resolve a wild encounter after battle setup creates the opponent mon")

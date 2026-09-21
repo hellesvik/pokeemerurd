@@ -35,6 +35,18 @@ documented in the [reference index](./reference/index.md).
 
 ## Fork changelog
 
+### 2026-09-21
+
+- Made Steven's Mossdeep Pokémon gift available after earning the eighth
+  Badge instead of after entering the Hall of Fame. The gift remains hidden
+  before that point and after it has been claimed.
+- Rebuilt Aqua Admin Matt's Aqua Hideout team as a six-Pokémon snow and water
+  team, and added him to the level-cap progression at Lv. 40.
+- Fixed the Mossdeep Maxie & Tabitha double battle so both trainer-completion
+  flags are recorded before its Lv. 45 level-cap increase is calculated.
+- Field HMs now require both receiving the HM and earning its normal Badge;
+  knowing the move alone can no longer bypass story acquisition.
+
 ### 2026-09-20
 
 - Added a curated 200-species Underwater biome for all randomized Dive-map

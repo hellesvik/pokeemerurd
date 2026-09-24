@@ -35,6 +35,11 @@ documented in the [reference index](./reference/index.md).
 
 ## Fork changelog
 
+### 2026-09-24
+
+- Disabled affection-based battle bonuses. High friendship no longer grants
+  1-HP survival, status recovery, evasion, critical-hit, or experience bonuses.
+
 ### 2026-09-21
 
 - Made Steven's Mossdeep Pokémon gift available after earning the eighth

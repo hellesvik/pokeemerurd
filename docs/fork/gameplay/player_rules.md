@@ -62,6 +62,12 @@ either mode.
 The summary screen cycles through the Stats, IVs, and EVs views; the top-right
 label identifies the view currently displayed.
 
+## Friendship in battle
+
+Friendship does not grant affection-style battle bonuses. Pokémon cannot
+survive at 1 HP, cure their own status, evade attacks, gain extra critical-hit
+chance, or receive extra experience because of high friendship.
+
 ## Nuzlite and Nuzlocke start
 
 Catch and faint rules become active when Birch gives the Pokédex, so the

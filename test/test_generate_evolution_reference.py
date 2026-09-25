@@ -40,13 +40,11 @@ class EvolutionReferenceGeneratorTests(unittest.TestCase):
         self.assertIn("Trade → Alakazam", self.by_name["Kadabra"].evolutions)
         self.assertIn("Linking Cord → Alakazam", self.by_name["Kadabra"].evolutions)
         self.assertIn("Level 30 → Malamar", self.by_name["Inkay"].evolutions)
-        self.assertIn("Level up with 999 Gimmighoul Coins in the Bag → Gholdengo", self.by_name["Gimmighoul"].evolutions)
+        self.assertIn("Level 50 → Gholdengo", self.by_name["Gimmighoul"].evolutions)
         self.assertIn("Cracked Pot as Phony Form → Polteageist (Phony Form)", self.by_name["Sinistea"].evolutions)
         self.assertIn("Chipped Pot as Antique Form → Polteageist (Antique Form)", self.by_name["Sinistea"].evolutions)
-        self.assertEqual(
-            self.by_name["Milcery"].evolutions,
-            ("Spin in the overworld while holding a Sweet → Alcremie (form depends on the Sweet, time, and spin)",),
-        )
+        self.assertEqual(self.by_name["Milcery"].evolutions, ("Level 30 → a random Alcremie form",))
+        self.assertIn("Level 34 → Runerigus", self.by_name["Galarian Yamask"].evolutions)
         self.assertIn("Trade for Shelmet → Escavalier", self.by_name["Karrablast"].evolutions)
         self.assertIn("Level 20 with an empty party slot and at least 1 Poké Ball → Shedinja", self.by_name["Nincada"].evolutions)
         self.assertIn("Level up after defeating 3 Bisharp holding Leader's Crests → Kingambit", self.by_name["Bisharp"].evolutions)
@@ -61,10 +59,7 @@ class EvolutionReferenceGeneratorTests(unittest.TestCase):
     def test_explains_form_dependent_evolutions(self):
         self.assertIn("Level 20 as Plant Cloak, if female → Wormadam (Plant Cloak)", self.by_name["Burmy"].evolutions)
         self.assertIn("Level 30 as West Sea form → Gastrodon (West Sea)", self.by_name["Shellos"].evolutions)
-        self.assertIn(
-            "Level up as White-Striped Form, after taking at least 294 recoil damage, if male → Basculegion (Male)",
-            self.by_name["Basculin"].evolutions,
-        )
+        self.assertIn("Level 40 if male → Basculegion (Male)", self.by_name["Basculin"].evolutions)
         self.assertIn("Level 34 as Winter Form → Sawsbuck (Winter)", self.by_name["Deerling"].evolutions)
         self.assertIn("Trade as Super Size → Gourgeist (Super Size)", self.by_name["Pumpkaboo"].evolutions)
         self.assertIn("Level 25 as Own Tempo form, at evening → Lycanroc (Dusk Form)", self.by_name["Rockruff"].evolutions)

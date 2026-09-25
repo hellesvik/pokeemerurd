@@ -72,8 +72,6 @@ FORM_EVOLUTION_CONTEXT = {
     ("SPECIES_BURMY_TRASH", "SPECIES_WORMADAM_TRASH"): "as Trash Cloak",
     ("SPECIES_SHELLOS_WEST", "SPECIES_GASTRODON_WEST"): "as West Sea form",
     ("SPECIES_SHELLOS_EAST", "SPECIES_GASTRODON_EAST"): "as East Sea form",
-    ("SPECIES_BASCULIN_WHITE_STRIPED", "SPECIES_BASCULEGION_M"): "as White-Striped Form",
-    ("SPECIES_BASCULIN_WHITE_STRIPED", "SPECIES_BASCULEGION_F"): "as White-Striped Form",
     ("SPECIES_DEERLING_SPRING", "SPECIES_SAWSBUCK_SPRING"): "as Spring Form",
     ("SPECIES_DEERLING_SUMMER", "SPECIES_SAWSBUCK_SUMMER"): "as Summer Form",
     ("SPECIES_DEERLING_AUTUMN", "SPECIES_SAWSBUCK_AUTUMN"): "as Autumn Form",
@@ -380,7 +378,10 @@ def build_entries(root: Path = ROOT) -> list[EvolutionEntry]:
         evolutions = tuple(dict.fromkeys(filter(None, (_format_evolution(group, all_names, source)
                                                        for group, source in evolution_groups))))
         if name == "Milcery" and evolutions:
-            evolutions = ("Spin in the overworld while holding a Sweet → Alcremie (form depends on the Sweet, time, and spin)",)
+            if any(evolution.startswith("Spin ") for evolution in evolutions):
+                evolutions = ("Spin in the overworld while holding a Sweet → Alcremie (form depends on the Sweet, time, and spin)",)
+            elif any(evolution.startswith("Level 30 ") for evolution in evolutions):
+                evolutions = ("Level 30 → a random Alcremie form",)
         elif name == "Nincada":
             evolutions = tuple("Level 20 with an empty party slot and at least 1 Poké Ball → Shedinja"
                                if evolution.endswith("→ Shedinja") else evolution for evolution in evolutions)

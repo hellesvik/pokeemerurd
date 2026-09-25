@@ -564,7 +564,7 @@ For regional branch evolutions that normally require being in Alola, Galar, or H
 <tr><td>Whimsicott</td><td></td></tr>
 <tr><td>Petilil</td><td>Sun Stone outside the Trick House → Lilligant<br>Sun Stone in the Trick House → Hisuian Lilligant</td></tr>
 <tr><td>Lilligant</td><td></td></tr>
-<tr><td>Basculin</td><td>Level up as White-Striped Form, after taking at least 294 recoil damage, if male → Basculegion (Male)<br>Level up as White-Striped Form, after taking at least 294 recoil damage, if female → Basculegion (Female)</td></tr>
+<tr><td>Basculin</td><td>Level 40 if male → Basculegion (Male)<br>Level 40 if female → Basculegion (Female)</td></tr>
 <tr><td>Sandile</td><td>Level 29 → Krokorok</td></tr>
 <tr><td>Krokorok</td><td>Level 40 → Krookodile</td></tr>
 <tr><td>Krookodile</td><td></td></tr>
@@ -871,7 +871,7 @@ For regional branch evolutions that normally require being in Alola, Galar, or H
 <tr><td>Hisuian Lilligant</td><td></td></tr>
 <tr><td>Galarian Darumaka</td><td>Ice Stone → Galarian Darmanitan (Standard)</td></tr>
 <tr><td>Galarian Darmanitan (Standard)</td><td></td></tr>
-<tr><td>Galarian Yamask</td><td>Tablet Curse trigger after taking at least 49 damage → Runerigus</td></tr>
+<tr><td>Galarian Yamask</td><td>Level 34 → Runerigus</td></tr>
 <tr><td>Hisuian Zorua</td><td>Level 30 → Hisuian Zoroark</td></tr>
 <tr><td>Hisuian Zoroark</td><td></td></tr>
 <tr><td>Galarian Stunfisk</td><td></td></tr>
@@ -938,7 +938,7 @@ For regional branch evolutions that normally require being in Alola, Galar, or H
 <tr><td>Sirfetch'd</td><td></td></tr>
 <tr><td>Mr. Rime</td><td></td></tr>
 <tr><td>Runerigus</td><td></td></tr>
-<tr><td>Milcery</td><td>Spin in the overworld while holding a Sweet → Alcremie (form depends on the Sweet, time, and spin)</td></tr>
+<tr><td>Milcery</td><td>Level 30 → a random Alcremie form</td></tr>
 <tr><td>Alcremie</td><td></td></tr>
 <tr><td>Falinks</td><td></td></tr>
 <tr><td>Pincurchin</td><td></td></tr>
@@ -1074,7 +1074,7 @@ For regional branch evolutions that normally require being in Alola, Galar, or H
 <tr><td>Frigibax</td><td>Level 35 → Arctibax</td></tr>
 <tr><td>Arctibax</td><td>Level 54 → Baxcalibur</td></tr>
 <tr><td>Baxcalibur</td><td></td></tr>
-<tr><td>Gimmighoul</td><td>Level up with 999 Gimmighoul Coins in the Bag → Gholdengo</td></tr>
+<tr><td>Gimmighoul</td><td>Level 50 → Gholdengo</td></tr>
 <tr><td>Gholdengo</td><td></td></tr>
 <tr><td>Wo-Chien</td><td></td></tr>
 <tr><td>Chien-Pao</td><td></td></tr>

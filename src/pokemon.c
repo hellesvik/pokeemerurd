@@ -4591,6 +4591,23 @@ bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct Evoluti
     return TRUE;
 }
 
+static enum Species ResolveRandomEvolutionForm(struct Pokemon *mon, enum Species targetSpecies)
+{
+#if P_FAMILY_MILCERY
+    if (GetMonData(mon, MON_DATA_SPECIES) == SPECIES_MILCERY
+     && targetSpecies == SPECIES_ALCREMIE_STRAWBERRY_VANILLA_CREAM)
+    {
+        // There are seven Sweets and nine cream patterns. Using personality
+        // keeps the randomly assigned result stable across evolution checks.
+        const u32 regularAlcremieFormCount = 7 * 9;
+        u32 personality = GetMonData(mon, MON_DATA_PERSONALITY);
+
+        return sAlcremieFormSpeciesIdTable[personality % regularAlcremieFormCount];
+    }
+#endif
+    return targetSpecies;
+}
+
 enum Species GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 evolutionItem, struct Pokemon *tradePartner, bool32 *canStopEvo, enum EvoState evoState)
 {
     int i;
@@ -4786,7 +4803,7 @@ enum Species GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode m
         return SPECIES_NONE;
     }
 
-    return targetSpecies;
+    return ResolveRandomEvolutionForm(mon, targetSpecies);
 }
 
 bool8 IsMonPastEvolutionLevel(struct Pokemon *mon)

@@ -46,6 +46,8 @@ LTO          ?= 0
 # Makes an optimized build for release, also enabling NDEBUG macro and disabling other debugging features
 # Enables LTO by default, but can be changed in the config.mk file
 RELEASE      ?= 0
+# Builds a playtesting ROM with selected navigation and battle helpers.
+TEST_MODE    ?= 0
 
 ifeq (compare,$(MAKECMDGOALS))
   COMPARE := 1
@@ -58,6 +60,9 @@ ifeq (debug,$(MAKECMDGOALS))
 endif
 ifneq (,$(filter release tidyrelease,$(MAKECMDGOALS)))
   RELEASE := 1
+endif
+ifeq (testmode,$(MAKECMDGOALS))
+  TEST_MODE := 1
 endif
 
 include config.mk
@@ -95,12 +100,16 @@ CPP := $(PREFIX)cpp
 ifeq ($(RELEASE),1)
 	FILE_NAME := $(FILE_NAME)-release
 endif
+ifeq ($(TEST_MODE),1)
+	FILE_NAME := pokeemerurd-testmode
+endif
 
 ROM_NAME := $(FILE_NAME).gba
 OBJ_DIR_NAME := $(BUILD_DIR)/$(BUILD_NAME)
 OBJ_DIR_NAME_TEST := $(BUILD_DIR)/$(BUILD_NAME)-test
 OBJ_DIR_NAME_DEBUG := $(BUILD_DIR)/$(BUILD_NAME)-debug
 OBJ_DIR_NAME_RELEASE := $(BUILD_DIR)/$(BUILD_NAME)-release
+OBJ_DIR_NAME_TESTMODE := build/emerald-testmode
 ASSETS_DIR_NAME := $(BUILD_DIR)/assets
 
 ELF_NAME := $(ROM_NAME:.gba=.elf)
@@ -123,6 +132,9 @@ ifeq ($(DEBUG),1)
 endif
 ifeq ($(RELEASE),1)
   OBJ_DIR := $(OBJ_DIR_NAME_RELEASE)
+endif
+ifeq ($(TEST_MODE),1)
+  OBJ_DIR := $(OBJ_DIR_NAME_TESTMODE)
 endif
 ELF := $(ROM:.gba=.elf)
 MAP := $(ROM:.gba=.map)
@@ -156,7 +168,7 @@ O_LEVEL ?= g
 else
 O_LEVEL ?= 2
 endif
-CPPFLAGS := $(INCLUDE_CPP_ARGS) -Wno-trigraphs -DMODERN=1 -DTESTING=$(TEST) -D$(GAME_VERSION) -std=gnu17
+CPPFLAGS := $(INCLUDE_CPP_ARGS) -Wno-trigraphs -DMODERN=1 -DTESTING=$(TEST) -DTEST_MODE=$(TEST_MODE) -D$(GAME_VERSION) -std=gnu17
 ifeq ($(RELEASE),1)
 	override CPPFLAGS += -DRELEASE
 	ifeq ($(USE_LTO_ON_RELEASE),1)
@@ -269,7 +281,7 @@ MAKEFLAGS += --no-print-directory
 .DELETE_ON_ERROR:
 
 RULES_NO_SCAN += libagbsyscall clean clean-assets tidy tidymodern tidycheck tidyrelease generated clean-generated clean-teachables clean-teachables_intermediates
-.PHONY: all rom agbcc modern compare check debug release
+.PHONY: all rom agbcc modern compare check debug release testmode
 .PHONY: $(RULES_NO_SCAN)
 
 infoshell = $(foreach line, $(shell $1 | sed "s/ /__SPACE__/g"), $(info $(subst __SPACE__, ,$(line))))
@@ -335,6 +347,7 @@ modern: all
 compare: all
 debug: all
 release: all
+testmode: all
 # Uncomment the next line, and then comment the 4 lines after it to reenable agbcc.
 #agbcc: all
 agbcc:

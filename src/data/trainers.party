@@ -11595,21 +11595,32 @@ Music: Magma
 Double Battle: No
 AI: Basic Trainer
 
-Numel
-Level: 18
+Hippopotas
+Ability: Sand Stream
+Level: 23
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+- Dig
+- Rock Tomb
+- Sand Tomb
+- Slack Off
 
-Poochyena
-Level: 20
+Gible
+Ability: Sand Veil
+Level: 23
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+- Bulldoze
+- Dragon Rage
+- Fire Fang
+- Accelerock
 
-Numel
-Level: 22
+Combusken
+Ability: Speed Boost
+Level: 25
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
-
-Zubat
-Level: 22
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+- Vacuum Wave
+- Weather Ball
+- Incinerate
+- Air Cutter
 
 === TRAINER_JONATHAN ===
 Name: JONATHAN

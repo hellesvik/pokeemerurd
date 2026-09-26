@@ -1,5 +1,6 @@
 import unittest
 from pathlib import Path
+import re
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -9,6 +10,7 @@ CAPS = ROOT / "src/caps.c"
 BATTLE_MAIN = ROOT / "src/battle_main.c"
 TRAINERPROC = ROOT / "tools/trainerproc/main.c"
 CHAMPION_SCRIPT = ROOT / "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+MOVES_INFO = ROOT / "src/data/moves_info.h"
 
 
 class BossBattleDocsTests(unittest.TestCase):
@@ -36,6 +38,53 @@ class BossBattleDocsTests(unittest.TestCase):
         for heading, row in expected_rows.items():
             with self.subTest(heading=heading):
                 self.assertIn(row, self.section(heading))
+
+    def test_every_move_has_the_correct_type_marker(self):
+        move_types = {}
+        move_data = MOVES_INFO.read_text()
+        blocks = re.finditer(r"\[MOVE_[A-Z0-9_]+\]\s*=\s*\{(.*?)(?=\n\s*\[MOVE_|\Z)", move_data, re.S)
+        for block_match in blocks:
+            block = block_match.group(1)
+            name = re.search(r'\.name\s*=\s*(?:COMPOUND_STRING\()?\"([^\"]+)\"', block)
+            move_type = re.search(r"\.type\s*=.*?TYPE_([A-Z]+)", block)
+            if name and move_type:
+                key = re.sub(r"[^a-z0-9]", "", name.group(1).lower())
+                move_types[key] = move_type.group(1).title()
+
+        errors = []
+        marker = re.compile(r'<img [^>]*graphics/types/([a-z]+)\.png[^>]*alt="([^"]+)"[^>]*>\s*(.+)')
+        for line_number, line in enumerate(self.markdown.splitlines(), 1):
+            if not line.startswith("| Moves |"):
+                continue
+            for cell in line.removeprefix("| Moves |").removesuffix("|").split("|"):
+                for rendered_move in cell.strip().split("<br>"):
+                    match = marker.fullmatch(rendered_move.strip())
+                    if not match:
+                        errors.append(f"line {line_number}: missing type marker for {rendered_move.strip()}")
+                        continue
+                    icon_type, alt_type, move_name = match.groups()
+                    key = re.sub(r"[^a-z0-9]", "", move_name.lower())
+                    expected_type = move_types.get(key)
+                    if expected_type is None:
+                        errors.append(f"line {line_number}: unknown move {move_name}")
+                        continue
+                    expected_icon = "fight" if expected_type == "Fighting" else expected_type.lower()
+                    if icon_type != expected_icon or alt_type != expected_type:
+                        errors.append(
+                            f"line {line_number}: {move_name} is {expected_type}, marked {alt_type}/{icon_type}"
+                        )
+
+        self.assertEqual(errors, [])
+
+    def test_stat_labels_and_values_never_wrap_apart(self):
+        stat_rows = [line for line in self.markdown.splitlines() if line.startswith("| Stats |")]
+        self.assertGreater(len(stat_rows), 0)
+        for row in stat_rows:
+            with self.subTest(row=row[:80]):
+                self.assertNotRegex(row, r"(?:HP|ATK|DEF|SpA|SpD|Spe): ")
+                labels = re.findall(r"(?:HP|ATK|DEF|SpA|SpD|Spe):", row)
+                protected_values = re.findall(r"(?:HP|ATK|DEF|SpA|SpD|Spe):&nbsp;\d+", row)
+                self.assertEqual(len(protected_values), len(labels))
 
     def test_explains_fixed_and_randomized_ability_labels(self):
         self.assertIn(
@@ -216,7 +265,7 @@ class BossBattleDocsTests(unittest.TestCase):
 
         docs = self.section("## Norman")
         self.assertIn("| | Furret | Zangoose | Tauros | Bouffalant | Slaking |", docs)
-        self.assertIn("HP: 91<br>ATK: 54<br>DEF: 47<br>SpA: 37<br>SpD: 43<br>Spe: 61", docs)
+        self.assertIn("HP:&nbsp;91<br>ATK:&nbsp;54<br>DEF:&nbsp;47<br>SpA:&nbsp;37<br>SpD:&nbsp;43<br>Spe:&nbsp;61", docs)
         self.assertNotIn("Linoone", docs)
 
     def test_winonas_swellow_uses_tailwind(self):
@@ -263,7 +312,7 @@ class BossBattleDocsTests(unittest.TestCase):
 
         docs = self.section("## Maxie & Tabitha")
         self.assertIn("| | Hippowdon | Gabite | Mega Blaziken |", docs)
-        self.assertIn("HP: 138<br>ATK: 159<br>DEF: 89<br>SpA: 133<br>SpD: 89<br>Spe: 106", docs)
+        self.assertIn("HP:&nbsp;138<br>ATK:&nbsp;159<br>DEF:&nbsp;89<br>SpA:&nbsp;133<br>SpD:&nbsp;89<br>Spe:&nbsp;106", docs)
         self.assertNotIn("Volcanion", docs)
 
     def test_shelly_weather_institute_has_feraligatr(self):
@@ -279,7 +328,7 @@ class BossBattleDocsTests(unittest.TestCase):
 
         docs = self.section("## Shelly")
         self.assertIn("| | Politoed | Castform | Whiscash | Dragonair | Feraligatr |", docs)
-        self.assertIn("HP: 106<br>ATK: 82<br>DEF: 78<br>SpA: 65<br>SpD: 68<br>Spe: 64", docs)
+        self.assertIn("HP:&nbsp;106<br>ATK:&nbsp;82<br>DEF:&nbsp;78<br>SpA:&nbsp;65<br>SpD:&nbsp;68<br>Spe:&nbsp;64", docs)
 
     def test_summary_lists_all_double_battles(self):
         self.assertIn(

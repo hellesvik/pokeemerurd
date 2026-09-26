@@ -69,6 +69,9 @@ class EvolutionReferenceGeneratorTests(unittest.TestCase):
             self.by_name["Poltchageist"].evolutions,
         )
 
+    def test_stantler_evolves_on_an_unconditional_level_up(self):
+        self.assertEqual(self.by_name["Stantler"].evolutions, ("Level up → Wyrdeer",))
+
     def test_renders_generation_sections_and_source_notice(self):
         markdown = render_markdown(self.entries)
         self.assertIn("Generation 1 — Kanto", markdown)

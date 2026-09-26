@@ -245,7 +245,7 @@ For regional branch evolutions that normally require being in Alola, Galar, or H
 <tr><td>Phanpy</td><td>Level 25 → Donphan</td></tr>
 <tr><td>Donphan</td><td></td></tr>
 <tr><td>Porygon2</td><td>Trade while holding Dubious Disc → Porygon-Z<br>Dubious Disc → Porygon-Z</td></tr>
-<tr><td>Stantler</td><td>Level up after using Psyshield Bash 20 times → Wyrdeer</td></tr>
+<tr><td>Stantler</td><td>Level up → Wyrdeer</td></tr>
 <tr><td>Smeargle</td><td></td></tr>
 <tr><td>Tyrogue</td><td>Level 20 if Attack is lower than Defense → Hitmonchan<br>Level 20 if Attack is higher than Defense → Hitmonlee<br>Level 20 if Attack equals Defense → Hitmontop</td></tr>
 <tr><td>Hitmontop</td><td></td></tr>

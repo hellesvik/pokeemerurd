@@ -1295,12 +1295,44 @@ Double Battle: No
 AI: Check Bad Move
 
 Azurill
-Level: 12
+Ability: Cute Charm
+Level: 20
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Attract
+- Minimize
+- Fake Tears
+- Draining Kiss
 
-Marill
-Level: 12
+Riolu @ Focus Sash
+Ability: Prankster
+Level: 1
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Endeavor
+- Bullet Punch
+
+Magby @ Magmarizer
+Ability: Flame Body
+Level: 19
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Fire Blast
+- Flare Blitz
+- Blast Burn
+- Yawn
+
+Elekid @ Electirizer
+Ability: Static
+Level: 19
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Thunder
+- Volt Tackle
+- Bolt Strike
+- Yawn
+
+Happiny @ Quick Claw
+Ability: Natural Cure
+Level: 20
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Final Gambit
 
 === TRAINER_CHARLIE ===
 Name: CHARLIE

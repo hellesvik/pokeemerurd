@@ -29,6 +29,8 @@ IslandCave_EventScript_HideRegiEntrance::
 
 IslandCave_OnTransition:
 	setflag FLAG_LANDMARK_ISLAND_CAVE
+	setvar VAR_0x8004, SPECIES_REGICE
+	specialvar VAR_OBJ_GFX_ID_0, GetForkRandomizedStaticEncounterGraphicsId
 	call IslandCave_EventScript_ClearSteps
 	call_if_unset FLAG_DEFEATED_REGICE, IslandCave_EventScript_ShowRegice
 	end
@@ -91,7 +93,9 @@ IslandCave_EventScript_Regice::
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_REGICE, CRY_MODE_ENCOUNTER
+	setvar VAR_0x8004, SPECIES_REGICE
+	specialvar VAR_RESULT, GetForkRandomizedStaticEncounterSpeciesForScript
+	playmoncry VAR_RESULT, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
 	setwildbattle SPECIES_REGICE, 40
@@ -113,5 +117,6 @@ IslandCave_EventScript_DefeatedRegice::
 
 IslandCave_EventScript_RanFromRegice::
 	setvar VAR_0x8004, SPECIES_REGICE
+	specialvar VAR_0x8004, GetForkRandomizedStaticEncounterSpeciesForScript
 	goto Common_EventScript_LegendaryFlewAway
 	end

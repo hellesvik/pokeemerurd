@@ -11,6 +11,10 @@ to know the move, and HM moves can be replaced when teaching another move.
 By default, no. Teaching a TM consumes one copy. Turn on **Reusable TMs** in
 the CUSTOM menu if you want the traditional infinite-use behavior.
 
+## How do I releard moves?
+
+Navigate to a pokemon move menu and press Start.
+
 ## What does the Linking Cord do?
 
 It is the evolution item for Pokémon that normally evolve by trading. It is

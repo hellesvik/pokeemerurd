@@ -15,6 +15,8 @@ SkyPillar_Top_EventScript_TryRemoveRayquaza::
 	return
 
 SkyPillar_Top_OnTransition:
+	setvar VAR_0x8004, SPECIES_RAYQUAZA
+	specialvar VAR_OBJ_GFX_ID_0, GetForkRandomizedStaticEncounterGraphicsId
 	call_if_lt VAR_SKY_PILLAR_STATE, 2, SkyPillar_Top_EventScript_SetCleanLayout
 	call_if_ge VAR_SKY_PILLAR_STATE, 2, SkyPillar_Top_EventScript_TryShowRayquaza
 	end
@@ -43,7 +45,9 @@ SkyPillar_Top_EventScript_RayquazaFaceDown::
 SkyPillar_Top_EventScript_Rayquaza::
 	lockall
 	waitse
-	playmoncry SPECIES_RAYQUAZA, CRY_MODE_ENCOUNTER
+	setvar VAR_0x8004, SPECIES_RAYQUAZA
+	specialvar VAR_RESULT, GetForkRandomizedStaticEncounterSpeciesForScript
+	playmoncry VAR_RESULT, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
 	setwildbattle SPECIES_RAYQUAZA, 45
@@ -65,6 +69,7 @@ SkyPillar_Top_EventScript_DefeatedRayquaza::
 
 SkyPillar_Top_EventScript_RanFromRayquaza::
 	setvar VAR_0x8004, SPECIES_RAYQUAZA
+	specialvar VAR_0x8004, GetForkRandomizedStaticEncounterSpeciesForScript
 	goto SkyPillar_Top_EventScript_RanFromRayquaza2
 	end
 

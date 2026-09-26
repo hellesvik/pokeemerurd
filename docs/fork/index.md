@@ -35,6 +35,12 @@ documented in the [reference index](./reference/index.md).
 
 ## Fork changelog
 
+### 2026-09-26
+
+- Pokémon assigned to randomized Legendary, Mythical, and Ultra Beast static
+  slots now receive at least three perfect IVs even when the resulting species
+  is an ordinary Pokémon.
+
 ### 2026-09-24
 
 - Disabled affection-based battle bonuses. High friendship no longer grants

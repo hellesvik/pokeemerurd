@@ -31,6 +31,7 @@
 #include "constants/items.h"
 #include "constants/battle_frontier.h"
 #include "fork_encounter_randomizer.h"
+#include "fork_run.h"
 
 static void CB2_ReturnFromChooseHalfParty(void);
 static void CB2_ReturnFromChooseBattleFrontierParty(void);
@@ -118,6 +119,11 @@ bool8 DoesPartyHaveEnigmaBerry(void)
 void CreateScriptedWildMon(enum Species species, u8 level, enum Item item)
 {
     u8 heldItem[2];
+    bool32 randomizedLegendarySlot = ForkAreRandomEncountersEnabled()
+        && (gSpeciesInfo[species].isRestrictedLegendary
+         || gSpeciesInfo[species].isSubLegendary
+         || gSpeciesInfo[species].isMythical
+         || gSpeciesInfo[species].isUltraBeast);
 
     species = ResolveForkRandomizedStaticEncounterSpecies(species);
     ZeroEnemyPartyMons();
@@ -126,6 +132,11 @@ void CreateScriptedWildMon(enum Species species, u8 level, enum Item item)
         GetSynchronizedNature(STATIC_WILDMON_ORIGIN, species),
         RANDOM_UNOWN_LETTER);
     CreateMonWithIVs(&gParties[B_TRAINER_OPPONENT_A][0], species, level, personality, OTID_STRUCT_PLAYER_ID, USE_RANDOM_IVS);
+    if (randomizedLegendarySlot && gSpeciesInfo[species].perfectIVCount < LEGENDARY_PERFECT_IV_COUNT)
+    {
+        SetBoxMonPerfectIVs(&gParties[B_TRAINER_OPPONENT_A][0].box, LEGENDARY_PERFECT_IV_COUNT);
+        CalculateMonStats(&gParties[B_TRAINER_OPPONENT_A][0]);
+    }
     GiveMonInitialMoveset(&gParties[B_TRAINER_OPPONENT_A][0]);
     if (item)
     {

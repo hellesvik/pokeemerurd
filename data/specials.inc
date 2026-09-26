@@ -633,6 +633,8 @@ gSpecials::
 	def_special GetStarterPokemon
 	def_special GetForkRandomizedStevenGiftSpecies
 	def_special GetForkRandomizedWeatherInstituteGiftSpecies
+	def_special GetForkRandomizedStaticEncounterSpeciesForScript
+	def_special GetForkRandomizedStaticEncounterGraphicsId
 	def_special GetForkMirageTowerFossilSpecial
 	def_special GetForkFossilRevivalSpeciesSpecial
 	def_special GetForkFirstRevivableFossilSpecial

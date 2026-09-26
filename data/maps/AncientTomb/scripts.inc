@@ -16,6 +16,8 @@ AncientTomb_EventScript_TryRemoveRegisteel::
 
 AncientTomb_OnTransition:
 	setflag FLAG_LANDMARK_ANCIENT_TOMB
+	setvar VAR_0x8004, SPECIES_REGISTEEL
+	specialvar VAR_OBJ_GFX_ID_0, GetForkRandomizedStaticEncounterGraphicsId
 	call_if_unset FLAG_DEFEATED_REGISTEEL, AncientTomb_EventScript_ShowRegisteel
 	end
 
@@ -58,7 +60,9 @@ AncientTomb_EventScript_Registeel::
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_REGISTEEL, CRY_MODE_ENCOUNTER
+	setvar VAR_0x8004, SPECIES_REGISTEEL
+	specialvar VAR_RESULT, GetForkRandomizedStaticEncounterSpeciesForScript
+	playmoncry VAR_RESULT, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
 	setwildbattle SPECIES_REGISTEEL, 40
@@ -80,6 +84,6 @@ AncientTomb_EventScript_DefeatedRegisteel::
 
 AncientTomb_EventScript_RanFromRegisteel::
 	setvar VAR_0x8004, SPECIES_REGISTEEL
+	specialvar VAR_0x8004, GetForkRandomizedStaticEncounterSpeciesForScript
 	goto Common_EventScript_LegendaryFlewAway
 	end
-

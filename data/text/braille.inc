@@ -76,15 +76,15 @@ SealedChamber_InnerRoom_Braille_YellowEmerald:
 
 SealedChamber_InnerRoom_Braille_PurpleEmerald:
 	brailleformat 5, 6, 25, 13, 8, 9
-	.braille "PURPLE WAITS\n"
-	.braille "BELOW FIELDS\n"
-	.braille "OF FLOWERS.$"
+	.braille "PURPLE SHINES\n"
+	.braille "ON THE MOUNTAIN\n"
+	.braille "WHERE THE DEAD REST.$"
 
 SealedChamber_InnerRoom_Braille_WhiteEmerald:
 	brailleformat 6, 0, 24, 19, 9, 3
-	.braille "WHITE SHINES\n"
-	.braille "ON THE MOUNTAIN\n"
-	.braille "WHERE THE DEAD REST.$"
+	.braille "WHITE IS IN THE\n"
+	.braille "WHITE ROCK OUT\n"
+	.braille "OF PLACE.$"
 
 SealedChamber_InnerRoom_Braille_BlackEmerald:
 	brailleformat 3, 2, 27, 17, 6, 5

@@ -1,8 +1,10 @@
 #include "global.h"
+#include "event_data.h"
 #include "fork_encounter_randomizer.h"
 #include "fork_run.h"
 #include "pokemon.h"
 #include "random.h"
+#include "constants/event_objects.h"
 
 #define FORK_ENCOUNTER_RANDOMIZER_VERSION 1
 
@@ -351,4 +353,31 @@ enum Species ResolveForkRandomizedStaticEncounterSpecies(enum Species fallback)
         0,
         fallback);
     return species;
+}
+
+u16 GetForkRandomizedStaticEncounterSpeciesForScript(void)
+{
+    return ResolveForkRandomizedStaticEncounterSpecies(gSpecialVar_0x8004);
+}
+
+u16 GetForkRandomizedStaticEncounterGraphicsId(void)
+{
+    enum Species fallback = gSpecialVar_0x8004;
+
+    if (ForkAreRandomEncountersEnabled())
+        return ResolveForkRandomizedStaticEncounterSpecies(fallback) + OBJ_EVENT_MON;
+
+    switch (fallback)
+    {
+    case SPECIES_REGIROCK:
+        return OBJ_EVENT_GFX_REGIROCK;
+    case SPECIES_REGICE:
+        return OBJ_EVENT_GFX_REGICE;
+    case SPECIES_REGISTEEL:
+        return OBJ_EVENT_GFX_REGISTEEL;
+    case SPECIES_RAYQUAZA:
+        return OBJ_EVENT_GFX_RAYQUAZA_STILL;
+    default:
+        return fallback + OBJ_EVENT_MON;
+    }
 }

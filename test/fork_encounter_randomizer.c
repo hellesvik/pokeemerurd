@@ -1,10 +1,13 @@
 #include "global.h"
+#include "event_data.h"
 #include "pokemon.h"
+#include "script_pokemon_util.h"
 #include "test/test.h"
 #include "wild_encounter.h"
 #include "fork_encounter_randomizer.h"
 #include "fork_run.h"
 #include "constants/map_groups.h"
+#include "constants/event_objects.h"
 
 enum ForkEncounterBiomeForTest
 {
@@ -101,6 +104,45 @@ TEST("Biome encounter randomizer is stable for one save seed")
     second = ResolveForkRandomizedEncounterSpecies(MAP_GROUP(MAP_ROUTE101), MAP_NUM(MAP_ROUTE101), WILD_AREA_LAND, 0, SPECIES_ZIGZAGOON);
 
     EXPECT_EQ(first, second);
+}
+
+TEST("Static encounter script helpers use the battle resolver result")
+{
+    enum Species expected;
+
+    gSaveBlock3Ptr->forkEncounterRandomizerSeed = 0x53505254;
+    gSpecialVar_0x8004 = SPECIES_REGICE;
+    expected = ResolveForkRandomizedStaticEncounterSpecies(SPECIES_REGICE);
+
+    EXPECT_EQ(GetForkRandomizedStaticEncounterSpeciesForScript(), expected);
+    EXPECT_EQ(GetForkRandomizedStaticEncounterGraphicsId(), expected + OBJ_EVENT_MON);
+}
+
+TEST("Randomized legendary static slots give normal species three perfect IVs")
+{
+    enum Species randomized = SPECIES_NONE;
+    u32 seed;
+    u32 perfectIvs = 0;
+
+    ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
+        FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, GEN_9, TRUE, FALSE);
+    for (seed = 1; seed < 10000; seed++)
+    {
+        gSaveBlock3Ptr->forkEncounterRandomizerSeed = seed;
+        randomized = ResolveForkRandomizedStaticEncounterSpecies(SPECIES_RAYQUAZA);
+        if (gSpeciesInfo[randomized].perfectIVCount == 0)
+            break;
+    }
+    EXPECT_LT(seed, 10000);
+
+    CreateScriptedWildMon(SPECIES_RAYQUAZA, 45, ITEM_NONE);
+    EXPECT_EQ(GetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_SPECIES), randomized);
+    for (u32 stat = 0; stat < NUM_STATS; stat++)
+    {
+        if (GetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_HP_IV + stat) == MAX_PER_STAT_IVS)
+            perfectIvs++;
+    }
+    EXPECT_GE(perfectIvs, 3);
 }
 
 TEST("Biome encounter randomizer obeys the configured place BST cap")

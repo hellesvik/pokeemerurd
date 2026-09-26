@@ -169,8 +169,8 @@ Route109_SeashoreHouse_Text_JohannaPostBattle:
 	.string "Maybe I'll have a SODA POP.$"
 
 Route109_SeashoreHouse_Text_SimonIntro:
-	.string "I'm going to show you how great\n"
-	.string "my POKéMON are, but don't cry!$"
+	.string "Hei fer jussibassijussibassi\n"
+	.string "jom HEI SKAAL!$"
 
 Route109_SeashoreHouse_Text_SimonDefeated:
 	.string "…I lost, but I won't cry…$"
@@ -179,4 +179,3 @@ Route109_SeashoreHouse_Text_SimonPostBattle:
 	.string "If one of my POKéMON knew the move\n"
 	.string "for carrying me across water on its\l"
 	.string "back, I could get rid of this inner tube.$"
-

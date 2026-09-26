@@ -53,7 +53,17 @@ MossdeepCity_EventScript_Woman::
 	end
 
 MossdeepCity_EventScript_WhiteRock::
+	lockall
+	goto_if_set FLAG_HIDDEN_ITEM_ROUTE_117_REPEL, MossdeepCity_EventScript_WhiteRockEmpty
+	giveitem ITEM_REGI_EMERALD_WHITE
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	setflag FLAG_HIDDEN_ITEM_ROUTE_117_REPEL
+	releaseall
+	end
+
+MossdeepCity_EventScript_WhiteRockEmpty::
 	msgbox MossdeepCity_Text_ItsAWhiteRock, MSGBOX_SIGN
+	releaseall
 	end
 
 MossdeepCity_EventScript_GymSign::
@@ -425,4 +435,3 @@ MossdeepCity_Text_SootopolisNewGymLeader:
 	.string "LEADER come in.\p"
 	.string "People tell me the new LEADER once\n"
 	.string "mentored WALLACE.$"
-

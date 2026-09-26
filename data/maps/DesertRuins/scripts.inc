@@ -29,6 +29,8 @@ DesertRuins_EventScript_HideRegiEntrance::
 
 DesertRuins_OnTransition:
 	setflag FLAG_LANDMARK_DESERT_RUINS
+	setvar VAR_0x8004, SPECIES_REGIROCK
+	specialvar VAR_OBJ_GFX_ID_0, GetForkRandomizedStaticEncounterGraphicsId
 	call_if_unset FLAG_DEFEATED_REGIROCK, DesertRuins_EventScript_ShowRegirock
 	end
 
@@ -58,7 +60,9 @@ DesertRuins_EventScript_Regirock::
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_REGIROCK, CRY_MODE_ENCOUNTER
+	setvar VAR_0x8004, SPECIES_REGIROCK
+	specialvar VAR_RESULT, GetForkRandomizedStaticEncounterSpeciesForScript
+	playmoncry VAR_RESULT, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
 	setwildbattle SPECIES_REGIROCK, 40
@@ -80,6 +84,6 @@ DesertRuins_EventScript_DefeatedRegirock::
 
 DesertRuins_EventScript_RanFromRegirock::
 	setvar VAR_0x8004, SPECIES_REGIROCK
+	specialvar VAR_0x8004, GetForkRandomizedStaticEncounterSpeciesForScript
 	goto Common_EventScript_LegendaryFlewAway
 	end
-

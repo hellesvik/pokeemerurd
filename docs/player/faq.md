@@ -26,3 +26,10 @@ battle ends in the current fork configuration.
 Boss teams are allowed to use custom abilities even when the ability is not
 normally legal for that species. This is intentional and is part of the
 challenge design.
+
+## Do I have to do the bosses in order?
+
+In practice: yes. Level caps only increase once you do the next boss in
+the boss order. So if you for example beat Brawley before the Rustboro
+rival, Brawley will not increase the level cap. You have to go back
+to the Rustboro Rival and beat them before the level cap raises to 20.

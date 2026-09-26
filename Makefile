@@ -26,7 +26,7 @@ REVISION    := 2
 KEEP_TEMPS  ?= 0
 
 # `File name`.gba
-FILE_NAME := pokeemerurd
+FILE_NAME := pokeemerurd1.$(REVISION)
 BUILD_DIR := build
 
 # Compares the ROM to a checksum of the original - only makes sense using when non-modern

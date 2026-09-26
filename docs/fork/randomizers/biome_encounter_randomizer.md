@@ -266,7 +266,8 @@ rates, and available methods. The randomizer replaces species entries only.
 ## Generated data
 
 - [`biome_species_catalog.csv`](../reference/biome_species_catalog.csv) is the
-  canonical-species biome membership source. It contains 914 eligible species
+  biome membership source. It contains 914 eligible canonical species plus
+  explicitly supported wild forms, including all four seasonal Deerling forms,
   and excludes Legendary, Mythical, Ultra Beast, and Paradox species.
 - [`biome_encounter_assignments.csv`](../reference/biome_encounter_assignments.csv)
   assigns every ordinary Emerald encounter table a biome, method, slot count,

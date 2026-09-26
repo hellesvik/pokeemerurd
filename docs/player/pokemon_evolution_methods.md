@@ -602,7 +602,7 @@ For regional branch evolutions that normally require being in Alola, Galar, or H
 <tr><td>Deerling</td><td>Level 34 as Spring Form → Sawsbuck (Spring)<br>Level 34 as Summer Form → Sawsbuck (Summer)<br>Level 34 as Autumn Form → Sawsbuck (Autumn)<br>Level 34 as Winter Form → Sawsbuck (Winter)</td></tr>
 <tr><td>Sawsbuck</td><td></td></tr>
 <tr><td>Emolga</td><td></td></tr>
-<tr><td>Karrablast</td><td>Trade for Shelmet → Escavalier</td></tr>
+<tr><td>Karrablast</td><td>Linking Cord → Escavalier</td></tr>
 <tr><td>Escavalier</td><td></td></tr>
 <tr><td>Foongus</td><td>Level 39 → Amoonguss</td></tr>
 <tr><td>Amoonguss</td><td></td></tr>
@@ -630,7 +630,7 @@ For regional branch evolutions that normally require being in Alola, Galar, or H
 <tr><td>Cubchoo</td><td>Level 37 → Beartic</td></tr>
 <tr><td>Beartic</td><td></td></tr>
 <tr><td>Cryogonal</td><td></td></tr>
-<tr><td>Shelmet</td><td>Trade for Karrablast → Accelgor</td></tr>
+<tr><td>Shelmet</td><td>Linking Cord → Accelgor</td></tr>
 <tr><td>Accelgor</td><td></td></tr>
 <tr><td>Stunfisk</td><td></td></tr>
 <tr><td>Mienfoo</td><td>Level 50 → Mienshao</td></tr>

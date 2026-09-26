@@ -39,6 +39,18 @@ class CityBiomeTests(unittest.TestCase):
             re.search(r"SPECIES_[A-Z0-9_]*_MEGA(?:,|\s)", GENERATOR.OUTPUT.read_text())
         )
 
+    def test_all_deerling_forms_are_in_the_encounter_catalog(self):
+        expected = {
+            "SPECIES_DEERLING_SPRING",
+            "SPECIES_DEERLING_SUMMER",
+            "SPECIES_DEERLING_AUTUMN",
+            "SPECIES_DEERLING_WINTER",
+        }
+        with CATALOG_GENERATOR.OUTPUT_CSV.open(newline="") as catalog:
+            constants = {row["species_constant"] for row in csv.DictReader(catalog)}
+
+        self.assertTrue(expected <= constants)
+
     def test_town_and_city_encounters_use_city_biome(self):
         maps = (
             "MAP_LITTLEROOT_TOWN",

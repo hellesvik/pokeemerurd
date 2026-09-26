@@ -10,6 +10,11 @@ Held items consumed or removed during a battle are restored when the battle
 ends. This applies to player and opposing Pokémon in the current battle
 configuration.
 
+Thief and Covet handle stolen items differently depending on the encounter:
+
+- Items stolen from wild Pokémon are kept and sent to the Bag.
+- Items stolen from Trainer Pokémon are not kept after the battle.
+
 ## Replacing HM moves
 
 HM moves can be replaced when teaching a new move. They can also be forgotten

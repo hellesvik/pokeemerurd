@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Generate the biome encounter species catalog and its ODT rendition.
 
-This catalog deliberately uses canonical National Dex species, rather than
-cosmetic, battle-only, or regional form entries. The generated CSV is the
-implementation-oriented source of truth for Pokémon-to-biome assignments.
+This catalog uses canonical National Dex species plus explicitly supported
+wild forms, rather than automatically including every cosmetic, battle-only,
+or regional form entry. The generated CSV is the implementation-oriented
+source of truth for Pokémon-to-biome assignments.
 """
 
 from __future__ import annotations
@@ -145,6 +146,14 @@ MACRO_INITIALIZER_SPECIES = {
 }
 
 
+# These forms are independently obtainable in the wild and should receive the
+# same biome membership as their canonical species. Other alternate forms stay
+# excluded unless they are intentionally added here.
+WILD_FORM_VARIANTS = {
+    "DEERLING_SPRING": ("DEERLING_SUMMER", "DEERLING_AUTUMN", "DEERLING_WINTER"),
+}
+
+
 @dataclass(frozen=True)
 class Species:
     constant: str
@@ -213,6 +222,13 @@ def species_biomes(species: Species) -> tuple[str, ...]:
 
 def write_csv(species: list[Species]) -> int:
     eligible = [entry for entry in species if not entry.excluded]
+    canonical_by_constant = {entry.constant: entry for entry in eligible}
+    for canonical, variants in WILD_FORM_VARIANTS.items():
+        source = canonical_by_constant[canonical]
+        eligible.extend(
+            Species(variant, source.name, source.national_dex, source.types, False)
+            for variant in variants
+        )
     entries_by_biome: dict[str, list[Species]] = defaultdict(list)
     for entry in eligible:
         for biome in species_biomes(entry):
@@ -235,7 +251,7 @@ def main() -> int:
     if not species:
         raise RuntimeError("No canonical species could be read")
     eligible_count = write_csv(species)
-    print(f"Wrote {OUTPUT_CSV.relative_to(REPO_ROOT)} ({eligible_count} eligible canonical species).")
+    print(f"Wrote {OUTPUT_CSV.relative_to(REPO_ROOT)} ({eligible_count} eligible catalog species).")
     return 0
 
 

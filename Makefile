@@ -22,7 +22,7 @@ endif
 
 # GBA rom header
 MAKER_CODE  := 01
-REVISION    := 0
+REVISION    := 1
 KEEP_TEMPS  ?= 0
 
 # `File name`.gba

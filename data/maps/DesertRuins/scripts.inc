@@ -67,6 +67,7 @@ DesertRuins_EventScript_Regirock::
 	waitmoncry
 	setwildbattle SPECIES_REGIROCK, 40
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	setflag FLAG_DEFEATED_REGIROCK
 	special StartRegiBattle
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
 	specialvar VAR_RESULT, GetBattleOutcome

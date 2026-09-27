@@ -100,6 +100,7 @@ IslandCave_EventScript_Regice::
 	waitmoncry
 	setwildbattle SPECIES_REGICE, 40
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	setflag FLAG_DEFEATED_REGICE
 	special StartRegiBattle
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
 	specialvar VAR_RESULT, GetBattleOutcome

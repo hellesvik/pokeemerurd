@@ -35,6 +35,7 @@ TerraCave_End_EventScript_Groudon::
 	setvar VAR_LAST_TALKED, LOCALID_TERRA_CAVE_GROUDON
 	setwildbattle SPECIES_GROUDON, 70
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	setflag FLAG_DEFEATED_GROUDON
 	special BattleSetup_StartLegendaryBattle
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
 	setvar VAR_TEMP_1, 0
@@ -68,4 +69,3 @@ TerraCave_End_Movement_GroudonApproach:
 	delay_16
 	walk_down_affine
 	step_end
-

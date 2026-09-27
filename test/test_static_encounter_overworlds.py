@@ -38,3 +38,20 @@ def test_only_rayquazas_final_interactive_object_is_randomized():
     encounter = source[source.index("SkyPillar_Top_EventScript_Rayquaza::"):]
     assert "specialvar VAR_RESULT, GetForkRandomizedStaticEncounterSpeciesForScript" in encounter
     assert "playmoncry VAR_RESULT, CRY_MODE_ENCOUNTER" in encounter
+
+
+def test_randomized_legendary_static_encounters_are_consumed_before_battle():
+    encounters = {
+        "DesertRuins": ("FLAG_DEFEATED_REGIROCK", "StartRegiBattle"),
+        "IslandCave": ("FLAG_DEFEATED_REGICE", "StartRegiBattle"),
+        "AncientTomb": ("FLAG_DEFEATED_REGISTEEL", "StartRegiBattle"),
+        "SkyPillar_Top": ("FLAG_DEFEATED_RAYQUAZA", "BattleSetup_StartLegendaryBattle"),
+        "TerraCave_End": ("FLAG_DEFEATED_GROUDON", "BattleSetup_StartLegendaryBattle"),
+        "MarineCave_End": ("FLAG_DEFEATED_KYOGRE", "BattleSetup_StartLegendaryBattle"),
+    }
+
+    for map_name, (defeated_flag, battle_special) in encounters.items():
+        source = script(map_name)
+        battle_start = source.index(f"special {battle_special}")
+        preceding_script = source[:battle_start]
+        assert preceding_script.rfind(f"setflag {defeated_flag}") > preceding_script.rfind("setwildbattle ")

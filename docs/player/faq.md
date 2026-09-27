@@ -1,17 +1,15 @@
 # Player FAQ
 
-## How do HMs work?
+## What is randomized?
 
-After receiving the HM and earning the relevant badge, interact with the tree,
-rock, water, or other field object and choose the HM action. No Pokémon needs
-to know the move, and HM moves can be replaced when teaching another move.
+By default: Pokemon encounters, abilites and items. Bosses are not randomized.
 
 ## Are TMs reusable?
 
 By default, no. Teaching a TM consumes one copy. Turn on **Reusable TMs** in
 the CUSTOM menu if you want the traditional infinite-use behavior.
 
-## How do I releard moves?
+## How do I relearn moves?
 
 Navigate to a pokemon move menu and press Start.
 
@@ -22,8 +20,8 @@ sold at the Mauville Game Corner along with evolution stones.
 
 ## Are held items consumed in battle?
 
-Held items used, consumed, or removed during a battle are returned when the
-battle ends in the current fork configuration.
+Held items used, consumed, or removed during a trainer battle are returned when the
+battle ends in the current fork configuration. This is not true for wild battles.
 
 ## Why can a trainer have an “illegal” ability?
 
@@ -34,6 +32,9 @@ challenge design.
 ## Do I have to do the bosses in order?
 
 In practice: yes. Level caps only increase once you do the next boss in
-the boss order. So if you for example beat Brawley before the Rustboro
-rival, Brawley will not increase the level cap. You have to go back
-to the Rustboro Rival and beat them before the level cap raises to 20.
+the boss order. For example, if you beat Brawley before the Rustboro
+rival, you still have to go back to the Rustboro Rival and beat them 
+before the level cap raises to 20.
+
+## How many legendary static encounters can I get before the League?
+Four: Rayquoza and the three regis.

@@ -5,26 +5,17 @@ from its own seed, so results remain stable after saving and loading.
 
 ## Encounter randomizer
 
-When enabled, randomized wild encounters use the fork's biome and area pools.
-Each area has its own gradually increasing BST range based on main-story access
-order; areas may overlap. Late routes reach 460–560, Ever Grande uses 470–560,
-and Victory Road uses 490–560. The minimum configured range is 150.
+When enabled, randomize wild encounters. These will randomize encounters based
+on biomes and BST. In short: 
+- The later in the game, the better pokemon you will encounter.
+- If you fish, you are more likely to get a water type. Similar for other biomes.
 
-Towns, cities, and New Mauville normally use a dedicated City biome for land,
-surfing, fishing, and Rock Smash encounters. Dewford, Lilycove, Mossdeep, and
-Sootopolis use Beach/Coast; Lavaridge uses Volcanic; Ever Grande uses Mountain;
-Fortree uses Forest; and Pacifidlog uses Ocean. Surf encounters permit Water or Flying types;
-fishing remains Water-only. Rock Smash requires Rock, Ground, or Steel types.
-
-Dive-map encounters use a separate curated Underwater biome containing 200
-species. It mixes aquatic Pokémon with selected Ice, Dragon, fossil, ruin,
-abyssal, and freshwater species. Unlike ordinary Surf encounters, Dive
-encounters may select non-Water and non-Flying species from that pool.
-
-The selected maximum generation limits randomized species. Eggs, gifts,
-fossils, and static encounters are randomized too. The table below includes
-every BST-gated pool. Fossil choices and Steven's Mossdeep gift, available
-after the eighth Badge, use separate species rules rather than a BST range.
+Some quirks to mention are as follows:
+- Cities each have an encounter, and there exist a city biome.
+- Rock Smash, surf and fishing has typing guarantees.
+- Diving have its own biome, different from surf.
+- Fossils are randomized when received, but convert to their correct pokemon.
+- Steven house has a gift pokemon after 8th badge.
 
 Ordinary static encounters such as Kecleon, Voltorb, and Electrode use the
 listed range for their current area. The bounds are inclusive.
@@ -104,22 +95,15 @@ randomizer in the selected generation range. Randomized special static
 encounters and obtainable pre-evolutions count; Pokémon excluded by the BST
 rules do not. Items requiring multiple Pokémon require all of them. Evolution
 items with battle-held effects remain available regardless, and all Mega
-Stones are excluded when Mega Evolution is disabled. Kubfu's Scrolls can
-appear in Generation 8 because Urshifu qualifies for the special-static pool;
-Mewtwo's Mega Stones remain unavailable under the current BST ranges.
+Stones are excluded when Mega Evolution is disabled. 
 Mauville Game Corner sells evolution stones and the Linking Cord instead of
 randomized stock.
 
 ## Ability randomizer
 
-Eligible evolutionary families receive one deterministic ability. Special
-Pokémon in the 550–600 BST legendary-static pool also receive randomized
-Abilities and contribute their normal Abilities to that pool; other Legendary,
-Mythical, Ultra Beast, Paradox, and form-mechanic families remain restricted
-as described in the technical [Ability Randomizer documentation](../fork/randomizers/ability_randomizer.md).
-
-Shedinja always keeps Wonder Guard; the Nincada family is protected from
-ability randomization. Wonder Guard is never assigned to another family.
+Eligible evolutionary families receive one deterministic ability. 
+Exceptions exist, including boss battles and form change abilites.
+More info is available in the [Ability Randomizer documentation](../fork/randomizers/ability_randomizer.md).
 
 ## TM randomizer
 

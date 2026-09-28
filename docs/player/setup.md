@@ -25,9 +25,10 @@ selector remains editable in every mode.
 | Battle items | Off | Off | On |
 | Infinite Rare Candy | On | On | Off |
 | Infinite Repel | On | On | Off |
-| Player EV gain | Normal | Normal | Off |
+| Player EV gain | Off | Off | Off |
 | Item randomizer | On | On | Off |
 | Random encounters | On | On | Off |
+| Randomizer Max Gen | Gen 9 | Gen 9 | Gen 3 |
 | Random abilities | On | On | Off |
 | Mega Evolution | On | On | Off |
 | Reusable TMs | Off | Off | Off |
@@ -36,6 +37,9 @@ The **Randomizer Max Gen** selector controls the highest generation available
 to randomized encounters, eggs, gifts, and static encounters. It does not
 rewrite ordinary vanilla encounter tables. The current menu supports GEN 3
 through GEN 9.
+
+Battle items OFF blocks bag item use in Trainer battles. The Bag remains
+accessible, and wild battles allow items subject to normal catch restrictions.
 
 For the full setting descriptions and CUSTOM defaults, see [New-Game Feature
 Options](../fork/configuration/new_game_options.md).

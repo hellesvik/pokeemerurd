@@ -3,6 +3,26 @@
 #include "fork_run.h"
 #include "test/battle.h"
 
+SINGLE_BATTLE_TEST("Fork battle style honors the saved choice unless locked")
+{
+    u32 style;
+    bool32 locked;
+    PARAMETRIZE { style = OPTIONS_BATTLE_STYLE_SHIFT; locked = FALSE; }
+    PARAMETRIZE { style = OPTIONS_BATTLE_STYLE_SET; locked = FALSE; }
+    PARAMETRIZE { style = OPTIONS_BATTLE_STYLE_SHIFT; locked = TRUE; }
+    GIVEN {
+        gSaveBlock3Ptr->forkGameplayOptionsConfigured = TRUE;
+        ForkSetBattleStyleLocked(locked);
+        gSaveBlock2Ptr->optionsBattleStyle = style;
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SPLASH); MOVE(opponent, MOVE_SPLASH); }
+    } THEN {
+        EXPECT_EQ(gBattleScripting.battleStyle, locked ? OPTIONS_BATTLE_STYLE_SET : style);
+    }
+}
+
 SINGLE_BATTLE_TEST("Nuzlocke marks a player Pokemon when it faints in battle")
 {
     GIVEN {

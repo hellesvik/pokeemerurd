@@ -886,6 +886,21 @@ TEST("Fork rules force battle style to Set by default")
     EXPECT_EQ(battleStyle, OPTIONS_BATTLE_STYLE_SET);
 }
 
+TEST("Fork battle style lock survives new game initialization")
+{
+    gSaveBlock3Ptr->forkGameplayOptionsConfigured = TRUE;
+    ForkSetBattleStyleLocked(TRUE);
+    NewGameInitData();
+    EXPECT_EQ(ForkIsBattleStyleLocked(), TRUE);
+    EXPECT_EQ((u32)gSaveBlock2Ptr->optionsBattleStyle, OPTIONS_BATTLE_STYLE_SET);
+
+    ForkSetBattleStyleLocked(FALSE);
+    gSaveBlock2Ptr->optionsBattleStyle = OPTIONS_BATTLE_STYLE_SHIFT;
+    NewGameInitData();
+    EXPECT_EQ(ForkIsBattleStyleLocked(), FALSE);
+    EXPECT_EQ((u32)gSaveBlock2Ptr->optionsBattleStyle, OPTIONS_BATTLE_STYLE_SHIFT);
+}
+
 TEST("Fork randomizer generation is sanitized from save data")
 {
     u8 oldConfigured = gSaveBlock3Ptr->forkGameplayOptionsConfigured;
@@ -902,21 +917,34 @@ TEST("Fork randomizer generation is sanitized from save data")
     gSaveBlock3Ptr->forkRandomizerMaxGen = oldMaxGen;
 }
 
-TEST("Fork rules ban battle items in trainer battles")
+TEST("Fork battle items setting controls trainer battles but allows wild battles")
 {
     struct Pokemon mon;
     u32 hp;
+    u8 oldConfigured = gSaveBlock3Ptr->forkGameplayOptionsConfigured;
+    u8 oldEnabled = gSaveBlock3Ptr->forkItemsInBattleEnabled;
+    u32 oldBattleFlags = gBattleTypeFlags;
 
     CreateMon(&mon, SPECIES_WOBBUFFET, 10, 0, OTID_STRUCT_PLAYER_ID);
     hp = GetMonData(&mon, MON_DATA_MAX_HP) - 1;
     SetMonData(&mon, MON_DATA_HP, &hp);
     gPartyMenu.slotId = 0;
+    gSaveBlock3Ptr->forkGameplayOptionsConfigured = TRUE;
+    gSaveBlock3Ptr->forkItemsInBattleEnabled = FALSE;
 
     gBattleTypeFlags = 0;
     EXPECT_EQ(CannotUseItemsInBattle(ITEM_POTION, &mon), FALSE);
 
     gBattleTypeFlags = BATTLE_TYPE_TRAINER;
     EXPECT_EQ(CannotUseItemsInBattle(ITEM_POTION, &mon), TRUE);
+    gSaveBlock3Ptr->forkItemsInBattleEnabled = TRUE;
+    EXPECT_EQ(CannotUseItemsInBattle(ITEM_POTION, &mon), FALSE);
+    gBattleTypeFlags = 0;
+    EXPECT_EQ(CannotUseItemsInBattle(ITEM_POTION, &mon), FALSE);
+
+    gSaveBlock3Ptr->forkGameplayOptionsConfigured = oldConfigured;
+    gSaveBlock3Ptr->forkItemsInBattleEnabled = oldEnabled;
+    gBattleTypeFlags = oldBattleFlags;
 }
 
 TEST("Fork rules let Infinite Repel toggle off when used again")

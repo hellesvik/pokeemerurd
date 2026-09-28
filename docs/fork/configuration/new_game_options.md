@@ -1,8 +1,8 @@
 # New-Game Feature Options
 
 Before Birch's introduction, a new game presents the fork feature menu. The
-settings are stored in the save when START is pressed and apply for the rest
-of that playthrough.
+Press START to confirm the settings for that playthrough. They are written to
+the save file when the game is saved.
 
 ## Mode
 
@@ -11,33 +11,33 @@ The first row controls the preset for the remaining rules:
 - **NUZLITE**: Enables the current fork rules. This is the default and may
   gain additional Nuzlite-specific rules later.
 - **NUZLOCKE**: Enables the catch limit, level cap, and ON FAINT loss rule.
-- **NORMAL**: Disables the listed fork rules, including the faint penalty.
+- **NORMAL**: Disables challenge rules and randomizers, and allows battle items.
 - **CUSTOM**: Allows each remaining rule to be changed independently.
 
 NUZLITE and NUZLOCKE lock the battle style to Set. Their catch and faint
 rules begin when Birch gives the Pokédex.
 
 When Mode is NUZLITE, NORMAL, or NUZLOCKE, the other rows remain visible but
-are locked. Choose CUSTOM before changing them.
+are locked, except Randomizer Max Gen. Choose CUSTOM to change other rules.
 
 ### Complete preset matrix
 
 The following is the default state when each mode is selected. In `CUSTOM`,
 the values in the last column are the initial values before the player edits
-them. `ON` for Player EVs means normal EV gain is enabled.
+them. `NORMAL` for Player EVs means normal EV gain is enabled.
 
 | Setting | NUZLITE | NUZLOCKE | NORMAL | CUSTOM initial |
 | --- | --- | --- | --- | --- |
 | Catch Limit | ON | ON | OFF | OFF |
 | Faint Rule | 1/WHITEOUT | ON FAINT | OFF | OFF |
 | Level Cap | ON | ON | OFF | OFF |
-| Items in Battle | OFF | OFF | ON | ON |
+| Items in Battle | OFF | OFF | ON | OFF |
 | Infinite Rare Candy | ON | ON | OFF | OFF |
 | Infinite Repel | ON | ON | OFF | OFF |
-| Player EVs | NORMAL | NORMAL | OFF | OFF |
+| Player EVs | OFF | OFF | OFF | OFF |
 | Item Randomizer | ON | ON | OFF | OFF |
 | Random Encounters | ON | ON | OFF | OFF |
-| Randomizer Max Gen | GEN 3 | GEN 3 | GEN 3 | GEN 3 |
+| Randomizer Max Gen | GEN 9 | GEN 9 | GEN 3 | GEN 3 |
 | Random Abilities | ON | ON | OFF | OFF |
 | Mega Evolution | ON | ON | OFF | OFF |
 | Reusable TMs | OFF | OFF | OFF | OFF |
@@ -76,10 +76,13 @@ The default is **ON**, preserving the fork's current behavior.
 
 ## Items in Battle
 
-- **ON**: The player can open the Bag and use battle items during battles.
-- **OFF**: The battle-item action is disabled for the player.
+- **ON**: Allows otherwise usable bag items in Trainer battles.
+- **OFF**: Blocks bag item use in Trainer battles without consuming items.
 
-NUZLITE and NUZLOCKE default to **OFF**. NORMAL defaults to **ON**. The rule
+The Bag can still be opened. Wild battles allow items in either setting;
+Poké Balls remain subject to the catch limit and normal battle restrictions.
+
+NUZLITE, NUZLOCKE, and CUSTOM default to **OFF**. NORMAL defaults to **ON**. The rule
 can be changed in CUSTOM.
 
 ## Reusable TMs
@@ -109,7 +112,7 @@ NUZLITE enables both convenience items. NORMAL disables them; NUZLOCKE keeps
 - **NORMAL**: Player Pokémon gain EVs normally from battles.
 - **OFF**: Player Pokémon do not gain EVs from battles.
 
-NUZLITE and NUZLOCKE use **NORMAL** EV gains. NORMAL disables them. CUSTOM can
+NUZLITE, NUZLOCKE, and NORMAL disable EV gains. CUSTOM can
 change this option independently.
 
 ## Item Randomizer
@@ -148,7 +151,8 @@ offers GEN 3 through GEN 9. In the current build the compile-time
 `FORK_MAX_GEN_MONS` ceiling is GEN 9, so every menu choice is available. The
 selected value is saved per playthrough and limits randomized encounter, egg,
 gift, and static-encounter pools; it does not change vanilla encounter
-tables. The default is GEN 3. Unlike the other custom rules, this setting
+tables. NUZLITE and NUZLOCKE default to GEN 9; NORMAL and CUSTOM default to
+GEN 3. Unlike the other custom rules, this setting
 remains editable in every mode, including NUZLITE, NORMAL, and NUZLOCKE.
 
 ## Random Abilities

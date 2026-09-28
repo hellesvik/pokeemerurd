@@ -2,7 +2,9 @@
 #include "fork_encounter_randomizer.h"
 #include "fork_randomizer_catalog.h"
 #include "fork_run.h"
+#include "fork_gift_pokemon_randomizer.h"
 #include "pokemon.h"
+#include "wild_encounter.h"
 #include "constants/form_change_types.h"
 
 #define SPECIES_BITSET_SIZE ((NUM_SPECIES + 7) / 8)
@@ -19,6 +21,8 @@ EWRAM_DATA static u8 sRelevantMegaStones[ITEM_BITSET_SIZE];
 static u16 sAbilityCount;
 static u8 sMaxGeneration;
 static bool8 sInitialized;
+static bool8 sRandomEncountersEnabled;
+static u32 sTradeSeed;
 
 static bool8 GetBit(const u8 *bits, u16 index)
 {
@@ -130,13 +134,68 @@ static bool8 IsExcludedAbility(enum Ability ability)
     }
 }
 
+static void AddFixedWildSources(const struct WildPokemonInfo *info, u32 count)
+{
+    if (info == NULL)
+        return;
+    for (u32 i = 0; i < count; i++)
+    {
+        enum Species species = info->wildPokemon[i].species;
+        if (species < NUM_SPECIES && IsSpeciesEnabled(species))
+            SetBit(sAvailableSpecies, sFamilies[species]);
+    }
+}
+
+static void AddFixedEncounterSources(void)
+{
+    // Scripted Emerald encounters, gifts, roamers, fossils and the fixed trade.
+    // Wild encounters are read directly from the compiled tables below.
+    static const enum Species sources[] = {
+        SPECIES_TREECKO, SPECIES_TORCHIC, SPECIES_MUDKIP,
+        SPECIES_CHIKORITA, SPECIES_CYNDAQUIL, SPECIES_TOTODILE,
+        SPECIES_BELDUM, SPECIES_CASTFORM, SPECIES_WYNAUT, SPECIES_PICHU,
+        SPECIES_LILEEP, SPECIES_ANORITH, SPECIES_CONKELDURR,
+        SPECIES_FEEBAS, SPECIES_LATIAS, SPECIES_LATIOS,
+        SPECIES_REGIROCK, SPECIES_REGICE, SPECIES_REGISTEEL,
+        SPECIES_GROUDON, SPECIES_KYOGRE, SPECIES_RAYQUAZA,
+        SPECIES_VOLTORB, SPECIES_ELECTRODE, SPECIES_KECLEON, SPECIES_SUDOWOODO,
+        SPECIES_MEW, SPECIES_DEOXYS_NORMAL, SPECIES_LUGIA, SPECIES_HO_OH,
+    };
+
+    for (u32 i = 0; i < ARRAY_COUNT(sources); i++)
+        if (IsSpeciesEnabled(sources[i]))
+            SetBit(sAvailableSpecies, sFamilies[sources[i]]);
+
+    SetBit(sAvailableSpecies, sFamilies[GetForkRandomizedFortreeTradeSpecies()]);
+    SetBit(sAvailableSpecies, sFamilies[GetForkRandomizedRustboroTradeSpecies()]);
+
+    for (u32 i = 0; gWildMonHeaders[i].mapGroup != 0xFF; i++)
+    {
+        for (u32 time = 0; time < TIMES_OF_DAY_COUNT; time++)
+        {
+            const struct WildEncounterTypes *types = &gWildMonHeaders[i].encounterTypes[time];
+            AddFixedWildSources(types->landMonsInfo, LAND_WILD_COUNT);
+            AddFixedWildSources(types->waterMonsInfo, WATER_WILD_COUNT);
+            AddFixedWildSources(types->rockSmashMonsInfo, ROCK_WILD_COUNT);
+            AddFixedWildSources(types->fishingMonsInfo, FISH_WILD_COUNT);
+            AddFixedWildSources(types->hiddenMonsInfo, HIDDEN_WILD_COUNT);
+        }
+    }
+}
+
 static void BuildCatalog(void)
 {
     enum Species species;
     u8 maxGeneration = ForkGetRandomizerMaxGen();
-    u16 maxNationalDex = GetForkMaxNationalDex();
+    bool8 randomEncounters = ForkAreRandomEncountersEnabled();
+    // Generation limits govern randomized encounters, not fixed encounters or
+    // their evolutions. Trades still use the selected generation in their getters.
+    u8 catalogGeneration = randomEncounters ? maxGeneration : GEN_9;
+    u16 maxNationalDex = randomEncounters ? GetForkMaxNationalDex() : NATIONAL_DEX_COUNT;
 
-    if (sInitialized && sMaxGeneration == maxGeneration)
+    if (sInitialized && sMaxGeneration == maxGeneration
+     && sRandomEncountersEnabled == randomEncounters
+     && (randomEncounters || sTradeSeed == gSaveBlock3Ptr->forkItemRandomizerSeed))
         return;
 
     memset(sAvailableSpecies, 0, sizeof(sAvailableSpecies));
@@ -152,27 +211,32 @@ static void BuildCatalog(void)
     {
         const struct Evolution *evolutions;
 
-        if (!IsWithinGeneration(species, maxGeneration, maxNationalDex))
+        if (!IsWithinGeneration(species, catalogGeneration, maxNationalDex))
             continue;
         evolutions = gSpeciesInfo[species].evolutions;
         for (u16 i = 0; evolutions != NULL && evolutions[i].method != EVOLUTIONS_END; i++)
-            if (IsWithinGeneration(evolutions[i].targetSpecies, maxGeneration, maxNationalDex))
+            if (IsWithinGeneration(evolutions[i].targetSpecies, catalogGeneration, maxNationalDex))
                 JoinFamilies(species, evolutions[i].targetSpecies);
     }
 
     for (species = SPECIES_BULBASAUR; species < NUM_SPECIES; species++)
-        if (IsWithinGeneration(species, maxGeneration, maxNationalDex))
+        if (IsWithinGeneration(species, catalogGeneration, maxNationalDex))
             sFamilies[species] = FindFamily(species);
 
-    for (species = SPECIES_BULBASAUR; species < NUM_SPECIES; species++)
-        if (IsWithinGeneration(species, maxGeneration, maxNationalDex)
-         && (IsOrdinaryCandidate(species) || IsSpecialStaticCandidate(species)))
-            SetBit(sAvailableSpecies, sFamilies[species]);
+    if (randomEncounters)
+    {
+        for (species = SPECIES_BULBASAUR; species < NUM_SPECIES; species++)
+            if (IsWithinGeneration(species, catalogGeneration, maxNationalDex)
+             && (IsOrdinaryCandidate(species) || IsSpecialStaticCandidate(species)))
+                SetBit(sAvailableSpecies, sFamilies[species]);
+    }
+    else
+        AddFixedEncounterSources();
 
     // Availability is family-wide: every normal evolution reachable from a
     // candidate source is obtainable, while disconnected alternate forms stay out.
     for (species = SPECIES_BULBASAUR; species < NUM_SPECIES; species++)
-        if (IsWithinGeneration(species, maxGeneration, maxNationalDex)
+        if (IsWithinGeneration(species, catalogGeneration, maxNationalDex)
          && GetBit(sAvailableSpecies, sFamilies[species]))
             SetBit(sAvailableSpecies, species);
 
@@ -225,6 +289,8 @@ static void BuildCatalog(void)
     }
 
     sMaxGeneration = maxGeneration;
+    sRandomEncountersEnabled = randomEncounters;
+    sTradeSeed = gSaveBlock3Ptr->forkItemRandomizerSeed;
     sInitialized = TRUE;
 }
 

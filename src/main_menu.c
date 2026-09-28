@@ -1734,7 +1734,7 @@ static void Task_NewGameFeatureOptions_Init(u8 taskId)
     ShowBg(0);
     HideBg(1);
     gTasks[taskId].data[0] = 0;
-    gTasks[taskId].data[1] = (0xCBF7 & ~(0xF << 10)) | (GEN_9 << 10);
+    gTasks[taskId].data[1] = ForkNewGameOptionsPresetValues(0);
     gTasks[taskId].data[2] = 0;
     gTasks[taskId].data[3] = 0;
     gTasks[taskId].data[4] = FALSE;
@@ -1828,7 +1828,7 @@ static void Task_NewGameBirchSpeech_FeatureOptions(u8 taskId)
         {
             PlaySE(SE_SELECT);
             if (index == 3)
-                values = (values & 0x3) | (nextValues << 2);
+                values = (values & ~(0x3 << 2)) | (nextValues << 2);
             else if (index == 10)
                 values = (values & ~(0xF << 10)) | (nextValues << 10);
             else if (index == 13)
@@ -1840,6 +1840,28 @@ static void Task_NewGameBirchSpeech_FeatureOptions(u8 taskId)
         }
     }
 }
+
+#if TESTING
+void Test_RunNewGameFeatureMenu(const u16 *keys, u32 count)
+{
+    u16 oldKeys = gMain.newKeys;
+    // The test runner resets the heap between tests; discard stale UI pointers.
+    ResetBgsAndClearDma3BusyFlags(0);
+    const struct WindowTemplate emptyWindows[] = {DUMMY_WIN_TEMPLATE};
+    InitWindows(emptyWindows);
+    InitBgsFromTemplates(0, sMainMenuBgTemplates, ARRAY_COUNT(sMainMenuBgTemplates));
+    u8 taskId = CreateTask(TaskDummy, 0);
+    Task_NewGameFeatureOptions_Init(taskId);
+    for (u32 i = 0; i < count; i++)
+    {
+        gMain.newKeys = keys[i];
+        Task_NewGameBirchSpeech_FeatureOptions(taskId);
+    }
+    DestroyTask(taskId);
+    FreeAllWindowBuffers();
+    gMain.newKeys = oldKeys;
+}
+#endif
 
 static void Task_NewGameBirchSpeech_SlidePlatformAway2(u8 taskId)
 {

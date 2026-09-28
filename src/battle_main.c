@@ -3082,7 +3082,7 @@ static void ClearSetBScriptingStruct(void)
     u32 specialBattleType = gBattleScripting.specialTrainerBattleType;
     memset(&gBattleScripting, 0, sizeof(gBattleScripting));
 
-    gBattleScripting.battleStyle = OPTIONS_BATTLE_STYLE_SET;
+    gBattleScripting.battleStyle = ForkIsBattleStyleLocked() ? OPTIONS_BATTLE_STYLE_SET : gSaveBlock2Ptr->optionsBattleStyle;
     gBattleScripting.windowsType = temp;
     gBattleScripting.expOnCatch = (GetConfig(B_EXP_CATCH) >= GEN_6);
     gBattleScripting.specialTrainerBattleType = specialBattleType;

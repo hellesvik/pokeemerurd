@@ -65,7 +65,7 @@ TEST("Mega Pokemon keep their native abilities")
 TEST("Mega Pokemon do not contribute abilities to the randomizer pool")
 {
     ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
-                                 FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,
+                                 FALSE, FALSE, FALSE, FALSE, FALSE, TRUE,
                                  TRUE, GEN_4, TRUE, FALSE);
     gSaveBlock3Ptr->forkItemRandomizerSeed = 0xA11B17E5;
 
@@ -86,7 +86,7 @@ TEST("Unavailable regional forms keep their native abilities")
 TEST("Unavailable regional forms do not contribute abilities to the randomizer pool")
 {
     ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
-                                 FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,
+                                 FALSE, FALSE, FALSE, FALSE, FALSE, TRUE,
                                  TRUE, GEN_4, TRUE, FALSE);
     gSaveBlock3Ptr->forkItemRandomizerSeed = 0xA11B17E5;
 
@@ -97,7 +97,7 @@ TEST("Unavailable regional forms do not contribute abilities to the randomizer p
 TEST("Reachable regional evolutions participate in their available family")
 {
     ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
-                                 FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,
+                                 FALSE, FALSE, FALSE, FALSE, FALSE, TRUE,
                                  TRUE, GEN_7, TRUE, FALSE);
     gSaveBlock3Ptr->forkItemRandomizerSeed = 0xA11B17E5;
 
@@ -109,7 +109,7 @@ TEST("Reachable regional evolutions participate in their available family")
 TEST("Regional evolutions require the generation that introduced the form")
 {
     ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
-                                 FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,
+                                 FALSE, FALSE, FALSE, FALSE, FALSE, TRUE,
                                  TRUE, GEN_4, TRUE, FALSE);
 
     EXPECT_EQ(IsForkAbilityRandomizedSpecies(SPECIES_RAICHU_ALOLA), FALSE);
@@ -120,7 +120,7 @@ TEST("Regional evolutions require the generation that introduced the form")
 TEST("Generation 4 ability randomizer prints its finalized ability pool")
 {
     ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
-                                 FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,
+                                 FALSE, FALSE, FALSE, FALSE, FALSE, TRUE,
                                  TRUE, GEN_4, TRUE, FALSE);
     gSaveBlock3Ptr->forkItemRandomizerSeed = 0xA11B17E5;
 
@@ -140,7 +140,7 @@ TEST("Generation 4 ability randomizer prints its finalized ability pool")
 TEST("Generation 4 ability pool prints the Pokemon contributing each ability")
 {
     ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
-                                 FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,
+                                 FALSE, FALSE, FALSE, FALSE, FALSE, TRUE,
                                  TRUE, GEN_4, TRUE, FALSE);
     gSaveBlock3Ptr->forkItemRandomizerSeed = 0xA11B17E5;
 

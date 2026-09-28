@@ -234,6 +234,7 @@ void ResetMenuAndMonGlobals(void)
 
 void NewGameInitData(void)
 {
+    bool32 battleStyleLocked = ForkIsBattleStyleLocked();
     bool32 catchLimitEnabled = ForkIsCatchLimitEnabled();
     bool32 levelCapEnabled = ForkIsLevelCapEnabled();
     u8 faintRule = ForkGetFaintRule();
@@ -265,6 +266,7 @@ void NewGameInitData(void)
     ClearSav1();
     ClearSav3();
     ForkConfigureGameplayOptions(catchLimitEnabled, levelCapEnabled, faintRule, itemsInBattleEnabled, infiniteRareCandyEnabled, infiniteRepelEnabled, playerEvsEnabled, itemRandomizerEnabled, randomEncountersEnabled, randomAbilitiesEnabled, randomizerMaxGen, megaEvolutionEnabled, reusableTMsEnabled);
+    ForkSetBattleStyleLocked(battleStyleLocked);
     ClearAllMail();
     gSaveBlock2Ptr->specialSaveWarpFlags = 0;
     gSaveBlock2Ptr->gcnLinkFlags = 0;

@@ -1342,7 +1342,7 @@ bool32 CannotUseItemsInBattle(enum Item itemId, struct Pokemon *mon)
             return TRUE;
     }
 
-    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+    if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) && !ForkAreBattleItemsEnabled())
     {
         failStr = sText_ItemsCantBeUsedInTrainerBattle;
         cannotUse = TRUE;

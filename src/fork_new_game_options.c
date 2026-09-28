@@ -77,9 +77,9 @@ u16 ForkNewGameOptionsPresetValues(u8 settings)
     u16 values;
 
     if (settings == 0)
-        values = 0xCBE7; // Catch limit + level cap + conveniences + all randomizers + Mega Evolution.
+        values = 0xCB67; // Catch limit + level cap + conveniences + all randomizers + Mega Evolution; no EV gains.
     else if (settings == 1)
-        values = 0xCBEB; // Catch limit + level cap + ON FAINT + conveniences + all randomizers + Mega Evolution.
+        values = 0xCB6B; // Catch limit + level cap + ON FAINT + conveniences + all randomizers + Mega Evolution; no EV gains.
     else
         values = settings == 2 ? 0x810 : 0x800; // NORMAL keeps battle items enabled.
 

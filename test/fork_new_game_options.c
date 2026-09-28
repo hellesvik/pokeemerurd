@@ -4,10 +4,11 @@
 
 TEST("New game options page changes with L and R")
 {
-    EXPECT_EQ(ForkNewGameOptionsNextPage(0, L_BUTTON), 1);
+    EXPECT_EQ(ForkNewGameOptionsNextPage(0, L_BUTTON), 3);
     EXPECT_EQ(ForkNewGameOptionsNextPage(1, R_BUTTON), 2);
     EXPECT_EQ(ForkNewGameOptionsNextPage(0, A_BUTTON), 0);
     EXPECT_EQ(ForkNewGameOptionsNextPage(2, R_BUTTON), 3);
+    EXPECT_EQ(ForkNewGameOptionsNextPage(3, R_BUTTON), 0);
 }
 
 TEST("New game options continues with START")
@@ -36,8 +37,8 @@ TEST("New game options presets lock custom rules")
     EXPECT_EQ(ForkNewGameOptionsCanEdit(1), FALSE);
     EXPECT_EQ(ForkNewGameOptionsCanEdit(2), FALSE);
     EXPECT_EQ(ForkNewGameOptionsCanEdit(3), TRUE);
-    EXPECT_EQ(ForkNewGameOptionsPresetValues(0), 58343);
-    EXPECT_EQ(ForkNewGameOptionsPresetValues(1), 58347);
+    EXPECT_EQ(ForkNewGameOptionsPresetValues(0), 58215);
+    EXPECT_EQ(ForkNewGameOptionsPresetValues(1), 58219);
     EXPECT_EQ(ForkNewGameOptionsPresetValues(2), 2064);
 }
 

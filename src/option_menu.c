@@ -272,6 +272,30 @@ void CB2_InitOptionMenu(void)
     }
 }
 
+#if TESTING
+void Test_RunOptionMenu(const u16 *keys, u32 count)
+{
+    u16 oldKeys = gMain.newKeys;
+    u8 oldState = gMain.state;
+    IntrCallback oldVBlank = gMain.vblankCallback;
+    gMain.state = 0;
+    while (gMain.state < 11)
+        CB2_InitOptionMenu();
+    u8 taskId = FindTaskIdByFunc(Task_OptionMenuFadeIn);
+    for (u32 i = 0; i < count; i++)
+    {
+        gMain.newKeys = keys[i];
+        Task_OptionMenuProcessInput(taskId);
+    }
+    Task_OptionMenuSave(taskId);
+    DestroyTask(taskId);
+    FreeAllWindowBuffers();
+    gMain.newKeys = oldKeys;
+    gMain.state = oldState;
+    SetVBlankCallback(oldVBlank);
+}
+#endif
+
 static void Task_OptionMenuFadeIn(u8 taskId)
 {
     if (!gPaletteFade.active)
@@ -333,7 +357,8 @@ static void Task_OptionMenuProcessInput(u8 taskId)
             }
             else
             {
-                previousOption = BattleStyle_ProcessInput(gTasks[taskId].tBattleStyle);
+                previousOption = gTasks[taskId].tBattleStyle;
+                gTasks[taskId].tBattleStyle = BattleStyle_ProcessInput(gTasks[taskId].tBattleStyle);
                 if (previousOption != gTasks[taskId].tBattleStyle)
                     BattleStyle_DrawChoices(gTasks[taskId].tBattleStyle);
             }

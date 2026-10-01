@@ -23,6 +23,10 @@ sold at the Mauville Game Corner along with evolution stones.
 Held items used, consumed, or removed during a trainer battle are returned when the
 battle ends in the current fork configuration. This is not true for wild battles.
 
+## Where do I get Old Rod?
+
+The shop assistant in Olddale Town. It has been moved to earlier in the game.
+
 ## Why can a trainer have an “illegal” ability?
 
 Boss teams are allowed to use custom abilities even when the ability is not

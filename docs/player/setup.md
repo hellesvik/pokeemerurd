@@ -51,3 +51,11 @@ items, test Pokémon, or undiscovered Fly destinations are unlocked. Standard
 obedience rules apply. The Running Shoes and any quality-of-life key items
 enabled by the selected preset are intentional player features, not test-mode
 grants.
+
+## Tips for new players
+
+- Check key items as soon as possible. They are useful.
+- The Nuzlite/Nuzlocke rules only start after you get the first 5 pokeballs.
+- Old Rod is available in Olddale in this romhack.
+- You can "more remember" always.
+- NPC trades are cool if you get a wobuffet or unknown.

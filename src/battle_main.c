@@ -1872,12 +1872,16 @@ static enum BattleTrainer GetMainPartyTrainer(const struct Pokemon *party)
     return MAX_BATTLE_TRAINERS;
 }
 
-enum Ability GetTrainerMonAbilityOverride(const struct Pokemon *mon)
+enum Ability GetTrainerMonAbilityOverride(struct Pokemon *mon)
 {
     // Opponent ability overrides are only meaningful during trainer battles.
     // Wild encounters reuse the opponent party buffers, so never expose a
     // previously-created trainer's override outside that battle type.
     if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER))
+        return ABILITY_NONE;
+
+    // Mega forms use their own ability, not the trainer's base-form override.
+    if (gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES)].isMegaEvolution)
         return ABILITY_NONE;
 
     for (enum BattleTrainer trainer = B_TRAINER_PLAYER; trainer < MAX_BATTLE_TRAINERS; trainer++)
@@ -1890,6 +1894,12 @@ enum Ability GetTrainerMonAbilityOverride(const struct Pokemon *mon)
     }
 
     return ABILITY_NONE;
+}
+
+void ClearEnemyTrainerMonAbilityOverrides(void)
+{
+    memset(sTrainerPartyAbilityOverrides[B_TRAINER_OPPONENT_A], 0, sizeof(sTrainerPartyAbilityOverrides[B_TRAINER_OPPONENT_A]));
+    memset(sTrainerPartyAbilityOverrides[B_TRAINER_OPPONENT_B], 0, sizeof(sTrainerPartyAbilityOverrides[B_TRAINER_OPPONENT_B]));
 }
 
 void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon *partyEntry)

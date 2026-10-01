@@ -8315,7 +8315,6 @@ static void Cmd_healpartystatus(void)
     for (i = 0; i < PARTY_SIZE; i++)
     {
         enum Species species = GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG);
-        u8 abilityNum = GetMonData(&party[i], MON_DATA_ABILITY_NUM);
 
         if (species != SPECIES_NONE && species != SPECIES_EGG)
         {
@@ -8334,7 +8333,7 @@ static void Cmd_healpartystatus(void)
                 ability = GetBattlerAbility(partner);
             else
             {
-                ability = GetAbilityBySpecies(species, abilityNum);
+                ability = GetMonAbility(&party[i]);
                 #if TESTING
                 if (gTestRunnerEnabled)
                 {
@@ -12043,18 +12042,25 @@ static void UpdatePokeFlutePartyStatus(struct Pokemon* party, enum BattlerPositi
     enum BattlerId battler;
     u32 monToCheck, status;
     enum Species species;
-    u16 abilityNum;
     monToCheck = 0;
     for (i = 0; i < PARTY_SIZE; i++)
     {
         species = GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG);
-        abilityNum = GetMonData(&party[i], MON_DATA_ABILITY_NUM);
         status = GetMonData(&party[i], MON_DATA_STATUS);
-        if (species != SPECIES_NONE
-            && species != SPECIES_EGG
-            && status & AILMENT_FNT
-            && GetAbilityBySpecies(species, abilityNum) != ABILITY_SOUNDPROOF)
-            monToCheck |= (1 << i);
+        if (species != SPECIES_NONE && species != SPECIES_EGG && status & AILMENT_FNT)
+        {
+            enum Ability ability = GetMonAbility(&party[i]);
+            for (enum BattlerId activeBattler = 0; activeBattler < gBattlersCount; activeBattler++)
+            {
+                if (IsBattlerAlive(activeBattler) && GetBattlerMon(activeBattler) == &party[i])
+                {
+                    ability = GetBattlerAbility(activeBattler);
+                    break;
+                }
+            }
+            if (ability != ABILITY_SOUNDPROOF)
+                monToCheck |= (1 << i);
+        }
     }
     if (monToCheck)
     {

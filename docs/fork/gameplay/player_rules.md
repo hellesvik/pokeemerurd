@@ -47,6 +47,8 @@ and fainted Pokémon are restored.
 Every save also receives a reusable **Portable PC** key item. Its compact PC
 icon opens the Pokémon Storage System directly to **Move Pokémon**, so the
 player can organize their boxes while out in the field.
+It cannot be used anywhere in Ever Grande City, including the Pokémon League
+and its Pokémon Center, or on any floor of Victory Road.
 
 ## Running Shoes
 

@@ -830,6 +830,7 @@ void ZeroPlayerPartyMons(void)
 
 void ZeroEnemyPartyMons(void)
 {
+    ClearEnemyTrainerMonAbilityOverrides();
     for (s32 i = 0; i < PARTY_SIZE; i++)
     {
         ZeroMonData(&gParties[B_TRAINER_OPPONENT_A][i]);

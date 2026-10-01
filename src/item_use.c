@@ -85,6 +85,7 @@ static void ItemUseOnFieldCB_Honey(u8 taskId);
 static bool32 IsValidLocationForVsSeeker(void);
 
 static const u8 sText_CantDismountBike[] = _("You can't dismount your BIKE here.{PAUSE_UNTIL_PRESS}");
+static const u8 sText_PortablePcNoSignal[] = _("The Portable PC has no signal here.");
 static const u8 sText_ItemFinderNearby[] = _("Huh?\nThe ITEMFINDER's responding!\pThere's an item buried around here!{PAUSE_UNTIL_PRESS}");
 static const u8 sText_ItemFinderOnTop[] = _("Oh!\nThe ITEMFINDER's shaking wildly!{PAUSE_UNTIL_PRESS}");
 static const u8 sText_ItemFinderNothing[] = _("… … … …Nope!\nThere's no response.{PAUSE_UNTIL_PRESS}");
@@ -752,8 +753,34 @@ static void Task_OpenRegisteredPokeblockCase(u8 taskId)
 
 void ItemUseOutOfBattle_PokemonBoxLink(u8 taskId)
 {
+    if (!CanUsePokemonBoxLink())
+    {
+        DisplayCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem, sText_PortablePcNoSignal);
+        return;
+    }
+
     sItemUseOnFieldCB = Task_AccessPokemonBoxLink;
     SetUpItemUseOnFieldCallback(taskId);
+}
+
+bool32 CanUsePokemonBoxLink(void)
+{
+    u8 mapGroup = gSaveBlock1Ptr->location.mapGroup;
+    u8 mapNum = gSaveBlock1Ptr->location.mapNum;
+
+    if (mapGroup == MAP_GROUP(MAP_EVER_GRANDE_CITY)
+     && mapNum == MAP_NUM(MAP_EVER_GRANDE_CITY))
+        return FALSE;
+
+    if (mapGroup == MAP_GROUP(MAP_EVER_GRANDE_CITY_SIDNEYS_ROOM))
+        return FALSE;
+
+    if (mapGroup == MAP_GROUP(MAP_VICTORY_ROAD_1F)
+     && mapNum >= MAP_NUM(MAP_VICTORY_ROAD_1F)
+     && mapNum <= MAP_NUM(MAP_VICTORY_ROAD_B2F))
+        return FALSE;
+
+    return TRUE;
 }
 
 static void Task_AccessPokemonBoxLink(u8 taskId)

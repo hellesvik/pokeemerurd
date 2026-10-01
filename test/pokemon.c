@@ -862,6 +862,36 @@ TEST("Portable PC is a reusable key item that opens Pokemon storage")
     EXPECT_EQ(GetItemFieldFunc(ITEM_POKEMON_BOX_LINK), ItemUseOutOfBattle_PokemonBoxLink);
 }
 
+TEST("Portable PC is unavailable throughout Ever Grande and Victory Road")
+{
+    u8 oldGroup = gSaveBlock1Ptr->location.mapGroup;
+    u8 oldNum = gSaveBlock1Ptr->location.mapNum;
+
+    gSaveBlock1Ptr->location.mapGroup = MAP_GROUP(MAP_EVER_GRANDE_CITY);
+    gSaveBlock1Ptr->location.mapNum = MAP_NUM(MAP_EVER_GRANDE_CITY);
+    EXPECT_EQ(CanUsePokemonBoxLink(), FALSE);
+
+    gSaveBlock1Ptr->location.mapGroup = MAP_GROUP(MAP_EVER_GRANDE_CITY_SIDNEYS_ROOM);
+    for (u8 room = MAP_NUM(MAP_EVER_GRANDE_CITY_SIDNEYS_ROOM); room <= MAP_NUM(MAP_EVER_GRANDE_CITY_POKEMON_LEAGUE_2F); room++)
+    {
+        gSaveBlock1Ptr->location.mapNum = room;
+        EXPECT_EQ(CanUsePokemonBoxLink(), FALSE);
+    }
+
+    gSaveBlock1Ptr->location.mapGroup = MAP_GROUP(MAP_VICTORY_ROAD_1F);
+    for (u8 floor = MAP_NUM(MAP_VICTORY_ROAD_1F); floor <= MAP_NUM(MAP_VICTORY_ROAD_B2F); floor++)
+    {
+        gSaveBlock1Ptr->location.mapNum = floor;
+        EXPECT_EQ(CanUsePokemonBoxLink(), FALSE);
+    }
+
+    gSaveBlock1Ptr->location.mapGroup = MAP_GROUP(MAP_ROUTE128);
+    gSaveBlock1Ptr->location.mapNum = MAP_NUM(MAP_ROUTE128);
+    EXPECT_EQ(CanUsePokemonBoxLink(), TRUE);
+    gSaveBlock1Ptr->location.mapGroup = oldGroup;
+    gSaveBlock1Ptr->location.mapNum = oldNum;
+}
+
 TEST("A new game does not put a test Rayquaza in storage")
 {
     NewGameInitData();

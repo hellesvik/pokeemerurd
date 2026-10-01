@@ -14058,9 +14058,9 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Portable PC"),
         .price = 0,
         .description = COMPOUND_STRING(
-            "A compact PC that\n"
-            "lets you move\n"
-            "your {PKMN} anywhere."),
+            "A compact PC for\n"
+            "moving your {PKMN}\n"
+            "in most places."),
         .importance = 1,
         .notConsumed = TRUE,
         .pocket = POCKET_KEY_ITEMS,

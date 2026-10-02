@@ -842,7 +842,7 @@ For regional branch evolutions that normally require being in Alola, Galar, or H
 <tr><td>Stakataka</td><td></td></tr>
 <tr><td>Blacephalon</td><td></td></tr>
 <tr><td>Zeraora</td><td></td></tr>
-<tr><td>Meltan</td><td></td></tr>
+<tr><td>Meltan</td><td>Level 45 → Melmetal</td></tr>
 <tr><td>Melmetal</td><td></td></tr>
 <tr><th colspan="2">Generation 8 — Galar and Hisui</th></tr>
 <tr><td>Galarian Meowth</td><td>Level 28 → Perrserker</td></tr>

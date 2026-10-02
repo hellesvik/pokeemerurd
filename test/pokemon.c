@@ -31,6 +31,19 @@
 
 #include "field_player_avatar.h"
 
+TEST("Meltan evolves into Melmetal at level 45")
+{
+    struct Pokemon mon;
+    bool32 canStopEvo = FALSE;
+    u32 level = 45;
+
+    CreateMon(&mon, SPECIES_MELTAN, 44, 0, OTID_STRUCT_PLAYER_ID);
+    EXPECT_EQ(GetEvolutionTargetSpecies(&mon, EVO_MODE_NORMAL, ITEM_NONE, NULL, &canStopEvo, CHECK_EVO), SPECIES_NONE);
+
+    SetMonData(&mon, MON_DATA_LEVEL, &level);
+    EXPECT_EQ(GetEvolutionTargetSpecies(&mon, EVO_MODE_NORMAL, ITEM_NONE, NULL, &canStopEvo, CHECK_EVO), SPECIES_MELMETAL);
+}
+
 TEST("Regional branch evolutions require the Trick House")
 {
     struct Pokemon mon;

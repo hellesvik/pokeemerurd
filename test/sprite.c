@@ -1,9 +1,12 @@
 #include "global.h"
+#include "field_effect.h"
+#include "event_object_movement.h"
 #include "main.h"
 #include "malloc.h"
 #include "random.h"
 #include "sprite.h"
 #include "test/test.h"
+#include "constants/field_effects.h"
 
 #define OAM_MATRIX_COUNT 32
 
@@ -45,6 +48,48 @@ static void ResetSpriteData_(void)
     ResetSpriteData();
     for (i = 0; i < MAX_SPRITES; i++)
         sSpriteOrder[i] = i;
+}
+
+TEST("Optional ripple does not stay active when sprite slots are full")
+{
+    u32 i;
+
+    ResetSpriteData();
+    FieldEffectActiveListClear();
+    for (i = 0; i < MAX_SPRITES; i++)
+        CreateSprite(&gDummySpriteTemplate, 0, 0, 0);
+
+    FieldEffectStart(FLDEFF_RIPPLE);
+
+    EXPECT(!FieldEffectActiveListContains(FLDEFF_RIPPLE));
+    ResetSpriteData();
+}
+
+TEST("Puddle splash skips when sprite slots are full")
+{
+    struct ObjectEvent savedObjectEvent = gObjectEvents[0];
+    s32 savedArguments[3] = {gFieldEffectArguments[0], gFieldEffectArguments[1], gFieldEffectArguments[2]};
+    u32 i;
+
+    ResetSpriteData();
+    FieldEffectActiveListClear();
+    gObjectEvents[0].active = TRUE;
+    gObjectEvents[0].localId = 1;
+    gObjectEvents[0].mapNum = 1;
+    gObjectEvents[0].mapGroup = 1;
+    gFieldEffectArguments[0] = 1;
+    gFieldEffectArguments[1] = 1;
+    gFieldEffectArguments[2] = 1;
+    for (i = 0; i < MAX_SPRITES; i++)
+        CreateSprite(&gDummySpriteTemplate, 0, 0, 0);
+
+    FieldEffectStart(FLDEFF_SPLASH);
+
+    EXPECT(!FieldEffectActiveListContains(FLDEFF_SPLASH));
+    gObjectEvents[0] = savedObjectEvent;
+    for (i = 0; i < ARRAY_COUNT(savedArguments); i++)
+        gFieldEffectArguments[i] = savedArguments[i];
+    ResetSpriteData();
 }
 
 static void BenchmarkBuildOamBuffer(bool32 preSort)

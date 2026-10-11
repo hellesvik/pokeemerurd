@@ -35,6 +35,52 @@ documented in the [reference index](./reference/index.md).
 
 ## Fork changelog
 
+### 2026-10-11
+
+- King's Rock and other held evolution items can now be used from the Bag to
+  evolve eligible Pokémon, including Poliwhirl into Politoed.
+- Corrected the boss reference and added Steven's team to the Mossdeep Maxie
+  and Tabitha battle, clearly marked as the player's partner.
+
+### 2026-10-07
+
+- Fixed an overworld crash when all 64 sprite slots were occupied. Optional
+  effects such as puddle splashes, reflections, and weather now skip creation
+  when no slot is available.
+
+### 2026-10-03
+
+- Removed Rare Candy from Pickup and adjusted Ether chances in its place.
+
+### 2026-10-02
+
+- Meltan now evolves into Melmetal at Lv. 45.
+
+### 2026-10-01
+
+- Disabled the Portable PC throughout Ever Grande City and Victory Road.
+- Fixed Mega Evolution abilities for trainer Pokémon and cleared stale trainer
+  ability overrides between battles.
+- Updated the player FAQ and setup guide with the Old Rod's Oldale Town
+  location and other new-player tips.
+
+### 2026-09-28
+
+- Fixed new-game presets so Nuzlite and Nuzlocke disable player EV gains, and
+  fixed the faint-rule selector in the new-game menu.
+- Fixed the Battle Style option so unlocked saves can switch between Set and
+  Shift, while locked saves keep Set.
+- Restored battle-item use when the chosen rules allow it.
+- Limited randomized item and ability catalogs to obtainable Pokémon families
+  when encounter randomization is disabled.
+
+### 2026-09-27
+
+- Regirock, Regice, Registeel, Kyogre, Groudon, and Rayquaza now disappear
+  after their battles, regardless of the outcome.
+- Updated the player FAQ and randomizer guide to clarify held-item recovery,
+  level-cap progression, and encounter randomization.
+
 ### 2026-09-26
 
 - Pokémon assigned to randomized Legendary, Mythical, and Ultra Beast static

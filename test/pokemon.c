@@ -31,6 +31,18 @@
 
 #include "field_player_avatar.h"
 
+TEST("King's Rock can be used from the Bag to evolve Poliwhirl")
+{
+    struct Pokemon mon;
+    bool32 canStopEvo = FALSE;
+
+    EXPECT_EQ(GetItemType(ITEM_KINGS_ROCK), ITEM_USE_PARTY_MENU);
+    EXPECT(GetItemFieldFunc(ITEM_KINGS_ROCK) == ItemUseOutOfBattle_EvolutionStone);
+
+    CreateMon(&mon, SPECIES_POLIWHIRL, 25, 0, OTID_STRUCT_PLAYER_ID);
+    EXPECT_EQ(GetEvolutionTargetSpecies(&mon, EVO_MODE_ITEM_CHECK, ITEM_KINGS_ROCK, NULL, &canStopEvo, CHECK_EVO), SPECIES_POLITOED);
+}
+
 TEST("Meltan evolves into Melmetal at level 45")
 {
     struct Pokemon mon;

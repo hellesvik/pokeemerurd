@@ -86,6 +86,44 @@ class BossBattleDocsTests(unittest.TestCase):
                 protected_values = re.findall(r"(?:HP|ATK|DEF|SpA|SpD|Spe):&nbsp;\d+", row)
                 self.assertEqual(len(protected_values), len(labels))
 
+    def test_tate_and_liza_stats_use_battle_stat_order(self):
+        section = self.section("## Tate & Liza")
+        expected = (
+            (117, 79, 75, 95, 75, 95),
+            (122, 65, 83, 102, 83, 97),
+            (123, 64, 97, 97, 110, 72),
+            (157, 72, 81, 123, 89, 43),
+            (140, 64, 72, 97, 89, 76),
+            (140, 97, 89, 64, 72, 76),
+        )
+
+        for stats in expected:
+            rendered = (
+                f"HP:&nbsp;{stats[0]}<br>ATK:&nbsp;{stats[1]}<br>"
+                f"DEF:&nbsp;{stats[2]}<br>SpA:&nbsp;{stats[3]}<br>"
+                f"SpD:&nbsp;{stats[4]}<br>Spe:&nbsp;{stats[5]}"
+            )
+            self.assertIn(rendered, section)
+
+    def test_maxie_and_tabitha_stats_match_runtime_forms(self):
+        section = self.section("## Maxie & Tabitha")
+        expected = (
+            (128, 97, 123, 55, 81, 97),    # Gliscor, level 42
+            (139, 112, 95, 57, 95, 87),    # Stoutland, level 43
+            (129, 124, 106, 146, 111, 36),  # Mega Camerupt, level 44
+            (155, 112, 117, 75, 78, 57),   # Hippowdon, level 42
+            (124, 95, 74, 61, 65, 88),     # Gabite, level 43
+            (138, 159, 89, 133, 89, 106),  # Mega Blaziken, level 44
+        )
+
+        for stats in expected:
+            rendered = (
+                f"HP:&nbsp;{stats[0]}<br>ATK:&nbsp;{stats[1]}<br>"
+                f"DEF:&nbsp;{stats[2]}<br>SpA:&nbsp;{stats[3]}<br>"
+                f"SpD:&nbsp;{stats[4]}<br>Spe:&nbsp;{stats[5]}"
+            )
+            self.assertIn(rendered, section)
+
     def test_explains_fixed_and_randomized_ability_labels(self):
         self.assertIn(
             "Abilities shown by name are fixed team overrides. **Randomized** abilities use the save's seeded species-family ability roll",

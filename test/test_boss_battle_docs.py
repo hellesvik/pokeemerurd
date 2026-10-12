@@ -1,6 +1,7 @@
 import unittest
 from pathlib import Path
 import re
+import subprocess
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -11,6 +12,65 @@ BATTLE_MAIN = ROOT / "src/battle_main.c"
 TRAINERPROC = ROOT / "tools/trainerproc/main.c"
 CHAMPION_SCRIPT = ROOT / "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
 MOVES_INFO = ROOT / "src/data/moves_info.h"
+STAT_LABELS = ("HP", "ATK", "DEF", "SpA", "SpD", "Spe")
+STAT_FIELDS = ("baseHP", "baseAttack", "baseDefense", "baseSpAttack", "baseSpDefense", "baseSpeed")
+
+
+def party_sections(path):
+    return dict(re.findall(r"^=== (\w+) ===\n(.*?)(?=^=== |\Z)", path.read_text(), re.M | re.S))
+
+
+def party_mons(section):
+    return [block for block in section.strip().split("\n\n") if re.search(r"^Level: ", block, re.M)]
+
+
+def stat_spread(block, field, default):
+    spread = dict.fromkeys(STAT_LABELS, default)
+    match = re.search(rf"^{field}: (.+)$", block, re.M)
+    if match:
+        for value, label in re.findall(r"(\d+) (HP|Atk|Def|SpA|SpD|Spe)", match[1]):
+            spread[label.upper() if label in ("Atk", "Def") else label] = int(value)
+    return spread
+
+
+def species_stats():
+    # Preprocess the actual configuration so disabled forms, stat macros, and
+    # generation-dependent base stats follow the same settings as the ROM.
+    source = '#define TRUE 1\n#define FALSE 0\n#include "config/general.h"\n#include "config/pokemon.h"\n'
+    for path in sorted((ROOT / "src/data/pokemon/species_info").glob("gen_*_families.h")):
+        source += f'#include "{path.relative_to(ROOT)}"\n'
+    result = subprocess.run(
+        ["cpp", "-P", "-I", str(ROOT / "include"), "-I", str(ROOT), "-"],
+        input=source, text=True, capture_output=True, check=True,
+    ).stdout
+    stats = {}
+    for match in re.finditer(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)(?=\[SPECIES_|\Z)", result, re.S):
+        fields = dict(re.findall(r"\.(base\w+)\s*=\s*([^,]+),", match[2]))
+        if not all(field in fields for field in STAT_FIELDS):
+            continue
+        stats[match[1]] = tuple(fields[field].strip() for field in STAT_FIELDS)
+    aliases = dict(re.findall(r"\b(SPECIES_\w+)\s*=\s*(SPECIES_\w+)",
+                              (ROOT / "include/constants/species.h").read_text()))
+    for alias, target in aliases.items():
+        while target in aliases:
+            target = aliases[target]
+        if target in stats:
+            stats[alias] = stats[target]
+    return stats
+
+
+def base_stat_value(expression):
+    expression = expression.strip("() ")
+    conditional = re.fullmatch(r"(\d+)\s*>=\s*(\d+)\s*\?\s*(\d+)\s*:\s*(\d+)", expression)
+    if conditional:
+        left, right, yes, no = map(int, conditional.groups())
+        return yes if left >= right else no
+    # Fail on unsupported expressions instead of silently guessing.
+    return int(expression)
+
+
+def source_constant(name, prefix):
+    return prefix + re.sub(r"[^A-Z0-9]+", "_", name.upper()).strip("_")
 
 
 class BossBattleDocsTests(unittest.TestCase):
@@ -85,6 +145,98 @@ class BossBattleDocsTests(unittest.TestCase):
                 labels = re.findall(r"(?:HP|ATK|DEF|SpA|SpD|Spe):", row)
                 protected_values = re.findall(r"(?:HP|ATK|DEF|SpA|SpD|Spe):&nbsp;\d+", row)
                 self.assertEqual(len(protected_values), len(labels))
+
+    def test_every_documented_stat_matches_game_data(self):
+        trainers = party_sections(TRAINERS)
+        partners = party_sections(ROOT / "src/data/battle_partners.party")
+        bases = species_stats()
+        encounters = {
+            "Roxanne": "ROXANNE_1", "Brawley": "BRAWLY_1", "Wattson": "WATTSON_1",
+            "Maxie — Mt. Chimney": "MAXIE_MT_CHIMNEY", "Flannery": "FLANNERY_1",
+            "Norman": "NORMAN_1", "Shelly — Weather Institute": "SHELLY_WEATHER_INSTITUTE",
+            "Winona": "WINONA_1", "Maxie — Magma Hideout": "MAXIE_MAGMA_HIDEOUT",
+            "Aqua Admin Matt": "MATT", "Tate & Liza": "TATE_AND_LIZA_1",
+            "Maxie & Tabitha — Mossdeep": "MAXIE_MOSSDEEP", "Archie": "ARCHIE",
+            "Juan": "JUAN_1", "Wally": "WALLY_VR_1", "Sidney": "SIDNEY",
+            "Phoebe": "PHOEBE", "Glacia": "GLACIA", "Drake": "DRAKE",
+            "Steven — Champion": "STEVEN",
+        }
+        mega_forms = {item: species for species, item in re.findall(
+            r"FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM,\s*(SPECIES_\w+),\s*(ITEM_\w+)",
+            (ROOT / "src/data/pokemon/form_change_tables.h").read_text(),
+        )}
+        checked_rows = 0
+        checked_values = 0
+        heading = subsection = ""
+        rows = {}
+        for line_number, line in enumerate(self.markdown.splitlines(), 1):
+            if line.startswith("## "):
+                heading = line[3:]
+                subsection = ""
+            elif line.startswith("### "):
+                subsection = line[4:]
+            elif line.startswith("| |"):
+                rows = {"names": [cell.strip() for cell in line.split("|")[2:-1]]}
+            elif line.startswith("| "):
+                cells = [cell.strip() for cell in line.split("|")[1:-1]]
+                rows[cells[0]] = cells[1:]
+                if cells[0] != "Stats":
+                    continue
+                checked_rows += 1
+                is_partner = subsection.startswith("Steven's team")
+                if is_partner:
+                    team = party_mons(partners["PARTNER_STEVEN"])
+                elif subsection == "Tabitha's team":
+                    team = party_mons(trainers["TRAINER_TABITHA_MOSSDEEP"])
+                else:
+                    encounter = next((value for name, value in encounters.items()
+                                      if heading == name or heading.startswith(name + " —")), None)
+                    self.assertIsNotNone(encounter, f"Unmapped Stats row at line {line_number}: {heading}")
+                    team = party_mons(trainers[f"TRAINER_{encounter}"])
+                self.assertEqual(len(cells[1:]), len(team), f"line {line_number}: stat columns")
+                self.assertEqual(len(rows["names"]), len(team), f"line {line_number}: Pokémon columns")
+                self.assertEqual(len(rows["Level"]), len(team), f"line {line_number}: level columns")
+                for index, (cell, mon) in enumerate(zip(cells[1:], team)):
+                    name, _, item = mon.splitlines()[0].partition(" @ ")
+                    species = source_constant(name, "SPECIES_")
+                    species = mega_forms.get(source_constant(item, "ITEM_"), species)
+                    level = int(re.search(r"^Level: (\d+)$", mon, re.M)[1])
+                    ivs = stat_spread(mon, "IVs", 31) if is_partner else dict.fromkeys(STAT_LABELS, 31)
+                    evs = stat_spread(mon, "EVs", 0)
+                    nature_match = re.search(r"^(\w+) Nature$", mon, re.M)
+                    nature = nature_match[1] if is_partner and nature_match else "Hardy"
+                    # Stat order here is HP, Attack, Defense, Sp. Attack,
+                    # Sp. Defense, Speed, as in CalculateMonStats.
+                    nature_changes = {"Hardy": (None, None), "Brave": ("ATK", "Spe"),
+                                      "Impish": ("DEF", "SpA"), "Adamant": ("ATK", "SpA")}
+                    raised, lowered = nature_changes[nature]
+                    rendered = cell.split("<br>")
+                    self.assertEqual(len(rendered), 6, f"line {line_number}: {name}")
+                    self.assertEqual(int(rows["Level"][index]), level, f"{heading}: {name} level")
+                    for label, expression, documented in zip(STAT_LABELS, bases[species], rendered):
+                        with self.subTest(line=line_number, team=heading, pokemon=rows["names"][index], stat=label):
+                            self.assertRegex(documented, rf"^{label}:&nbsp;\d+$")
+                            base = base_stat_value(expression)
+                            expected = ((2 * base + ivs[label] + evs[label] // 4) * level) // 100
+                            if label == "HP":
+                                expected += level + 10
+                                if species == "SPECIES_SHEDINJA":
+                                    expected = 1
+                            else:
+                                expected += 5
+                                if label == raised:
+                                    expected = expected * 110 // 100
+                                elif label == lowered:
+                                    expected = expected * 90 // 100
+                            checked_values += 1
+                            self.assertEqual(int(documented.split("&nbsp;")[1]), expected,
+                                             f"{species}, level {level}, {nature}, IV {ivs[label]}, EV {evs[label]}")
+        self.assertEqual(checked_rows, self.markdown.count("| Stats |"))
+        self.assertEqual(checked_values, sum(
+            6 * (line.count("|") - 2) for line in self.markdown.splitlines()
+            if line.startswith("| Stats |")
+        ))
+        self.assertGreater(checked_rows, 0)
 
     def test_tate_and_liza_stats_use_battle_stat_order(self):
         section = self.section("## Tate & Liza")

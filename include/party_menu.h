@@ -148,6 +148,9 @@ bool32 SetUpFieldMove_Dive(void);
 bool32 SetUpFieldMove_RockClimb(void);
 
 #if TESTING
+s8 Test_PartyActionInput(const u16 *keys, u32 keyCount, u16 *scroll, s16 *cursor);
+bool32 Test_LevelPartyMonToCap(struct Pokemon *mon);
+u32 Test_PartyTrainingActions(u8 *count);
 s8 Test_UpdatePartySelectionSingleLayout(s8 slotId, s8 movementDir, bool8 chooseHalf, u8 lastSelectedSlot);
 #endif
 

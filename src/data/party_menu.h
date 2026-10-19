@@ -528,7 +528,7 @@ static const struct WindowTemplate sDoWhatWithMonMsgWindowTemplate =
     .bg = 2,
     .tilemapLeft = 1,
     .tilemapTop = 17,
-    .width = 16,
+    .width = 15,
     .height = 2,
     .paletteNum = 15,
     .baseBlock = 0x279,
@@ -793,6 +793,8 @@ struct
     TaskFunc func;
 } static const sCursorOptions[MENU_FIELD_MOVES] =
 {
+    [MENU_LEVEL_TO_CAP]    = {COMPOUND_STRING("LEVEL TO CAP"), CursorCb_LevelToCap},
+    [MENU_EVOLVE]          = {COMPOUND_STRING("EVOLVE"), CursorCb_Evolve},
     [MENU_SUMMARY]         = {COMPOUND_STRING("SUMMARY"),         CursorCb_Summary},
     [MENU_SWITCH]          = {COMPOUND_STRING("SWITCH"),          CursorCb_Switch},
     [MENU_CANCEL1]         = {gText_Cancel2,                      CursorCb_Cancel1},

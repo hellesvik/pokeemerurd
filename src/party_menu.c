@@ -37,6 +37,7 @@
 #include "item_use.h"
 #include "caps.h"
 #include "link.h"
+#include "list_menu.h"
 #include "link_rfu.h"
 #include "mail.h"
 #include "main.h"
@@ -68,6 +69,7 @@
 #include "text.h"
 #include "text_window.h"
 #include "trade.h"
+#include "trainer_hill.h"
 #include "union_room.h"
 #include "window.h"
 #include "constants/battle.h"
@@ -77,6 +79,7 @@
 #include "constants/form_change_types.h"
 #include "constants/item_effects.h"
 #include "constants/items.h"
+#include "constants/layouts.h"
 #include "constants/moves.h"
 #include "constants/party_menu.h"
 #include "constants/rgb.h"
@@ -84,6 +87,8 @@
 
 enum {
     MENU_SUMMARY,
+    MENU_LEVEL_TO_CAP,
+    MENU_EVOLVE,
     MENU_SWITCH,
     MENU_CANCEL1,
     MENU_ITEM,
@@ -186,7 +191,9 @@ struct PartyMenuInternal
     u32 spriteIdCancelPokeball:7;
     u32 messageId:14;
     u8 windowId[3];
-    u8 actions[8];
+    u8 actions[10];
+    struct ListMenuItem actionItems[10];
+    u8 actionListTaskId;
     u8 numActions;
     // In vanilla Emerald, only the first 0xB0 hwords (0x160 bytes) are actually used.
     // However, a full 0x100 hwords (0x200 bytes) are allocated.
@@ -247,6 +254,8 @@ static void CreateCancelConfirmPokeballSprites(void);
 static void CreateCancelConfirmWindows(u8);
 static void Task_ExitPartyMenu(u8);
 static void FreePartyPointers(void);
+static void CursorCb_LevelToCap(u8 taskId);
+static void CursorCb_Evolve(u8 taskId);
 static void PartyPaletteBufferCopy(u8);
 static void DisplayPartyPokemonDataForMultiBattle(u8);
 static void LoadPartyBoxPalette(struct PartyMenuBox *, u8);
@@ -531,6 +540,7 @@ static void InitPartyMenu(enum PartyMenuType menuType, enum PartyMenuLayout layo
         gPartyMenu.menuType = menuType;
         gPartyMenu.exitCallback = callback;
         gPartyMenu.action = partyAction;
+        sPartyMenuInternal->actionListTaskId = TASK_NONE;
         sPartyMenuInternal->messageId = messageId;
         sPartyMenuInternal->task = task;
         sPartyMenuInternal->exitCallback = NULL;
@@ -587,6 +597,11 @@ static void LoadBattlePartyCurrentOrderForLayout(void)
 static void RefreshPartyMenu(void) //Refreshes the party menu without restarting tasks
 {
     u16 i;
+    if (sPartyMenuInternal->actionListTaskId != TASK_NONE)
+    {
+        DestroyListMenuTask(sPartyMenuInternal->actionListTaskId, NULL, NULL);
+        sPartyMenuInternal->actionListTaskId = TASK_NONE;
+    }
     for (i = 0; i < ARRAY_COUNT(sPartyMenuInternal->data); i++)
         sPartyMenuInternal->data[i] = 0;
     for (i = 0; i < ARRAY_COUNT(sPartyMenuInternal->windowId); i++)
@@ -958,7 +973,11 @@ static void PartyPaletteBufferCopy(u8 palNum)
 static void FreePartyPointers(void)
 {
     if (sPartyMenuInternal)
+    {
+        if (sPartyMenuInternal->actionListTaskId != TASK_NONE)
+            DestroyListMenuTask(sPartyMenuInternal->actionListTaskId, NULL, NULL);
         Free(sPartyMenuInternal);
+    }
     if (sPartyBgTilemapBuffer)
         Free(sPartyBgTilemapBuffer);
     if (sPartyBgGfxTilemap)
@@ -2771,6 +2790,11 @@ static void DisplayPartyPokemonDescriptionText(u8 stringID, struct PartyMenuBox 
 
 static void PartyMenuRemoveWindow(u8 *ptr)
 {
+    if (ptr == &sPartyMenuInternal->windowId[0] && sPartyMenuInternal->actionListTaskId != TASK_NONE)
+    {
+        DestroyListMenuTask(sPartyMenuInternal->actionListTaskId, NULL, NULL);
+        sPartyMenuInternal->actionListTaskId = TASK_NONE;
+    }
     if (*ptr != WINDOW_NONE)
     {
         ClearStdWindowAndFrameToTransparent(*ptr, FALSE);
@@ -2851,6 +2875,12 @@ static bool8 ShouldUseChooseMonText(void)
     return FALSE;
 }
 
+static void PartyActionPrint(u8 windowId, u32 index, u8 y)
+{
+    const u8 *colors = sFontColorTable[sPartyMenuInternal->actions[index] >= MENU_FIELD_MOVES ? 4 : 3];
+    ListMenuOverrideSetColors(colors[1], colors[0], colors[2]);
+}
+
 static u8 DisplaySelectionWindow(u8 windowType)
 {
     struct WindowTemplate window;
@@ -2861,7 +2891,7 @@ static u8 DisplaySelectionWindow(u8 windowType)
     switch (windowType)
     {
     case SELECTWINDOW_ACTIONS:
-        SetWindowTemplateFields(&window, 2, 19, 19 - (sPartyMenuInternal->numActions * 2), 10, sPartyMenuInternal->numActions * 2, 14, 0x2E9);
+        SetWindowTemplateFields(&window, 2, 18, 19 - (min(sPartyMenuInternal->numActions, 8) * 2), 11, min(sPartyMenuInternal->numActions, 8) * 2, 14, 0x2E9);
         break;
     case SELECTWINDOW_ITEM:
         window = sItemGiveTakeWindowTemplate;
@@ -2900,10 +2930,32 @@ static u8 DisplaySelectionWindow(u8 windowType)
         else
             text = sCursorOptions[sPartyMenuInternal->actions[i]].text;
 
-        AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], FONT_NORMAL, cursorDimension, (i * 16) + 1, letterSpacing, 0, sFontColorTable[fontColorsId], 0, text);
+        sPartyMenuInternal->actionItems[i] = (struct ListMenuItem){text, i};
+        if (sPartyMenuInternal->numActions <= 8)
+            AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], FONT_NORMAL, cursorDimension, (i * 16) + 1, letterSpacing, 0, sFontColorTable[fontColorsId], 0, text);
     }
 
-    InitMenuInUpperLeftCorner(sPartyMenuInternal->windowId[0], sPartyMenuInternal->numActions, 0, TRUE);
+    if (sPartyMenuInternal->numActions > 8)
+    {
+        struct ListMenuTemplate template = {
+            .items = sPartyMenuInternal->actionItems,
+            .itemPrintFunc = PartyActionPrint,
+            .moveCursorFunc = ListMenuDefaultCursorMoveFunc,
+            .totalItems = sPartyMenuInternal->numActions,
+            .maxShowed = 8,
+            .windowId = sPartyMenuInternal->windowId[0],
+            .item_X = cursorDimension,
+            .upText_Y = 1,
+            .cursorPal = TEXT_COLOR_DARK_GRAY,
+            .fillValue = TEXT_COLOR_WHITE,
+            .cursorShadowPal = TEXT_COLOR_LIGHT_GRAY,
+            .fontId = FONT_NORMAL,
+            .lettersSpacing = letterSpacing,
+        };
+        sPartyMenuInternal->actionListTaskId = ListMenuInit(&template, 0, 0);
+    }
+    else
+        InitMenuInUpperLeftCorner(sPartyMenuInternal->windowId[0], sPartyMenuInternal->numActions, 0, TRUE);
     ScheduleBgCopyTilemapToVram(2);
 
     return sPartyMenuInternal->windowId[0];
@@ -2950,12 +3002,116 @@ static void SetPartyMonSelectionActions(struct Pokemon *mons, u8 slotId, u8 acti
     }
 }
 
+// These shortcuts belong only to the player's ordinary overworld party.
+static bool32 CanUsePartyTraining(struct Pokemon *mon)
+{
+    switch (gMapHeader.mapLayoutId)
+    {
+    case LAYOUT_BATTLE_ELEVATOR:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_TOWER_CORRIDOR:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_TOWER_BATTLE_ROOM:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_DOME_CORRIDOR:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_DOME_PRE_BATTLE_ROOM:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_DOME_BATTLE_ROOM:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_PALACE_CORRIDOR:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_PALACE_BATTLE_ROOM:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_FACTORY_PRE_BATTLE_ROOM:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_FACTORY_BATTLE_ROOM:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_ARENA_CORRIDOR:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_ARENA_BATTLE_ROOM:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_CORRIDOR:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_FINAL:
+        return FALSE;
+    }
+
+    return gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD
+        && gPartyMenu.layout == PARTY_LAYOUT_SINGLE
+        && gPartyMenu.action == PARTY_ACTION_CHOOSE_MON
+        && !gMain.inBattle && GetMonData(mon, MON_DATA_SPECIES) != SPECIES_NONE
+        && !GetMonData(mon, MON_DATA_IS_EGG)
+        && !MenuHelpers_IsLinkActive() && !InUnionRoom() && !InMultiPartnerRoom()
+        && !InBattlePike() && !InBattlePyramid_() && !InTrainerHillChallenge();
+}
+
+static bool32 CanLevelPartyMonToCap(struct Pokemon *mon)
+{
+    return ForkIsLevelCapEnabled() && GetMonData(mon, MON_DATA_LEVEL) < GetCurrentLevelCap();
+}
+
+static bool32 LevelPartyMonToCap(struct Pokemon *mon)
+{
+    u32 exp;
+    if (!CanLevelPartyMonToCap(mon))
+        return FALSE;
+    exp = gExperienceTables[gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES)].growthRate][GetCurrentLevelCap()];
+    if (exp <= GetMonData(mon, MON_DATA_EXP))
+        return FALSE;
+    SetMonData(mon, MON_DATA_EXP, &exp);
+    CalculateMonStats(mon);
+    return TRUE;
+}
+
+static void CursorCb_LevelToCap(u8 taskId)
+{
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][gPartyMenu.slotId];
+    if (!CanUsePartyTraining(mon) || !LevelPartyMonToCap(mon))
+    {
+        CursorCb_Cancel1(taskId);
+        return;
+    }
+    PlaySE(SE_SELECT);
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
+    DisplayPartyPokemonData(gPartyMenu.slotId);
+    CopyWindowToVram(sPartyMenuBoxes[gPartyMenu.slotId].windowId, COPYWIN_GFX);
+    GetMonNickname(mon, gStringVar1);
+    StringExpandPlaceholders(gStringVar4, COMPOUND_STRING("{STR_VAR_1} reached the level cap!"));
+    DisplayPartyMenuMessage(gStringVar4, TRUE);
+    gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+}
+
+static void CB2_ReturnToPartyMenuAfterManualEvolution(void)
+{
+    gPaletteFade.bufferTransferDisabled = TRUE;
+    InitPartyMenu(PARTY_MENU_TYPE_FIELD, KEEP_PARTY_LAYOUT, PARTY_ACTION_CHOOSE_MON, TRUE,
+                 PARTY_MSG_DO_WHAT_WITH_MON, Task_TryCreateSelectionWindow, gPartyMenu.exitCallback);
+}
+
+static void CursorCb_Evolve(u8 taskId)
+{
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][gPartyMenu.slotId];
+    bool32 canStopEvo = TRUE;
+    enum Species target = SPECIES_NONE;
+    if (CanUsePartyTraining(mon))
+        target = GetEvolutionTargetSpecies(mon, EVO_MODE_NORMAL, ITEM_NONE, NULL, &canStopEvo, CHECK_EVO);
+    if (target == SPECIES_NONE)
+    {
+        CursorCb_Cancel1(taskId);
+        return;
+    }
+    PlaySE(SE_SELECT);
+    sInitialLevel = sFinalLevel = 0;
+    GetEvolutionTargetSpecies(mon, EVO_MODE_NORMAL, ITEM_NONE, NULL, &canStopEvo, DO_EVO);
+    FreePartyPointers();
+    gCB2_AfterEvolution = CB2_ReturnToPartyMenuAfterManualEvolution;
+    BeginEvolutionScene(mon, target, canStopEvo, gPartyMenu.slotId);
+    DestroyTask(taskId);
+}
+
 static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
 {
     u8 i, j;
 
     sPartyMenuInternal->numActions = 0;
     AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_SUMMARY);
+
+    if (CanUsePartyTraining(&mons[slotId]))
+    {
+        if (CanLevelPartyMonToCap(&mons[slotId]))
+            AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_LEVEL_TO_CAP);
+        if (GetEvolutionTargetSpecies(&mons[slotId], EVO_MODE_NORMAL, ITEM_NONE, NULL, NULL, CHECK_EVO) != SPECIES_NONE)
+            AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_EVOLVE);
+    }
 
     // Add field moves to action list
     for (i = 0; i < MAX_MON_MOVES; i++)
@@ -3087,6 +3243,31 @@ static void Task_TryCreateSelectionWindow(u8 taskId)
     }
 }
 
+static s8 ProcessPartyActionInput(s16 *cursor)
+{
+    s8 input;
+    if (sPartyMenuInternal->actionListTaskId != TASK_NONE)
+    {
+        u16 index;
+        input = ListMenu_ProcessInput(sPartyMenuInternal->actionListTaskId);
+        if (input == LIST_NOTHING_CHOSEN)
+            input = MENU_NOTHING_CHOSEN;
+        else if (input == LIST_CANCEL)
+            input = MENU_B_PRESSED;
+        ListMenuGetCurrentItemArrayId(sPartyMenuInternal->actionListTaskId, &index);
+        *cursor = index;
+    }
+    else
+    {
+        if (sPartyMenuInternal->numActions <= 3)
+            input = Menu_ProcessInputNoWrapAround_other();
+        else
+            input = ProcessMenuInput_other();
+        *cursor = Menu_GetCursorPos();
+    }
+    return input;
+}
+
 static void Task_HandleSelectionMenuInput(u8 taskId)
 {
     if (!gPaletteFade.active && MenuHelpers_ShouldWaitForLinkRecv() != TRUE)
@@ -3094,12 +3275,7 @@ static void Task_HandleSelectionMenuInput(u8 taskId)
         s8 input;
         s16 *data = gTasks[taskId].data;
 
-        if (sPartyMenuInternal->numActions <= 3)
-            input = Menu_ProcessInputNoWrapAround_other();
-        else
-            input = ProcessMenuInput_other();
-
-        data[0] = Menu_GetCursorPos();
+        input = ProcessPartyActionInput(&data[0]);
         switch (input)
         {
         case MENU_NOTHING_CHOSEN:
@@ -4084,7 +4260,7 @@ static void Task_HandleSpinTradeYesNoInput(u8 taskId)
 
 static void CursorCb_FieldMove(u8 taskId)
 {
-    u8 fieldMove = sPartyMenuInternal->actions[Menu_GetCursorPos()] - MENU_FIELD_MOVES;
+    u8 fieldMove = sPartyMenuInternal->actions[gTasks[taskId].data[0]] - MENU_FIELD_MOVES;
     const struct MapHeader *mapHeader;
 
     PlaySE(SE_SELECT);
@@ -8607,6 +8783,57 @@ static u8 IndividualToCombinedPartyId(u8 index, enum BattlerId battler)
 }
 
 #if TESTING
+s8 Test_PartyActionInput(const u16 *keys, u32 keyCount, u16 *scroll, s16 *cursor)
+{
+    struct PartyMenuInternal internal = {0};
+    struct PartyMenuInternal *savedInternal = sPartyMenuInternal;
+    u16 savedKeys = gMain.newKeys;
+    u16 savedRepeat = gMain.newAndRepeatedKeys;
+    s8 input = MENU_NOTHING_CHOSEN;
+    u16 row;
+    sPartyMenuInternal = &internal;
+    internal.actionListTaskId = TASK_NONE;
+    InitWindows(sSinglePartyMenuWindowTemplate);
+    SetPartyMonFieldSelectionActions(gParties[B_TRAINER_PLAYER], 0);
+    DisplaySelectionWindow(SELECTWINDOW_ACTIONS);
+    for (u32 i = 0; i < keyCount; i++)
+    {
+        gMain.newKeys = gMain.newAndRepeatedKeys = keys[i];
+        input = ProcessPartyActionInput(cursor);
+    }
+    ListMenuGetScrollAndRow(internal.actionListTaskId, scroll, &row);
+    PartyMenuRemoveWindow(&internal.windowId[0]);
+    FreeAllWindowBuffers();
+    sPartyMenuInternal = savedInternal;
+    gMain.newKeys = savedKeys;
+    gMain.newAndRepeatedKeys = savedRepeat;
+    return input;
+}
+
+bool32 Test_LevelPartyMonToCap(struct Pokemon *mon)
+{
+    return LevelPartyMonToCap(mon);
+}
+
+u32 Test_PartyTrainingActions(u8 *count)
+{
+    struct PartyMenuInternal internal = {0};
+    struct PartyMenuInternal *savedInternal = sPartyMenuInternal;
+    u32 result = 0;
+    sPartyMenuInternal = &internal;
+    SetPartyMonSelectionActions(gParties[B_TRAINER_PLAYER], 0, GetPartyMenuActionsType(&gParties[B_TRAINER_PLAYER][0]));
+    for (u32 i = 0; i < internal.numActions; i++)
+    {
+        if (internal.actions[i] == MENU_LEVEL_TO_CAP)
+            result |= 1;
+        if (internal.actions[i] == MENU_EVOLVE)
+            result |= 2;
+    }
+    *count = internal.numActions;
+    sPartyMenuInternal = savedInternal;
+    return result;
+}
+
 s8 Test_UpdatePartySelectionSingleLayout(s8 slotId, s8 movementDir, bool8 chooseHalf, u8 lastSelectedSlot)
 {
     struct PartyMenuInternal internal = {0};

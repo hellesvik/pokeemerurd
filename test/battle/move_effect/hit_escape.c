@@ -160,6 +160,8 @@ SINGLE_BATTLE_TEST("Hit Escape: Held items are consumed immediately after a mon 
 SINGLE_BATTLE_TEST("Hit Escape: Electric Seed boost is received by the right Pokémon after U-turn and Intimidate")
 {
     GIVEN {
+        gSaveBlock3Ptr->forkGameplayOptionsConfigured = TRUE;
+        gSaveBlock3Ptr->forkRandomAbilitiesEnabled = FALSE;
         PLAYER(SPECIES_TAPU_KOKO) { Ability(ABILITY_ELECTRIC_SURGE); }
         PLAYER(SPECIES_EKANS) { Ability(ABILITY_INTIMIDATE); Item(ITEM_ELECTRIC_SEED); }
         OPPONENT(SPECIES_WYNAUT);
@@ -211,6 +213,8 @@ SINGLE_BATTLE_TEST("Hit Escape: U-turn will fail to switch if the user faints")
 SINGLE_BATTLE_TEST("Hit Escape: U-Turn switches user out and target activates Pickpocket before replacement enters")
 {
     GIVEN {
+        gSaveBlock3Ptr->forkGameplayOptionsConfigured = TRUE;
+        gSaveBlock3Ptr->forkRandomAbilitiesEnabled = FALSE;
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_POTION); }
         PLAYER(SPECIES_EKANS) { Ability(ABILITY_INTIMIDATE); }
         OPPONENT(SPECIES_TINKATON) { Ability(ABILITY_PICKPOCKET); }

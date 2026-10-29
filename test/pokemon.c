@@ -5,6 +5,7 @@
 #include "caps.h"
 #include "egg_hatch.h"
 #include "event_data.h"
+#include "event_object_movement.h"
 #include "field_message_box.h"
 #include "fork_run.h"
 #include "item_use.h"
@@ -54,6 +55,64 @@ TEST("Meltan evolves into Melmetal at level 45")
 
     SetMonData(&mon, MON_DATA_LEVEL, &level);
     EXPECT_EQ(GetEvolutionTargetSpecies(&mon, EVO_MODE_NORMAL, ITEM_NONE, NULL, &canStopEvo, CHECK_EVO), SPECIES_MELMETAL);
+}
+
+TEST("Pawmo evolution requires at least 1000 overworld steps")
+{
+    u16 steps;
+    PARAMETRIZE { steps = 0; }
+    PARAMETRIZE { steps = 999; }
+    PARAMETRIZE { steps = 1000; }
+    PARAMETRIZE { steps = 1001; }
+    ZeroPartyMons(gParties[B_TRAINER_PLAYER]);
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][0];
+    CreateMonWithIVs(mon, SPECIES_PAWMO, 20, 0, OTID_STRUCT_PRESET(0), 31);
+    gPartiesCount[B_TRAINER_PLAYER] = 1;
+    gFollowerSteps = steps;
+
+    EXPECT_GT(GetMonData(mon, MON_DATA_HP), 0);
+    EXPECT(GetFirstLiveMon() == mon);
+    EXPECT_EQ(gFollowerSteps, steps);
+    EXPECT_EQ(GetEvolutionTargetSpecies(mon, EVO_MODE_NORMAL, ITEM_NONE, NULL, NULL, CHECK_EVO),
+              steps >= 1000 ? SPECIES_PAWMOT : SPECIES_NONE);
+    EXPECT_EQ(GetEvolutionTargetSpecies(mon, EVO_MODE_NORMAL, ITEM_NONE, NULL, NULL, DO_EVO),
+              steps >= 1000 ? SPECIES_PAWMOT : SPECIES_NONE);
+    gFollowerSteps = 0;
+}
+
+TEST("Pawmo cannot use walking steps to evolve while benched or fainted")
+{
+    ZeroPartyMons(gParties[B_TRAINER_PLAYER]);
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][1];
+    CreateMonWithIVs(&gParties[B_TRAINER_PLAYER][0], SPECIES_PIKACHU, 20, 0, OTID_STRUCT_PRESET(0), 31);
+    CreateMonWithIVs(mon, SPECIES_PAWMO, 20, 0, OTID_STRUCT_PRESET(0), 31);
+    gPartiesCount[B_TRAINER_PLAYER] = 2;
+    gFollowerSteps = 1000;
+    EXPECT_EQ(GetEvolutionTargetSpecies(mon, EVO_MODE_NORMAL, ITEM_NONE, NULL, NULL, CHECK_EVO), SPECIES_NONE);
+
+    struct Pokemon swap = gParties[B_TRAINER_PLAYER][0];
+    gParties[B_TRAINER_PLAYER][0] = *mon;
+    *mon = swap;
+    mon = &gParties[B_TRAINER_PLAYER][0];
+    EXPECT_EQ(GetEvolutionTargetSpecies(mon, EVO_MODE_NORMAL, ITEM_NONE, NULL, NULL, CHECK_EVO), SPECIES_PAWMOT);
+
+    u32 hp = 0;
+    SetMonData(mon, MON_DATA_HP, &hp);
+    EXPECT_EQ(GetEvolutionTargetSpecies(mon, EVO_MODE_NORMAL, ITEM_NONE, NULL, NULL, CHECK_EVO), SPECIES_NONE);
+    gFollowerSteps = 0;
+}
+
+TEST("Pawmo evolution is blocked by Everstone after 1000 steps")
+{
+    ZeroPartyMons(gParties[B_TRAINER_PLAYER]);
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][0];
+    CreateMonWithIVs(mon, SPECIES_PAWMO, 20, 0, OTID_STRUCT_PRESET(0), 31);
+    gPartiesCount[B_TRAINER_PLAYER] = 1;
+    gFollowerSteps = 1000;
+    u32 item = ITEM_EVERSTONE;
+    SetMonData(mon, MON_DATA_HELD_ITEM, &item);
+    EXPECT_EQ(GetEvolutionTargetSpecies(mon, EVO_MODE_NORMAL, ITEM_NONE, NULL, NULL, CHECK_EVO), SPECIES_NONE);
+    gFollowerSteps = 0;
 }
 
 TEST("Regional branch evolutions require the Trick House")

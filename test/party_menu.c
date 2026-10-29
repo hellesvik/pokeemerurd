@@ -201,6 +201,21 @@ TEST("Party Evolve checks are side effect free and honor thresholds and Everston
     EXPECT_EQ(Test_PartyTrainingActions(&count) & 2, 2);
 }
 
+TEST("Pawmo party Evolve action becomes available after 1000 steps")
+{
+    u8 count;
+    SetupPartyTraining();
+    CreateMonWithIVs(&gParties[B_TRAINER_PLAYER][0], SPECIES_PAWMO, 20, 0, OTID_STRUCT_PRESET(0), 31);
+    gFollowerSteps = 999;
+    EXPECT_EQ(Test_PartyTrainingActions(&count) & 2, 0);
+
+    gFollowerSteps = 1000;
+    EXPECT_EQ(Test_PartyTrainingActions(&count) & 2, 2);
+
+    gFollowerSteps = 0;
+    EXPECT_EQ(Test_PartyTrainingActions(&count) & 2, 0);
+}
+
 TEST("Party Evolve respects day and night held-item conditions without consuming during checks")
 {
     u8 count;

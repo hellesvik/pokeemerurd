@@ -7,6 +7,7 @@ These pages describe rules that directly affect a playthrough.
 - [Level Limits](./level_limits.md)
 - [Whiteout and faint penalties](./whiteout_penalty.md)
 - [Battle items, key items, and EV/IV rules](./player_rules.md)
+- [Repeatable money sources](./repeatable_money_audit.md)
 - [New-game feature options](../configuration/new_game_options.md)
 
 Running Shoes are available immediately in a new game; they are not gated by

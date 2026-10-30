@@ -10,11 +10,12 @@ Both modes lock battle style to **Set**.
 
 ## Catch rule
 
-With Catch Limit enabled, each named area provides one normal wild encounter.
+Every startup mode enables Catch Limit: each named area provides one normal wild encounter.
 The first eligible encounter is the encounter for that area. The existing
 evolutionary-family duplicate clause applies, and shiny Pokémon are exempt.
 The entire Safari Zone instead shares one strict limit: only its first wild
-encounter can be caught, and an escape still spends that encounter.
+encounter can be caught, and an escape still spends that encounter. A permitted Safari
+Ball throw catches on its first attempt; blocked throws do not consume a ball.
 
 Gift Pokémon, trades, eggs, fossils, and static encounters are separate game
 events; their treatment is described in the [randomizer guide](./randomizers.md).

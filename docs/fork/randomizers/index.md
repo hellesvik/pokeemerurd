@@ -1,7 +1,9 @@
 # Randomizers
 
 These pages describe the fork's save-stable randomizers and their protected
-or vanilla content.
+or vanilla content. Item randomization is active in every startup mode;
+encounter and ability randomization are configurable in Custom. TM move
+assignments use the fixed Gen 9 catalog.
 
 - [Item Randomizer](./item_randomizer.md)
 - [Gen 9 TMs](./tm_randomizer.md)

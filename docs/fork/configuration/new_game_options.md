@@ -20,5 +20,4 @@ In every mode the hidden rules are fixed: catch limit ON, level cap ON, items
 in battle OFF, Infinite Rare Candy ON, Infinite Repel ON, item randomizer ON,
 and Mega Evolution ON. These settings remain active without appearing as rows.
 
-Normal is no longer a selectable mode. Existing internal mode identifiers and
-save fields are retained; these startup choices apply to new games.
+These choices apply to new games.

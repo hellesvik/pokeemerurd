@@ -5,7 +5,7 @@ This fork uses the built-in hard level cap system.
 ## Current Behavior
 
 - Battle EXP is blocked once a Pokemon is at or above the current cap.
-- Daycare EXP is capped by the same limit.
+- Day Care services are closed; Pokémon cannot be trained there.
 - Normal one-use Rare Candies are still allowed to push a Pokemon above the cap.
 - EV gain is disabled separately through the EV cap configuration.
 - After defeating the story battle that raises the cap, a message announces the new cap. It appears after that battle's defeat text and before the map's post-battle event continues.
@@ -19,3 +19,7 @@ The ladder currently starts at Roxanne, advances through the selected rival, gym
 The final Pokémon League cap is **Lv. 80**. It becomes the active cap after the Victory Road Wally milestone and remains in force through Sidney, Phoebe, Glacia, Drake, and Champion Steven.
 
 Because the rule is tied to story-battle milestones, the cap can be higher than the defeated battle's highest-level Pokémon. Overleveled Pokemon are not reduced in level; they just stop gaining EXP until the active cap rises again or Steven is cleared.
+
+Use **LEVEL BOXES TO CAP** in the Pokémon PC menu to raise all stored, non-Egg
+Pokémon below the cap directly to it. Party Pokémon are unaffected; this does
+not trigger evolution or move-learning prompts.

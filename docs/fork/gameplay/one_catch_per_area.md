@@ -23,7 +23,6 @@ Eggs hatch at approximately one-tenth of the normal step interval. Magma
 Armor, Flame Body, and Steam Engine still provide their additional hatch-speed
 bonus.
 
-When catch limits are enabled, a permitted Safari Ball throw always catches
+Catch limits are enabled in every startup mode. A permitted Safari Ball throw always catches
 the Pokémon. The Safari Zone's shared encounter restriction still applies;
-blocked throws do not consume a Safari Ball. With catch limits disabled,
-Safari Ball catch odds are normal.
+blocked throws do not consume a Safari Ball.

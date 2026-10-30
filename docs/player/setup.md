@@ -9,29 +9,29 @@ choices for the playthrough.
 | --- | --- | --- |
 | **NUZLITE** | The fork's default challenge rules with a forgiving faint rule. | Set |
 | **NUZLOCKE** | Traditional catch and faint rules. | Set |
-| **NORMAL** | A mostly vanilla ruleset with fork quality-of-life features disabled. | Player choice |
-| **CUSTOM** | Change the individual rule rows yourself. | Player choice |
+| **CUSTOM** | Edit faint rules, EVs, encounters, abilities, generation limit, and TM reuse. | Player choice |
 
-In the first three presets, most rule rows are locked. The maximum generation
-selector remains editable in every mode.
+NUZLITE and NUZLOCKE lock rule rows except Randomizer Max Gen. CUSTOM allows
+editing all visible rules. Nuzlite is selected initially.
 
 ## Options at a glance
 
-| Option | NUZLITE | NUZLOCKE | NORMAL |
+The two pages contain Mode, Faint Rule, Player EVs, Random Encounters, Randomizer
+Max Gen, Random Abilities, and Reusable TMs. L/R changes pages; Up/Down selects
+a row; Left/Right changes its value.
+
+| Option | NUZLITE | NUZLOCKE | CUSTOM initial |
 | --- | --- | --- | --- |
-| Catch limit | On | On | Off |
 | Faint rule | One random loss on whiteout | Loss on faint | Off |
-| Level cap | On | On | Off |
-| Battle items | Off | Off | On |
-| Infinite Rare Candy | On | On | Off |
-| Infinite Repel | On | On | Off |
 | Player EV gain | Off | Off | Off |
-| Item randomizer | On | On | Off |
 | Random encounters | On | On | Off |
 | Randomizer Max Gen | Gen 9 | Gen 9 | Gen 3 |
 | Random abilities | On | On | Off |
-| Mega Evolution | On | On | Off |
 | Reusable TMs | Off | Off | Off |
+
+Every mode enables catch limits, level caps, Infinite Rare Candy, Infinite Repel,
+item randomization, and Mega Evolution. Trainer-battle Bag items are disabled.
+These fixed rules do not appear as menu rows.
 
 The **Randomizer Max Gen** selector controls the highest generation available
 to randomized encounters, eggs, gifts, and static encounters. It does not
@@ -49,13 +49,13 @@ Options](../fork/configuration/new_game_options.md).
 A new game begins with normal story progression: no badges, progression key
 items, test Pokémon, or undiscovered Fly destinations are unlocked. Standard
 obedience rules apply. The Running Shoes and any quality-of-life key items
-enabled by the selected preset are intentional player features, not test-mode
+provided in every mode are intentional player features, not test-mode
 grants.
 
 ## Tips for new players
 
 - Check key items as soon as possible. They are useful.
-- The Nuzlite/Nuzlocke rules only start after you get the first 5 pokeballs.
+- Catch and faint rules begin when Birch gives the Pokédex.
 - Old Rod is available in Olddale in this romhack.
 - You can "more remember" always.
 - NPC trades are cool if you get a wobuffet or unknown.

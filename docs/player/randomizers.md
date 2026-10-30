@@ -88,7 +88,7 @@ use 380–480.
 
 ## Item randomizer
 
-Item Balls, hidden items, and gym leader item gifts can be randomized.
+Item Balls, hidden items, and Gym Leader item gifts are randomized in every startup mode.
 Single-purpose evolution items, Mega Stones, and species-specific form items
 appear only when their Pokémon can actually be obtained from the Pokémon
 randomizer in the selected generation range. Randomized special static
@@ -105,11 +105,13 @@ Eligible evolutionary families receive one deterministic ability.
 Exceptions exist, including boss battles and form change abilites.
 More info is available in the [Ability Randomizer documentation](../fork/randomizers/ability_randomizer.md).
 
-## TM randomizer
+## Gen 9 TMs
 
-TMs are randomized independently from ordinary item placement. TMs are
-single-use unless **Reusable TMs** is enabled. HMs are unaffected by TM
-consumption rules and do not need to be taught to a Pokémon for field use.
+TM001–TM229 have fixed Scarlet/Violet move assignments, including the DLC.
+The item randomizer changes where TMs appear, not the moves they teach.
+Lilycove Department Store sells eight seeded TMs, one copy of each per save.
+TMs are consumed unless **Reusable TMs** is enabled in Custom; HMs stay reusable.
+The TM/HM pocket holds all 229 TMs and eight HMs. See [Gen 9 TMs](../fork/randomizers/tm_randomizer.md).
 
 ## Gifts, eggs, and trades
 
@@ -117,3 +119,7 @@ Eggs are randomized when they hatch, regardless of their source. NPC trades
 are randomized at the start of the game from their configured, generation-
 capped pools. The custom trades and gift details are listed in the [fork
 randomizer documentation](../fork/randomizers/gift_pokemon_and_fossils.md).
+
+Day Cares are closed, but gift Eggs remain available. Wild Pokémon have no held
+items. The item pool keeps one seeded choice each for Memories, Drives,
+Nectars, and Masks. Pickup is excluded from the randomized ability pool.

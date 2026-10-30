@@ -27,8 +27,9 @@ Other Legendary, Mythical, Ultra Beast, and Paradox Pokémon keep their normal
 Abilities and do not contribute an Ability to the pool.
 
 All ordinary eligible Abilities can be randomized. This deliberately includes
-Truant, Arena Trap, Shadow Tag, Huge Power, Pure Power, and Pickup. Wonder
-Guard is excluded from the candidate pool.
+Truant, Arena Trap, Shadow Tag, Huge Power, and Pure Power. Pickup and Wonder
+Guard are excluded from the candidate pool. Pickup still works on species with
+that normal Ability when ability randomization is off.
 
 Shedinja's Nincada family is excluded from ability randomization, so Shedinja
 always keeps its normal Wonder Guard.

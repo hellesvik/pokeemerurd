@@ -2,7 +2,9 @@
 
 ## What is randomized?
 
-By default: Pokemon encounters, abilites and items. Bosses are not randomized.
+Nuzlite and Nuzlocke randomize encounters, abilities, and items. Custom can
+change encounters and abilities; item randomization is active in every mode.
+TM moves use fixed Gen 9 assignments. Boss teams are not randomized.
 
 ## Are TMs reusable?
 
@@ -20,8 +22,8 @@ sold at the Mauville Game Corner along with evolution stones.
 
 ## Are held items consumed in battle?
 
-Held items used, consumed, or removed during a trainer battle are returned when the
-battle ends in the current fork configuration. This is not true for wild battles.
+Player held items consumed or removed in battle are restored afterward.
+Wild Pokémon start without held items; items stolen from trainers are not kept.
 
 ## Where do I get Old Rod?
 
@@ -42,3 +44,32 @@ before the level cap raises to 20.
 
 ## How many legendary static encounters can I get before the League?
 Four: Rayquoza and the three regis.
+
+## Can I level all my boxed Pokémon?
+
+Choose **LEVEL BOXES TO CAP** in the Pokémon PC main menu. It raises all stored
+Pokémon below the cap, skipping Eggs. It does not evolve Pokémon or teach moves.
+
+## Do I need to teach Flash or Fly?
+
+Their Pokémon-menu shortcuts unlock after receiving the corresponding HM and
+badge. Any non-Egg party Pokémon can use them, including fainted Pokémon.
+The Gen 9 Fly TM alone does not unlock field Fly.
+
+## How much fits in the Bag?
+
+The Items pocket holds 320 stacks, and TM/HM holds 237. Start a new game;
+the expanded save layout is incompatible with old saves.
+
+## Can I use Day Care or trainer rematches?
+
+Day Cares and ordinary rematch systems are disabled. Optional battle facilities
+are closed. League repeat runs and Gabby and Ty battles remain available;
+Gabby and Ty award no prize money.
+
+## Which money restrictions apply?
+
+Money moves award no money. Honey, Berries, Shoal materials, and Shell Bells
+cannot be sold. Game Corner games charge wagers without awarding coins.
+See [player rules](../fork/gameplay/player_rules.md#renewable-money-restrictions)
+and [remaining money sources](../fork/gameplay/repeatable_money_audit.md).

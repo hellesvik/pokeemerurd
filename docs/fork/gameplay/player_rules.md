@@ -2,8 +2,7 @@
 
 ## Battle items
 
-When the setting is disabled, bag items cannot be used during trainer
-battles. Healing items, revives, X-items, escape items, and balls are blocked
+Bag items cannot be used during trainer battles in any startup mode. Healing items, revives, X-items, escape items, and balls are blocked
 through the normal battle-item validation path without consuming the item.
 
 Held items consumed or removed during a battle are restored when the battle
@@ -15,7 +14,7 @@ and wild double battles. This rule applies regardless of species or lead ability
 
 Thief and Covet handle stolen items differently depending on the encounter:
 
-- Items stolen from wild Pokémon are kept and sent to the Bag.
+- Wild Pokémon start without items to steal.
 - Items stolen from Trainer Pokémon are not kept after the battle.
 
 ## Replacing HM moves
@@ -34,14 +33,12 @@ still apply. The Gen 9 Fly TM alone does not unlock the Fly shortcut.
 
 ## Infinite key items
 
-When enabled, new games receive two reusable key items:
+New games in every mode receive two reusable key items:
 
 - **Infinite Rare Candy** raises a selected Pokémon one level at a time, but
   never above the current level cap.
 - **Infinite Repel** toggles an effectively infinite repel state on or off and
   can be registered like other field-use key items.
-
-Existing saves receive missing items when they are continued.
 
 ## Heart Charm
 
@@ -96,8 +93,7 @@ available presets.
 
 Choose **LEVEL BOXES TO CAP** from the Pokémon PC main menu to raise Pokémon
 in every stored box to the current level cap. Eggs and Pokémon already at or
-above the cap are skipped, and party Pokémon are unaffected. This requires
-level caps to be enabled. Levels increase directly without evolution or
+above the cap are skipped, and party Pokémon are unaffected. Level caps are enabled in every startup mode. Levels increase directly without evolution or
 move-learning prompts; existing moves and species are preserved.
 
 ## Day Care
@@ -108,7 +104,7 @@ and Day Care Eggs cannot be collected. Buildings remain accessible and staff
 explain that the Day Care is closed.
 
 One-time NPC gift Eggs, including Lavaridge's Wynaut, remain available. Eggs
-in the party still hatch normally. This rule targets new games.
+in the party still hatch normally.
 
 ## Bag capacity
 
@@ -132,7 +128,7 @@ The Vs. Seeker is not awarded and cannot be activated.
 
 Gabby and Ty's battles, route rotation, and interviews remain available, but
 all six parties award zero prize money, including with money bonuses. Their
-victory message displays ₽0. Pay Day and other move-generated money still work.
+victory message displays ₽0. Money-generating moves also award no money.
 
 Battle Frontier, Battle Tents, Trainer Hill, FRLG's Trainer Tower and its grounds,
 and Mossdeep's optional e-Reader battle basement are closed. Their entrances
@@ -140,7 +136,7 @@ are blocked; the Frontier is absent from ferry and Fly destinations. Gifts and
 shops within the closed areas are inaccessible too.
 
 Normal trainer and Gym battles, scripted rival/story battles, Contests, and
-repeat Pokémon League runs remain available. This rule targets new games.
+repeat Pokémon League runs remain available.
 
 ## Renewable money restrictions
 
@@ -151,3 +147,13 @@ are unchanged. Ash collecting and workshop exchanges, Selphy requests, and
 Lilycove Quiz/Favor Lady activities are disabled. Game Corner games still charge
 wagers but award no coins. Coin purchases and prize exchanges remain available.
 League, lottery, Secret Base, minigame and Winstrate rules are unchanged.
+
+Pay Day, Make It Rain, and G-Max Gold Rush keep their battle effects without
+producing money. Pickup remains a normal species ability when ability
+randomization is off; it cannot be selected by the ability randomizer.
+Berry growing and gifts, Honey Gather, and Shoal Cave collecting still work,
+but their affected rewards cannot be sold. Selphy's rescue is available;
+her repeatable requests are disabled. The Lilycove Contest Lady remains active.
+
+See [Repeatable money sources](repeatable_money_audit.md) for remaining income
+sources and conditions.

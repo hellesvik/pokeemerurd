@@ -13,13 +13,14 @@ The detailed, player-facing documentation is organized in
 
 ## Feature overview
 
-- Catch limits, evolutionary-family dupes, shiny exceptions, and egg-hatch
-  handling.
-- Story-based level caps and configurable whiteout/faint penalties.
-- Battle-item restrictions, infinite key items, and zero-EV player Pokémon.
-- Randomized items, TMs, encounters, abilities, gifts, and fossils.
-- Generation limits, Mega Evolution controls, and starter IV improvements.
-- A startup menu for choosing presets or customizing these rules.
+- One encounter per named area, evolutionary-family dupes, and egg-hatch rules.
+- Story-based level caps, faint penalties, and trainer-battle item restrictions.
+- Infinite key items, Portable PC, all-box leveling, and Flash/Fly menu shortcuts.
+- Seeded items, encounters, abilities, gifts, and fossils; fixed Gen 9 TMs.
+- Expanded Bag capacity and a new-game save layout.
+- Three startup modes: Nuzlite, Nuzlocke, and Custom, with seven visible settings.
+- Wild Pokémon without held items and guaranteed permitted Safari Ball catches.
+- Closed Day Cares and optional battle facilities, disabled rematches, and renewable money restrictions.
 
 The Sealed Chamber unlock no longer requires Wailord and Relicanth in the
 player's party.

@@ -12,6 +12,7 @@ category below.
 - [Level Limits](./gameplay/level_limits.md)
 - [Whiteout and faint penalties](./gameplay/whiteout_penalty.md)
 - [Battle items, key items, and EV/IV rules](./gameplay/player_rules.md)
+- [Repeatable money sources](./gameplay/repeatable_money_audit.md)
 
 ## Randomizers
 

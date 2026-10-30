@@ -4,13 +4,14 @@ This is [pokeemerald-expansion](https://github.com/rh-hideout/pokeemerald-expans
 
 ## Fork Changes
 
-- Configurable Nuzlite, Nuzlocke, and custom gameplay rules.
-- Catch limits, faint penalties, level caps, EV rules, and battle-item settings.
-- Quality-of-life key items and starter IV improvements.
-- Item, TM, encounter, ability, gift Pokémon, and fossil randomizers.
-- Generation limits and Mega Evolution controls for randomized playthroughs.
+- Nuzlite, Nuzlocke, and Custom modes with a two-page startup menu.
+- Catch limits, story level caps, faint penalties, EV rules, and battle-item restrictions.
+- Infinite Rare Candy, Infinite Repel, Heart Charm, Portable PC, and PC box leveling.
+- Seeded item, encounter, ability, gift Pokémon, and fossil randomizers.
+- Fixed Gen 9 TM001–TM229 assignments and expanded Items and TM/HM pockets.
+- Flash and Fly menu shortcuts after obtaining the required HM and badge.
 - Default overworld running: hold B to walk.
-- Lilycove Department Store sells eight seeded randomized TMs, one copy each.
-- A new startup settings menu for enabling and configuring these features.
+- Closed Day Cares, disabled trainer rematch systems, and closed optional battle facilities.
+- Restrictions on renewable money sources; Pokémon League payouts remain available.
 
 Details are in [FORK.md](FORK.md) and [the fork documentation](docs/fork/index.md).

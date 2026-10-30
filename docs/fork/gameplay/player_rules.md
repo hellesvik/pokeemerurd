@@ -141,3 +141,13 @@ shops within the closed areas are inaccessible too.
 
 Normal trainer and Gym battles, scripted rival/story battles, Contests, and
 repeat Pokémon League runs remain available. This rule targets new games.
+
+## Renewable money restrictions
+
+Money-generating moves retain their battle effects but produce no money.
+Pickup is excluded from randomized abilities. Honey, all Berries, Shoal Salt,
+Shoal Shells and Shell Bells cannot be sold; their purchase prices and effects
+are unchanged. Ash collecting and workshop exchanges, Selphy requests, and
+Lilycove Quiz/Favor Lady activities are disabled. Game Corner games still charge
+wagers but award no coins. Coin purchases and prize exchanges remain available.
+League, lottery, Secret Base, minigame and Winstrate rules are unchanged.

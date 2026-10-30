@@ -423,7 +423,7 @@ static const u8 Roulette_Text_ControlsInstruction[] = _("Place your wager with t
 static const u8 Roulette_Text_ItsAHit[] = _("It's a hit!");
 static const u8 Roulette_Text_Jackpot[] = _("Jackpot!");
 static const u8 Roulette_Text_NothingDoing[] = _("Nothing doing!");
-static const u8 Roulette_Text_YouveWonXCoins[] = _("You've won {STR_VAR_1} COINS!");
+static const u8 Roulette_Text_YouveWonXCoins[] = _("Wins award no COINS.");
 static const u8 Roulette_Text_NoCoinsLeft[] = _("No COINS left…");
 static const u8 Roulette_Text_KeepPlaying[] = _("Keep playing?");
 static const u8 Roulette_Text_BoardWillBeCleared[] = _("The ROULETTE board will be cleared.");
@@ -1849,7 +1849,7 @@ static void Task_GivePayout(u8 taskId)
     switch (gTasks[taskId].data[7])
     {
     case 0:
-        gTasks[taskId].tCoins++;
+        // Games do not award coins.
         m4aSongNumStart(SE_PIN);
         SetCreditDigits(gTasks[taskId].tCoins);
         if (gTasks[taskId].tCoins >= MAX_COINS)
@@ -1876,7 +1876,7 @@ static void Task_GivePayout(u8 taskId)
 
 static void Task_PrintPayout(u8 taskId)
 {
-    ConvertIntToDecimalStringN(gStringVar1, (sRoulette->minBet * gTasks[taskId].tMultiplier), STR_CONV_MODE_LEFT_ALIGN, 2);
+    ConvertIntToDecimalStringN(gStringVar1, 0, STR_CONV_MODE_LEFT_ALIGN, 2);
     StringExpandPlaceholders(gStringVar4, Roulette_Text_YouveWonXCoins);
     DrawStdWindowFrame(sTextWindowId, FALSE);
     AddTextPrinterParameterized(sTextWindowId, FONT_NORMAL, gStringVar4, 0, 1, TEXT_SKIP_DRAW, NULL);

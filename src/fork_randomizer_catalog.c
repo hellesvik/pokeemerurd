@@ -107,6 +107,7 @@ static bool8 IsExcludedAbility(enum Ability ability)
 {
     switch (ability)
     {
+    case ABILITY_PICKUP:
     case ABILITY_WONDER_GUARD:
     case ABILITY_FORECAST:
     case ABILITY_MULTITYPE:

@@ -4,6 +4,10 @@ FiveIsland_ResortGorgeous_House_Frlg_MapScripts::
 	.byte 0
 
 FiveIsland_ResortGorgeous_House_EventScript_Selphy::
+	msgbox FiveIsland_ResortGorgeous_House_EventScript_Selphy_Unavailable, MSGBOX_NPC
+	end
+
+FiveIsland_ResortGorgeous_House_EventScript_Selphy_Unused::
 	lock
 	faceplayer
 	goto_if_set SHOWN_REQUESTED_MON, FiveIsland_ResortGorgeous_House_EventScript_JustFulfilledRequest
@@ -208,3 +212,6 @@ FiveIsland_ResortGorgeous_House_Text_LadySelphySmileHasBrillianceOfSun::
 	.string "Please, I beg you to bring joy\n"
 	.string "to Lady SELPHY.$"
 
+
+FiveIsland_ResortGorgeous_House_EventScript_Selphy_Unavailable:
+	.string "This activity is unavailable.$"

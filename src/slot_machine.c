@@ -2137,7 +2137,7 @@ static bool8 PayoutTask_GivePayout(struct Task *task)
             PlaySE(SE_PIN);
         sSlotMachine->payout--;
         if (sSlotMachine->coins < MAX_COINS)
-            sSlotMachine->coins++;
+            // Games do not award coins.
         task->tTimer = 8;
         if (JOY_HELD(A_BUTTON))
             task->tTimer = 4;
@@ -2145,7 +2145,7 @@ static bool8 PayoutTask_GivePayout(struct Task *task)
     if (IsFanfareTaskInactive() && JOY_NEW(START_BUTTON))
     {
         PlaySE(SE_PIN);
-        sSlotMachine->coins += sSlotMachine->payout;
+        // Games do not award coins.
         if (sSlotMachine->coins > MAX_COINS)
             sSlotMachine->coins = MAX_COINS;
         sSlotMachine->payout = 0;

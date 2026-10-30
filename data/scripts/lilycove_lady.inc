@@ -7,6 +7,10 @@ LilycoveCity_PokemonCenter_1F_EventScript_LilycoveLady::
 	end
 
 LilycoveCity_PokemonCenter_1F_EventScript_FavorLady::
+	msgbox LilycoveLady_Text_Unavailable, MSGBOX_NPC
+	end
+
+LilycoveCity_PokemonCenter_1F_EventScript_FavorLady_Unused::
 	lock
 	faceplayer
 	msgbox LilycoveCity_PokemonCenter_1F_Text_ImTheFavorLady, MSGBOX_DEFAULT
@@ -127,6 +131,10 @@ LilycoveCity_PokemonCenter_1F_EventScript_ReceivedFavorPrize::
 	end
 
 LilycoveCity_PokemonCenter_1F_EventScript_QuizLady::
+	msgbox LilycoveLady_Text_Unavailable, MSGBOX_NPC
+	end
+
+LilycoveCity_PokemonCenter_1F_EventScript_QuizLady_Unused::
 	lock
 	faceplayer
 	msgbox LilycoveCity_PokemonCenter_1F_Text_ImTheQuizLady, MSGBOX_DEFAULT
@@ -779,3 +787,6 @@ LilycoveCity_PokemonCenter_1F_Text_Pikachu:
 
 LilycoveCity_PokemonCenter_1F_Text_Skitty:
 	.string "{STR_VAR_1}: Umyaaaan!$"
+
+LilycoveLady_Text_Unavailable:
+	.string "This activity is unavailable.$"

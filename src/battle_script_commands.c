@@ -2414,29 +2414,7 @@ void SetMoveEffect(enum BattlerId battlerAtk, enum BattlerId effectBattler, enum
         }
         break;
     case MOVE_EFFECT_PAYDAY:
-        // Don't scatter coins on the second hit of Parental Bond
-        if (IsOnPlayerSide(battlerAtk) && gSpecialStatuses[battlerAtk].parentalBondState != PARENTAL_BOND_2ND_HIT)
-        {
-            u16 payday = gPaydayMoney;
-            enum MoveTarget moveTarget = GetBattlerMoveTargetType(battlerAtk, gCurrentMove);
-            gPaydayMoney += (gBattleMons[battlerAtk].level * 5);
-            if (payday > gPaydayMoney)
-                gPaydayMoney = 0xFFFF;
-
-            // For a move that hits multiple targets (i.e. Make it Rain)
-            // we only want to print the message on the final hit
-            if (!(NumAffectedSpreadMoveTargets() > 1 && GetNextTarget(moveTarget, TRUE) != MAX_BATTLERS_COUNT))
-            {
-                BattleScriptPush(battleScript);
-                gBattlescriptCurrInstr = BattleScript_MoveEffectPayDay;
-            }
-            else
-                gBattlescriptCurrInstr = battleScript;
-        }
-        else
-        {
-            gBattlescriptCurrInstr = battleScript;
-        }
+        gBattlescriptCurrInstr = battleScript;
         break;
     case MOVE_EFFECT_HAPPY_HOUR:
         if (IsOnPlayerSide(battlerAtk) && !gBattleStruct->moneyMultiplierMove)
@@ -3219,14 +3197,6 @@ void SetMoveEffect(enum BattlerId battlerAtk, enum BattlerId effectBattler, enum
         gBattlescriptCurrInstr = BattleScript_EffectEffectSporeSide;
         break;
     case MOVE_EFFECT_CONFUSE_PAY_DAY_SIDE:
-        if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && IsOnPlayerSide(battlerAtk))
-        {
-            u32 payday = gPaydayMoney;
-            gPaydayMoney += (gBattleMons[battlerAtk].level * 100);
-            if (payday > gPaydayMoney)
-                gPaydayMoney = 0xFFFF;
-            gBattleCommunication[CURSOR_POSITION] = 1; // add "Coins scattered." message
-        }
         // fall through
     case MOVE_EFFECT_CONFUSE_SIDE:
         BattleScriptPush(battleScript);

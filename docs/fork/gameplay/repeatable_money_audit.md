@@ -1,5 +1,7 @@
 # Repeatable money audit
 
+**Historical inventory:** the renewable money restrictions in [player rules](player_rules.md#renewable-money-restrictions) supersede the affected active-source entries below.
+
 Audited the current working tree, 2026-10-30. E = Emerald; FRLG = both
 FireRed and LeafGreen. This describes this fork, not unmodified retail games.
 No gameplay changes were made. Findings below are from static source inspection;

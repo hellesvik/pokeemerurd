@@ -686,7 +686,7 @@ MauvilleCity_GameCorner_Text_RouletteOnlyLuck:
 
 MauvilleCity_GameCorner_Text_UpTo3CoinsCanBeUsed:
 	.string "Up to three COINS can be used to play\n"
-	.string "the SLOTS.$"
+	.string "the SLOTS. Wins award no COINS.$"
 
 MauvilleCity_GameCorner_Text_DifficultToStopOn7:
 	.string "It's very difficult to make it stop\n"

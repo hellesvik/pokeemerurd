@@ -21,6 +21,10 @@ Route113_GlassWorkshop_EventScript_ReenterWorkshopAfterSootSack::
 	return
 
 Route113_GlassWorkshop_EventScript_GlassWorker::
+	msgbox Route113_GlassWorkshop_EventScript_GlassWorker_Unavailable, MSGBOX_NPC
+	end
+
+Route113_GlassWorkshop_EventScript_GlassWorker_Unused::
 	lock
 	faceplayer
 	goto_if_ge VAR_GLASS_WORKSHOP_STATE, 10, Route113_GlassWorkshop_EventScript_GiveItemAfterNoRoom
@@ -378,3 +382,6 @@ Route113_GlassWorkshop_Text_FunToBlowGlassFlute:
 	.string "my boss is talking.\p"
 	.string "Huff-huff! Puff-puff!$"
 
+
+Route113_GlassWorkshop_EventScript_GlassWorker_Unavailable:
+	.string "This activity is unavailable.$"

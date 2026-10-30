@@ -960,6 +960,10 @@ bool32 ItemHasVolatileFlag(enum Item itemId, enum Volatile _volatile)
 
 u32 GetItemSellPrice(enum Item itemId)
 {
+    if ((itemId >= FIRST_BERRY_INDEX && itemId <= LAST_BERRY_INDEX)
+        || itemId == ITEM_HONEY || itemId == ITEM_SHOAL_SALT
+        || itemId == ITEM_SHOAL_SHELL || itemId == ITEM_SHELL_BELL)
+        return 0;
     return GetItemPrice(itemId) / ITEM_SELL_FACTOR;
 }
 

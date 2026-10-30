@@ -597,7 +597,7 @@ CeladonCity_GameCorner_Text_DontHaveCoinCase::
 	.string "Don't have the COIN CASE!$"
 
 CeladonCity_GameCorner_Text_SlotMachineWantToPlay::
-	.string "A slot machine!\n"
+	.string "Wins award no COINS.\n"
 	.string "Want to play?$"
 
 CeladonCity_GameCorner_Text_OutOfOrder::

@@ -268,7 +268,7 @@ static const u8 gText_BatteryRunDry[] = _("The internal battery has run dry.\nTh
 static const u8 gText_MainMenuNewGame[] = _("NEW GAME");
 static const u8 *const sText_NewGameFeatureOptionsPages[] =
 {
-    COMPOUND_STRING("FEATURE OPTIONS 1/4"), COMPOUND_STRING("FEATURE OPTIONS 2/4"), COMPOUND_STRING("FEATURE OPTIONS 3/4"), COMPOUND_STRING("FEATURE OPTIONS 4/4"),
+    COMPOUND_STRING("FEATURE OPTIONS 1/2"), COMPOUND_STRING("FEATURE OPTIONS 2/2"),
 };
 static const u8 sText_NewGameFeatureOptionsHelp[] = _("L/R: PAGE   START: CONFIRM");
 static const u8 sText_NewGameFeatureCursor[] = _(">");
@@ -280,7 +280,6 @@ static const u8 *const sText_NewGameFeatureNames[] =
     COMPOUND_STRING("MEGA EVOLUTION"), COMPOUND_STRING("REUSABLE TMs"),
 };
 static const u8 sText_NewGameFeatureNuzlite[] = _("NUZLITE");
-static const u8 sText_NewGameFeatureNormal[] = _("NORMAL");
 static const u8 sText_NewGameFeatureNuzlocke[] = _("NUZLOCKE");
 static const u8 sText_NewGameFeatureCustom[] = _("CUSTOM");
 static const u8 sText_NewGameFeatureOn[] = _("ON");
@@ -1770,15 +1769,17 @@ static void Task_NewGameBirchSpeech_FeatureOptions(u8 taskId)
     }
     else
     {
-        nextSelection = page == 3 ? selection : ForkNewGameOptionsMoveSelection(selection, gMain.newKeys);
-        if (page == 3)
+        nextSelection = selection;
+        if (page == 1)
         {
-            if ((gMain.newKeys & DPAD_DOWN) && selection == 0)
-                nextSelection = 1;
-            else if ((gMain.newKeys & DPAD_UP) && selection == 1)
-                nextSelection = 0;
+            if (gMain.newKeys & DPAD_DOWN)
+                nextSelection = selection == 2 ? 0 : selection + 1;
+            else if (gMain.newKeys & DPAD_UP)
+                nextSelection = selection == 0 ? 2 : selection - 1;
         }
-            u8 index = page * 4 + selection;
+        else
+            nextSelection = ForkNewGameOptionsMoveSelection(selection, gMain.newKeys);
+        u8 index = ForkNewGameOptionsVisibleIndex(page, selection);
 
         if (index == 0)
         {
@@ -2484,7 +2485,7 @@ static void NewGameBirchSpeech_ShowFeatureOptions(u8 page, u8 selection, u16 val
     AddTextPrinterParameterized3(3, FONT_NORMAL, 8, 15, sTextColor_MenuInfo, TEXT_SKIP_DRAW, sText_NewGameFeatureOptionsHelp);
     for (row = 0; row < 4; row++)
     {
-        u8 index = page * 4 + row;
+        u8 index = ForkNewGameOptionsVisibleIndex(page, row);
         const u8 *colors = sTextColor_MenuInfo;
         const u8 *value;
 
@@ -2497,7 +2498,6 @@ static void NewGameBirchSpeech_ShowFeatureOptions(u8 page, u8 selection, u16 val
             {
             case 0: value = sText_NewGameFeatureNuzlite; break;
             case 1: value = sText_NewGameFeatureNuzlocke; break;
-            case 2: value = sText_NewGameFeatureNormal; break;
             default: value = sText_NewGameFeatureCustom; break;
             }
         }

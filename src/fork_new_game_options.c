@@ -4,9 +4,9 @@
 u8 ForkNewGameOptionsNextPage(u8 page, u16 newKeys)
 {
     if (newKeys & R_BUTTON)
-        return page == 3 ? 0 : page + 1;
+        return page == 1 ? 0 : page + 1;
     if (newKeys & L_BUTTON)
-        return page == 0 ? 3 : page - 1;
+        return page == 0 ? 1 : page - 1;
     return page;
 }
 
@@ -29,9 +29,9 @@ u8 ForkNewGameOptionsToggleValue(u8 value, u16 newKeys)
 u8 ForkNewGameOptionsNextSetting(u8 settings, u16 newKeys)
 {
     if (newKeys & DPAD_RIGHT)
-        return settings == 3 ? 0 : settings + 1;
+        return settings == 0 ? 1 : settings == 1 ? 3 : 0;
     if (newKeys & DPAD_LEFT)
-        return settings == 0 ? 3 : settings - 1;
+        return settings == 0 ? 3 : settings == 3 ? 1 : 0;
     return settings;
 }
 
@@ -83,6 +83,8 @@ u16 ForkNewGameOptionsPresetValues(u8 settings)
     else
         values = settings == 2 ? 0x810 : 0x800; // NORMAL keeps battle items enabled.
 
+    // Hidden rules always match the Nuzlite/Nuzlocke presets.
+    values = (values & ~0x8173) | 0x8163;
     values &= ~(0xF << 10);
     values |= (settings <= 1 ? GEN_9 : GEN_3) << 10;
     return values;
@@ -102,4 +104,11 @@ bool8 ForkNewGameOptionsLocksBattleStyle(u8 settings)
 bool8 ForkNewGameOptionsShouldContinue(u16 newKeys)
 {
     return (newKeys & START_BUTTON) != 0;
+}
+
+u8 ForkNewGameOptionsVisibleIndex(u8 page, u8 row)
+{
+    static const u8 indices[] = {0, 3, 7, 9, 10, 11, 13};
+    u8 index = page * 4 + row;
+    return index < ARRAY_COUNT(indices) ? indices[index] : 0xFF;
 }

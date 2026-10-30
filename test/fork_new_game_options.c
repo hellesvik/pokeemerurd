@@ -4,11 +4,10 @@
 
 TEST("New game options page changes with L and R")
 {
-    EXPECT_EQ(ForkNewGameOptionsNextPage(0, L_BUTTON), 3);
-    EXPECT_EQ(ForkNewGameOptionsNextPage(1, R_BUTTON), 2);
+    EXPECT_EQ(ForkNewGameOptionsNextPage(0, L_BUTTON), 1);
+    EXPECT_EQ(ForkNewGameOptionsNextPage(1, R_BUTTON), 0);
+    EXPECT_EQ(ForkNewGameOptionsNextPage(0, R_BUTTON), 1);
     EXPECT_EQ(ForkNewGameOptionsNextPage(0, A_BUTTON), 0);
-    EXPECT_EQ(ForkNewGameOptionsNextPage(2, R_BUTTON), 3);
-    EXPECT_EQ(ForkNewGameOptionsNextPage(3, R_BUTTON), 0);
 }
 
 TEST("New game options continues with START")
@@ -39,7 +38,7 @@ TEST("New game options presets lock custom rules")
     EXPECT_EQ(ForkNewGameOptionsCanEdit(3), TRUE);
     EXPECT_EQ(ForkNewGameOptionsPresetValues(0), 58215);
     EXPECT_EQ(ForkNewGameOptionsPresetValues(1), 58219);
-    EXPECT_EQ(ForkNewGameOptionsPresetValues(2), 2064);
+    EXPECT_EQ(ForkNewGameOptionsPresetValues(2), 0x8963);
 }
 
 TEST("Nuzlite and Nuzlocke default to Generation 9")
@@ -93,10 +92,10 @@ TEST("New game option indices use the correct packed value bits")
     EXPECT_EQ(ForkNewGameOptionsBitForIndex(12), 15);
 }
 
-TEST("New game settings cycles through four modes")
+TEST("New game settings cycles through three visible modes")
 {
     EXPECT_EQ(ForkNewGameOptionsNextSetting(0, DPAD_RIGHT), 1);
-    EXPECT_EQ(ForkNewGameOptionsNextSetting(1, DPAD_RIGHT), 2);
+    EXPECT_EQ(ForkNewGameOptionsNextSetting(1, DPAD_RIGHT), 3);
     EXPECT_EQ(ForkNewGameOptionsNextSetting(2, DPAD_RIGHT), 3);
     EXPECT_EQ(ForkNewGameOptionsNextSetting(3, DPAD_RIGHT), 0);
     EXPECT_EQ(ForkNewGameOptionsNextSetting(0, DPAD_LEFT), 3);
@@ -108,4 +107,16 @@ TEST("Nuzlite and Nuzlocke lock battle style to Set")
     EXPECT_EQ(ForkNewGameOptionsLocksBattleStyle(1), TRUE);
     EXPECT_EQ(ForkNewGameOptionsLocksBattleStyle(2), FALSE);
     EXPECT_EQ(ForkNewGameOptionsLocksBattleStyle(3), FALSE);
+}
+
+TEST("New game hidden rules match challenge presets in Custom")
+{
+    EXPECT_EQ(ForkNewGameOptionsPresetValues(3) & 0x8173, 0x8163);
+    EXPECT_EQ(ForkNewGameOptionsVisibleIndex(0, 0), 0);
+    EXPECT_EQ(ForkNewGameOptionsVisibleIndex(0, 3), 9);
+    EXPECT_EQ(ForkNewGameOptionsVisibleIndex(1, 0), 10);
+    EXPECT_EQ(ForkNewGameOptionsVisibleIndex(1, 2), 13);
+    EXPECT_EQ(ForkNewGameOptionsVisibleIndex(1, 3), 0xFF);
+    EXPECT_EQ(ForkNewGameOptionsNextSetting(3, DPAD_LEFT), 1);
+    EXPECT_EQ(ForkNewGameOptionsNextSetting(1, DPAD_LEFT), 0);
 }

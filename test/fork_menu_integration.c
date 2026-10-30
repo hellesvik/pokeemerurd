@@ -11,7 +11,7 @@ void Test_RunOptionMenu(const u16 *keys, u32 count);
 
 TEST("Feature menu presets survive new game and flash save reload")
 {
-    for (u8 mode = 0; mode < 4; mode++)
+    for (u8 mode = 0; mode < 3; mode++)
     {
         u16 keys[4] = {DPAD_RIGHT, DPAD_RIGHT, DPAD_RIGHT, START_BUTTON};
         keys[mode] = START_BUTTON;
@@ -21,7 +21,7 @@ TEST("Feature menu presets survive new game and flash save reload")
         EXPECT_EQ(gSaveBlock3Ptr->forkBattleStyleLocked, mode <= 1);
         EXPECT_EQ(ForkGetRandomizerMaxGen(), mode <= 1 ? GEN_9 : GEN_3);
         EXPECT_EQ(ForkArePlayerEvsEnabled(), FALSE);
-        EXPECT_EQ(ForkAreBattleItemsEnabled(), mode == 2);
+        EXPECT_EQ(ForkAreBattleItemsEnabled(), FALSE);
         // The contiguous gameplay fields cover every feature-menu setting.
         EXPECT_EQ(memcmp(&before.forkGameplayOptionsConfigured,
                          &gSaveBlock3Ptr->forkGameplayOptionsConfigured,
@@ -42,11 +42,12 @@ TEST("Custom feature menu edits every setting without clearing other settings")
 {
     static const u16 keys[] = {
         DPAD_LEFT, // Nuzlite to Custom.
-        DPAD_DOWN, DPAD_RIGHT, DPAD_DOWN, DPAD_RIGHT, DPAD_DOWN, DPAD_RIGHT,
-        R_BUTTON, DPAD_RIGHT, DPAD_DOWN, DPAD_RIGHT, DPAD_DOWN, DPAD_RIGHT, DPAD_DOWN, DPAD_RIGHT,
-        R_BUTTON, DPAD_RIGHT, DPAD_DOWN, DPAD_RIGHT, DPAD_DOWN, DPAD_RIGHT, DPAD_DOWN, DPAD_RIGHT,
-        R_BUTTON, DPAD_RIGHT, DPAD_DOWN, DPAD_RIGHT,
-        L_BUTTON, L_BUTTON, L_BUTTON, DPAD_DOWN, DPAD_DOWN, DPAD_DOWN, DPAD_RIGHT,
+        DPAD_DOWN, DPAD_RIGHT, DPAD_RIGHT, // Faint: Off to On Faint.
+        DPAD_DOWN, DPAD_RIGHT, // Player EVs.
+        DPAD_DOWN, DPAD_RIGHT, // Encounters.
+        R_BUTTON, DPAD_RIGHT, // Gen 3 to Gen 4.
+        DPAD_DOWN, DPAD_RIGHT, // Abilities.
+        DPAD_DOWN, DPAD_RIGHT, // Reusable TMs.
         START_BUTTON,
     };
     Test_RunNewGameFeatureMenu(keys, ARRAY_COUNT(keys));
@@ -54,7 +55,7 @@ TEST("Custom feature menu edits every setting without clearing other settings")
     EXPECT_EQ(ForkIsCatchLimitEnabled(), TRUE);
     EXPECT_EQ(ForkIsLevelCapEnabled(), TRUE);
     EXPECT_EQ(ForkGetFaintRule(), FORK_FAINT_RULE_ON_FAINT);
-    EXPECT_EQ(ForkAreBattleItemsEnabled(), TRUE);
+    EXPECT_EQ(ForkAreBattleItemsEnabled(), FALSE);
     EXPECT_EQ(ForkHasInfiniteRareCandy(), TRUE);
     EXPECT_EQ(ForkHasInfiniteRepel(), TRUE);
     EXPECT_EQ(ForkArePlayerEvsEnabled(), TRUE);

@@ -1,6 +1,7 @@
 #ifndef GUARD_FORK_NEW_GAME_OPTIONS_H
 #define GUARD_FORK_NEW_GAME_OPTIONS_H
 
+u8 ForkNewGameOptionsVisibleIndex(u8 page, u8 row);
 u8 ForkNewGameOptionsNextPage(u8 page, u16 newKeys);
 u8 ForkNewGameOptionsMoveSelection(u8 selection, u16 newKeys);
 u8 ForkNewGameOptionsToggleValue(u8 value, u16 newKeys);

@@ -2,17 +2,7 @@ FourIsland_PokemonDayCare_Frlg_MapScripts::
 	.byte 0
 
 FourIsland_PokemonDayCare_EventScript_DaycareWoman::
-	lock
-	faceplayer
-	specialvar VAR_RESULT, GetDaycareState
-	goto_if_eq VAR_RESULT, DAYCARE_EGG_WAITING, FourIsland_PokemonDayCare_EggWaiting
-	goto_if_eq VAR_RESULT, DAYCARE_ONE_MON, FourIsland_PokemonDayCare_OneMonInDaycare
-	goto_if_eq VAR_RESULT, DAYCARE_TWO_MONS, FourIsland_PokemonDayCare_TwoMonsInDaycare
-	msgbox DayCare_Text_WouldYouLikeUsToRaiseMon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, FourIsland_PokemonDayCare_GiveMonToRaise
-	msgbox DayCare_Text_FineThenComeAgain
-	release
-	end
+	goto Common_EventScript_DaycareClosed
 
 FourIsland_PokemonDayCare_GiveMonToRaise::
 	specialvar VAR_RESULT, CountPartyNonEggMons

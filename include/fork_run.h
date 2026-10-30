@@ -5,6 +5,10 @@
 #include "pokemon.h"
 #include "constants/battle.h"
 
+// Optional trainer rematch systems are disabled in every gameplay preset.
+#define FORK_TRAINER_REMATCHES_ENABLED FALSE
+bool32 ForkIsBattleFacilityMap(u16 mapGroup, u16 mapNum);
+
 enum ForkFaintRule
 {
     FORK_FAINT_RULE_OFF,

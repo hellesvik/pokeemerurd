@@ -3,10 +3,16 @@
 
 #include "main.h"
 
-// Each 4 KiB flash sector contains 3968 bytes of actual data followed by 116 bytes of SaveBlock3 and then 12 bytes of footer.
+// Special saves retain the legacy 3968-byte data area. Game saves pack all
+// save blocks into the full payload before the unchanged 12-byte footer.
 #define SECTOR_DATA_SIZE 3968
 #define SAVE_BLOCK_3_CHUNK_SIZE 116
 #define SECTOR_FOOTER_SIZE 12
+#define SAVE_STREAM_SECTOR_SIZE 4084
+#define SAVE_STREAM_SIGNATURE 0x8012026
+#define SAVE_STREAM_CORE_SIZE (sizeof(struct SaveBlock2) + sizeof(struct SaveBlock1) + sizeof(struct SaveBlock3))
+#define SAVE_STREAM_TOTAL_SIZE (SAVE_STREAM_CORE_SIZE + sizeof(struct PokemonStorage))
+#define SAVE_STREAM_CORE_LAST_SECTOR ((SAVE_STREAM_CORE_SIZE - 1) / SAVE_STREAM_SECTOR_SIZE)
 #define SECTOR_SIZE (SECTOR_DATA_SIZE + SAVE_BLOCK_3_CHUNK_SIZE + SECTOR_FOOTER_SIZE)
 
 #define NUM_SAVE_SLOTS 2
@@ -61,7 +67,8 @@ enum
 };
 
 // A save sector location holds a pointer to the data for a particular sector
-// and the size of that data. Size cannot be greater than SECTOR_DATA_SIZE.
+// and its serialized size. Packed game-save sectors use a NULL data pointer
+// because one sector may span multiple RAM save blocks.
 struct SaveSectorLocation
 {
     void *data;

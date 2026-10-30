@@ -1464,11 +1464,7 @@ static u8 GetMapsecType(mapsec_u16_t mapSecId)
     case MAPSEC_EVER_GRANDE_CITY:
         return CITY_FLY_TYPE(FLAG_VISITED_EVER_GRANDE_CITY);
     case MAPSEC_BATTLE_FRONTIER:
-#if TEST_FLY_DESTINATIONS_UNRESTRICTED
-        return MAPSECTYPE_BATTLE_FRONTIER;
-#else
-        return FlagGet(FLAG_LANDMARK_BATTLE_FRONTIER) ? MAPSECTYPE_BATTLE_FRONTIER : MAPSECTYPE_NONE;
-#endif
+        return MAPSECTYPE_NONE;
     case MAPSEC_SOUTHERN_ISLAND:
 #if TEST_FLY_DESTINATIONS_UNRESTRICTED
         return MAPSECTYPE_ROUTE;
@@ -2542,3 +2538,10 @@ void SetFlyDestination(struct RegionMap* regionMap)
     else
         SetWarpDestinationToMapWarp(sMapHealLocations[regionMap->mapSecId][0], sMapHealLocations[regionMap->mapSecId][1], WARP_ID_NONE);
 }
+
+#if TESTING
+bool32 Test_CanFlyToBattleFrontier(void)
+{
+    return GetMapsecType(MAPSEC_BATTLE_FRONTIER) == MAPSECTYPE_BATTLE_FRONTIER;
+}
+#endif

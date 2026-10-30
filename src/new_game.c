@@ -311,7 +311,6 @@ void NewGameInitData(void)
     ResetLotteryCorner();
     UpdateDailySeed();
     InitForkItemRandomizerSeed();
-    InitForkRandomizedTMMoves();
     InitForkEncounterRandomizerSeed();
     WarpToTruck();
     if (IS_FRLG)

@@ -1,4 +1,5 @@
 #include "global.h"
+#include "fork_run.h"
 #include "battle_setup.h"
 #include "data.h"
 #include "event_data.h"
@@ -316,6 +317,9 @@ mapsec_u16_t GetMatchCallMapSec(int index)
 
 bool32 ShouldDrawRematchPokeballIcon(int index)
 {
+    if (!FORK_TRAINER_REMATCHES_ENABLED)
+        return FALSE;
+
 #if FREE_MATCH_CALL == FALSE
     struct Pokenav_MatchCallMenu *state = GetSubstructPtr(POKENAV_SUBSTRUCT_MATCH_CALL_MAIN);
     if (!state->matchCallEntries[index].isSpecialTrainer)

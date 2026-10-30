@@ -347,7 +347,7 @@ TEST("Fork item randomizer does not yield placeholder TMs")
     }
 }
 
-TEST("Fork item randomizer includes every randomized TM")
+TEST("Fork item randomizer includes every Gen9 TM")
 {
     u16 randomizedTMCount = 0;
 
@@ -358,11 +358,10 @@ TEST("Fork item randomizer includes every randomized TM")
     {
         enum Item item = ResolveForkRandomizedItem(ITEM_POTION, sourceId);
 
-        if ((item >= ITEM_TM51 && item <= ITEM_TM100)
-         || (item >= ITEM_TM101 && item <= ITEM_TM130))
+        if (GetItemTMHMIndex(item) >= 1 && GetItemTMHMIndex(item) <= NUM_TECHNICAL_MACHINES)
             randomizedTMCount++;
     }
-    EXPECT_EQ(randomizedTMCount, 80);
+    EXPECT_EQ(randomizedTMCount, 229);
 }
 
 TEST("Fork item randomizer includes obtainable DLC evolution items")
@@ -445,7 +444,10 @@ TEST("Species-specific items require obtainable Pokemon in the selected generati
     EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_SOUL_DEW));
     EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_ROTOM_CATALOG));
     EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_REVEAL_GLASS));
-    EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_BURN_DRIVE));
+    EXPECT_EQ(IsForkItemEligibleForRandomizerPool(ITEM_BURN_DRIVE)
+        + IsForkItemEligibleForRandomizerPool(ITEM_CHILL_DRIVE)
+        + IsForkItemEligibleForRandomizerPool(ITEM_DOUSE_DRIVE)
+        + IsForkItemEligibleForRandomizerPool(ITEM_SHOCK_DRIVE), 1);
     EXPECT(!IsForkItemEligibleForRandomizerPool(ITEM_ZYGARDE_CUBE));
     EXPECT(!IsForkItemEligibleForRandomizerPool(ITEM_BUG_MEMORY));
 
@@ -453,8 +455,9 @@ TEST("Species-specific items require obtainable Pokemon in the selected generati
         FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, GEN_9, TRUE, FALSE);
 
     EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_ZYGARDE_CUBE));
-    EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_BUG_MEMORY));
-    EXPECT(IsForkItemEligibleForRandomizerPool(ITEM_WELLSPRING_MASK));
+    EXPECT_EQ(IsForkItemEligibleForRandomizerPool(ITEM_CORNERSTONE_MASK)
+        + IsForkItemEligibleForRandomizerPool(ITEM_HEARTHFLAME_MASK)
+        + IsForkItemEligibleForRandomizerPool(ITEM_WELLSPRING_MASK), 1);
     EXPECT(!IsForkItemEligibleForRandomizerPool(ITEM_DNA_SPLICERS));
     EXPECT(!IsForkItemEligibleForRandomizerPool(ITEM_REINS_OF_UNITY));
     EXPECT(!IsForkItemEligibleForRandomizerPool(ITEM_RED_ORB));
@@ -473,4 +476,86 @@ TEST("Fork item randomizer does not yield Plates or Incenses")
         EXPECT_NE(gItemsInfo[item].sortType, ITEM_TYPE_PLATE);
         EXPECT_NE(gItemsInfo[item].sortType, ITEM_TYPE_INCENSE);
     }
+}
+
+static u32 FormItemFamily(enum Item item)
+{
+    if (item >= ITEM_FIRE_MEMORY && item <= ITEM_FAIRY_MEMORY)
+        return 0;
+    switch (item)
+    {
+    case ITEM_BURN_DRIVE: case ITEM_CHILL_DRIVE: case ITEM_DOUSE_DRIVE: case ITEM_SHOCK_DRIVE: return 1;
+    case ITEM_PINK_NECTAR: case ITEM_PURPLE_NECTAR: case ITEM_RED_NECTAR: case ITEM_YELLOW_NECTAR: return 2;
+    case ITEM_CORNERSTONE_MASK: case ITEM_HEARTHFLAME_MASK: case ITEM_WELLSPRING_MASK: return 3;
+    default: return 4;
+    }
+}
+
+static void GetEligibleFormItems(enum Item selected[4], u32 counts[4])
+{
+    memset(selected, 0, sizeof(enum Item) * 4);
+    memset(counts, 0, sizeof(u32) * 4);
+    for (enum Item item = ITEM_NONE; item < ITEMS_COUNT; item++)
+    {
+        u32 family = FormItemFamily(item);
+        if (family < 4 && IsForkItemEligibleForRandomizerPool(item))
+        {
+            selected[family] = item;
+            counts[family]++;
+        }
+    }
+}
+
+TEST("Form item families select one stable variant per seed and respect generation limits")
+{
+    bool32 varied[4] = {FALSE};
+    enum Item first[4], selected[4], repeated[4];
+    u32 counts[4];
+    ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
+        FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, GEN_9, TRUE, FALSE);
+    for (u32 seed = 1; seed <= 64; seed++)
+    {
+        gSaveBlock3Ptr->forkItemRandomizerSeed = seed;
+        ResetForkItemRandomizerState();
+        rng_value_t rngBefore = gRngValue;
+        GetEligibleFormItems(selected, counts);
+        EXPECT_EQ(memcmp(&gRngValue, &rngBefore, sizeof(rngBefore)), 0);
+        for (u32 family = 0; family < 4; family++)
+        {
+            EXPECT_EQ(counts[family], 1);
+            if (seed == 1) first[family] = selected[family];
+            if (first[family] != selected[family]) varied[family] = TRUE;
+        }
+        ResolveForkRandomizedItem(ITEM_POTION, 0);
+        ResetForkItemRandomizerState();
+        GetEligibleFormItems(repeated, counts);
+        EXPECT_EQ(memcmp(selected, repeated, sizeof(selected)), 0);
+    }
+    for (u32 family = 0; family < 4; family++) EXPECT(varied[family]);
+    ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
+        FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, GEN_3, TRUE, FALSE);
+    GetEligibleFormItems(selected, counts);
+    for (u32 family = 0; family < 4; family++) EXPECT_EQ(counts[family], 0);
+}
+
+TEST("Form item families allocate only the selected variant once when the pool is exhausted")
+{
+    enum Item selected[4];
+    u32 counts[4], awarded[4] = {0};
+    ForkConfigureGameplayOptions(FALSE, FALSE, FORK_FAINT_RULE_WHITEOUT,
+        FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, GEN_9, TRUE, FALSE);
+    gSaveBlock3Ptr->forkItemRandomizerSeed = 98765;
+    ResetForkItemRandomizerState();
+    GetEligibleFormItems(selected, counts);
+    for (u32 source = 0; source < FORK_ITEM_RANDOMIZER_POOL_COUNT; source++)
+    {
+        enum Item item = ResolveForkRandomizedItem(ITEM_POTION, source);
+        u32 family = FormItemFamily(item);
+        if (family < 4)
+        {
+            EXPECT_EQ(item, selected[family]);
+            awarded[family]++;
+        }
+    }
+    for (u32 family = 0; family < 4; family++) EXPECT_EQ(awarded[family], 1);
 }

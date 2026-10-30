@@ -35,7 +35,6 @@
 static void ClearDaycareMonMail(struct DaycareMail *mail);
 static void SetInitialEggData(struct Pokemon *mon, enum Species species, struct DayCare *daycare);
 static void DaycarePrintMonInfo(u8 windowId, u32 daycareSlotId, u8 y);
-static u8 ModifyBreedingScoreForOvalCharm(u8 score);
 static enum Species GetEggSpecies(enum Species species);
 
 // RAM buffers used to assist with BuildEggMoveset()
@@ -1076,7 +1075,7 @@ static enum Species DetermineEggSpeciesAndParentSlots(struct DayCare *daycare, u
     return eggSpecies;
 }
 
-static void _GiveEggFromDaycare(struct DayCare *daycare)
+static void UNUSED _GiveEggFromDaycare(struct DayCare *daycare)
 {
     struct Pokemon egg;
     enum Species species;
@@ -1155,27 +1154,22 @@ static void SetInitialEggData(struct Pokemon *mon, enum Species species, struct 
 
 void GiveEggFromDaycare(void)
 {
-    _GiveEggFromDaycare(&gSaveBlock1Ptr->daycare);
+    // Day Care services are closed; scripted gift Eggs use ScriptGiveEgg.
 }
 
-static bool8 TryProduceOrHatchEgg(struct DayCare *daycare)
+#if TESTING
+// Keep the underlying breeding mechanics available to the engine tests only.
+void Test_GiveEggFromDaycare(void)
 {
-    u32 i, validEggs = 0;
+    _GiveEggFromDaycare(&gSaveBlock1Ptr->daycare);
+}
+#endif
 
-    for (i = 0; i < DAYCARE_MON_COUNT; i++)
-    {
-        if (GetBoxMonData(&daycare->mons[i].mon, MON_DATA_SANITY_HAS_SPECIES))
-            daycare->mons[i].steps++, validEggs++;
-    }
+static bool8 TryHatchPartyEgg(struct DayCare *daycare)
+{
+    u32 i;
 
-    // Check if an egg should be produced
-    if (daycare->offspringPersonality == 0 && validEggs == DAYCARE_MON_COUNT && (daycare->mons[1].steps & 0xFF) == 0xFF)
-    {
-        u8 compatibility = ModifyBreedingScoreForOvalCharm(GetDaycareCompatibilityScore(daycare));
-        if (compatibility > (Random() * 100u) / USHRT_MAX)
-            TriggerPendingDaycareEgg();
-    }
-
+    // This shared counter still drives party Egg hatching while Day Care is closed.
     // Try to hatch Egg
     daycare->stepCounter++;
     // Keep the generation-specific vanilla intervals, then scale them down
@@ -1221,11 +1215,7 @@ static bool8 TryProduceOrHatchEgg(struct DayCare *daycare)
 
 bool8 ShouldEggHatch(void)
 {
-#if IS_FRLG
-    if (GetBoxMonData(&gSaveBlock1Ptr->route5DayCareMon.mon, MON_DATA_SANITY_HAS_SPECIES))
-        gSaveBlock1Ptr->route5DayCareMon.steps++;
-#endif
-    return TryProduceOrHatchEgg(&gSaveBlock1Ptr->daycare);
+    return TryHatchPartyEgg(&gSaveBlock1Ptr->daycare);
 }
 
 static bool8 IsEggPending(struct DayCare *daycare)
@@ -1594,24 +1584,6 @@ void ChooseSendDaycareMon(void)
 {
     ChooseMonForDaycare();
     gMain.savedCallback = CB2_ReturnToField;
-}
-
-static u8 ModifyBreedingScoreForOvalCharm(u8 score)
-{
-    if (CheckBagHasItem(ITEM_OVAL_CHARM, 1))
-    {
-        switch (score)
-        {
-        case 20:
-            return 40;
-        case 50:
-            return 80;
-        case 70:
-            return 88;
-        }
-    }
-
-    return score;
 }
 
 // Route 5 Daycare

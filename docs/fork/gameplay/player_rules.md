@@ -10,6 +10,9 @@ Held items consumed or removed during a battle are restored when the battle
 ends. This applies to player and opposing Pokémon in the current battle
 configuration.
 
+Wild Pokémon start encounters without held items, including scripted encounters
+and wild double battles. This rule applies regardless of species or lead ability.
+
 Thief and Covet handle stolen items differently depending on the encounter:
 
 - Items stolen from wild Pokémon are kept and sent to the Bag.
@@ -23,6 +26,11 @@ through the game's other move-replacement interfaces.
 Field HMs are available after the HM has been received and its normal badge
 requirement is met. The player can interact with the relevant object or
 terrain directly; no party Pokémon needs to know the move.
+
+After obtaining their HM and badge, **FLASH** and **FLY** also appear in every
+non-Egg Pokémon's field menu, even if its species cannot learn the move.
+Fainted Pokémon can use these shortcuts too. Normal location restrictions
+still apply. The Gen 9 Fly TM alone does not unlock the Fly shortcut.
 
 ## Infinite key items
 
@@ -83,3 +91,53 @@ battle style to Set.
 
 See [New-Game Feature Options](../configuration/new_game_options.md) for the
 available presets.
+
+## Level all PC boxes to cap
+
+Choose **LEVEL BOXES TO CAP** from the Pokémon PC main menu to raise Pokémon
+in every stored box to the current level cap. Eggs and Pokémon already at or
+above the cap are skipped, and party Pokémon are unaffected. This requires
+level caps to be enabled. Levels increase directly without evolution or
+move-learning prompts; existing moves and species are preserved.
+
+## Day Care
+
+All Day Care services are closed in every gameplay preset, including Route 117,
+FRLG Route 5, and Four Island. Pokémon cannot be deposited, trained, or bred,
+and Day Care Eggs cannot be collected. Buildings remain accessible and staff
+explain that the Day Care is closed.
+
+One-time NPC gift Eggs, including Lavaridge's Wynaut, remain available. Eggs
+in the party still hatch normally. This rule targets new games.
+
+## Bag capacity
+
+The Items pocket holds **320 stacks**, and the TM/HM pocket holds **237**: all
+229 TMs plus eight HMs. These limits apply to every gameplay preset. Stack
+quantity limits and the other pockets are unchanged. The Items capacity covers
+the eligible main randomizer pool plus hidden-item treasures and ordinary
+supplies.
+
+This version requires a **new game**. Expanded inventories use a packed save
+layout across the existing two rotating save slots; older saves are not
+compatible. Legacy external save tools cannot use the old fixed sector layout
+or its eight-bit Items-pocket capacity metadata.
+
+## Trainer rematches and optional battle facilities
+
+Trainer rematch systems are disabled in every preset in Emerald, FireRed, and
+LeafGreen. Match Call no longer schedules trainer or Gym Leader rematches or
+shows rematch indicators. Normal contacts, calls, and required tutorials remain.
+The Vs. Seeker is not awarded and cannot be activated.
+
+Gabby and Ty's battles, route rotation, and interviews remain available, but
+all six parties award zero prize money, including with money bonuses. Their
+victory message displays ₽0. Pay Day and other move-generated money still work.
+
+Battle Frontier, Battle Tents, Trainer Hill, FRLG's Trainer Tower and its grounds,
+and Mossdeep's optional e-Reader battle basement are closed. Their entrances
+are blocked; the Frontier is absent from ferry and Fly destinations. Gifts and
+shops within the closed areas are inaccessible too.
+
+Normal trainer and Gym battles, scripted rival/story battles, Contests, and
+repeat Pokémon League runs remain available. This rule targets new games.

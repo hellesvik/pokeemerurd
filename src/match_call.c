@@ -1,4 +1,5 @@
 #include "global.h"
+#include "fork_run.h"
 #include "malloc.h"
 #include "battle.h"
 #include "battle_setup.h"
@@ -1493,6 +1494,9 @@ static void Task_SpinPokenavIcon(u8 taskId)
 
 static bool32 TrainerIsEligibleForRematch(int matchCallId)
 {
+    if (!FORK_TRAINER_REMATCHES_ENABLED)
+        return FALSE;
+
 #if FREE_MATCH_CALL == FALSE
     return gSaveBlock1Ptr->trainerRematches[matchCallId] > 0;
 #else
@@ -1672,6 +1676,7 @@ static const struct MatchCallText *GetGeneralMatchCallText(int matchCallId, u8 *
 
 static void BuildMatchCallString(int matchCallId, const struct MatchCallText *matchCallText, u8 *str)
 {
+
     PopulateMatchCallStringVars(matchCallId, matchCallText->stringVarFuncIds);
     StringExpandPlaceholders(str, matchCallText->text);
 }
@@ -1890,6 +1895,9 @@ static int GetNumOwnedBadges(void)
 // Whether or not a trainer calling the player from a different route should request a battle
 static bool32 ShouldTrainerRequestBattle(int matchCallId)
 {
+    if (!FORK_TRAINER_REMATCHES_ENABLED)
+        return FALSE;
+
     int dayCount;
     int otId;
     u16 dewfordRand;

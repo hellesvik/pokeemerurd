@@ -68,16 +68,7 @@ FourIsland_Movement_PlayerWatchRivalExit::
 	step_end
 
 FourIsland_EventScript_DaycareMan::
-	lock
-	faceplayer
-	special GetDaycareMonNicknames
-	specialvar VAR_RESULT, GetDaycareState
-	goto_if_eq VAR_RESULT, DAYCARE_EGG_WAITING, FourIsland_EventScript_DaycareEggWaiting
-	goto_if_eq VAR_RESULT, DAYCARE_ONE_MON, FourIsland_EventScript_CheckOnOneMon
-	goto_if_eq VAR_RESULT, DAYCARE_TWO_MONS, FourIsland_EventScript_CheckOnTwoMons
-	msgbox DayCare_Text_ImDaycareManSpeakToMyWife
-	release
-	end
+	goto Common_EventScript_DaycareClosed
 
 FourIsland_EventScript_DaycareEggWaiting::
 	msgbox DayCare_Text_DoYouWantEgg, MSGBOX_YESNO

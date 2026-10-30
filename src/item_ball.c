@@ -280,59 +280,9 @@ static const enum Item sForkRandomizedItemPool[] =
     ITEM_WIDE_LENS,
     ITEM_WISE_GLASSES,
     ITEM_ZOOM_LENS,
-    ITEM_TM01,
-    ITEM_TM02,
-    ITEM_TM03,
-    ITEM_TM04,
-    ITEM_TM05,
-    ITEM_TM06,
-    ITEM_TM07,
-    ITEM_TM08,
-    ITEM_TM09,
-    ITEM_TM10,
-    ITEM_TM11,
-    ITEM_TM12,
-    ITEM_TM13,
-    ITEM_TM14,
-    ITEM_TM15,
-    ITEM_TM16,
-    ITEM_TM17,
-    ITEM_TM18,
-    ITEM_TM19,
-    ITEM_TM20,
-    ITEM_TM21,
-    ITEM_TM22,
-    ITEM_TM23,
-    ITEM_TM24,
-    ITEM_TM25,
-    ITEM_TM26,
-    ITEM_TM27,
-    ITEM_TM28,
-    ITEM_TM29,
-    ITEM_TM30,
-    ITEM_TM31,
-    ITEM_TM32,
-    ITEM_TM33,
-    ITEM_TM34,
-    ITEM_TM35,
-    ITEM_TM36,
-    ITEM_TM37,
-    ITEM_TM38,
-    ITEM_TM39,
-    ITEM_TM40,
-    ITEM_TM41,
-    ITEM_TM42,
-    ITEM_TM43,
-    ITEM_TM44,
-    ITEM_TM45,
-    ITEM_TM46,
-    ITEM_TM47,
-    ITEM_TM48,
-    ITEM_TM49,
-    ITEM_TM50,
-#define ADD_FORK_RANDOM_TM_TO_POOL(number) ITEM_TM##number,
-    FOREACH_FORK_RANDOM_TM(ADD_FORK_RANDOM_TM_TO_POOL)
-#undef ADD_FORK_RANDOM_TM_TO_POOL
+#define ADD_TM_TO_POOL(number, move) ITEM_TM##number,
+    FOREACH_GEN9_TM(ADD_TM_TO_POOL)
+#undef ADD_TM_TO_POOL
 };
 
 static const enum Item sForkRandomizedHiddenItemPool[] =
@@ -514,8 +464,52 @@ static bool32 IsSpeciesSpecificItemAvailable(enum Item item)
     }
 }
 
+// Separate salts keep each family's choice stable and independent of allocation order.
+static const enum Item sMemoryVariants[] =
+{
+    ITEM_BUG_MEMORY, ITEM_DARK_MEMORY, ITEM_DRAGON_MEMORY, ITEM_ELECTRIC_MEMORY,
+    ITEM_FAIRY_MEMORY, ITEM_FIGHTING_MEMORY, ITEM_FIRE_MEMORY, ITEM_FLYING_MEMORY,
+    ITEM_GHOST_MEMORY, ITEM_GRASS_MEMORY, ITEM_GROUND_MEMORY, ITEM_ICE_MEMORY,
+    ITEM_POISON_MEMORY, ITEM_PSYCHIC_MEMORY, ITEM_ROCK_MEMORY, ITEM_STEEL_MEMORY,
+    ITEM_WATER_MEMORY,
+};
+static const enum Item sDriveVariants[] = {ITEM_BURN_DRIVE, ITEM_CHILL_DRIVE, ITEM_DOUSE_DRIVE, ITEM_SHOCK_DRIVE};
+static const enum Item sNectarVariants[] = {ITEM_PINK_NECTAR, ITEM_PURPLE_NECTAR, ITEM_RED_NECTAR, ITEM_YELLOW_NECTAR};
+static const enum Item sMaskVariants[] = {ITEM_CORNERSTONE_MASK, ITEM_HEARTHFLAME_MASK, ITEM_WELLSPRING_MASK};
+
+static bool32 IsSelectedItemFamilyVariant(enum Item item)
+{
+    static const struct
+    {
+        const enum Item *items;
+        u32 count;
+        u32 salt;
+    } families[] =
+    {
+        {sMemoryVariants, ARRAY_COUNT(sMemoryVariants), 0x4D454D52},
+        {sDriveVariants, ARRAY_COUNT(sDriveVariants), 0x44524956},
+        {sNectarVariants, ARRAY_COUNT(sNectarVariants), 0x4E454354},
+        {sMaskVariants, ARRAY_COUNT(sMaskVariants), 0x4D41534B},
+    };
+
+    for (u32 family = 0; family < ARRAY_COUNT(families); family++)
+    {
+        for (u32 variant = 0; variant < families[family].count; variant++)
+        {
+            if (families[family].items[variant] == item)
+            {
+                rng_value_t rng = LocalRandomSeed(gSaveBlock3Ptr->forkItemRandomizerSeed ^ families[family].salt);
+                return variant == LocalRandom(&rng) % families[family].count;
+            }
+        }
+    }
+    return TRUE;
+}
+
 bool32 IsForkItemEligibleForRandomizerPool(enum Item item)
 {
+    if (!IsSelectedItemFamilyVariant(item))
+        return FALSE;
     if (gItemsInfo[item].sortType == ITEM_TYPE_MEGA_STONE)
         return ForkAreMegaEvolutionsEnabled()
             && ForkRandomizerCatalog_IsMegaStoneRelevant(item);
@@ -721,7 +715,7 @@ static u16 GetForkGymLeaderItemSourceId(enum Item itemId)
     {
     case ITEM_TM_ROCK_TOMB:  return FORK_ITEM_RANDOMIZER_GYM_LEADER_SOURCE_START + 0;
     case ITEM_TM_BULK_UP:    return FORK_ITEM_RANDOMIZER_GYM_LEADER_SOURCE_START + 1;
-    case ITEM_TM_SHOCK_WAVE: return FORK_ITEM_RANDOMIZER_GYM_LEADER_SOURCE_START + 2;
+    case ITEM_TM34: return FORK_ITEM_RANDOMIZER_GYM_LEADER_SOURCE_START + 2;
     case ITEM_TM_OVERHEAT:   return FORK_ITEM_RANDOMIZER_GYM_LEADER_SOURCE_START + 3;
     case ITEM_TM_FACADE:     return FORK_ITEM_RANDOMIZER_GYM_LEADER_SOURCE_START + 4;
     case ITEM_TM_AERIAL_ACE: return FORK_ITEM_RANDOMIZER_GYM_LEADER_SOURCE_START + 5;

@@ -27,15 +27,7 @@ VermilionCity_PokemonCenter_1F_EventScript_Youngster::
 	end
 
 VermilionCity_PokemonCenter_1F_EventScript_VSSeekerWoman::
-	lock
-	faceplayer
-	goto_if_set FLAG_GOT_VS_SEEKER, VermilionCity_PokemonCenter_1F_EventScript_ExplainVSSeeker
-	msgbox VermilionCity_PokemonCenter_1F_Text_UrgeToBattleSomeoneAgain
-	setflag FLAG_GOT_VS_SEEKER
-	giveitem ITEM_VS_SEEKER
-	goto_if_eq VAR_RESULT, FALSE, EventScript_BagIsFull
-	msgbox VermilionCity_PokemonCenter_1F_Text_UseDeviceForRematches
-	release
+	msgbox VermilionCity_PokemonCenter_1F_Text_NoRematches, MSGBOX_NPC
 	end
 
 VermilionCity_PokemonCenter_1F_EventScript_ExplainVSSeeker::
@@ -87,3 +79,6 @@ VermilionCity_PokemonCenter_1F_Text_ExplainVSSeeker::
 	.string "it will let you know immediately.\p"
 	.string "Charge its battery and use it\n"
 	.string "while you're on a road.$"
+
+VermilionCity_PokemonCenter_1F_Text_NoRematches:
+	.string "Enjoy your journey with your POKéMON!$"

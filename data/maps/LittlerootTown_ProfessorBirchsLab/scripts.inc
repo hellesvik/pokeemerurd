@@ -201,7 +201,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_UpgradeToNationalDex::
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_RIVAL
 	setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2
 	setvar VAR_SCOTT_BF_CALL_STEP_COUNTER, 0
-	setflag FLAG_SCOTT_CALL_BATTLE_FRONTIER
+	clearflag FLAG_SCOTT_CALL_BATTLE_FRONTIER
 	releaseall
 	end
 
@@ -649,11 +649,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_Book::
 	end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_ScottAboardSSTidalCall::
-	lockall
-	pokenavcall LittlerootTown_ProfessorBirchsLab_Text_ScottAboardSSTidalCall
-	waitmessage
 	clearflag FLAG_SCOTT_CALL_BATTLE_FRONTIER
-	releaseall
 	end
 
 LittlerootTown_ProfessorBirchsLab_Text_BirchAwayOnFieldwork:

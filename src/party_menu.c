@@ -191,8 +191,8 @@ struct PartyMenuInternal
     u32 spriteIdCancelPokeball:7;
     u32 messageId:14;
     u8 windowId[3];
-    u8 actions[10];
-    struct ListMenuItem actionItems[10];
+    u8 actions[MAX_MON_MOVES + 8];
+    struct ListMenuItem actionItems[MAX_MON_MOVES + 8];
     u8 actionListTaskId;
     u8 numActions;
     // In vanilla Emerald, only the first 0xB0 hwords (0x160 bytes) are actually used.
@@ -3123,6 +3123,28 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
                 AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, j + MENU_FIELD_MOVES);
                 break;
             }
+        }
+    }
+
+    // Flash and Fly are travel actions once their badge and HM are obtained.
+    if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && !gMain.inBattle
+        && !GetMonData(&mons[slotId], MON_DATA_IS_EGG)
+        && !MenuHelpers_IsLinkActive() && !InUnionRoom() && !InMultiPartnerRoom())
+    {
+        const enum FieldMove shortcuts[] = {FIELD_MOVE_FLASH, FIELD_MOVE_FLY};
+        for (u32 move = 0; move < ARRAY_COUNT(shortcuts); move++)
+        {
+            u8 action = shortcuts[move] + MENU_FIELD_MOVES;
+            if (!IsFieldMoveUnlocked(shortcuts[move]))
+                continue;
+            // FRLG does not provide the received-HM flags used by Emerald.
+            if (IS_FRLG && !CheckBagHasItem(shortcuts[move] == FIELD_MOVE_FLASH ? ITEM_HM_FLASH : ITEM_HM_FLY, 1))
+                continue;
+            for (j = 0; j < sPartyMenuInternal->numActions; j++)
+                if (sPartyMenuInternal->actions[j] == action)
+                    break;
+            if (j == sPartyMenuInternal->numActions)
+                AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, action);
         }
     }
 
@@ -8813,6 +8835,21 @@ s8 Test_PartyActionInput(const u16 *keys, u32 keyCount, u16 *scroll, s16 *cursor
 bool32 Test_LevelPartyMonToCap(struct Pokemon *mon)
 {
     return LevelPartyMonToCap(mon);
+}
+
+u32 Test_PartyFieldMoveActions(u32 fieldMove, u8 *count)
+{
+    struct PartyMenuInternal internal = {0};
+    struct PartyMenuInternal *savedInternal = sPartyMenuInternal;
+    u32 occurrences = 0;
+    sPartyMenuInternal = &internal;
+    SetPartyMonSelectionActions(gParties[B_TRAINER_PLAYER], 0, GetPartyMenuActionsType(&gParties[B_TRAINER_PLAYER][0]));
+    for (u32 i = 0; i < internal.numActions; i++)
+        if (internal.actions[i] == MENU_FIELD_MOVES + fieldMove)
+            occurrences++;
+    *count = internal.numActions;
+    sPartyMenuInternal = savedInternal;
+    return occurrences;
 }
 
 u32 Test_PartyTrainingActions(u8 *count)

@@ -160,7 +160,8 @@ __attribute__((section(".text.header_gf"))) USED static const struct GFRomHeader
     .gcnLinkFlagsOffset = offsetof(struct SaveBlock2, gcnLinkFlags),
     .gameClearFlag = FLAG_SYS_GAME_CLEAR,
     .ribbonFlag = FLAG_SYS_RIBBON_GET,
-    .bagCountItems = BAG_ITEMS_COUNT,
+    // The legacy external-tool header cannot describe a pocket above 255 slots.
+    .bagCountItems = BAG_ITEMS_COUNT <= 255 ? BAG_ITEMS_COUNT : 0,
     .bagCountKeyItems = BAG_KEYITEMS_COUNT,
     .bagCountPokeballs = BAG_POKEBALLS_COUNT,
     .bagCountTMHMs = BAG_TMHM_COUNT,

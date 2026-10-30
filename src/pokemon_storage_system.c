@@ -25,6 +25,8 @@
 #include "palette.h"
 #include "pc_screen_effect.h"
 #include "pokemon.h"
+#include "caps.h"
+#include "fork_run.h"
 #include "pokemon_icon.h"
 #include "pokemon_summary_screen.h"
 #include "pokemon_storage_system.h"
@@ -71,6 +73,7 @@ enum {
     OPTION_WITHDRAW,
 #endif
     OPTION_MOVE_ITEMS,
+    OPTION_LEVEL_BOXES_TO_CAP,
     OPTION_EXIT,
     OPTIONS_COUNT,
     OPTION_SELECT_MON
@@ -871,6 +874,7 @@ struct {
     [OPTION_DEPOSIT]    = {COMPOUND_STRING("DEPOSIT POKéMON"),  COMPOUND_STRING("Store POKéMON in your party in BOXES.")},
     [OPTION_MOVE_MONS]  = {COMPOUND_STRING("MOVE POKéMON"),     COMPOUND_STRING("Organize the POKéMON in BOXES and\nin your party.")},
     [OPTION_MOVE_ITEMS] = {COMPOUND_STRING("MOVE ITEMS"),       COMPOUND_STRING("Move items held by any POKéMON\nin a BOX or your party.")},
+    [OPTION_LEVEL_BOXES_TO_CAP] = {COMPOUND_STRING("LEVEL BOXES TO CAP"), COMPOUND_STRING("Raise POKéMON in all BOXES to the\ncurrent level cap.")},
     [OPTION_EXIT]       = {COMPOUND_STRING("SEE YA!"),          COMPOUND_STRING("Return to the previous menu.")}
 };
 
@@ -880,7 +884,7 @@ static const struct WindowTemplate sWindowTemplate_MainMenu =
     .tilemapLeft = 1,
     .tilemapTop = 1,
     .width = 17,
-    .height = 10,
+    .height = OPTIONS_COUNT * 2,
     .paletteNum = 15,
     .baseBlock = 0x1,
 };
@@ -1545,6 +1549,27 @@ static void Task_PCMainMenu(u8 taskId)
                 AddTextPrinterParameterized2(0, FONT_NORMAL, sMainMenuTexts[task->tSelectedOption].desc, 0, NULL, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
             }
             break;
+        case OPTION_LEVEL_BOXES_TO_CAP:
+        {
+            const u8 *message;
+            u32 count;
+
+            if (!ForkIsLevelCapEnabled())
+                message = COMPOUND_STRING("Level caps are disabled.");
+            else if ((count = LevelAllBoxMonsToCap()) == 0)
+                message = COMPOUND_STRING("No stored POKéMON need leveling.");
+            else
+            {
+                ConvertIntToDecimalStringN(gStringVar1, count, STR_CONV_MODE_LEFT_ALIGN, 3);
+                ConvertIntToDecimalStringN(gStringVar2, GetCurrentLevelCap(), STR_CONV_MODE_LEFT_ALIGN, 3);
+                StringExpandPlaceholders(gStringVar4, COMPOUND_STRING("Raised {STR_VAR_1} POKéMON to Lv. {STR_VAR_2}!"));
+                message = gStringVar4;
+            }
+            FillWindowPixelBuffer(0, PIXEL_FILL(1));
+            AddTextPrinterParameterized2(0, FONT_NORMAL, message, 0, NULL, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
+            task->tState = STATE_ERROR_MSG;
+            break;
+        }
         case MENU_B_PRESSED:
         case OPTION_EXIT:
             ClearStdWindowAndFrame(task->tWindowId, TRUE);
@@ -1640,6 +1665,41 @@ static void FieldTask_ReturnToPcMenu(void)
     SetVBlankCallback(vblankCb);
     FadeInFromBlack();
 }
+
+
+#if TESTING
+bool32 Test_PCBoxTrainingMenu(void)
+{
+    u16 savedKeys = gMain.newKeys;
+    u16 savedRepeat = gMain.newAndRepeatedKeys;
+    u8 taskId = CreateTask(Task_PCMainMenu, 80);
+    struct Task *task = &gTasks[taskId];
+    bool32 result;
+
+    ResetBgsAndClearDma3BusyFlags(0);
+    InitBgsFromTemplates(0, &(const struct BgTemplate){.bg = 0, .mapBaseIndex = 31}, 1);
+    InitStandardTextBoxWindows();
+    CreateMainMenu(OPTION_LEVEL_BOXES_TO_CAP, &task->tWindowId);
+    task->tState = STATE_HANDLE_INPUT;
+    task->tSelectedOption = OPTION_LEVEL_BOXES_TO_CAP;
+    result = GetWindowAttribute(task->tWindowId, WINDOW_HEIGHT) == OPTIONS_COUNT * 2
+        && GetWindowAttribute(task->tWindowId, WINDOW_BASE_BLOCK)
+           + GetWindowAttribute(task->tWindowId, WINDOW_WIDTH) * OPTIONS_COUNT * 2
+           <= GetWindowAttribute(0, WINDOW_BASE_BLOCK);
+    gMain.newKeys = gMain.newAndRepeatedKeys = A_BUTTON;
+    Task_PCMainMenu(taskId);
+    result &= task->tState == STATE_ERROR_MSG;
+    gMain.newKeys = gMain.newAndRepeatedKeys = B_BUTTON;
+    Task_PCMainMenu(taskId);
+    result &= task->tState == STATE_HANDLE_INPUT
+        && Menu_GetCursorPos() == OPTION_LEVEL_BOXES_TO_CAP;
+    DestroyTask(taskId);
+    FreeAllWindowBuffers();
+    gMain.newKeys = savedKeys;
+    gMain.newAndRepeatedKeys = savedRepeat;
+    return result;
+}
+#endif
 
 #undef tState
 #undef tSelectedOption
@@ -9705,6 +9765,38 @@ bool32 CheckBoxMonSanityAt(u32 boxId, u32 boxPosition)
         return TRUE;
     else
         return FALSE;
+}
+
+u32 LevelAllBoxMonsToCap(void)
+{
+    u32 count = 0;
+    u32 cap;
+
+    if (!ForkIsLevelCapEnabled())
+        return 0;
+
+    cap = GetCurrentLevelCap();
+    for (u32 box = 0; box < TOTAL_BOXES_COUNT; box++)
+    {
+        for (u32 slot = 0; slot < IN_BOX_COUNT; slot++)
+        {
+            struct BoxPokemon *mon = GetBoxedMonPtr(box, slot);
+            enum Species species;
+            u32 exp;
+
+            if (!CheckBoxMonSanityAt(box, slot))
+                continue;
+            species = GetBoxMonData(mon, MON_DATA_SPECIES);
+            if (species == SPECIES_NONE || species >= NUM_SPECIES || GetBoxMonData(mon, MON_DATA_IS_EGG))
+                continue;
+            exp = gExperienceTables[gSpeciesInfo[species].growthRate][cap];
+            if (GetBoxMonData(mon, MON_DATA_EXP) >= exp)
+                continue;
+            SetBoxMonData(mon, MON_DATA_EXP, &exp);
+            count++;
+        }
+    }
+    return count;
 }
 
 u32 CountStorageNonEggMons(void)

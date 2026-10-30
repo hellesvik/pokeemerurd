@@ -7,6 +7,8 @@
 #include "caps.h"
 #include "event_data.h"
 #include "fieldmap.h"
+#include "field_move.h"
+#include "item.h"
 #include "main.h"
 #include "overworld.h"
 #include "constants/items.h"
@@ -63,6 +65,10 @@ TEST("Full multi partner party menu wraps cancel up to partner party count")
 
 static void SetupPartyTraining(void)
 {
+    FlagClear(FLAG_BADGE02_GET);
+    FlagClear(FLAG_BADGE06_GET);
+    FlagClear(FLAG_RECEIVED_HM_FLASH);
+    FlagClear(FLAG_RECEIVED_HM_FLY);
     gSaveBlock3Ptr->forkGameplayOptionsConfigured = TRUE;
     gSaveBlock3Ptr->forkLevelCapEnabled = TRUE;
     ClearTrainerFlag(TRAINER_STEVEN);
@@ -283,4 +289,99 @@ TEST("Party Evolve respects known moves and party composition and excludes item-
     EXPECT_EQ(Test_PartyTrainingActions(&count) & 2, 2);
     CreateMon(mon, SPECIES_PIKACHU, 50, 0, OTID_STRUCT_PRESET(0));
     EXPECT_EQ(Test_PartyTrainingActions(&count) & 2, 0);
+}
+
+TEST("HM travel shortcuts require both badge and received HM without learning the move")
+{
+    u32 fieldMove;
+    u16 badge, hmFlag;
+    u8 count;
+    PARAMETRIZE { fieldMove = FIELD_MOVE_FLASH; badge = FLAG_BADGE02_GET; hmFlag = FLAG_RECEIVED_HM_FLASH; }
+    PARAMETRIZE { fieldMove = FIELD_MOVE_FLY; badge = FLAG_BADGE06_GET; hmFlag = FLAG_RECEIVED_HM_FLY; }
+    SetupPartyTraining();
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][0];
+    CreateMon(mon, SPECIES_CATERPIE, 10, 0, OTID_STRUCT_PRESET(0));
+    EXPECT_EQ(Test_PartyFieldMoveActions(fieldMove, &count), 0);
+    FlagSet(badge);
+    EXPECT_EQ(Test_PartyFieldMoveActions(fieldMove, &count), 0);
+    FlagClear(badge); FlagSet(hmFlag);
+    EXPECT_EQ(Test_PartyFieldMoveActions(fieldMove, &count), 0);
+    FlagSet(badge);
+    EXPECT_EQ(Test_PartyFieldMoveActions(fieldMove, &count), 1);
+    u16 hp = 0;
+    SetMonData(mon, MON_DATA_HP, &hp);
+    EXPECT_EQ(Test_PartyFieldMoveActions(fieldMove, &count), 1);
+    SetMonMoveSlot(mon, FieldMove_GetMoveId(fieldMove), 0);
+    EXPECT_EQ(Test_PartyFieldMoveActions(fieldMove, &count), 1);
+}
+
+TEST("HM travel shortcuts exclude Eggs battle and trade menus and the Fly TM alone")
+{
+    u8 count;
+    u32 value = TRUE;
+    SetupPartyTraining();
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][0];
+    CreateMon(mon, SPECIES_CATERPIE, 10, 0, OTID_STRUCT_PRESET(0));
+    FlagSet(FLAG_BADGE06_GET);
+    ClearBag(); AddBagItem(ITEM_TM_FLY, 1);
+    EXPECT_EQ(Test_PartyFieldMoveActions(FIELD_MOVE_FLY, &count), 0);
+    FlagSet(FLAG_RECEIVED_HM_FLY); FlagSet(FLAG_BADGE02_GET); FlagSet(FLAG_RECEIVED_HM_FLASH);
+    SetMonData(mon, MON_DATA_IS_EGG, &value);
+    EXPECT_EQ(Test_PartyFieldMoveActions(FIELD_MOVE_FLY, &count), 0);
+    EXPECT_EQ(Test_PartyFieldMoveActions(FIELD_MOVE_FLASH, &count), 0);
+    value = FALSE; SetMonData(mon, MON_DATA_IS_EGG, &value);
+    const u8 types[] = {PARTY_MENU_TYPE_IN_BATTLE, PARTY_MENU_TYPE_UNION_ROOM_REGISTER, PARTY_MENU_TYPE_UNION_ROOM_TRADE, PARTY_MENU_TYPE_DAYCARE};
+    for (u32 i = 0; i < ARRAY_COUNT(types); i++)
+    {
+        gPartyMenu.menuType = types[i];
+        EXPECT_EQ(Test_PartyFieldMoveActions(FIELD_MOVE_FLY, &count), 0);
+        EXPECT_EQ(Test_PartyFieldMoveActions(FIELD_MOVE_FLASH, &count), 0);
+    }
+}
+
+TEST("HM travel shortcuts allow twelve party actions and scroll to the final entry")
+{
+    u8 count;
+    u16 scroll;
+    s16 cursor;
+    SetupPartyTraining();
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][0];
+    CreateMon(mon, SPECIES_CATERPIE, 10, 0, OTID_STRUCT_PRESET(0));
+    SetMonMoveSlot(mon, MOVE_CUT, 0); SetMonMoveSlot(mon, MOVE_SURF, 1);
+    SetMonMoveSlot(mon, MOVE_STRENGTH, 2); SetMonMoveSlot(mon, MOVE_WATERFALL, 3);
+    FlagSet(FLAG_BADGE06_GET); FlagSet(FLAG_RECEIVED_HM_FLY);
+    FlagSet(FLAG_BADGE02_GET); FlagSet(FLAG_RECEIVED_HM_FLASH);
+    EXPECT_EQ(Test_PartyFieldMoveActions(FIELD_MOVE_FLY, &count), 1);
+    EXPECT_EQ(count, 12);
+    const u16 keys[] = {DPAD_DOWN, DPAD_DOWN, DPAD_DOWN, DPAD_DOWN, DPAD_DOWN, DPAD_DOWN,
+        DPAD_DOWN, DPAD_DOWN, DPAD_DOWN, DPAD_DOWN, DPAD_DOWN, A_BUTTON};
+    EXPECT_EQ(Test_PartyActionInput(keys, ARRAY_COUNT(keys), &scroll, &cursor), 11);
+    EXPECT_EQ(cursor, 11);
+    EXPECT_EQ(scroll, 4);
+}
+
+TEST("HM travel shortcuts use existing Flash and Fly location restrictions without learned moves")
+{
+    SetupPartyTraining();
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][0];
+    CreateMon(mon, SPECIES_CATERPIE, 10, 0, OTID_STRUCT_PRESET(0));
+    FlagSet(FLAG_BADGE06_GET); FlagSet(FLAG_RECEIVED_HM_FLY);
+    FlagSet(FLAG_BADGE02_GET); FlagSet(FLAG_RECEIVED_HM_FLASH);
+    gMapHeader.mapType = MAP_TYPE_ROUTE;
+    EXPECT(SetUpFieldMove(FIELD_MOVE_FLY));
+    gMapHeader.mapType = MAP_TYPE_INDOOR;
+    EXPECT(!SetUpFieldMove(FIELD_MOVE_FLY));
+    FlagClear(FLAG_SYS_USE_FLASH);
+    gMapHeader.cave = TRUE;
+    EXPECT(SetUpFieldMove(FIELD_MOVE_FLASH));
+    FlagSet(FLAG_SYS_USE_FLASH);
+    EXPECT(!SetUpFieldMove(FIELD_MOVE_FLASH));
+    FlagClear(FLAG_SYS_USE_FLASH);
+    gMapHeader.cave = FALSE;
+    EXPECT(!SetUpFieldMove(FIELD_MOVE_FLASH));
+    for (u32 i = 0; i < MAX_MON_MOVES; i++)
+    {
+        EXPECT_NE(GetMonData(mon, MON_DATA_MOVE1 + i), MOVE_FLASH);
+        EXPECT_NE(GetMonData(mon, MON_DATA_MOVE1 + i), MOVE_FLY);
+    }
 }

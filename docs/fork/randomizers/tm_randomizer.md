@@ -1,44 +1,39 @@
-# TM Randomizer
+# Gen 9 TMs
 
-## Behavior
+## Fixed move assignments
 
-The game supports TM01 through TM130. TM01–TM50 retain their existing fixed
-contents. TM51–TM130 are assigned random moves when a new save is created.
-The assignment is stored in the save and therefore does not change when the
-game is reloaded.
+TM001–TM229 use the official Pokémon Scarlet/Violet assignments, including
+The Teal Mask and The Indigo Disk DLC. TM001 teaches Take Down and TM229
+teaches Upper Hand. These assignments are the same in every new game and do
+not depend on the randomizer seed or enabled species generations.
+
+Reference: [Scarlet/Violet TM list](https://www.serebii.net/scarletviolet/tm.shtml).
+The canonical numbered table is in `include/constants/tms_hms.h`.
+
+The eight Emerald HMs remain separate items with their normal field behavior.
+Moves such as Surf, Fly, and Waterfall can be taught by either their TM or HM.
+Pokémon retain this project's existing teachable learnsets. The catalog change
+does not add TM crafting or change which Pokémon can learn a move.
+
+The **Reusable TMs** option controls consumption: OFF consumes one copy when
+teaching; ON keeps the TM. HMs remain reusable.
 
 ## Lilycove Department Store
 
 The two TM clerks on Lilycove Department Store 4F sell eight distinct TMs
-selected from TM01–TM130 by the save's seed. The shop displays and awards the
-resolved TM rather than the internal TM51–TM58 stock-slot placeholders. Each
-listing sells exactly one copy per save. After purchase, its listing shows
-**SOLD OUT** and selecting it displays the standard sold-out message.
+selected from TM001–TM229 by the save's seed. The shop displays and awards the
+resolved TM rather than the internal TM51–TM58 stock-slot placeholders.
+Each listing sells exactly one copy per save, then shows **SOLD OUT**.
 
-## Move pool and teaching
+## Item randomizer and inventory
 
-Each randomized TM receives a non-HM move found in at least one enabled
-species' teachable learnset, so every generated TM can be used by at least one
-Pokémon. The randomizer selects without replacement while eligible moves remain;
-it would restart that selection only if the eligible move pool were exhausted.
+All 229 TMs participate in the item-randomizer pool. Their locations and shop
+stock can vary by seed, but the move taught by each TM is fixed.
 
-Pokémon retain their normal move compatibility. A Pokémon can learn a
-randomized TM only when it can normally learn that TM's assigned move.
+The TM/HM pocket holds 237 stacks, enough for all 229 TMs and eight HMs at
+once. The Items pocket holds 320 stacks. These capacities and the expanded
+save layout require a new game; old saves are not supported.
 
-The **Reusable TMs** new-game option controls consumption. When it is OFF,
-teaching a TM consumes one copy; when it is ON, the TM remains available for
-later use. HMs are unaffected.
-
-## Item randomizer
-
-TM51–TM130 are included in the item-randomizer pool alongside TM01–TM50.
-Each randomized TM item can therefore appear once in the randomized world-item
-layout for a save.
-
-The current TM pocket retains its existing 64-slot capacity. Adding enough
-simultaneous TM inventory for all 200 machines would require a separate save
-layout redesign.
-
-The randomized-TM save data format is currently version 2. If that version is
-updated, the TM assignments are regenerated from the save's item-randomizer
-seed.
+Move-named rewards use the corresponding Gen 9 TM. Rewards whose moves are
+absent from the Gen 9 TM catalog retain their original numbered reward slot
+and therefore teach that number's new move.

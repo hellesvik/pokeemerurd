@@ -1,14 +1,15 @@
-Route117_EventScript_DaycareMan::
+Common_EventScript_DaycareClosed::
 	lock
 	faceplayer
-	special GetDaycareMonNicknames
-	specialvar VAR_RESULT, GetDaycareState
-	goto_if_eq VAR_RESULT, DAYCARE_EGG_WAITING, Route117_EventScript_DaycareEggWaiting
-	goto_if_eq VAR_RESULT, DAYCARE_ONE_MON, Route117_EventScript_CheckOnOneMon
-	goto_if_eq VAR_RESULT, DAYCARE_TWO_MONS, Route117_EventScript_CheckOnTwoMons
-	msgbox Route117_Text_SeeWifeIfYoudLikeMeToRaiseMon, MSGBOX_DEFAULT
+	msgbox Daycare_Text_Closed, MSGBOX_DEFAULT
 	release
 	end
+
+Daycare_Text_Closed:
+	.string "The DAY-CARE is closed.$"
+
+Route117_EventScript_DaycareMan::
+	goto Common_EventScript_DaycareClosed
 
 Route117_EventScript_DaycareEggWaiting::
 	msgbox Route117_Text_DoYouWantEgg, MSGBOX_YESNO
@@ -71,17 +72,7 @@ Route117_EventScript_CheckOnTwoMons::
 	end
 
 Route117_PokemonDayCare_EventScript_DaycareWoman::
-	lock
-	faceplayer
-	specialvar VAR_RESULT, GetDaycareState
-	goto_if_eq VAR_RESULT, DAYCARE_EGG_WAITING, Route117_PokemonDayCare_EventScript_EggWaiting
-	goto_if_eq VAR_RESULT, DAYCARE_ONE_MON, Route117_PokemonDayCare_EventScript_OneMonInDaycare
-	goto_if_eq VAR_RESULT, DAYCARE_TWO_MONS, Route117_PokemonDayCare_EventScript_TwoMonsInDaycare
-	msgbox Route117_PokemonDayCare_Text_WouldYouLikeUsToRaiseAMon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, Route117_PokemonDayCare_EventScript_GiveMonToRaise
-	msgbox Route117_PokemonDayCare_Text_FineThenComeAgain, MSGBOX_DEFAULT
-	release
-	end
+	goto Common_EventScript_DaycareClosed
 
 Route117_PokemonDayCare_EventScript_GiveMonToRaise::
 	specialvar VAR_RESULT, CountPartyNonEggMons

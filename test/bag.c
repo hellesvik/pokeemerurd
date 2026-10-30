@@ -8,6 +8,8 @@
 
 TEST("TMs and HMs are sorted correctly in the bag")
 {
+    gSaveBlock3Ptr->forkGameplayOptionsConfigured = TRUE;
+    gSaveBlock3Ptr->forkItemRandomizerEnabled = FALSE;
     struct BagPocket *pocket = &gBagPockets[POCKET_TM_HM];
 
     ASSUME(GetItemPocket(ITEM_HM07) == POCKET_TM_HM);
@@ -50,6 +52,8 @@ TEST("TMs and HMs are sorted correctly in the bag")
 
 TEST("Berries are sorted correctly in the bag")
 {
+    gSaveBlock3Ptr->forkGameplayOptionsConfigured = TRUE;
+    gSaveBlock3Ptr->forkItemRandomizerEnabled = FALSE;
     struct BagPocket *pocket = &gBagPockets[POCKET_BERRIES];
 
     ASSUME(GetItemPocket(ITEM_POMEG_BERRY) == POCKET_BERRIES);
@@ -99,6 +103,8 @@ TEST("Berries are sorted correctly in the bag")
 
 TEST("Items are correctly sorted and compacted in the bag")
 {
+    gSaveBlock3Ptr->forkGameplayOptionsConfigured = TRUE;
+    gSaveBlock3Ptr->forkItemRandomizerEnabled = FALSE;
     struct BagPocket *pocket = &gBagPockets[POCKET_ITEMS];
     memset(pocket->itemSlots, 0, sizeof(gSaveBlock1Ptr->bag.items));
 

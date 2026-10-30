@@ -1661,6 +1661,13 @@ static bool32 IsValidLocationForVsSeeker(void)
 
 void FieldUseFunc_VsSeeker(u8 taskId)
 {
+    if (!FORK_TRAINER_REMATCHES_ENABLED)
+    {
+        DisplayCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem,
+            COMPOUND_STRING("Trainer rematches are unavailable."));
+        return;
+    }
+
     if (IsValidLocationForVsSeeker())
     {
         sItemUseOnFieldCB = Task_InitVsSeekerAndCheckForTrainersOnScreen;

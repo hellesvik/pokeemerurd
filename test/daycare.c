@@ -7,12 +7,14 @@
 #include "test/overworld_script.h"
 #include "test/test.h"
 
+void Test_GiveEggFromDaycare(void);
+
 // We don't run the StoreSelectedPokemonInDaycare special because it relies on calling the
 // party select screen and the GetCursorSelectionMonId function, so we store directly to the struct.
 #define STORE_IN_DAYCARE_AND_GET_EGG()                                          \
     StorePokemonInDaycare(&gParties[B_TRAINER_PLAYER][0], &gSaveBlock1Ptr->daycare.mons[0]);  \
     StorePokemonInDaycare(&gParties[B_TRAINER_PLAYER][0], &gSaveBlock1Ptr->daycare.mons[1]);  \
-    RUN_OVERWORLD_SCRIPT( special GiveEggFromDaycare; );
+    Test_GiveEggFromDaycare();
 
 TEST("(Daycare) Pokémon generate Eggs of the lowest member of the evolutionary family")
 {
@@ -164,4 +166,73 @@ TEST("(Daycare) Pokémon with regional forms give the correct offspring")
     STORE_IN_DAYCARE_AND_GET_EGG();
 
     EXPECT_EQ(GetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_SPECIES), offspring);
+}
+
+TEST("Day Care closure prevents training and breeding while walking")
+{
+    struct Pokemon mon;
+    ZeroPlayerPartyMons();
+    memset(&gSaveBlock1Ptr->daycare, 0, sizeof(gSaveBlock1Ptr->daycare));
+    CreateMon(&mon, SPECIES_PIKACHU, 20, 0, OTID_STRUCT_PRESET(0));
+    gSaveBlock1Ptr->daycare.mons[0].mon = mon.box;
+    CreateMon(&mon, SPECIES_DITTO, 20, 0, OTID_STRUCT_PRESET(0));
+    gSaveBlock1Ptr->daycare.mons[1].mon = mon.box;
+    gSaveBlock1Ptr->daycare.mons[0].steps = 255;
+    gSaveBlock1Ptr->daycare.mons[1].steps = 255;
+#if IS_FRLG
+    gSaveBlock1Ptr->route5DayCareMon.mon = mon.box;
+    gSaveBlock1Ptr->route5DayCareMon.steps = 255;
+#endif
+    struct DaycareMon before[DAYCARE_MON_COUNT];
+    memcpy(before, gSaveBlock1Ptr->daycare.mons, sizeof(before));
+    FlagClear(FLAG_PENDING_DAYCARE_EGG);
+    for (u32 i = 0; i < 2048; i++)
+        EXPECT(!ShouldEggHatch());
+    EXPECT_EQ(memcmp(before, gSaveBlock1Ptr->daycare.mons, sizeof(before)), 0);
+    EXPECT_EQ(gSaveBlock1Ptr->daycare.offspringPersonality, 0);
+    EXPECT(!FlagGet(FLAG_PENDING_DAYCARE_EGG));
+#if IS_FRLG
+    EXPECT_EQ(gSaveBlock1Ptr->route5DayCareMon.steps, 255);
+#endif
+}
+
+TEST("Day Care closure blocks its egg special even with compatible parents and a pending Egg")
+{
+    struct Pokemon mon;
+    ZeroPlayerPartyMons();
+    memset(&gSaveBlock1Ptr->daycare, 0, sizeof(gSaveBlock1Ptr->daycare));
+    CreateMon(&mon, SPECIES_PIKACHU, 20, 0, OTID_STRUCT_PRESET(0));
+    gSaveBlock1Ptr->daycare.mons[0].mon = mon.box;
+    CreateMon(&mon, SPECIES_DITTO, 20, 0, OTID_STRUCT_PRESET(0));
+    gSaveBlock1Ptr->daycare.mons[1].mon = mon.box;
+    gSaveBlock1Ptr->daycare.offspringPersonality = 12345;
+    FlagSet(FLAG_PENDING_DAYCARE_EGG);
+    RUN_OVERWORLD_SCRIPT(special GiveEggFromDaycare;);
+    EXPECT_EQ(gPartiesCount[B_TRAINER_PLAYER], 0);
+    for (u32 i = 0; i < PARTY_SIZE; i++)
+        EXPECT_EQ(GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_SPECIES), SPECIES_NONE);
+}
+
+TEST("Day Care closure preserves scripted gift Eggs and party hatching")
+{
+    enum Species species;
+    PARAMETRIZE { species = SPECIES_WYNAUT; }
+    PARAMETRIZE { species = SPECIES_TOGEPI; }
+    PARAMETRIZE { species = SPECIES_PICHU; }
+    ZeroPlayerPartyMons();
+    VarSet(VAR_TEMP_C, species);
+    RUN_OVERWORLD_SCRIPT(giveegg VAR_TEMP_C;);
+    EXPECT_EQ(gPartiesCount[B_TRAINER_PLAYER], 1);
+    struct Pokemon *egg = &gParties[B_TRAINER_PLAYER][0];
+    EXPECT_EQ(GetMonData(egg, MON_DATA_SPECIES), species);
+    EXPECT(GetMonData(egg, MON_DATA_IS_EGG));
+    u32 cycles = 1;
+    SetMonData(egg, MON_DATA_FRIENDSHIP, &cycles);
+    gSaveBlock1Ptr->daycare.stepCounter = 0;
+    bool32 ready = FALSE;
+    for (u32 i = 0; i < 1024 && !ready; i++)
+        ready = ShouldEggHatch();
+    EXPECT(ready);
+    EXPECT_EQ(gSpecialVar_0x8004, 0);
+    EXPECT_EQ(GetMonData(egg, MON_DATA_FRIENDSHIP), 0);
 }

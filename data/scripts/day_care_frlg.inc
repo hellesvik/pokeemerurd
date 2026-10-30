@@ -1,14 +1,5 @@
 Route5_PokemonDayCare_EventScript_DaycareMan::
-	lock
-	faceplayer
-	showmoneybox 0, 0
-	specialvar VAR_RESULT, IsThereMonInRoute5Daycare
-	goto_if_eq VAR_RESULT, TRUE, Route5_PokemonDayCare_EventScript_CheckOnMon
-	msgbox Route5_PokemonDayCare_Text_WantMeToRaiseMon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, Route5_PokemonDayCare_EventScript_TryGiveMon
-	msgbox Route5_PokemonDayCare_Text_ComeAgain
-	goto Route5_PokemonDayCare_EventScript_CloseMoneyBox
-	end
+	goto Common_EventScript_DaycareClosed
 
 Route5_PokemonDayCare_EventScript_TryGiveMon::
 	specialvar VAR_RESULT, CountPartyNonEggMons

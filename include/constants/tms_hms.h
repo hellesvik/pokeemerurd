@@ -1,57 +1,237 @@
 #ifndef GUARD_CONSTANTS_TMS_HMS_H
 #define GUARD_CONSTANTS_TMS_HMS_H
 
-#define FOREACH_TM(F) \
-    F(FOCUS_PUNCH) \
-    F(DRAGON_CLAW) \
-    F(WATER_PULSE) \
-    F(CALM_MIND) \
-    F(ROAR) \
-    F(TOXIC) \
-    F(HAIL) \
-    F(BULK_UP) \
-    F(BULLET_SEED) \
-    F(HIDDEN_POWER) \
-    F(SUNNY_DAY) \
-    F(TAUNT) \
-    F(ICE_BEAM) \
-    F(BLIZZARD) \
-    F(HYPER_BEAM) \
-    F(LIGHT_SCREEN) \
-    F(PROTECT) \
-    F(RAIN_DANCE) \
-    F(GIGA_DRAIN) \
-    F(SAFEGUARD) \
-    F(FRUSTRATION) \
-    F(SOLAR_BEAM) \
-    F(IRON_TAIL) \
-    F(THUNDERBOLT) \
-    F(THUNDER) \
-    F(EARTHQUAKE) \
-    F(RETURN) \
-    F(DIG) \
-    F(PSYCHIC) \
-    F(SHADOW_BALL) \
-    F(BRICK_BREAK) \
-    F(DOUBLE_TEAM) \
-    F(REFLECT) \
-    F(SHOCK_WAVE) \
-    F(FLAMETHROWER) \
-    F(SLUDGE_BOMB) \
-    F(SANDSTORM) \
-    F(FIRE_BLAST) \
-    F(ROCK_TOMB) \
-    F(AERIAL_ACE) \
-    F(TORMENT) \
-    F(FACADE) \
-    F(SECRET_POWER) \
-    F(REST) \
-    F(ATTRACT) \
-    F(THIEF) \
-    F(STEEL_WING) \
-    F(SKILL_SWAP) \
-    F(SNATCH) \
-    F(OVERHEAT)
+// Scarlet/Violet, including both DLCs. Source: https://www.serebii.net/scarletviolet/tm.shtml
+#define FOREACH_GEN9_TM(F) \
+    F(01, TAKE_DOWN) \
+    F(02, CHARM) \
+    F(03, FAKE_TEARS) \
+    F(04, AGILITY) \
+    F(05, MUD_SLAP) \
+    F(06, SCARY_FACE) \
+    F(07, PROTECT) \
+    F(08, FIRE_FANG) \
+    F(09, THUNDER_FANG) \
+    F(10, ICE_FANG) \
+    F(11, WATER_PULSE) \
+    F(12, LOW_KICK) \
+    F(13, ACID_SPRAY) \
+    F(14, ACROBATICS) \
+    F(15, STRUGGLE_BUG) \
+    F(16, PSYBEAM) \
+    F(17, CONFUSE_RAY) \
+    F(18, THIEF) \
+    F(19, DISARMING_VOICE) \
+    F(20, TRAILBLAZE) \
+    F(21, POUNCE) \
+    F(22, CHILLING_WATER) \
+    F(23, CHARGE_BEAM) \
+    F(24, FIRE_SPIN) \
+    F(25, FACADE) \
+    F(26, POISON_TAIL) \
+    F(27, AERIAL_ACE) \
+    F(28, BULLDOZE) \
+    F(29, HEX) \
+    F(30, SNARL) \
+    F(31, METAL_CLAW) \
+    F(32, SWIFT) \
+    F(33, MAGICAL_LEAF) \
+    F(34, ICY_WIND) \
+    F(35, MUD_SHOT) \
+    F(36, ROCK_TOMB) \
+    F(37, DRAINING_KISS) \
+    F(38, FLAME_CHARGE) \
+    F(39, LOW_SWEEP) \
+    F(40, AIR_CUTTER) \
+    F(41, STORED_POWER) \
+    F(42, NIGHT_SHADE) \
+    F(43, FLING) \
+    F(44, DRAGON_TAIL) \
+    F(45, VENOSHOCK) \
+    F(46, AVALANCHE) \
+    F(47, ENDURE) \
+    F(48, VOLT_SWITCH) \
+    F(49, SUNNY_DAY) \
+    F(50, RAIN_DANCE) \
+    F(51, SANDSTORM) \
+    F(52, SNOWSCAPE) \
+    F(53, SMART_STRIKE) \
+    F(54, PSYSHOCK) \
+    F(55, DIG) \
+    F(56, BULLET_SEED) \
+    F(57, FALSE_SWIPE) \
+    F(58, BRICK_BREAK) \
+    F(59, ZEN_HEADBUTT) \
+    F(60, U_TURN) \
+    F(61, SHADOW_CLAW) \
+    F(62, FOUL_PLAY) \
+    F(63, PSYCHIC_FANGS) \
+    F(64, BULK_UP) \
+    F(65, AIR_SLASH) \
+    F(66, BODY_SLAM) \
+    F(67, FIRE_PUNCH) \
+    F(68, THUNDER_PUNCH) \
+    F(69, ICE_PUNCH) \
+    F(70, SLEEP_TALK) \
+    F(71, SEED_BOMB) \
+    F(72, ELECTRO_BALL) \
+    F(73, DRAIN_PUNCH) \
+    F(74, REFLECT) \
+    F(75, LIGHT_SCREEN) \
+    F(76, ROCK_BLAST) \
+    F(77, WATERFALL) \
+    F(78, DRAGON_CLAW) \
+    F(79, DAZZLING_GLEAM) \
+    F(80, METRONOME) \
+    F(81, GRASS_KNOT) \
+    F(82, THUNDER_WAVE) \
+    F(83, POISON_JAB) \
+    F(84, STOMPING_TANTRUM) \
+    F(85, REST) \
+    F(86, ROCK_SLIDE) \
+    F(87, TAUNT) \
+    F(88, SWORDS_DANCE) \
+    F(89, BODY_PRESS) \
+    F(90, SPIKES) \
+    F(91, TOXIC_SPIKES) \
+    F(92, IMPRISON) \
+    F(93, FLASH_CANNON) \
+    F(94, DARK_PULSE) \
+    F(95, LEECH_LIFE) \
+    F(96, EERIE_IMPULSE) \
+    F(97, FLY) \
+    F(98, SKILL_SWAP) \
+    F(99, IRON_HEAD) \
+    F(100, DRAGON_DANCE) \
+    F(101, POWER_GEM) \
+    F(102, GUNK_SHOT) \
+    F(103, SUBSTITUTE) \
+    F(104, IRON_DEFENSE) \
+    F(105, X_SCISSOR) \
+    F(106, DRILL_RUN) \
+    F(107, WILL_O_WISP) \
+    F(108, CRUNCH) \
+    F(109, TRICK) \
+    F(110, LIQUIDATION) \
+    F(111, GIGA_DRAIN) \
+    F(112, AURA_SPHERE) \
+    F(113, TAILWIND) \
+    F(114, SHADOW_BALL) \
+    F(115, DRAGON_PULSE) \
+    F(116, STEALTH_ROCK) \
+    F(117, HYPER_VOICE) \
+    F(118, HEAT_WAVE) \
+    F(119, ENERGY_BALL) \
+    F(120, PSYCHIC) \
+    F(121, HEAVY_SLAM) \
+    F(122, ENCORE) \
+    F(123, SURF) \
+    F(124, ICE_SPINNER) \
+    F(125, FLAMETHROWER) \
+    F(126, THUNDERBOLT) \
+    F(127, PLAY_ROUGH) \
+    F(128, AMNESIA) \
+    F(129, CALM_MIND) \
+    F(130, HELPING_HAND) \
+    F(131, POLLEN_PUFF) \
+    F(132, BATON_PASS) \
+    F(133, EARTH_POWER) \
+    F(134, REVERSAL) \
+    F(135, ICE_BEAM) \
+    F(136, ELECTRIC_TERRAIN) \
+    F(137, GRASSY_TERRAIN) \
+    F(138, PSYCHIC_TERRAIN) \
+    F(139, MISTY_TERRAIN) \
+    F(140, NASTY_PLOT) \
+    F(141, FIRE_BLAST) \
+    F(142, HYDRO_PUMP) \
+    F(143, BLIZZARD) \
+    F(144, FIRE_PLEDGE) \
+    F(145, WATER_PLEDGE) \
+    F(146, GRASS_PLEDGE) \
+    F(147, WILD_CHARGE) \
+    F(148, SLUDGE_BOMB) \
+    F(149, EARTHQUAKE) \
+    F(150, STONE_EDGE) \
+    F(151, PHANTOM_FORCE) \
+    F(152, GIGA_IMPACT) \
+    F(153, BLAST_BURN) \
+    F(154, HYDRO_CANNON) \
+    F(155, FRENZY_PLANT) \
+    F(156, OUTRAGE) \
+    F(157, OVERHEAT) \
+    F(158, FOCUS_BLAST) \
+    F(159, LEAF_STORM) \
+    F(160, HURRICANE) \
+    F(161, TRICK_ROOM) \
+    F(162, BUG_BUZZ) \
+    F(163, HYPER_BEAM) \
+    F(164, BRAVE_BIRD) \
+    F(165, FLARE_BLITZ) \
+    F(166, THUNDER) \
+    F(167, CLOSE_COMBAT) \
+    F(168, SOLAR_BEAM) \
+    F(169, DRACO_METEOR) \
+    F(170, STEEL_BEAM) \
+    F(171, TERA_BLAST) \
+    F(172, ROAR) \
+    F(173, CHARGE) \
+    F(174, HAZE) \
+    F(175, TOXIC) \
+    F(176, SAND_TOMB) \
+    F(177, SPITE) \
+    F(178, GRAVITY) \
+    F(179, SMACK_DOWN) \
+    F(180, GYRO_BALL) \
+    F(181, KNOCK_OFF) \
+    F(182, BUG_BITE) \
+    F(183, SUPER_FANG) \
+    F(184, VACUUM_WAVE) \
+    F(185, LUNGE) \
+    F(186, HIGH_HORSEPOWER) \
+    F(187, ICICLE_SPEAR) \
+    F(188, SCALD) \
+    F(189, HEAT_CRASH) \
+    F(190, SOLAR_BLADE) \
+    F(191, UPROAR) \
+    F(192, FOCUS_PUNCH) \
+    F(193, WEATHER_BALL) \
+    F(194, GRASSY_GLIDE) \
+    F(195, BURNING_JEALOUSY) \
+    F(196, FLIP_TURN) \
+    F(197, DUAL_WINGBEAT) \
+    F(198, POLTERGEIST) \
+    F(199, LASH_OUT) \
+    F(200, SCALE_SHOT) \
+    F(201, MISTY_EXPLOSION) \
+    F(202, PAIN_SPLIT) \
+    F(203, PSYCH_UP) \
+    F(204, DOUBLE_EDGE) \
+    F(205, ENDEAVOR) \
+    F(206, PETAL_BLIZZARD) \
+    F(207, TEMPER_FLARE) \
+    F(208, WHIRLPOOL) \
+    F(209, MUDDY_WATER) \
+    F(210, SUPERCELL_SLAM) \
+    F(211, ELECTROWEB) \
+    F(212, TRIPLE_AXEL) \
+    F(213, COACHING) \
+    F(214, SLUDGE_WAVE) \
+    F(215, SCORCHING_SANDS) \
+    F(216, FEATHER_DANCE) \
+    F(217, FUTURE_SIGHT) \
+    F(218, EXPANDING_FORCE) \
+    F(219, SKITTER_SMACK) \
+    F(220, METEOR_BEAM) \
+    F(221, THROAT_CHOP) \
+    F(222, BREAKING_SWIPE) \
+    F(223, METAL_SOUND) \
+    F(224, CURSE) \
+    F(225, HARD_PRESS) \
+    F(226, DRAGON_CHEER) \
+    F(227, ALLURING_VOICE) \
+    F(228, PSYCHIC_NOISE) \
+    F(229, UPPER_HAND)
 
 #define FOREACH_HM(F) \
     F(CUT) \
@@ -62,9 +242,5 @@
     F(ROCK_SMASH) \
     F(WATERFALL) \
     F(DIVE)
-
-#define FOREACH_TMHM(F) \
-    FOREACH_TM(F) \
-    FOREACH_HM(F)
 
 #endif

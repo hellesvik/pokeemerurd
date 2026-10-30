@@ -9,7 +9,7 @@ game RNG, Trainer ID, and daily seed. Item assignments are stored in `SaveBlock3
 so they remain stable after saving, reloading, and revisiting a source.
 
 Each eligible visible item ball is assigned an item from one shared master
-pool. The master pool contains 384 entries before generation, species,
+pool. The master pool contains 483 entries before generation, species,
 evolution, and Mega Evolution eligibility filters are applied. Eligible
 replacements are unique until they are exhausted; any later visible item-ball
 sources retain their original item.
@@ -60,7 +60,7 @@ the scrollable menu allows all eleven prizes to be selected.
 
 ## Replacement pool
 
-The pool contains 384 item entries before eligibility filtering. It consists of:
+The pool contains 483 item entries before eligibility filtering. It consists of:
 
 - Mega Stones.
 - Single-purpose evolution items needed by obtainable randomized Pokémon in
@@ -76,7 +76,17 @@ The pool contains 384 item entries before eligibility filtering. It consists of:
   generation and BST rules. Items requiring multiple Pokémon require all of
   them.
 - Battle held items.
-- `ITEM_TM01` through `ITEM_TM130`.
+- `ITEM_TM01` through `ITEM_TM229`.
+
+Each new game's item-randomizer seed selects one of the 17 Memories, one of
+the four Drives, one of the four Nectars, and one of the three Masks. Only
+those selected variants can appear in the main replacement pool, and each
+can appear once. Choices remain fixed across reloads and do not consume
+gameplay RNG. The existing species and generation restrictions still apply:
+a family contributes no item when its associated Pokémon is unavailable.
+
+The raw catalog still has 483 entries. Selecting one variant per family
+excludes 24 entries, leaving at most 459 eligible items before other filters.
 
 The pool deliberately excludes all fossils, Plates, and Incenses. It also
 excludes HMs, ordinary Key Items, consumable medicine and ball items,

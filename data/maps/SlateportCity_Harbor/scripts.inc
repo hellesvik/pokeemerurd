@@ -179,11 +179,10 @@ SlateportCity_Harbor_EventScript_ChooseDestination::
 	end
 
 SlateportCity_Harbor_EventScript_ChooseDestinationWithBattleFrontier::
-	multichoicedefault 17, 6, MULTI_SSTIDAL_SLATEPORT_WITH_BF, 2, FALSE
+	multichoicedefault 17, 6, MULTI_SSTIDAL_SLATEPORT_NO_BF, 1, FALSE
 	switch VAR_RESULT
 	case 0, SlateportCity_Harbor_EventScript_Lilycove
-	case 1, SlateportCity_Harbor_EventScript_BattleFrontier
-	case 2, SlateportCity_Harbor_EventScript_CancelDestinationSelect
+	case 1, SlateportCity_Harbor_EventScript_CancelDestinationSelect
 	case MULTI_B_PRESSED, SlateportCity_Harbor_EventScript_CancelDestinationSelect
 	end
 
@@ -204,13 +203,7 @@ SlateportCity_Harbor_EventScript_Lilycove::
 	end
 
 SlateportCity_Harbor_EventScript_BattleFrontier::
-	msgbox SlateportCity_Harbor_Text_BattleFrontierItIs, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, SlateportCity_Harbor_EventScript_ChooseNewDestination
-	call SlateportCity_Harbor_EventScript_BoardFerry
-	warp MAP_BATTLE_FRONTIER_OUTSIDE_WEST, 19, 67
-	waitstate
-	release
-	end
+	goto Common_EventScript_BattleFacilityClosed
 
 SlateportCity_Harbor_EventScript_ChooseNewDestination::
 	message SlateportCity_Harbor_Text_WhereWouldYouLikeToGo

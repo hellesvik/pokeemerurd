@@ -1733,3 +1733,26 @@ TEST("BoxPokemon encryption works")
     EXPECT_EQ(GetMonData(&mon, MON_DATA_DYNAMAX_LEVEL), 3);
     EXPECT_EQ(GetMonData(&mon, MON_DATA_OT_GENDER), 0);
 }
+
+extern u32 Test_ComputeCaptureOdds(u32 wildMonBattler, u32 playerBattler);
+
+TEST("Safari catch guarantee applies only when catch limits are enabled")
+{
+    ForkConfigureGameplayOptions(TRUE, FALSE, FORK_FAINT_RULE_OFF,
+                                 TRUE, FALSE, FALSE, TRUE, FALSE, FALSE,
+                                 FALSE, GEN_9, TRUE, FALSE);
+    ForkResetAreaEncounterState();
+    gBattleTypeFlags = BATTLE_TYPE_SAFARI;
+    gLastUsedItem = ITEM_SAFARI_BALL;
+    gBattleMons[1].species = SPECIES_PIKACHU;
+    gBattleMons[1].maxHP = 100;
+    gBattleMons[1].hp = 100;
+    gBattleStruct->safariCatchFactor = 1;
+    EXPECT_EQ(Test_ComputeCaptureOdds(1, 0), (u32)-1);
+    gSaveBlock3Ptr->forkCatchLimitEnabled = FALSE;
+    EXPECT_NE(Test_ComputeCaptureOdds(1, 0), (u32)-1);
+    gSaveBlock3Ptr->forkCatchLimitEnabled = TRUE;
+    gBattleTypeFlags = 0;
+    gLastUsedItem = ITEM_POKE_BALL;
+    EXPECT_NE(Test_ComputeCaptureOdds(1, 0), (u32)-1);
+}

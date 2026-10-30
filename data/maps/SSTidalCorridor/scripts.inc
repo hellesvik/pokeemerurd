@@ -184,22 +184,7 @@ SSTidalCorridor_EventScript_TrainerNotDefeated::
 
 SSTidalCorridor_EventScript_ScottScene::
 	lockall
-	applymovement LOCALID_SS_TIDAL_SCOTT, SSTidalCorridor_Movement_ScottApproachPlayer
-	waitmovement 0
-	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterRight
-	waitmovement 0
-	msgbox SSTidalCorridor_Text_ScottBattleFrontierInvite, MSGBOX_DEFAULT
-	closemessage
-	applymovement LOCALID_PLAYER, SSTidalCorridor_Movement_PlayerWatchScottExit
-	applymovement LOCALID_SS_TIDAL_EXIT_SAILOR, SSTidalCorridor_Movement_SailorMoveForScott
-	applymovement LOCALID_SS_TIDAL_SCOTT, SSTidalCorridor_Movement_ScottExit
-	waitmovement 0
-	playse SE_EXIT
-	waitse
 	removeobject LOCALID_SS_TIDAL_SCOTT
-	applymovement LOCALID_SS_TIDAL_EXIT_SAILOR, SSTidalCorridor_Movement_SailorReturn
-	waitmovement 0
-	delay 30
 	setflag FLAG_MET_SCOTT_ON_SS_TIDAL
 	setvar VAR_SS_TIDAL_SCOTT_STATE, 1
 	releaseall

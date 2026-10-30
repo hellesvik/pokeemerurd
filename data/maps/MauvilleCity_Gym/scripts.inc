@@ -112,7 +112,7 @@ MauvilleCity_Gym_EventScript_WattsonDefeated::
 	end
 
 MauvilleCity_Gym_EventScript_GiveShockWave2::
-	giveitem ITEM_TM_SHOCK_WAVE
+	giveitem ITEM_TM34
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	bufferitemname STR_VAR_1, VAR_0x8006
 	msgbox MauvilleCity_Gym_Text_ExplainShockWave, MSGBOX_DEFAULT
@@ -121,7 +121,7 @@ MauvilleCity_Gym_EventScript_GiveShockWave2::
 	end
 
 MauvilleCity_Gym_EventScript_GiveShockWave::
-	giveitem ITEM_TM_SHOCK_WAVE
+	giveitem ITEM_TM34
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
 	bufferitemname STR_VAR_1, VAR_0x8006
 	msgbox MauvilleCity_Gym_Text_ExplainShockWave, MSGBOX_DEFAULT

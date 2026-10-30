@@ -57,7 +57,7 @@
 // The buffer for the bag item list needs to be large enough to hold the maximum
 // number of item slots that could fit in a single pocket, + 1 for Cancel.
 // This constant picks the max of the existing pocket sizes.
-// By default, the largest pocket is BAG_TMHM_COUNT at 64.
+// Include space for the Close Bag entry in the largest configured pocket.
 #define MAX_POCKET_ITEMS  ((max(BAG_TMHM_COUNT,              \
                             max(BAG_BERRIES_COUNT,           \
                             max(BAG_ITEMS_COUNT,             \
@@ -105,7 +105,7 @@ enum {
 };
 
 // Item list ID for toSwapPos to indicate an item is not currently being swapped
-#define NOT_SWAPPING 0xFF
+#define NOT_SWAPPING 0xFFFF
 
 struct ListBuffer1 {
     struct ListMenuItem subBuffers[MAX_POCKET_ITEMS];
@@ -993,7 +993,7 @@ static void BagMenu_ItemPrintCallback(u8 windowId, u32 itemIndex, u8 y)
         if (gBagMenu->toSwapPos != NOT_SWAPPING)
         {
             // Swapping items, draw cursor at original item's location
-            if (gBagMenu->toSwapPos == (u8)itemIndex)
+            if (gBagMenu->toSwapPos == itemIndex)
                 BagMenu_PrintCursorAtPos(y, COLORID_GRAY_CURSOR);
             else
                 BagMenu_PrintCursorAtPos(y, COLORID_NONE);
@@ -1203,7 +1203,7 @@ static void InitPocketScrollPositions(void)
         SetCursorScrollWithinListBounds(&gBagPosition.scrollPosition[i], &gBagPosition.cursorPosition[i], gBagMenu->numShownItems[i], gBagMenu->numItemStacks[i], MAX_ITEMS_SHOWN);
 }
 
-u8 GetItemListPosition(u8 pocketId)
+u16 GetItemListPosition(u8 pocketId)
 {
     return gBagPosition.scrollPosition[pocketId] + gBagPosition.cursorPosition[pocketId];
 }
@@ -2898,8 +2898,8 @@ static inline __attribute__((always_inline)) void Merge(struct BagPocket *pocket
     u32 i = iLeft, j = iRight;
     for (u32 k = iLeft; k < iEnd; k++)
     {
-        item_i = BagPocket_GetSlotData(pocket, i);
-        item_j = BagPocket_GetSlotData(pocket, j);
+        item_i = i < iRight ? BagPocket_GetSlotData(pocket, i) : (struct ItemSlot){ITEM_NONE, 0};
+        item_j = j < iEnd ? BagPocket_GetSlotData(pocket, j) : (struct ItemSlot){ITEM_NONE, 0};
         if (i < iRight && (j >= iEnd || comparator(pocket->id, item_i, item_j) < 0))
         {
             dummySlots[k] = item_i;
@@ -3028,3 +3028,39 @@ static s32 CompareItemsByIndex(enum Pocket pocketId, struct ItemSlot item1, stru
 
     return 0; // Cannot have multiple stacks of indexed items
 }
+
+#if TESTING
+bool32 Test_ExpandedBagList(enum Pocket pocketId)
+{
+    struct BagMenu *savedMenu = gBagMenu;
+    struct ListBuffer1 *savedBuffer1 = sListBuffer1;
+    struct ListBuffer2 *savedBuffer2 = sListBuffer2;
+    struct BagPosition savedPosition = gBagPosition;
+    struct ListMenuTemplate savedTemplate = gMultiuseListMenuTemplate;
+    bool32 result = TRUE;
+    gBagMenu = AllocZeroed(sizeof(*gBagMenu));
+    gBagPosition.pocket = pocketId;
+    gBagMenu->toSwapPos = NOT_SWAPPING;
+    AllocateBagItemListBuffers();
+    UpdatePocketItemList(pocketId);
+    LoadBagItemListBuffers(pocketId);
+    u32 count = gBagPockets[pocketId].capacity;
+    result &= gBagMenu->numItemStacks[pocketId] == count + 1;
+    result &= sListBuffer1->subBuffers[count].id == LIST_CANCEL;
+    for (u32 i = 0; i < count; i++)
+        result &= sListBuffer1->subBuffers[i].id == i && sListBuffer2->name[i][0] != EOS;
+    gBagPosition.scrollPosition[pocketId] = count - 7;
+    gBagPosition.cursorPosition[pocketId] = 7;
+    UpdatePocketListPosition(pocketId);
+    result &= GetItemListPosition(pocketId) == count;
+    Free(sListBuffer1);
+    Free(sListBuffer2);
+    Free(gBagMenu);
+    gBagMenu = savedMenu;
+    sListBuffer1 = savedBuffer1;
+    sListBuffer2 = savedBuffer2;
+    gBagPosition = savedPosition;
+    gMultiuseListMenuTemplate = savedTemplate;
+    return result;
+}
+#endif

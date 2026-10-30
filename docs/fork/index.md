@@ -17,7 +17,7 @@ category below.
 
 - [Randomizer index](./randomizers/index.md)
 - [Item Randomizer](./randomizers/item_randomizer.md)
-- [TM Randomizer](./randomizers/tm_randomizer.md)
+- [Gen 9 TMs](./randomizers/tm_randomizer.md)
 - [Biome Encounter Randomizer](./randomizers/biome_encounter_randomizer.md)
 - [Ability Randomizer](./randomizers/ability_randomizer.md)
 - [Gift Pokémon and Fossils](./randomizers/gift_pokemon_and_fossils.md)

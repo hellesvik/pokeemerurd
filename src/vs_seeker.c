@@ -1,4 +1,5 @@
 #include "global.h"
+#include "fork_run.h"
 #include "task.h"
 #include "event_object_movement.h"
 #include "item_use.h"
@@ -230,6 +231,9 @@ void VsSeekerResetObjectMovementAfterChargeComplete(void)
 
 bool8 UpdateVsSeekerStepCounter(void)
 {
+    if (!FORK_TRAINER_REMATCHES_ENABLED)
+        return FALSE;
+
 #if FREE_MATCH_CALL == FALSE
     u8 x = 0;
 
@@ -317,6 +321,12 @@ static void VsSeekerResetChargingStepCounter(void)
 
 void Task_InitVsSeekerAndCheckForTrainersOnScreen(u8 taskId)
 {
+    if (!FORK_TRAINER_REMATCHES_ENABLED)
+    {
+        FieldUseFunc_VsSeeker(taskId);
+        return;
+    }
+
     u32 i;
     u32 respval;
 
@@ -566,6 +576,9 @@ static u32 GetGameProgressFlags()
 
 u16 GetRematchTrainerIdVSSeeker(u16 trainerId)
 {
+    if (!FORK_TRAINER_REMATCHES_ENABLED)
+        return 0;
+
     u32 tableId = FirstBattleTrainerIdToRematchTableId(gRematchTable, trainerId);
     u32 rematchTrainerIdx = GetGameProgressFlags();
 
@@ -591,6 +604,9 @@ u16 GetRematchTrainerIdVSSeeker(u16 trainerId)
 
 bool32 IsVsSeekerEnabled(void)
 {
+    if (!FORK_TRAINER_REMATCHES_ENABLED)
+        return FALSE;
+
     if (I_VS_SEEKER_CHARGING == 0)
         return FALSE;
 

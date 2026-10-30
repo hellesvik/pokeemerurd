@@ -5832,6 +5832,18 @@ static u32 GetTrainerMoneyToGive(u16 trainerId)
     u32 moneyReward;
     u8 trainerMoney = 0;
 
+    // Keep Gabby and Ty's interviews available without repeatable prize money.
+    switch (trainerId)
+    {
+    case TRAINER_GABBY_AND_TY_1:
+    case TRAINER_GABBY_AND_TY_2:
+    case TRAINER_GABBY_AND_TY_3:
+    case TRAINER_GABBY_AND_TY_4:
+    case TRAINER_GABBY_AND_TY_5:
+    case TRAINER_GABBY_AND_TY_6:
+        return 0;
+    }
+
     if (trainerId == TRAINER_SECRET_BASE)
     {
         moneyReward = 20 * gBattleResources->secretBase->party.levels[0] * gBattleStruct->moneyMultiplier;
@@ -9935,7 +9947,9 @@ static u32 ComputeCaptureOdds(u32 wildMonBattler, u32 playerBattler)
     struct BallData ball;
     ComputeBallData(wildMonBattler, playerBattler, &ball);
 
-    if (ball.guaranteedCapture)
+    if (ball.guaranteedCapture
+        || ((gBattleTypeFlags & BATTLE_TYPE_SAFARI) && gLastUsedItem == ITEM_SAFARI_BALL
+            && ForkIsCatchLimitEnabled() && ForkCanCatchCurrentEncounter()))
         return CAPTURE_GUARANTEED;
     struct BattlePokemon *battleMon = &gBattleMons[wildMonBattler];
     u32 odds = (battleMon->maxHP * 3 -  battleMon->hp * 2);
@@ -9984,6 +9998,13 @@ static u32 ComputeCaptureOdds(u32 wildMonBattler, u32 playerBattler)
 
     return odds;
 }
+
+#if TESTING
+u32 Test_ComputeCaptureOdds(u32 wildMonBattler, u32 playerBattler)
+{
+    return ComputeCaptureOdds(wildMonBattler, playerBattler);
+}
+#endif
 
 static bool32 CriticalCapture(u32 odds)
 {

@@ -1,4 +1,5 @@
 #include "global.h"
+#include "fork_run.h"
 #include "random.h"
 #include "event_data.h"
 #include "battle_setup.h"
@@ -33,6 +34,9 @@ static const u16 GymLeaderRematches_BeforeNewMauville[] = {
 
 void UpdateGymLeaderRematch(void)
 {
+    if (!FORK_TRAINER_REMATCHES_ENABLED)
+        return;
+
     if (FlagGet(FLAG_SYS_GAME_CLEAR) && (Random() % 100) <= 30)
     {
         if (FlagGet(FLAG_WATTSON_REMATCH_AVAILABLE))
@@ -44,6 +48,9 @@ void UpdateGymLeaderRematch(void)
 
 s32 GetCurrentGymLeaderRematchLevel(void)
 {
+    if (!FORK_TRAINER_REMATCHES_ENABLED)
+        return 0;
+
     u32 i, j;
     u32 maxLevel = REMATCHES_COUNT;
     if (!FlagGet(FLAG_SYS_GAME_CLEAR))

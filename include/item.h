@@ -14,17 +14,20 @@
 /* Each of these TM_HM enums corresponds an index in the list of TMs + HMs item ids in
  * gTMHMItemMoveIds. The index for an item can be retrieved with GetItemTMHMIndex below.
  */
+#define COUNT_GEN9_TM(number, move) + 1
+#define UNPACK_GEN9_TM_ENUM(number, move) ENUM_TM_HM_##number,
 #define UNPACK_TM_HM_ENUM(_tmHm) CAT(ENUM_TM_HM_, _tmHm),
 enum TMHMIndex
 {
-    FOREACH_TM(UNPACK_TM_HM_ENUM)
-    FOREACH_FORK_RANDOM_TM(UNPACK_TM_HM_ENUM)
+    FOREACH_GEN9_TM(UNPACK_GEN9_TM_ENUM)
     FOREACH_HM(UNPACK_TM_HM_ENUM)
     NUM_ALL_MACHINES,
-    NUM_TECHNICAL_MACHINES = (0 FOREACH_TM(PLUS_ONE) FOREACH_FORK_RANDOM_TM(PLUS_ONE)),
+    NUM_TECHNICAL_MACHINES = (0 FOREACH_GEN9_TM(COUNT_GEN9_TM)),
     NUM_HIDDEN_MACHINES = (0 FOREACH_HM(PLUS_ONE)),
 };
 #undef UNPACK_TM_HM_ENUM
+#undef UNPACK_GEN9_TM_ENUM
+#undef COUNT_GEN9_TM
 
 enum PACKED ItemSortType
 {
@@ -110,90 +113,44 @@ extern const struct ItemInfo gItemsInfo[];
 extern struct BagPocket gBagPockets[];
 extern const struct TmHmIndexKey gTMHMItemMoveIds[];
 
-#define UNPACK_ITEM_TO_TM_INDEX(_tm) case CAT(ITEM_TM_, _tm): return CAT(ENUM_TM_HM_, _tm) + 1;
-#define UNPACK_FORK_RANDOM_TM_INDEX(_tm) case CAT(ITEM_TM, _tm): return _tm;
-#define UNPACK_ITEM_TO_HM_INDEX(_hm) case CAT(ITEM_HM_, _hm): return CAT(ENUM_TM_HM_, _hm) + 1;
-#define UNPACK_ITEM_TO_TM_MOVE_ID(_tm) case CAT(ITEM_TM_, _tm): return CAT(MOVE_, _tm);
-#define UNPACK_ITEM_TO_HM_MOVE_ID(_hm) case CAT(ITEM_HM_, _hm): return CAT(MOVE_, _hm);
-#define UNPACK_TM_MOVE_TO_ITEM_ID(_move) case CAT(MOVE_, _move): return CAT(ITEM_TM_, _move);
-#define UNPACK_HM_MOVE_TO_ITEM_ID(_move) case CAT(MOVE_, _move): return CAT(ITEM_HM_, _move);
-
 static inline enum TMHMIndex GetItemTMHMIndex(enum Item item)
 {
     switch (item)
     {
-    /* Expands to:
-        * case ITEM_TM_FOCUS_PUNCH:
-        *     return 1;
-        * case ITEM_TM_DRAGON_CLAW:
-        *      return 2;
-        * etc */
-    FOREACH_TM(UNPACK_ITEM_TO_TM_INDEX)
-    FOREACH_FORK_RANDOM_TM(UNPACK_FORK_RANDOM_TM_INDEX)
-    FOREACH_HM(UNPACK_ITEM_TO_HM_INDEX)
-    default:
-        return 0;
+#define TM_INDEX(number, move) case ITEM_TM##number: return ENUM_TM_HM_##number + 1;
+    FOREACH_GEN9_TM(TM_INDEX)
+#undef TM_INDEX
+#define HM_INDEX(move) case ITEM_HM_##move: return ENUM_TM_HM_##move + 1;
+    FOREACH_HM(HM_INDEX)
+#undef HM_INDEX
+    default: return 0;
     }
 }
 
 static inline enum Move GetItemTMHMMoveId(enum Item item)
 {
-    enum Move forkRandomizedMove = GetForkRandomizedTMMove(item);
-    if (forkRandomizedMove != MOVE_NONE)
-        return forkRandomizedMove;
-
-    switch (item)
-    {
-    /* Expands to:
-        * case ITEM_TM_FOCUS_PUNCH:
-        *     return MOVE_FOCUS_PUNCH;
-        * case ITEM_TM_DRAGON_CLAW:
-        *      return MOVE_DRAGON_CLAW;
-        * etc */
-    FOREACH_TM(UNPACK_ITEM_TO_TM_MOVE_ID)
-    FOREACH_HM(UNPACK_ITEM_TO_HM_MOVE_ID)
-    default:
-        return MOVE_NONE;
-    }
+    return gTMHMItemMoveIds[GetItemTMHMIndex(item)].moveId;
 }
 
 static inline enum Item GetTMHMItemIdFromMoveId(enum Move move)
 {
-    switch (move)
-    {
-    /* Expands to:
-        * case MOVE_FOCUS_PUNCH:
-        *     return ITEM_TM_FOCUS_PUNCH;
-        * case MOVE_DRAGON_CLAW:
-        *      return ITEM_TM_DRAGON_CLAW;
-        * etc */
-    FOREACH_TM(UNPACK_TM_MOVE_TO_ITEM_ID)
-    FOREACH_HM(UNPACK_HM_MOVE_TO_ITEM_ID)
-    default:
-        return GetForkRandomizedTMItemFromMoveId(move);
-    }
+    // TMs precede HMs, so moves present in both resolve to their TM.
+    if (move == MOVE_NONE)
+        return ITEM_NONE;
+    for (u32 i = 1; i <= NUM_ALL_MACHINES; i++)
+        if (gTMHMItemMoveIds[i].moveId == move)
+            return gTMHMItemMoveIds[i].itemId;
+    return ITEM_NONE;
 }
-
-#undef UNPACK_ITEM_TO_TM_INDEX
-#undef UNPACK_FORK_RANDOM_TM_INDEX
-#undef UNPACK_ITEM_TO_HM_INDEX
-#undef UNPACK_ITEM_TO_TM_MOVE_ID
-#undef UNPACK_ITEM_TO_HM_MOVE_ID
-#undef UNPACK_TM_MOVE_TO_ITEM_ID
-#undef UNPACK_HM_MOVE_TO_ITEM_ID
 
 static inline enum Item GetTMHMItemId(enum TMHMIndex index)
 {
-    if (index >= 51 && index <= 130)
-        return GetForkRandomizedTMItem(index);
-    return gTMHMItemMoveIds[index].itemId;
+    return index <= NUM_ALL_MACHINES ? gTMHMItemMoveIds[index].itemId : ITEM_NONE;
 }
 
 static inline enum Move GetTMHMMoveId(enum TMHMIndex index)
 {
-    if (index >= 51 && index <= 130)
-        return GetForkRandomizedTMMove(GetForkRandomizedTMItem(index));
-    return gTMHMItemMoveIds[index].moveId;
+    return index <= NUM_ALL_MACHINES ? gTMHMItemMoveIds[index].moveId : MOVE_NONE;
 }
 
 #define GET_BERRY_ID(_berry) case ITEM_##_berry##_BERRY: return BERRY_ID_##_berry;

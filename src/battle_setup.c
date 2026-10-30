@@ -1823,6 +1823,9 @@ static bool32 UpdateRandomTrainerRematches(const struct RematchTrainer *table, u
 
 void UpdateRematchIfDefeated(s32 rematchTableId)
 {
+    if (!FORK_TRAINER_REMATCHES_ENABLED)
+        return;
+
     if (HasTrainerBeenFought(gRematchTable[rematchTableId].trainerIds[0]) == TRUE)
         SetRematchIdForTrainer(gRematchTable, rematchTableId);
 }
@@ -2016,6 +2019,9 @@ static bool32 HasEnoughBadgesForRematch(void)
 
 void IncrementRematchStepCounter(void)
 {
+    if (!FORK_TRAINER_REMATCHES_ENABLED)
+        return;
+
 #if FREE_MATCH_CALL == FALSE
     if (!HasEnoughBadgesForRematch())
         return;
@@ -2041,6 +2047,9 @@ static bool32 IsRematchStepCounterMaxed(void)
 
 void TryUpdateRandomTrainerRematches(u16 mapGroup, u16 mapNum)
 {
+    if (!FORK_TRAINER_REMATCHES_ENABLED)
+        return;
+
     if (IsRematchStepCounterMaxed() && UpdateRandomTrainerRematches(gRematchTable, mapGroup, mapNum) == TRUE)
         gSaveBlock1Ptr->trainerRematchStepCounter = 0;
 }
@@ -2048,6 +2057,9 @@ void TryUpdateRandomTrainerRematches(u16 mapGroup, u16 mapNum)
 
 bool32 DoesSomeoneWantRematchIn(u16 mapGroup, u16 mapNum)
 {
+    if (!FORK_TRAINER_REMATCHES_ENABLED)
+        return FALSE;
+
     return DoesSomeoneWantRematchIn_(gRematchTable, mapGroup, mapNum);
 }
 
@@ -2078,6 +2090,9 @@ bool8 ShouldTryRematchBattle(void)
 
 bool8 ShouldTryRematchBattleForTrainerId(u16 trainerId)
 {
+    if (!FORK_TRAINER_REMATCHES_ENABLED)
+        return FALSE;
+
     if (IsFirstTrainerIdReadyForRematch(gRematchTable, trainerId))
         return TRUE;
 
@@ -2086,6 +2101,9 @@ bool8 ShouldTryRematchBattleForTrainerId(u16 trainerId)
 
 bool8 IsTrainerReadyForRematch(void)
 {
+    if (!FORK_TRAINER_REMATCHES_ENABLED)
+        return FALSE;
+
     return IsTrainerReadyForRematch_(gRematchTable, TRAINER_BATTLE_PARAM.opponentA);
 }
 

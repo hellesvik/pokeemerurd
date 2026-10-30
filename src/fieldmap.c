@@ -1,4 +1,5 @@
 #include "global.h"
+#include "fork_run.h"
 #include "battle_pyramid.h"
 #include "bg.h"
 #include "fieldmap.h"
@@ -837,6 +838,9 @@ static const struct MapConnection *GetIncomingConnection(enum Connection directi
 
 static bool8 IsPosInIncomingConnectingMap(enum Connection direction, int x, int y, const struct MapConnection *connection)
 {
+    if (ForkIsBattleFacilityMap(connection->mapGroup, connection->mapNum))
+        return FALSE;
+
     struct MapHeader const *mapHeader;
     mapHeader = GetMapHeaderFromConnection(connection);
     switch (direction)
@@ -879,6 +883,9 @@ static int IsCoordInConnectingMap(int coord, int max)
 
 static int IsPosInConnectingMap(const struct MapConnection *connection, int x, int y)
 {
+    if (ForkIsBattleFacilityMap(connection->mapGroup, connection->mapNum))
+        return FALSE;
+
     struct MapHeader const *mapHeader;
     mapHeader = GetMapHeaderFromConnection(connection);
     switch (connection->direction)

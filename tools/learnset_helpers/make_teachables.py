@@ -11,7 +11,7 @@ A move is "teachable" if it is:
        using the ChooseMonForMoveTutor special in a script and setting VAR_0x8005
        to the offered MOVE constant. (e.g., MOVE_SWAGGER)
     2. Assigned to some TM or HM in include/constants/tms_hms.h using the
-       FOREACH_TM macro.
+       FOREACH_GEN9_TM or FOREACH_HM macro.
     3. A universal move, as defined by universalMoves in
        src/data/pokemon/special_movesets.json
 
@@ -34,7 +34,7 @@ import typing
 CONFIG_ENABLED_PAT = re.compile(r"^#define P_LEARNSET_HELPER_TEACHABLE\s+(?P<cfg_val>[^ ]*)", flags=re.MULTILINE)
 ALPHABETICAL_ORDER_ENABLED_PAT = re.compile(r"^#define HGSS_SORT_TMS_BY_NUM\s+(?P<cfg_val>[^ ]*)", flags=re.MULTILINE)
 TM_LITERACY_PAT = re.compile(r"^#define P_TM_LITERACY\s+GEN_(?P<cfg_val>[^ ]*)", flags=re.MULTILINE)
-TMHM_MACRO_PAT = re.compile(r"F\((\w+)\)")
+TMHM_MACRO_PAT = re.compile(r"F\((?:\d+,\s*)?(\w+)\)")
 SNAKIFY_PAT = re.compile(r"(?!^)([A-Z]+)")
 
 def enabled() -> bool:

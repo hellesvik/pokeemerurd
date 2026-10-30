@@ -948,6 +948,17 @@ static void StorePlayerStateAndSetupWarp(struct MapPosition *position, s32 warpE
     SetupWarp(&gMapHeader, warpEventId, position);
 }
 
+static bool32 TryBlockBattleFacilityWarp(s32 warpEventId)
+{
+    if (warpEventId < 0 || !gMapHeader.events || warpEventId >= gMapHeader.events->warpCount)
+        return FALSE;
+    const struct WarpEvent *warp = &gMapHeader.events->warps[warpEventId];
+    if (!ForkIsBattleFacilityMap(warp->mapGroup, warp->mapNum))
+        return FALSE;
+    ScriptContext_SetupScript(Common_EventScript_BattleFacilityClosed);
+    return TRUE;
+}
+
 static bool8 TryArrowWarp(struct MapPosition *position, u16 metatileBehavior, enum Direction direction)
 {
     s32 warpEventId = GetWarpEventAtMapPosition(&gMapHeader, position);
@@ -958,12 +969,16 @@ static bool8 TryArrowWarp(struct MapPosition *position, u16 metatileBehavior, en
 
     if (IsArrowWarpMetatileBehavior(metatileBehavior, direction) == TRUE)
     {
+        if (TryBlockBattleFacilityWarp(warpEventId))
+            return TRUE;
         StorePlayerStateAndSetupWarp(position, warpEventId);
         DoWarp();
         return TRUE;
     }
     else if (IsDirectionalStairWarpMetatileBehavior(metatileBehavior, direction) == TRUE)
     {
+        if (TryBlockBattleFacilityWarp(warpEventId))
+            return TRUE;
         delay = 0;
         if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_BIKE)
         {
@@ -984,6 +999,8 @@ static bool8 TryStartWarpEventScript(struct MapPosition *position, u16 metatileB
 
     if (warpEventId != WARP_ID_NONE && IsWarpMetatileBehavior(metatileBehavior) == TRUE)
     {
+        if (TryBlockBattleFacilityWarp(warpEventId))
+            return TRUE;
         StoreInitialPlayerAvatarState();
         SetupWarp(&gMapHeader, warpEventId, position);
         if (MetatileBehavior_IsEscalator(metatileBehavior) == TRUE)
@@ -1127,6 +1144,8 @@ static bool8 TryDoorWarp(struct MapPosition *position, u16 metatileBehavior, enu
             warpEventId = GetWarpEventAtMapPosition(&gMapHeader, position);
             if (warpEventId != WARP_ID_NONE && IsWarpMetatileBehavior(metatileBehavior) == TRUE)
             {
+                if (TryBlockBattleFacilityWarp(warpEventId))
+                    return TRUE;
                 StoreInitialPlayerAvatarState();
                 SetupWarp(&gMapHeader, warpEventId, position);
                 DoDoorWarp();
@@ -1438,3 +1457,10 @@ void HandleBoulderActivateVictoryRoadSwitch(u16 x, u16 y)
         }
     }
 }
+
+#if TESTING
+bool32 Test_BlockBattleFacilityWarp(s32 warpEventId)
+{
+    return TryBlockBattleFacilityWarp(warpEventId);
+}
+#endif

@@ -29,7 +29,8 @@ enum Item GetForkMirageTowerFossil(u8 choice)
     if (choice >= ARRAY_COUNT(selected))
         return ITEM_NONE;
     if (!ForkAreRandomEncountersEnabled())
-        return choice == 0 ? ITEM_ROOT_FOSSIL : ITEM_CLAW_FOSSIL;
+        return IS_FRLG ? (choice == 0 ? ITEM_DOME_FOSSIL : ITEM_HELIX_FOSSIL)
+                       : (choice == 0 ? ITEM_ROOT_FOSSIL : ITEM_CLAW_FOSSIL);
 
     for (u8 selectedCount = 0; selectedCount <= choice; selectedCount++)
     {

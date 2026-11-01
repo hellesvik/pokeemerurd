@@ -260,7 +260,7 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_ChoosePrizeTM::
 	end
 
 CeladonCity_GameCorner_PrizeRoom_EventScript_TM13::
-	setvar VAR_TEMP_1, ITEM_TM13
+	setvar VAR_TEMP_1, ITEM_TM_ICE_BEAM
 	setvar VAR_TEMP_2, 4000
 	buffermovename STR_VAR_2, MOVE_ICE_BEAM
 	goto CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeTM
@@ -274,21 +274,21 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_TM23::
 	end
 
 CeladonCity_GameCorner_PrizeRoom_EventScript_TM24::
-	setvar VAR_TEMP_1, ITEM_TM24
+	setvar VAR_TEMP_1, ITEM_TM_THUNDERBOLT
 	setvar VAR_TEMP_2, 4000
 	buffermovename STR_VAR_2, MOVE_THUNDERBOLT
 	goto CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeTM
 	end
 
 CeladonCity_GameCorner_PrizeRoom_EventScript_TM30::
-	setvar VAR_TEMP_1, ITEM_TM30
+	setvar VAR_TEMP_1, ITEM_TM_SHADOW_BALL
 	setvar VAR_TEMP_2, 4500
 	buffermovename STR_VAR_2, MOVE_SHADOW_BALL
 	goto CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeTM
 	end
 
 CeladonCity_GameCorner_PrizeRoom_EventScript_TM35::
-	setvar VAR_TEMP_1, ITEM_TM35
+	setvar VAR_TEMP_1, ITEM_TM_FLAMETHROWER
 	setvar VAR_TEMP_2, 4000
 	buffermovename STR_VAR_2, MOVE_FLAMETHROWER
 	goto CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeTM

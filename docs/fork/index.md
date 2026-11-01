@@ -26,6 +26,7 @@ category below.
 ## Configuration and reference data
 
 - [New-Game Feature Options](./configuration/new_game_options.md)
+- [FireRed and LeafGreen](./configuration/firered_leafgreen.md)
 - [Reference data index](./reference/index.md)
 - [Biome species catalog](./reference/biome_species_catalog.csv)
 - [Biome encounter assignments](./reference/biome_encounter_assignments.csv)

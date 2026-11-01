@@ -260,7 +260,10 @@ static enum Species SelectSpeciesFromBstRange(u16 minBst, u16 maxBst, bool8 allo
 
 static bool8 IsSpecialStaticEncounter(enum Species species)
 {
-    return species == SPECIES_REGIROCK
+    return species == SPECIES_ARTICUNO || species == SPECIES_ZAPDOS
+        || species == SPECIES_MOLTRES || species == SPECIES_MEWTWO
+        || species == SPECIES_MEW || species == SPECIES_LUGIA || species == SPECIES_HO_OH
+        || species == SPECIES_REGIROCK
         || species == SPECIES_REGICE
         || species == SPECIES_REGISTEEL
         || species == SPECIES_GROUDON
@@ -380,4 +383,11 @@ u16 GetForkRandomizedStaticEncounterGraphicsId(void)
     default:
         return fallback + OBJ_EVENT_MON;
     }
+}
+
+enum Species ResolveForkRandomizedGiftSpecies(enum Species fallback, u32 salt)
+{
+    if (!ForkAreRandomEncountersEnabled())
+        return fallback;
+    return SelectSpeciesFromBstRange(100, 550, FALSE, TRUE, 0x4B474946 ^ salt ^ fallback, fallback);
 }

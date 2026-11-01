@@ -23,4 +23,5 @@
         - [Ability Randomizer](fork/randomizers/ability_randomizer.md)
         - [Gift Pokémon and Fossils](fork/randomizers/gift_pokemon_and_fossils.md)
     - [Configuration](fork/configuration/new_game_options.md)
+        - [FireRed and LeafGreen](fork/configuration/firered_leafgreen.md)
     - [Reference Data](fork/reference/index.md)

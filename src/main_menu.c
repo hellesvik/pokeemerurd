@@ -1134,18 +1134,6 @@ static void Task_HandleMainMenuAPressed(u8 taskId)
         {
         case ACTION_NEW_GAME:
         default:
-            if (IS_FRLG)
-            {
-                DestroyTask(taskId);
-                FreeAllWindowBuffers();
-                if (action != ACTION_OPTION)
-                    sCurrItemAndOptionMenuCheck = 0;
-                else
-                    sCurrItemAndOptionMenuCheck |= OPTION_MENU_FLAG;  // entering the options menu
-                StartNewGameSceneFrlg();
-                return;
-            }
-
             gPlttBufferUnfaded[0] = RGB_BLACK;
             gPlttBufferFaded[0] = RGB_BLACK;
             gTasks[taskId].func = Task_NewGameFeatureOptions_Init;
@@ -1758,7 +1746,13 @@ static void Task_NewGameBirchSpeech_FeatureOptions(u8 taskId)
         ForkConfigureGameplayOptions(values & 1, (values >> 1) & 1, (values >> 2) & 3, (values >> 4) & 1, (values >> 5) & 1, (values >> 6) & 1, (values >> 7) & 1, (values >> 8) & 1, (values >> 9) & 1, (values >> 14) & 1, (values >> 10) & 0xF, (values >> 15) & 1, gTasks[taskId].data[4]);
         NewGameBirchSpeech_ClearFeatureOptions();
         FreeAllWindowBuffers();
-        gTasks[taskId].func = Task_NewGameBirchSpeech_Init;
+        if (IS_FRLG)
+        {
+            DestroyTask(taskId);
+            StartNewGameSceneFrlg();
+        }
+        else
+            gTasks[taskId].func = Task_NewGameBirchSpeech_Init;
     }
     else if (ForkNewGameOptionsNextPage(page, gMain.newKeys) != page)
     {

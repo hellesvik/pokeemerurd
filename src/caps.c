@@ -7,6 +7,8 @@
 #include "field_message_box.h"
 #include "pokemon.h"
 #include "fork_run.h"
+#include "overworld.h"
+#include "constants/game_stat.h"
 #include "script.h"
 #include "string_util.h"
 #include "constants/opponents.h"
@@ -119,12 +121,49 @@ static const struct LevelCapMilestone sLevelCapMilestones[] =
 };
 
 
+static u32 GetKantoLevelCap(void)
+{
+    static const struct { u16 trainer; u8 cap; } milestones[] = {
+        {TRAINER_LEADER_BROCK, 14},
+        {TRAINER_LEADER_MISTY, 21},
+        {TRAINER_LEADER_LT_SURGE, 24},
+        {TRAINER_RIVAL_POKEMON_TOWER_SQUIRTLE, 25},
+        {TRAINER_BOSS_GIOVANNI, 29},
+        {TRAINER_LEADER_ERIKA, 30},
+        {TRAINER_RIVAL_SILPH_SQUIRTLE, 40},
+        {TRAINER_BOSS_GIOVANNI_2, 41},
+        {TRAINER_LEADER_KOGA, 43},
+        {TRAINER_LEADER_SABRINA, 44},
+        {TRAINER_LEADER_BLAINE, 47},
+        {TRAINER_LEADER_GIOVANNI, 50},
+        {TRAINER_RIVAL_ROUTE22_LATE_SQUIRTLE, 53},
+    };
+    if (FlagGet(FLAG_SYS_GAME_CLEAR))
+        return GetGameStat(GAME_STAT_ENTERED_HOF) >= 2 ? MAX_LEVEL : 75;
+    for (u32 i = 0; i < ARRAY_COUNT(milestones); i++)
+    {
+        u16 trainer = milestones[i].trainer;
+        bool32 cleared = HasTrainerBeenFought(trainer);
+        if (trainer == TRAINER_RIVAL_POKEMON_TOWER_SQUIRTLE
+            || trainer == TRAINER_RIVAL_SILPH_SQUIRTLE
+            || trainer == TRAINER_RIVAL_ROUTE22_LATE_SQUIRTLE)
+            cleared |= HasTrainerBeenFought(trainer + 1) || HasTrainerBeenFought(trainer + 2);
+        if (!cleared)
+            return milestones[i].cap;
+    }
+    return 63;
+}
+
+
 u32 GetCurrentLevelCap(void)
 {
     u32 i;
 
     if (!ForkIsLevelCapEnabled())
         return MAX_LEVEL;
+
+    if (IS_FRLG)
+        return GetKantoLevelCap();
 
     if (B_LEVEL_CAP_TYPE == LEVEL_CAP_FLAG_LIST)
     {
@@ -293,3 +332,10 @@ u32 GetCurrentEVCap(void)
 
     return MAX_TOTAL_EVS;
 }
+
+#if TESTING
+u32 Test_GetKantoLevelCap(void)
+{
+    return GetKantoLevelCap();
+}
+#endif

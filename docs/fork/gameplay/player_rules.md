@@ -53,7 +53,8 @@ Every save also receives a reusable **Portable PC** key item. Its compact PC
 icon opens the Pokémon Storage System directly to **Move Pokémon**, so the
 player can organize their boxes while out in the field.
 It cannot be used anywhere in Ever Grande City, including the Pokémon League
-and its Pokémon Center, or on any floor of Victory Road.
+and its Pokémon Center, or on any floor of Victory Road. In FireRed and LeafGreen, Indigo Plateau and
+Kanto Victory Road also block the Portable PC.
 
 ## Running Shoes
 
@@ -82,7 +83,7 @@ chance, or receive extra experience because of high friendship.
 
 ## Nuzlite and Nuzlocke start
 
-Catch and faint rules become active when Birch gives the Pokédex, so the
+Catch and faint rules become active when Birch (Emerald) or Oak (FRLG) gives the Pokédex, so the
 opening fights cannot cause an immediate rules wipe. These modes also lock the
 battle style to Set.
 

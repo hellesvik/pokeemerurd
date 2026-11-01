@@ -1,4 +1,6 @@
 #include "global.h"
+#include "fork_gift_pokemon_randomizer.h"
+#include "constants/maps.h"
 #include "battle.h"
 #include "battle_gfx_sfx_util.h"
 #include "berry.h"
@@ -118,7 +120,7 @@ bool8 DoesPartyHaveEnigmaBerry(void)
 
 void CreateScriptedWildMon(enum Species species, u8 level, enum Item item)
 {
-    u8 heldItem[2];
+    (void)item; // Wild encounters never receive held items.
     bool32 randomizedLegendarySlot = ForkAreRandomEncountersEnabled()
         && (gSpeciesInfo[species].isRestrictedLegendary
          || gSpeciesInfo[species].isSubLegendary
@@ -138,17 +140,14 @@ void CreateScriptedWildMon(enum Species species, u8 level, enum Item item)
         CalculateMonStats(&gParties[B_TRAINER_OPPONENT_A][0]);
     }
     GiveMonInitialMoveset(&gParties[B_TRAINER_OPPONENT_A][0]);
-    if (item)
-    {
-        heldItem[0] = item;
-        heldItem[1] = item >> 8;
-        SetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_HELD_ITEM, heldItem);
-    }
+
 }
 void CreateScriptedDoubleWildMon(enum Species species1, u8 level1, enum Item item1, enum Species species2, u8 level2, enum Item item2)
 {
-    u8 heldItem1[2];
-    u8 heldItem2[2];
+    (void)item1;
+    (void)item2;
+    species1 = ResolveForkRandomizedStaticEncounterSpecies(species1);
+    species2 = ResolveForkRandomizedStaticEncounterSpecies(species2);
 
     ZeroEnemyPartyMons();
     u32 personality = GetMonPersonality(species1,
@@ -157,12 +156,7 @@ void CreateScriptedDoubleWildMon(enum Species species1, u8 level1, enum Item ite
         RANDOM_UNOWN_LETTER);
     CreateMonWithIVs(&gParties[B_TRAINER_OPPONENT_A][0], species1, level1, personality, OTID_STRUCT_PLAYER_ID, USE_RANDOM_IVS);
     GiveMonInitialMoveset(&gParties[B_TRAINER_OPPONENT_A][0]);
-    if (item1)
-    {
-        heldItem1[0] = item1;
-        heldItem1[1] = item1 >> 8;
-        SetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_HELD_ITEM, heldItem1);
-    }
+
 
     personality = GetMonPersonality(species2,
         GetSynchronizedGender(STATIC_WILDMON_ORIGIN, species2),
@@ -170,12 +164,7 @@ void CreateScriptedDoubleWildMon(enum Species species1, u8 level1, enum Item ite
         RANDOM_UNOWN_LETTER);
     CreateMonWithIVs(&gParties[B_TRAINER_OPPONENT_A][1], species2, level2, personality, OTID_STRUCT_PLAYER_ID, USE_RANDOM_IVS);
     GiveMonInitialMoveset(&gParties[B_TRAINER_OPPONENT_A][1]);
-    if (item2)
-    {
-        heldItem2[0] = item2;
-        heldItem2[1] = item2 >> 8;
-        SetMonData(&gParties[B_TRAINER_OPPONENT_A][1], MON_DATA_HELD_ITEM, heldItem2);
-    }
+
 }
 
 void ScriptSetMonMoveSlot(u8 monIndex, enum Move move, u8 slot)
@@ -378,6 +367,16 @@ static u32 ScriptGiveMonParameterized(u8 side, u8 slot, enum Species species, u8
     u32 i;
     bool32 isShiny;
 
+    bool32 kantoStarter = IS_FRLG && side == 0
+        && gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB)
+        && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB)
+        && gPartiesCount[B_TRAINER_PLAYER] == 0;
+    if (IS_FRLG && side == 0 && !kantoStarter
+        && !(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM)
+          && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM)))
+        species = ResolveForkRandomizedGiftSpecies(species,
+            (gSaveBlock1Ptr->location.mapGroup << 8) | gSaveBlock1Ptr->location.mapNum);
+
     ResolveRandomMonGeneration(species, &ball, moves);
 
     u32 personality = GetMonPersonality(species, gender, nature, RANDOM_UNOWN_LETTER);
@@ -452,6 +451,9 @@ static u32 ScriptGiveMonParameterized(u8 side, u8 slot, enum Species species, u8
             }
         }
     }
+
+    if (kantoStarter)
+        ApplyForkStarterPerfectIvs(&mon, VarGet(VAR_TEMP_1));
 
     // ability
     if (abilityNum != NUM_ABILITY_PERSONALITY)

@@ -768,6 +768,10 @@ bool32 CanUsePokemonBoxLink(void)
     u8 mapGroup = gSaveBlock1Ptr->location.mapGroup;
     u8 mapNum = gSaveBlock1Ptr->location.mapNum;
 
+    if (IS_FRLG && (GetCurrentRegionMapSectionId() == MAPSEC_INDIGO_PLATEAU
+        || GetCurrentRegionMapSectionId() == MAPSEC_VICTORY_ROAD))
+        return FALSE;
+
     if (mapGroup == MAP_GROUP(MAP_EVER_GRANDE_CITY)
      && mapNum == MAP_NUM(MAP_EVER_GRANDE_CITY))
         return FALSE;

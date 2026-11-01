@@ -18,12 +18,15 @@ does not add TM crafting or change which Pokémon can learn a move.
 The **Reusable TMs** option controls consumption: OFF consumes one copy when
 teaching; ON keeps the TM. HMs remain reusable.
 
-## Lilycove Department Store
+## Department Store TM shops
 
 The two TM clerks on Lilycove Department Store 4F sell eight distinct TMs
 selected from TM001–TM229 by the save's seed. The shop displays and awards the
 resolved TM rather than the internal TM51–TM58 stock-slot placeholders.
 Each listing sells exactly one copy per save, then shows **SOLD OUT**.
+
+Celadon Department Store 2F provides the same eight seeded, single-copy TM
+listings in FireRed and LeafGreen.
 
 ## Item randomizer and inventory
 

@@ -149,6 +149,27 @@ static void AddFixedWildSources(const struct WildPokemonInfo *info, u32 count)
 
 static void AddFixedEncounterSources(void)
 {
+    if (IS_FRLG)
+    {
+        static const enum Species kantoSources[] = {
+            SPECIES_BULBASAUR, SPECIES_SQUIRTLE, SPECIES_CHARMANDER,
+            SPECIES_EEVEE, SPECIES_LAPRAS, SPECIES_HITMONLEE, SPECIES_HITMONCHAN,
+            SPECIES_MAGIKARP, SPECIES_TOGEPI, SPECIES_OMANYTE, SPECIES_KABUTO,
+            SPECIES_AERODACTYL, SPECIES_SNORLAX, SPECIES_VOLTORB, SPECIES_ELECTRODE,
+            SPECIES_ARTICUNO, SPECIES_ZAPDOS, SPECIES_MOLTRES, SPECIES_MEWTWO,
+            SPECIES_RAIKOU, SPECIES_ENTEI, SPECIES_SUICUNE,
+            SPECIES_LUGIA, SPECIES_HO_OH, SPECIES_DEOXYS_NORMAL,
+            SPECIES_MR_MIME, SPECIES_NIDORAN_F, SPECIES_NIDORAN_M, SPECIES_NIDORINA,
+            SPECIES_NIDORINO, SPECIES_FARFETCHD, SPECIES_JYNX, SPECIES_LICKITUNG,
+            SPECIES_TANGELA, SPECIES_SEEL, SPECIES_ELECTRODE,
+            SPECIES_ABRA, SPECIES_CLEFAIRY, SPECIES_SCYTHER, SPECIES_PINSIR,
+            SPECIES_DRATINI, SPECIES_PORYGON,
+        };
+        for (u32 i = 0; i < ARRAY_COUNT(kantoSources); i++)
+            if (IsSpeciesEnabled(kantoSources[i]))
+                SetBit(sAvailableSpecies, sFamilies[kantoSources[i]]);
+        return;
+    }
     // Scripted Emerald encounters, gifts, roamers, fossils and the fixed trade.
     // Wild encounters are read directly from the compiled tables below.
     static const enum Species sources[] = {

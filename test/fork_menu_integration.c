@@ -84,9 +84,10 @@ TEST("Option menu saves battle style changes and honors the Set lock")
 TEST("Feature menu locks preset rules but allows generation changes")
 {
     static const u16 keys[] = {
-        DPAD_DOWN, DPAD_RIGHT, // Attempt to disable the locked catch limit.
-        R_BUTTON, DPAD_RIGHT, // Attempt to enable locked battle items.
-        R_BUTTON, DPAD_DOWN, DPAD_DOWN, DPAD_LEFT, // Gen 9 to Gen 8.
+        DPAD_DOWN, DPAD_RIGHT, // Faint rule remains locked.
+        DPAD_DOWN, DPAD_RIGHT, // Player EVs remain locked.
+        R_BUTTON, DPAD_LEFT, // Gen 9 to Gen 8.
+        DPAD_DOWN, DPAD_RIGHT, // Random abilities remain locked.
         START_BUTTON,
     };
     Test_RunNewGameFeatureMenu(keys, ARRAY_COUNT(keys));

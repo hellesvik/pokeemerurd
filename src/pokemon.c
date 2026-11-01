@@ -4546,6 +4546,8 @@ bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct Evoluti
             bool32 inTrickHouse = currentMap >= MAP_ROUTE110_TRICK_HOUSE_ENTRANCE
                                && currentMap <= MAP_ROUTE110_TRICK_HOUSE_PUZZLE8;
 
+            if (IS_FRLG)
+                inTrickHouse = currentMap == MAP_SAFFRON_CITY_DOJO;
             currentCondition = params[i].condition == IF_IN_TRICK_HOUSE ? inTrickHouse : !inTrickHouse;
             break;
         }

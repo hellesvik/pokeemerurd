@@ -635,7 +635,7 @@ bool8 ScrCmd_additem(struct ScriptContext *ctx)
 
     Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE);
 
-    if (!IS_FRLG && !ConsumeForkItemBallRandomizationGuard() && !ConsumeForkHiddenItemRandomizationGuard())
+    if (!ConsumeForkItemBallRandomizationGuard() && !ConsumeForkHiddenItemRandomizationGuard())
         itemId = ResolveForkRandomizedScriptItem(itemId, scriptPtr);
 
     // Standard item-gift scripts keep their item in VAR_0x8000. Keep that

@@ -225,9 +225,11 @@ VermilionCity_Gym_EventScript_ShowOaksAide::
 
 VermilionCity_Gym_EventScript_GiveTM34::
 	msgbox VermilionCity_Gym_Text_ExplainThunderBadgeTakeThis
-	checkitemspace ITEM_TM34
+	setvar VAR_0x8000, ITEM_TM34
+	callnative ResolveForkKantoGymReward
+	checkitemspace VAR_0x8000
 	goto_if_eq VAR_RESULT, FALSE, VermilionCity_Gym_EventScript_NoRoomForTM34
-	giveitem_msg VermilionCity_Gym_Text_ReceivedTM34FromLtSurge, ITEM_TM34
+	giveitem VAR_0x8000
 	setflag FLAG_GOT_TM34_FROM_SURGE
 	msgbox VermilionCity_Gym_Text_ExplainTM34
 	release
@@ -311,12 +313,10 @@ VermilionCity_Gym_Text_ExplainThunderBadgeTakeThis::
 	.string "Take this!$"
 
 VermilionCity_Gym_Text_ReceivedTM34FromLtSurge::
-	.string "{PLAYER} received TM34\n"
-	.string "from LT. SURGE.$"
+	.string "Use your reward wisely!$"
 
 VermilionCity_Gym_Text_ExplainTM34::
-	.string "TM34 contains SHOCK WAVE!\p"
-	.string "Teach it to an ELECTRIC POKéMON!$"
+	.string "Use your reward wisely!$"
 
 VermilionCity_Gym_Text_MakeRoomInYourBag::
 	.string "Yo, kid, make room in your BAG!$"

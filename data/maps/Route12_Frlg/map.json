@@ -90,7 +90,7 @@
     },
     {
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_SNORLAX",
+      "graphics_id": "OBJ_EVENT_GFX_VAR_F",
       "x": 14,
       "y": 70,
       "elevation": 3,

@@ -1,4 +1,5 @@
 #include "global.h"
+#include "fork_run.h"
 #include "event_data.h"
 #include "field_message_box.h"
 #include "pokedex.h"
@@ -91,7 +92,7 @@ extern const u8 PokedexRating_Text_Complete[];
 
 u16 GetFrlgPokedexCount(void)
 {
-    if (gSpecialVar_0x8004 == 0)
+    if (gSpecialVar_0x8004 == 0 && !(IS_FRLG && ForkAreRandomEncountersEnabled()))
     {
         gSpecialVar_0x8005 = GetKantoPokedexCount(FLAG_GET_SEEN);
         gSpecialVar_0x8006 = GetKantoPokedexCount(FLAG_GET_CAUGHT);

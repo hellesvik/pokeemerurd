@@ -76,6 +76,22 @@ ViridianCity_Mart_EventScript_SayHiToOak::
 	end
 
 ViridianCity_Mart_EventScript_Woman::
+    lock
+    faceplayer
+    checkitem ITEM_OLD_ROD
+    goto_if_eq VAR_RESULT, TRUE, KantoOldRod_Explain
+    giveitem ITEM_OLD_ROD
+    goto_if_eq VAR_RESULT, FALSE, KantoOldRod_End
+    setflag FLAG_GOT_OLD_ROD
+KantoOldRod_Explain:
+    msgbox KantoOldRod_Text, MSGBOX_DEFAULT
+KantoOldRod_End:
+    release
+    end
+KantoOldRod_Text:
+    .string "Use the OLD ROD to fish for POKéMON.$"
+
+ViridianCity_Mart_EventScript_WomanUnused::
 	msgbox ViridianCity_Mart_Text_ShopDoesGoodBusinessInAntidotes, MSGBOX_NPC
 	end
 

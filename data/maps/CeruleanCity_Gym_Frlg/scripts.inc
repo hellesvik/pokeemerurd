@@ -20,9 +20,11 @@ CeruleanCity_Gym_EventScript_MistyDefeated::
 
 CeruleanCity_Gym_EventScript_GiveTM03::
 	msgbox CeruleanCity_Gym_Text_ExplainCascadeBadge
-	checkitemspace ITEM_TM03
+	setvar VAR_0x8000, ITEM_TM_WATER_PULSE
+	callnative ResolveForkKantoGymReward
+	checkitemspace VAR_0x8000
 	goto_if_eq VAR_RESULT, FALSE, CeruleanCity_Gym_EventScript_NoRoomForTM03
-	giveitem_msg CeruleanCity_Gym_Text_ReceivedTM03FromMisty, ITEM_TM03
+	giveitem VAR_0x8000
 	setflag FLAG_GOT_TM03_FROM_MISTY
 	msgbox CeruleanCity_Gym_Text_ExplainTM03
 	release
@@ -79,8 +81,7 @@ CeruleanCity_Gym_Text_MistyIntro::
 	.string "with WATER-type POKéMON!{PLAY_BGM}{MUS_RG_ENCOUNTER_GYM_LEADER}$"
 
 CeruleanCity_Gym_Text_ExplainTM03::
-	.string "TM03 teaches WATER PULSE.\p"
-	.string "Use it on an aquatic POKéMON!$"
+	.string "Use your reward wisely!$"
 
 CeruleanCity_Gym_Text_ExplainCascadeBadge::
 	.string "The CASCADEBADGE makes all\n"
@@ -94,8 +95,7 @@ CeruleanCity_Gym_Text_ExplainCascadeBadge::
 	.string "You can also have my favorite TM.$"
 
 CeruleanCity_Gym_Text_ReceivedTM03FromMisty::
-	.string "{PLAYER} received TM03\n"
-	.string "from MISTY.$"
+	.string "Use your reward wisely!$"
 
 CeruleanCity_Gym_Text_BetterMakeRoomForThis::
 	.string "You better make room for this!$"

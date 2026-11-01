@@ -4,6 +4,8 @@ NavelRock_Base_Frlg_MapScripts::
 	.byte 0
 
 NavelRock_Base_Frlg_OnTransition::
+	setvar VAR_0x8004, SPECIES_LUGIA
+	specialvar VAR_OBJ_GFX_ID_F, GetForkRandomizedStaticEncounterGraphicsId
 	call_if_set FLAG_FOUGHT_LUGIA, NavelRock_Base_Frlg_EventScript_HideLugia
 	call_if_unset FLAG_FOUGHT_LUGIA, NavelRock_Base_Frlg_EventScript_TryShowLugia
 	end

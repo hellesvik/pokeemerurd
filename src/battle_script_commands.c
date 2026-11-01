@@ -5802,17 +5802,10 @@ static u32 GetTrainerMoneyToGive(u16 trainerId)
     u32 moneyReward;
     u8 trainerMoney = 0;
 
-    // Keep Gabby and Ty's interviews available without repeatable prize money.
-    switch (trainerId)
-    {
-    case TRAINER_GABBY_AND_TY_1:
-    case TRAINER_GABBY_AND_TY_2:
-    case TRAINER_GABBY_AND_TY_3:
-    case TRAINER_GABBY_AND_TY_4:
-    case TRAINER_GABBY_AND_TY_5:
-    case TRAINER_GABBY_AND_TY_6:
+    // These IDs overlap with unrelated Kanto trainers.
+    if (!IS_FRLG && trainerId >= TRAINER_GABBY_AND_TY_1
+        && trainerId <= TRAINER_GABBY_AND_TY_6)
         return 0;
-    }
 
     if (trainerId == TRAINER_SECRET_BASE)
     {

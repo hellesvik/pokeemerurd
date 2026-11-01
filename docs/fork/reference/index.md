@@ -6,7 +6,7 @@ encounter randomizer:
 - [Biome species catalog](./biome_species_catalog.csv) lists eligible species
   by biome and generation constraints.
 - [Biome encounter assignments](./biome_encounter_assignments.csv) lists the
-  map, encounter method, and biome assignments.
+  map, encounter method, and biome assignments for Hoenn, Kanto, and Sevii.
 
 These CSVs are derived artifacts for review and documentation. Update the
 generator/source data that produces them rather than editing them manually.

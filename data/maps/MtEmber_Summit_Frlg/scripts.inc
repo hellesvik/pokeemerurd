@@ -14,6 +14,8 @@ MtEmber_Summit_EventScript_TryRemoveMoltres::
 	return
 
 MtEmber_Summit_OnTransition::
+	setvar VAR_0x8004, SPECIES_MOLTRES
+	specialvar VAR_OBJ_GFX_ID_F, GetForkRandomizedStaticEncounterGraphicsId
 	call_if_unset FLAG_FOUGHT_MOLTRES, MtEmber_Summit_EventScript_ShowMoltres
 	end
 
@@ -34,6 +36,8 @@ MtEmber_Summit_EventScript_Moltres::
 	playbgm MUS_RG_ENCOUNTER_GYM_LEADER, 0
 	waitbuttonpress
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	setflag FLAG_FOUGHT_MOLTRES
+	setflag FLAG_HIDE_MOLTRES
 	special BattleSetup_StartLegendaryBattle
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
 	specialvar VAR_RESULT, GetBattleOutcome

@@ -13,6 +13,8 @@ Route16_EventScript_RemoveSnorlax::
 	return
 
 Route16_OnTransition::
+	setvar VAR_0x8004, SPECIES_SNORLAX
+	specialvar VAR_OBJ_GFX_ID_F, GetForkRandomizedStaticEncounterGraphicsId
 	call_if_eq VAR_MAP_SCENE_ROUTE16, 1, Route16_OnTransitionCyclingRoad
 	end
 

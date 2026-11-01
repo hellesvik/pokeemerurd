@@ -9,6 +9,7 @@
 #define FORK_FISHING_SPECIES_PER_ROD 2
 #define FORK_FISHING_RANDOMIZED_SLOT_COUNT (FORK_FISHING_SPECIES_PER_ROD * 3)
 
+enum Species ResolveForkRandomizedGiftSpecies(enum Species fallback, u32 salt);
 void InitForkEncounterRandomizerSeed(void);
 u16 GetForkMaxNationalDex(void);
 enum Species ResolveForkRandomizedEncounterSpecies(u8 mapGroup, u8 mapNum, enum WildPokemonArea area, u8 slot, enum Species fallback);

@@ -18,8 +18,13 @@
 #define FIRST_HM_ITEM ITEM_HM01
 #define LAST_HM_ITEM ITEM_HM08
 #define FORK_ITEM_RANDOMIZER_VERSION 12
+#if IS_FRLG
+#define FIRST_ITEM_BALL_FLAG FLAG_HIDE_VIRIDIAN_FOREST_POTION
+#define LAST_ITEM_BALL_FLAG FLAG_HIDE_SILPH_CO_4F_TM41
+#else
 #define FIRST_ITEM_BALL_FLAG FLAG_ITEM_ROUTE_102_POTION
 #define LAST_ITEM_BALL_FLAG FLAG_ITEM_SAFARI_ZONE_SOUTH_EAST_BIG_PEARL
+#endif
 
 static bool8 sForkItemBallRandomizationPending;
 static bool8 sForkHiddenItemRandomizationPending;
@@ -711,6 +716,21 @@ enum Item ResolveForkRandomizedHiddenItem(enum Item itemId, u16 hiddenItemFlag)
 
 static u16 GetForkGymLeaderItemSourceId(enum Item itemId)
 {
+    if (IS_FRLG)
+    {
+        switch (itemId)
+        {
+        case ITEM_TM_ROCK_TOMB: return FORK_ITEM_RANDOMIZER_GYM_LEADER_SOURCE_START;
+        case ITEM_TM_WATER_PULSE: return FORK_ITEM_RANDOMIZER_GYM_LEADER_SOURCE_START + 1;
+        case ITEM_TM34: return FORK_ITEM_RANDOMIZER_GYM_LEADER_SOURCE_START + 2;
+        case ITEM_TM_GIGA_DRAIN: return FORK_ITEM_RANDOMIZER_GYM_LEADER_SOURCE_START + 3;
+        case ITEM_TM_TOXIC: return FORK_ITEM_RANDOMIZER_GYM_LEADER_SOURCE_START + 4;
+        case ITEM_TM_CALM_MIND: return FORK_ITEM_RANDOMIZER_GYM_LEADER_SOURCE_START + 5;
+        case ITEM_TM_FIRE_BLAST: return FORK_ITEM_RANDOMIZER_GYM_LEADER_SOURCE_START + 6;
+        case ITEM_TM_EARTHQUAKE: return FORK_ITEM_RANDOMIZER_GYM_LEADER_SOURCE_START + 7;
+        default: return FORK_ITEM_RANDOMIZER_UNASSIGNED;
+        }
+    }
     switch (itemId)
     {
     case ITEM_TM_ROCK_TOMB:  return FORK_ITEM_RANDOMIZER_GYM_LEADER_SOURCE_START + 0;
@@ -756,4 +776,19 @@ void GetItemBallIdAndAmountFromTemplate(void)
     itemBallId = gSpecialVar_LastTalked - 1;
     gSpecialVar_Result = ResolveForkRandomizedItemBall(GetItemBallIdFromTemplate(itemBallId), GetForkItemBallSourceId(itemBallId));
     gSpecialVar_0x8009 = GetItemBallAmountFromTemplate(itemBallId);
+}
+
+void ResolveForkKantoItemBall(void)
+{
+    if (!IS_FRLG || gMapHeader.events == NULL || gSpecialVar_LastTalked == 0
+        || gSpecialVar_LastTalked > gMapHeader.events->objectEventCount)
+        return;
+    u16 source = GetForkItemBallSourceId(gSpecialVar_LastTalked - 1);
+    gSpecialVar_0x8000 = ResolveForkRandomizedItemBall(gSpecialVar_0x8000, source);
+}
+
+void ResolveForkKantoGymReward(void)
+{
+    gSpecialVar_0x8000 = ResolveForkRandomizedItemBall(gSpecialVar_0x8000,
+        GetForkGymLeaderItemSourceId(gSpecialVar_0x8000));
 }

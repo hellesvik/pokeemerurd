@@ -40,6 +40,28 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_AlreadyTraded::
 	end
 
 CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_FossilScientist::
+    lock
+    faceplayer
+    specialvar VAR_0x8004, GetForkFirstRevivableFossilSpecial
+    goto_if_eq VAR_0x8004, ITEM_NONE, KantoFossil_NoFossil
+    copyvar VAR_TEMP_1, VAR_0x8004
+    specialvar VAR_TEMP_2, GetForkFossilRevivalSpeciesSpecial
+    msgbox KantoFossil_Revive, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, NO, KantoFossil_End
+    givemon VAR_TEMP_2, 5
+    goto_if_eq VAR_RESULT, MON_CANT_GIVE, KantoFossil_End
+    removeitem VAR_TEMP_1
+KantoFossil_End:
+    release
+    end
+KantoFossil_NoFossil:
+    msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_HaveYouAFossilForMe, MSGBOX_DEFAULT
+    release
+    end
+KantoFossil_Revive:
+    .string "Revive a POKéMON from your fossil?$"
+
+CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_FossilScientistUnused::
 	lock
 	faceplayer
 	setvar VAR_RESULT, FALSE

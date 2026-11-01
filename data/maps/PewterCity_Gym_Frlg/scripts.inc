@@ -22,9 +22,11 @@ PewterCity_Gym_EventScript_DefeatedBrock::
 
 PewterCity_Gym_EventScript_GiveTM39::
 	msgbox PewterCity_Gym_Text_TakeThisWithYou
-	checkitemspace ITEM_TM39
+	setvar VAR_0x8000, ITEM_TM_ROCK_TOMB
+	callnative ResolveForkKantoGymReward
+	checkitemspace VAR_0x8000
 	goto_if_eq VAR_RESULT, FALSE, PewterCity_Gym_EventScript_NoRoomForTM39
-	giveitem_msg PewterCity_Gym_Text_ReceivedTM39FromBrock, ITEM_TM39
+	giveitem VAR_0x8000
 	setflag FLAG_GOT_TM39_FROM_BROCK
 	msgbox PewterCity_Gym_Text_ExplainTM39
 	release
@@ -117,21 +119,10 @@ PewterCity_Gym_Text_TakeThisWithYou::
 	.string "Take this with you.$"
 
 PewterCity_Gym_Text_ReceivedTM39FromBrock::
-	.string "{PLAYER} received TM39\n"
-	.string "from BROCK.$"
+	.string "Use your reward wisely!$"
 
 PewterCity_Gym_Text_ExplainTM39::
-	.string "A TM, Technical Machine, contains a\n"
-	.string "technique for POKéMON.\p"
-	.string "Using a TM teaches the move it\n"
-	.string "contains to a POKéMON.\p"
-	.string "A TM is good for only one use.\p"
-	.string "So, when you use one, pick the\n"
-	.string "POKéMON carefully.\p"
-	.string "Anyways…\n"
-	.string "TM39 contains ROCK TOMB.\p"
-	.string "It hurls boulders at the foe and\n"
-	.string "lowers its SPEED.$"
+	.string "Use your reward wisely!$"
 
 PewterCity_Gym_Text_BrockPostBattle::
 	.string "There are all kinds of TRAINERS in\n"

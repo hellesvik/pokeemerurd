@@ -1,4 +1,5 @@
 EventScript_SetDefeatedEliteFourFlagsVars::
+	incrementgamestat GAME_STAT_ENTERED_HOF
 	clearflag FLAG_HIDE_POSTGAME_GOSSIPERS
 	call EventScript_ResetEliteFour
 	special Script_UpdateTrainerFanClubGameClear

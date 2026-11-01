@@ -56,7 +56,9 @@ MtMoon_B2F_EventScript_DomeFossil::
 	msgbox MtMoon_B2F_Text_YouWantDomeFossil, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, MtMoon_B2F_EventScript_DontTakeFossil
 	removeobject LOCALID_DOME_FOSSIL
-	giveitem_msg MtMoon_B2F_Text_ObtainedDomeFossil, ITEM_DOME_FOSSIL, 1, MUS_RG_OBTAIN_KEY_ITEM
+	setvar VAR_0x8004, 0
+	specialvar VAR_0x8005, GetForkMirageTowerFossilSpecial
+	giveitem VAR_0x8005
 	closemessage
 	delay 10
 	applymovement LOCALID_MIGUEL, MtMoon_B2F_Movement_MiguelToHelixFossil
@@ -86,7 +88,9 @@ MtMoon_B2F_EventScript_HelixFossil::
 	msgbox MtMoon_B2F_Text_YouWantHelixFossil, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, MtMoon_B2F_EventScript_DontTakeFossil
 	removeobject LOCALID_HELIX_FOSSIL
-	giveitem_msg MtMoon_B2F_Text_ObtainedHelixFossil, ITEM_HELIX_FOSSIL, 1, MUS_RG_OBTAIN_KEY_ITEM
+	setvar VAR_0x8004, 1
+	specialvar VAR_0x8005, GetForkMirageTowerFossilSpecial
+	giveitem VAR_0x8005
 	closemessage
 	delay 10
 	applymovement LOCALID_MIGUEL, MtMoon_B2F_Movement_MiguelToDomeFossil

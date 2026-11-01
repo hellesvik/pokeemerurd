@@ -10,7 +10,7 @@ This fork uses the built-in hard level cap system.
 - EV gain is disabled separately through the EV cap configuration.
 - After defeating the story battle that raises the cap, a message announces the new cap. It appears after that battle's defeat text and before the map's post-battle event continues.
 
-## Current Cap Ladder
+## Emerald cap ladder
 
 The active cap is chosen from the first uncleared story battle milestone in `src/caps.c`. Rival variants share the same milestone, and boss fights use the highest level present in that battle.
 
@@ -23,3 +23,5 @@ Because the rule is tied to story-battle milestones, the cap can be higher than 
 Use **LEVEL BOXES TO CAP** in the Pokémon PC menu to raise all stored, non-Egg
 Pokémon below the cap directly to it. Party Pokémon are unaffected; this does
 not trigger evolution or move-learning prompts.
+
+FireRed and LeafGreen use [Kanto story milestones](../configuration/firered_leafgreen.md#regional-progression), with caps 63 for the first League and 75 for postgame.

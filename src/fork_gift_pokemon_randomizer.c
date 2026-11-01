@@ -1,4 +1,5 @@
 #include "global.h"
+#include "event_data.h"
 #include "fork_ability_randomizer.h"
 #include "fork_encounter_randomizer.h"
 #include "fork_gift_pokemon_randomizer.h"
@@ -203,7 +204,7 @@ enum Species GetForkRandomizedStarterSpecies(u8 slot)
 {
     if (!ForkAreRandomEncountersEnabled())
     {
-        static const enum Species sVanillaStarters[] = {SPECIES_TREECKO, SPECIES_TORCHIC, SPECIES_MUDKIP};
+        static const enum Species sVanillaStarters[] = {IS_FRLG ? SPECIES_BULBASAUR : SPECIES_TREECKO, IS_FRLG ? SPECIES_SQUIRTLE : SPECIES_TORCHIC, IS_FRLG ? SPECIES_CHARMANDER : SPECIES_MUDKIP};
         return slot < ARRAY_COUNT(sVanillaStarters) ? sVanillaStarters[slot] : SPECIES_TREECKO;
     }
     return SelectRandomStarterSpecies(slot);
@@ -335,4 +336,9 @@ void ApplyForkStarterPerfectIvs(struct Pokemon *mon, u8 starterSlot)
         SetMonData(mon, MON_DATA_HP_IV + stat, &iv);
     }
     CalculateMonStats(mon);
+}
+
+u16 GetForkKantoStarterSpecies(void)
+{
+    return GetForkRandomizedStarterSpecies(gSpecialVar_0x8004);
 }

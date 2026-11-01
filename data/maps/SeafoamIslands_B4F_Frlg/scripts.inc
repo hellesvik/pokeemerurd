@@ -19,6 +19,8 @@ SeafoamIslands_B4F_EventScript_TryRemoveArticuno::
 	return
 
 SeafoamIslands_B4F_OnTransition::
+	setvar VAR_0x8004, SPECIES_ARTICUNO
+	specialvar VAR_OBJ_GFX_ID_F, GetForkRandomizedStaticEncounterGraphicsId
 	call_if_unset FLAG_FOUGHT_ARTICUNO, SeafoamIslands_B4F_EventScript_ShowArticuno
 	call_if_unset FLAG_STOPPED_SEAFOAM_B4F_CURRENT, SeafoamIslands_B4F_EventScript_CheckStoppedCurrent
 	call_if_set FLAG_STOPPED_SEAFOAM_B4F_CURRENT, SeafoamIslands_B4F_EventScript_SetNoCurrentLayout
@@ -164,6 +166,8 @@ SeafoamIslands_B4F_EventScript_Articuno::
 	playbgm MUS_RG_ENCOUNTER_GYM_LEADER, 0
 	waitbuttonpress
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	setflag FLAG_FOUGHT_ARTICUNO
+	setflag FLAG_HIDE_ARTICUNO
 	special BattleSetup_StartLegendaryBattle
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
 	specialvar VAR_RESULT, GetBattleOutcome

@@ -1,5 +1,6 @@
 Route12_Frlg_MapScripts::
 	map_script MAP_SCRIPT_ON_RESUME, Route12_OnResume
+	map_script MAP_SCRIPT_ON_TRANSITION, Route12_Frlg_ForkOnTransition
 	.byte 0
 
 Route12_OnResume::
@@ -200,3 +201,8 @@ Route12_Text_GiaNotEnoughMons::
 	.string "GIA: I can't bear to battle\n"
 	.string "without my JES!\p"
 	.string "Don't you have one more POKéMON?$"
+
+Route12_Frlg_ForkOnTransition::
+	setvar VAR_0x8004, SPECIES_SNORLAX
+	specialvar VAR_OBJ_GFX_ID_F, GetForkRandomizedStaticEncounterGraphicsId
+	end

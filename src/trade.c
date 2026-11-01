@@ -1,4 +1,5 @@
 #include "global.h"
+#include "fork_encounter_randomizer.h"
 #include "malloc.h"
 #include "battle_anim.h"
 #include "battle_interface.h"
@@ -4577,10 +4578,10 @@ static void CreateInGameTradePokemonInternal(u8 whichPlayerMon, u8 whichInGameTr
     enum Item heldItem = inGameTrade->heldItem;
     enum Move moves[MAX_MON_MOVES] = {MOVE_NONE};
 
-    if (whichInGameTrade == INGAME_TRADE_HORSEA)
+    if (!IS_FRLG && whichInGameTrade == INGAME_TRADE_HORSEA)
         level = 69;
 
-    if (whichInGameTrade == INGAME_TRADE_PLUSLE)
+    if (!IS_FRLG && whichInGameTrade == INGAME_TRADE_PLUSLE)
     {
         enum Ability ability = GetForkRandomizedFortreeTradeAbility();
         for (abilityNum = 0; abilityNum < NUM_ABILITY_SLOTS; abilityNum++)
@@ -4588,7 +4589,7 @@ static void CreateInGameTradePokemonInternal(u8 whichPlayerMon, u8 whichInGameTr
                 break;
         isShiny = GetForkRandomizedFortreeTradeIsShiny();
     }
-    else if (whichInGameTrade == INGAME_TRADE_SEEDOT)
+    else if (!IS_FRLG && whichInGameTrade == INGAME_TRADE_SEEDOT)
     {
         enum Ability ability = GetForkRandomizedRustboroTradeAbility();
 
@@ -4602,7 +4603,7 @@ static void CreateInGameTradePokemonInternal(u8 whichPlayerMon, u8 whichInGameTr
 
     CreateMonWithIVs(pokemon, species, level, inGameTrade->personality, OTID_STRUCT_PRESET(inGameTrade->otId), USE_RANDOM_IVS);
     GiveMonInitialMoveset(pokemon);
-    if (whichInGameTrade == INGAME_TRADE_SEEDOT && species == SPECIES_WISHIWASHI)
+    if (!IS_FRLG && whichInGameTrade == INGAME_TRADE_SEEDOT && species == SPECIES_WISHIWASHI)
         SetMonData(pokemon, MON_DATA_NICKNAME, (void *)sRustboroTradeWishiwashiNickname);
     else
         SetMonData(pokemon, MON_DATA_NICKNAME, inGameTrade->nickname);
@@ -4633,7 +4634,7 @@ static void CreateInGameTradePokemonInternal(u8 whichPlayerMon, u8 whichInGameTr
             SetMonData(pokemon, MON_DATA_HELD_ITEM, &heldItem);
         }
     }
-    if (whichInGameTrade == INGAME_TRADE_HORSEA)
+    if (!IS_FRLG && whichInGameTrade == INGAME_TRADE_HORSEA)
     {
         for (u8 i = 0; i < MAX_MON_MOVES; i++)
         {
@@ -4652,11 +4653,11 @@ static void CreateInGameTradePokemonInternal(u8 whichPlayerMon, u8 whichInGameTr
 
 static enum Species GetForkInGameTradeSpecies(u8 whichInGameTrade)
 {
-    if (whichInGameTrade == INGAME_TRADE_PLUSLE)
+    if (!IS_FRLG && whichInGameTrade == INGAME_TRADE_PLUSLE)
         return GetForkRandomizedFortreeTradeSpecies();
-    if (whichInGameTrade == INGAME_TRADE_SEEDOT)
+    if (!IS_FRLG && whichInGameTrade == INGAME_TRADE_SEEDOT)
         return GetForkRandomizedRustboroTradeSpecies();
-    return sIngameTrades[whichInGameTrade].species;
+    return IS_FRLG ? ResolveForkRandomizedGiftSpecies(sIngameTrades[whichInGameTrade].species, whichInGameTrade) : sIngameTrades[whichInGameTrade].species;
 }
 
 static void GetInGameTradeMail(struct Mail *mail, const struct InGameTrade *trade)

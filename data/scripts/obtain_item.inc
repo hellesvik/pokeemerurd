@@ -104,6 +104,7 @@ EventScript_NoRoomForDecor::
 	return
 
 Std_FindItem::
+	callnative ResolveForkKantoItemBall
 	lock
 	faceplayer
 	waitse

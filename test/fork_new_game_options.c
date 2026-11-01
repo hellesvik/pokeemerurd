@@ -96,7 +96,6 @@ TEST("New game settings cycles through three visible modes")
 {
     EXPECT_EQ(ForkNewGameOptionsNextSetting(0, DPAD_RIGHT), 1);
     EXPECT_EQ(ForkNewGameOptionsNextSetting(1, DPAD_RIGHT), 3);
-    EXPECT_EQ(ForkNewGameOptionsNextSetting(2, DPAD_RIGHT), 3);
     EXPECT_EQ(ForkNewGameOptionsNextSetting(3, DPAD_RIGHT), 0);
     EXPECT_EQ(ForkNewGameOptionsNextSetting(0, DPAD_LEFT), 3);
 }

@@ -90,7 +90,7 @@ bool32 ForkIsAreaEncounterRuleActive(void)
 {
     // This flag is set when Birch gives the Pokédex, so early forced
     // encounters never consume an area.
-    return FlagGet(FLAG_ADVENTURE_STARTED) && ForkIsCatchLimitEnabled();
+    return FlagGet(IS_FRLG ? FLAG_SYS_POKEDEX_GET : FLAG_ADVENTURE_STARTED) && ForkIsCatchLimitEnabled();
 }
 
 bool32 ForkIsBattleStyleLocked(void)
@@ -538,7 +538,7 @@ void ForkSpendCurrentAreaEncounter(void)
 
 void ForkApplySoftNuzlockeWhiteOutPenalty(void)
 {
-    if (!FlagGet(FLAG_ADVENTURE_STARTED) || ForkGetFaintRule() != FORK_FAINT_RULE_WHITEOUT)
+    if (!FlagGet(IS_FRLG ? FLAG_SYS_POKEDEX_GET : FLAG_ADVENTURE_STARTED) || ForkGetFaintRule() != FORK_FAINT_RULE_WHITEOUT)
         return;
 
     u8 candidates[PARTY_SIZE];
@@ -571,7 +571,7 @@ void ForkApplySoftNuzlockeFaintPenalty(u8 partySlot)
     u32 softNuzlocke = TRUE;
     u16 hp = 0;
 
-    if (!FlagGet(FLAG_ADVENTURE_STARTED)
+    if (!FlagGet(IS_FRLG ? FLAG_SYS_POKEDEX_GET : FLAG_ADVENTURE_STARTED)
      || ForkGetFaintRule() != FORK_FAINT_RULE_ON_FAINT
      || partySlot >= PARTY_SIZE)
         return;

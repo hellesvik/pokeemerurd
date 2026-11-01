@@ -14,6 +14,8 @@ PowerPlant_EventScript_TryRemoveStaticMon::
 	return
 
 PowerPlant_OnTransition::
+	setvar VAR_0x8004, SPECIES_ZAPDOS
+	specialvar VAR_OBJ_GFX_ID_F, GetForkRandomizedStaticEncounterGraphicsId
 	setworldmapflag FLAG_WORLD_MAP_POWER_PLANT
 	call_if_unset FLAG_FOUGHT_ZAPDOS, PowerPlant_EventScript_ShowZapdos
 	call_if_unset FLAG_FOUGHT_POWER_PLANT_ELECTRODE_1, PowerPlant_EventScript_ShowElectrode1
@@ -45,6 +47,8 @@ PowerPlant_EventScript_Zapdos::
 	playbgm MUS_RG_ENCOUNTER_GYM_LEADER, 0
 	waitbuttonpress
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	setflag FLAG_FOUGHT_ZAPDOS
+	setflag FLAG_HIDE_ZAPDOS
 	special BattleSetup_StartLegendaryBattle
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
 	specialvar VAR_RESULT, GetBattleOutcome

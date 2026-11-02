@@ -75,7 +75,7 @@ static mapsec_u8_t GetEncounterMapSec(mapsec_u8_t mapSecId)
     }
 }
 
-static mapsec_u8_t ForkGetCurrentMapSec(void)
+mapsec_u8_t ForkGetCurrentCatchArea(void)
 {
     if (GetSafariZoneFlag())
         return MAPSEC_SAFARI_ZONE;
@@ -466,7 +466,7 @@ void ForkPrepareWildEncounter(void)
 {
     ResetCurrentEncounterState();
 
-    sForkEncounterMapSec = ForkGetCurrentMapSec();
+    sForkEncounterMapSec = ForkGetCurrentCatchArea();
     if (sForkEncounterMapSec >= MAPSEC_COUNT)
         return;
 
@@ -507,7 +507,7 @@ bool32 ForkShouldShowFirstEncounterIndicator(void)
 
 bool32 ForkShouldBlockEggHatchInCurrentArea(void)
 {
-    mapsec_u8_t mapSecId = ForkGetCurrentMapSec();
+    mapsec_u8_t mapSecId = ForkGetCurrentCatchArea();
     bool32 blocked = ForkIsAreaEncounterRuleActive() && mapSecId < MAPSEC_COUNT && ForkIsAreaEncounterSpent(mapSecId);
 
     if (blocked && gSpecialVar_0x8004 < gPartiesCount[B_TRAINER_PLAYER])
@@ -530,7 +530,7 @@ bool32 ForkShouldBlockEggHatchInCurrentArea(void)
 
 void ForkSpendCurrentAreaEncounter(void)
 {
-    mapsec_u8_t mapSecId = ForkGetCurrentMapSec();
+    mapsec_u8_t mapSecId = ForkGetCurrentCatchArea();
 
     if (ForkIsAreaEncounterRuleActive() && mapSecId < MAPSEC_COUNT)
         ForkSetAreaEncounterSpent(mapSecId);

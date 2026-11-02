@@ -7,6 +7,18 @@ also share one encounter: an encounter from Surfing, fishing, grass, or diving
 spends that route's single limit. Separately named underwater locations remain
 their own areas.
 
+The PokéNav's **Catch Log** replaces the Ribbons viewer. It lists Hoenn routes
+and named places accessible before the League in story progression order,
+including unvisited areas and optional destinations. Post-League destinations
+and Trainer Hill are omitted. Red **USED** means the area's encounter allowance has been
+spent; green **OPEN** means it has not. A failed catch or fleeing encounter can
+therefore still show USED. Shared areas such as the Safari Zone appear once.
+
+The log opens at your current area. Use Up/Down to scroll, Left/Right to page,
+and B to return. The side panel shows the total number of used areas. If catch
+limits are disabled, the log says so and continues to show previously recorded allowances. It is available as soon as
+you have the PokéNav, without earning a Ribbon. Pokémon retain their Ribbons.
+
 The first non-shiny wild encounter that is not covered by dupes clause spends the area's encounter when the battle ends, whether or not it is caught. Dupes are checked by evolutionary family across party, boxes, daycare, and caught Pokedex data, and they do not spend the area. Shiny encounters are always catchable and never blocked by a spent area.
 
 The Safari Zone is one shared strict encounter area. Its first wild encounter

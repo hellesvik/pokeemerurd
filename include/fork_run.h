@@ -32,6 +32,7 @@ bool32 ForkAreTMsReusable(void);
 u8 ForkGetFaintRule(void);
 void ForkApplySoftNuzlockeFaintPenalty(u8 partySlot);
 void ForkApplySoftNuzlockeFaintPenaltyForBattler(enum BattlerId battler);
+mapsec_u8_t ForkGetCurrentCatchArea(void);
 bool32 ForkIsAreaEncounterSpent(mapsec_u8_t mapSecId);
 void ForkSetAreaEncounterSpent(mapsec_u8_t mapSecId);
 bool32 ForkPlayerOwnsSpeciesFamily(enum Species species);

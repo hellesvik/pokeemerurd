@@ -135,3 +135,69 @@ EverGrandeCity_PokemonLeague_1F_Text_GoForth:
 	.string "TRAINER! Believe in yourself and your\n"
 	.string "POKéMON, and go forth!$"
 
+
+Collector_EventScript::
+    lock
+    faceplayer
+    goto_if_set FLAG_COLLECTOR_TRADE_COMPLETE, Collector_Done
+    msgbox Collector_Offer, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, NO, Collector_End
+    special CollectorTrade
+    goto_if_eq VAR_RESULT, 1, Collector_NoCoins
+    goto_if_eq VAR_RESULT, 2, Collector_NoSpace
+    goto_if_eq VAR_RESULT, 3, Collector_Empty
+    goto_if_eq VAR_RESULT, 4, Collector_Done
+    msgbox Collector_Success, MSGBOX_DEFAULT
+Collector_ReceiptLoop::
+    special CollectorNextReceiptItem
+    goto_if_eq VAR_RESULT, 0, Collector_End
+    msgbox Collector_ReceiptText, MSGBOX_DEFAULT
+    goto Collector_ReceiptLoop
+Collector_End::
+    release
+    end
+Collector_NoCoins::
+    msgbox Collector_CoinsText, MSGBOX_DEFAULT
+    goto Collector_End
+Collector_NoSpace::
+    msgbox Collector_SpaceText, MSGBOX_DEFAULT
+    goto Collector_End
+Collector_Empty::
+    msgbox Collector_EmptyText, MSGBOX_DEFAULT
+    goto Collector_End
+Collector_Done::
+    msgbox Collector_DoneText, MSGBOX_DEFAULT
+    goto Collector_End
+Collector_Offer:
+    .string "COLLECTURD: I spent all my money\n"
+    .string "on tokens to make this game.\p"
+    .string "Then I tried to earn it back,\n"
+    .string "but now Im in gambling debt. But\p"
+    .string "hey, you look lazy and rich!\n"
+    .string "Maybe you can pay off my debt by\p"
+    .string "paying me 4000 coins? I will\n"
+    .string "then give you all ball items you\p"
+    .string "have not yet picked up manually.\n"
+    .string "Not the hidden ones\p"
+    .string "unfortunally, as I had to pawn\n"
+    .string "my Itemfinder. So what do you\p"
+    .string "say, 4000 coins to get the rest\n"
+    .string "of the items?$"
+Collector_CoinsText:
+    .string "You need 4,000 COINS for our deal!$"
+Collector_SpaceText:
+    .string "No deal! Make room in your BAG,\n"
+    .string "including your TMs, and come back.$"
+Collector_EmptyText:
+    .string "You've already found everything\n"
+    .string "in my collection!$"
+Collector_DoneText:
+    .string "Thanks! Our trade is complete.\n"
+    .string "I'm staying away from gambling!$"
+Collector_Success:
+    .string "Deal! Here's my entire collection!\n"
+    .string "You paid 4,000 COINS.$"
+
+Collector_ReceiptText:
+    .string "COLLECTURD: Here's {STR_VAR_2} ×\n"
+    .string "{STR_VAR_1}!$"

@@ -38,3 +38,11 @@ bonus.
 Daycare breeding checks for a new Egg every 25 steps instead of every 256
 steps, making checks slightly more than ten times as frequent. Parent
 compatibility and the chance of producing an Egg per check are unchanged.
+
+**Collecturd**, the FR/LG scientist beside the right-hand table in the Pokémon League lobby, offers a one-time trade for
+4,000 Game Corner coins. He supplies remaining visible item-ball pickups from
+pre-League areas, using their normal randomized rewards when enabled. Hidden
+items, post-League pickups, Pokémon disguised as balls, and both Mirage Tower
+fossils are excluded. The entire collection must fit in every affected bag
+pocket, including Items and TMs. If it cannot fit, nothing is charged or removed.
+A successful trade removes the corresponding item balls from the world.

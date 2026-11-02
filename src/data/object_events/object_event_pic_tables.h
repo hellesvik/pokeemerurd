@@ -1359,6 +1359,19 @@ static const struct SpriteFrameImage sPicTable_ApricornTree[] = {
     overworld_frame(gObjectEventPic_ApricornTree, 2, 2, 0),
 };
 
+static const struct SpriteFrameImage sPicTable_Scientist[] = {
+    overworld_frame(gObjectEventPic_Scientist, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Scientist, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Scientist, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Scientist, 2, 4, 3),
+    overworld_frame(gObjectEventPic_Scientist, 2, 4, 4),
+    overworld_frame(gObjectEventPic_Scientist, 2, 4, 5),
+    overworld_frame(gObjectEventPic_Scientist, 2, 4, 6),
+    overworld_frame(gObjectEventPic_Scientist, 2, 4, 7),
+    overworld_frame(gObjectEventPic_Scientist, 2, 4, 8),
+    overworld_frame(gObjectEventPic_Scientist, 2, 4, 9),
+};
+
 #if IS_FRLG
 
 static const struct SpriteFrameImage sPicTable_RedNormal[] = {
@@ -1964,18 +1977,7 @@ static const struct SpriteFrameImage sPicTable_BlackBeltFrlg[] = {
     overworld_frame(gObjectEventPic_BlackBeltFrlg, 2, 4, 9),
 };
 
-static const struct SpriteFrameImage sPicTable_Scientist[] = {
-    overworld_frame(gObjectEventPic_Scientist, 2, 4, 0),
-    overworld_frame(gObjectEventPic_Scientist, 2, 4, 1),
-    overworld_frame(gObjectEventPic_Scientist, 2, 4, 2),
-    overworld_frame(gObjectEventPic_Scientist, 2, 4, 3),
-    overworld_frame(gObjectEventPic_Scientist, 2, 4, 4),
-    overworld_frame(gObjectEventPic_Scientist, 2, 4, 5),
-    overworld_frame(gObjectEventPic_Scientist, 2, 4, 6),
-    overworld_frame(gObjectEventPic_Scientist, 2, 4, 7),
-    overworld_frame(gObjectEventPic_Scientist, 2, 4, 8),
-    overworld_frame(gObjectEventPic_Scientist, 2, 4, 9),
-};
+
 
 static const struct SpriteFrameImage sPicTable_GentlemanFrlg[] = {
     overworld_frame(gObjectEventPic_GentlemanFrlg, 2, 4, 0),

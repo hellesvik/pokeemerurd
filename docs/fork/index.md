@@ -35,6 +35,14 @@ documented in the [reference index](./reference/index.md).
 
 ## Fork changelog
 
+### 2026-11-02
+
+- Added a PC option to level all boxed Pokémon to the current level cap.
+- Replaced the PokéNav Ribbons viewer with a Catch Log listing pre-League
+  routes and places, with red USED and green OPEN encounter allowances.
+- Daycare now checks for a new Egg every 25 steps instead of every 256 steps.
+- Added a way in the Pokémon League waiting hall to get all items not yet picked up.
+
 ### 2026-10-11
 
 - King's Rock and other held evolution items can now be used from the Bag to

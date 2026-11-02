@@ -50,6 +50,18 @@ player can organize their boxes while out in the field.
 It cannot be used anywhere in Ever Grande City, including the Pokémon League
 and its Pokémon Center, or on any floor of Victory Road.
 
+## Level all PC boxes to cap
+
+Choose **LEVEL BOXES TO CAP** from the Pokémon PC main menu to raise eligible
+Pokémon in every PC box to the current level cap. Party Pokémon, Eggs, bad
+Eggs, and Pokémon already at or above the cap are skipped. If level caps are
+disabled, the action makes no changes.
+
+Levels increase directly without evolution or move-learning prompts. Existing
+moves, species, IVs, EVs, held items, and other stored attributes are preserved.
+The result message reports how many Pokémon were raised. This feature works
+with existing master-branch saves and does not change the save format.
+
 ## Running Shoes
 
 New games receive the Running Shoes immediately. Their availability does not

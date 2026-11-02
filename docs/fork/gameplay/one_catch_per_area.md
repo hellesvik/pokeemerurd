@@ -34,3 +34,7 @@ is shown again and the counter resets again.
 Eggs hatch at approximately one-tenth of the normal step interval. Magma
 Armor, Flame Body, and Steam Engine still provide their additional hatch-speed
 bonus.
+
+Daycare breeding checks for a new Egg every 25 steps instead of every 256
+steps, making checks slightly more than ten times as frequent. Parent
+compatibility and the chance of producing an Egg per check are unchanged.

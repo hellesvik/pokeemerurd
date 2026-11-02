@@ -1168,8 +1168,9 @@ static bool8 TryProduceOrHatchEgg(struct DayCare *daycare)
             daycare->mons[i].steps++, validEggs++;
     }
 
-    // Check if an egg should be produced
-    if (daycare->offspringPersonality == 0 && validEggs == DAYCARE_MON_COUNT && (daycare->mons[1].steps & 0xFF) == 0xFF)
+    // Check every 25 steps instead of 256 (at least ten times as often).
+    // Reuse the existing step count so old saves need no new state.
+    if (daycare->offspringPersonality == 0 && validEggs == DAYCARE_MON_COUNT && daycare->mons[1].steps % 25 == 0)
     {
         u8 compatibility = ModifyBreedingScoreForOvalCharm(GetDaycareCompatibilityScore(daycare));
         if (compatibility > (Random() * 100u) / USHRT_MAX)

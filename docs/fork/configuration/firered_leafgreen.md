@@ -58,6 +58,14 @@ and evolution stones plus the Linking Cord.
 - Viridian Mart's woman provides the early Old Rod.
 - Running Shoes and reusable key items are available from the start.
 - The PC's **LEVEL BOXES TO CAP** command raises every stored, eligible Pokémon.
+- The Start menu's **CATCH LOG** lists pre-League Kanto areas and shows each
+  encounter allowance as red USED or green OPEN. It appears after Oak gives the
+  Pokédex. Use Up/Down to scroll, Left/Right to page, and B to return.
+- A collector in Indigo Plateau's Pokémon Center offers a one-time trade for
+  4,000 Game Corner coins. He gives remaining visible item-ball pickups from
+  pre-League Kanto, including their normal randomized rewards. Hidden items,
+  special encounter balls, Cerulean Cave, and Sevii are excluded. All rewards
+  must fit in the Bag; otherwise nothing is charged or collected.
 - Portable PC is unavailable at Indigo Plateau and Victory Road.
 - Field moves require the HM and the appropriate Kanto badge. Rock Smash
   requires its HM without a badge. Flash and Fly appear in non-Egg party menus

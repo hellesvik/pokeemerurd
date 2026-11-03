@@ -14,6 +14,7 @@
 #include "field_player_avatar.h"
 #include "field_specials.h"
 #include "field_weather.h"
+#include "fork_run.h"
 #include "field_screen_effect.h"
 #include "frontier_pass.h"
 #include "frontier_util.h"
@@ -31,6 +32,7 @@
 #include "party_menu.h"
 #include "pokedex.h"
 #include "pokenav.h"
+#include "region_map.h"
 #include "safari_zone.h"
 #include "save.h"
 #include "scanline_effect.h"
@@ -58,6 +60,7 @@ enum
     MENU_ACTION_POKEMON,
     MENU_ACTION_BAG,
     MENU_ACTION_POKENAV,
+    MENU_ACTION_CATCH_LOG,
     MENU_ACTION_PLAYER,
     MENU_ACTION_SAVE,
     MENU_ACTION_OPTION,
@@ -101,6 +104,10 @@ static bool8 StartMenuPokedexCallback(void);
 static bool8 StartMenuPokemonCallback(void);
 static bool8 StartMenuBagCallback(void);
 static bool8 StartMenuPokeNavCallback(void);
+#if IS_FRLG
+static bool8 StartMenuCatchLogCallback(void);
+static bool8 HandleCatchLogInput(void);
+#endif
 static bool8 StartMenuPlayerNameCallback(void);
 static bool8 StartMenuSaveCallback(void);
 static bool8 StartMenuOptionCallback(void);
@@ -188,6 +195,66 @@ static const struct WindowTemplate sWindowTemplate_PyramidPeak = {
 };
 
 static const u8 sText_MenuDebug[] = _("DEBUG");
+#if IS_FRLG
+static const u8 sText_MenuCatchLog[] = _("CATCH LOG");
+static const u8 sText_CatchLogUsed[] = _("{COLOR 4}USED");
+static const u8 sText_CatchLogOpen[] = _("{COLOR 6}OPEN");
+static const u8 sText_CatchLogTotal[] = _("USED {STR_VAR_1}/{STR_VAR_2}");
+static const struct WindowTemplate sCatchLogWindowTemplate = {
+    .bg = 0, .tilemapLeft = 2, .tilemapTop = 1, .width = 26,
+    .height = 18, .paletteNum = 15, .baseBlock = 0x220
+};
+
+// Kanto sections reachable before the first League win, in story order.
+static const mapsec_u8_t sKantoCatchLogAreas[] = {
+    MAPSEC_PALLET_TOWN, MAPSEC_ROUTE_1, MAPSEC_VIRIDIAN_CITY,
+    MAPSEC_ROUTE_22, MAPSEC_ROUTE_2, MAPSEC_VIRIDIAN_FOREST,
+    MAPSEC_PEWTER_CITY, MAPSEC_ROUTE_3, MAPSEC_MT_MOON,
+    MAPSEC_ROUTE_4, MAPSEC_ROUTE_4_POKECENTER, MAPSEC_CERULEAN_CITY,
+    MAPSEC_ROUTE_24, MAPSEC_ROUTE_25, MAPSEC_ROUTE_5,
+    MAPSEC_UNDERGROUND_PATH, MAPSEC_ROUTE_6, MAPSEC_VERMILION_CITY,
+    MAPSEC_S_S_ANNE, MAPSEC_ROUTE_11, MAPSEC_DIGLETTS_CAVE,
+    MAPSEC_ROUTE_9, MAPSEC_ROUTE_10, MAPSEC_ROUTE_10_POKECENTER,
+    MAPSEC_ROCK_TUNNEL, MAPSEC_LAVENDER_TOWN, MAPSEC_POKEMON_TOWER,
+    MAPSEC_ROUTE_8, MAPSEC_UNDERGROUND_PATH_2, MAPSEC_ROUTE_7,
+    MAPSEC_CELADON_CITY, MAPSEC_ROCKET_HIDEOUT, MAPSEC_ROUTE_12,
+    MAPSEC_ROUTE_13, MAPSEC_ROUTE_14, MAPSEC_ROUTE_15,
+    MAPSEC_FUCHSIA_CITY, MAPSEC_KANTO_SAFARI_ZONE, MAPSEC_ROUTE_16,
+    MAPSEC_ROUTE_17, MAPSEC_ROUTE_18, MAPSEC_SAFFRON_CITY,
+    MAPSEC_SILPH_CO, MAPSEC_ROUTE_19, MAPSEC_SEAFOAM_ISLANDS,
+    MAPSEC_ROUTE_20, MAPSEC_CINNABAR_ISLAND, MAPSEC_POKEMON_MANSION,
+    MAPSEC_ROUTE_21, MAPSEC_POWER_PLANT, MAPSEC_ROUTE_23,
+    MAPSEC_KANTO_VICTORY_ROAD, MAPSEC_INDIGO_PLATEAU,
+    MAPSEC_POKEMON_LEAGUE,
+};
+static EWRAM_DATA u8 sCatchLogWindowId;
+static EWRAM_DATA u8 sCatchLogIndex;
+
+u32 ForkGetKantoCatchLogAreaCount(void) { return ARRAY_COUNT(sKantoCatchLogAreas); }
+mapsec_u8_t ForkGetKantoCatchLogArea(u32 index) { return sKantoCatchLogAreas[index]; }
+bool32 ForkIsKantoCatchLogAreaSpent(mapsec_u8_t area)
+{
+    return ForkIsAreaEncounterSpent(area == MAPSEC_KANTO_SAFARI_ZONE ? MAPSEC_SAFARI_ZONE : area);
+}
+static void GetKantoCatchLogAreaName(u8 *dest, mapsec_u8_t area)
+{
+    switch (area)
+    {
+    case MAPSEC_ROUTE_4_POKECENTER: StringCopy(dest, COMPOUND_STRING("ROUTE 4 CENTER")); break;
+    case MAPSEC_ROUTE_10_POKECENTER: StringCopy(dest, COMPOUND_STRING("ROUTE 10 CENTER")); break;
+    case MAPSEC_UNDERGROUND_PATH: StringCopy(dest, COMPOUND_STRING("UNDERGROUND N-S")); break;
+    case MAPSEC_UNDERGROUND_PATH_2: StringCopy(dest, COMPOUND_STRING("UNDERGROUND E-W")); break;
+    default: GetMapName(dest, area, 0); break;
+    }
+}
+u32 ForkCountUsedKantoCatchLogAreas(void)
+{
+    u32 count = 0;
+    for (u32 i = 0; i < ARRAY_COUNT(sKantoCatchLogAreas); i++)
+        count += ForkIsKantoCatchLogAreaSpent(sKantoCatchLogAreas[i]);
+    return count;
+}
+#endif
 
 static const struct MenuAction sStartMenuItems[] =
 {
@@ -195,6 +262,9 @@ static const struct MenuAction sStartMenuItems[] =
     [MENU_ACTION_POKEMON]         = {gText_MenuPokemon, {.u8_void = StartMenuPokemonCallback}},
     [MENU_ACTION_BAG]             = {gText_MenuBag,     {.u8_void = StartMenuBagCallback}},
     [MENU_ACTION_POKENAV]         = {gText_MenuPokenav, {.u8_void = StartMenuPokeNavCallback}},
+#if IS_FRLG
+    [MENU_ACTION_CATCH_LOG]       = {sText_MenuCatchLog, {.u8_void = StartMenuCatchLogCallback}},
+#endif
     [MENU_ACTION_PLAYER]          = {gText_MenuPlayer,  {.u8_void = StartMenuPlayerNameCallback}},
     [MENU_ACTION_SAVE]            = {gText_MenuSave,    {.u8_void = StartMenuSaveCallback}},
     [MENU_ACTION_OPTION]          = {gText_MenuOption,  {.u8_void = StartMenuOptionCallback}},
@@ -332,7 +402,12 @@ static void AddStartMenuAction(u8 action)
 static void BuildNormalStartMenu(void)
 {
     if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
+    {
         AddStartMenuAction(MENU_ACTION_POKEDEX);
+#if IS_FRLG
+        AddStartMenuAction(MENU_ACTION_CATCH_LOG);
+#endif
+    }
 
     if (DN_FLAG_DEXNAV_GET != 0 && FlagGet(DN_FLAG_DEXNAV_GET))
         AddStartMenuAction(MENU_ACTION_DEXNAV);
@@ -662,6 +737,9 @@ static bool8 HandleStartMenuInput(void)
         if (gMenuCallback != StartMenuSaveCallback
             && gMenuCallback != StartMenuExitCallback
             && gMenuCallback != StartMenuDebugCallback
+#if IS_FRLG
+            && gMenuCallback != StartMenuCatchLogCallback
+#endif
             && gMenuCallback != StartMenuSafariZoneRetireCallback
             && gMenuCallback != StartMenuBattlePyramidRetireCallback)
         {
@@ -741,6 +819,83 @@ static bool8 StartMenuPokeNavCallback(void)
 
     return FALSE;
 }
+
+#if IS_FRLG
+static void DrawCatchLog(void)
+{
+    u32 first = (sCatchLogIndex / 6) * 6;
+    FillWindowPixelBuffer(sCatchLogWindowId, PIXEL_FILL(1));
+    DrawStdWindowFrame(sCatchLogWindowId, FALSE);
+    AddTextPrinterParameterized(sCatchLogWindowId, FONT_NORMAL, sText_MenuCatchLog, 16, 8, TEXT_SKIP_DRAW, NULL);
+    for (u32 row = 0; row < 6 && first + row < ARRAY_COUNT(sKantoCatchLogAreas); row++)
+    {
+        mapsec_u8_t area = sKantoCatchLogAreas[first + row];
+        u32 length;
+        GetKantoCatchLogAreaName(gStringVar1, area);
+        length = StringLength(gStringVar1);
+        while (length > 0 && GetStringWidth(FONT_NORMAL, gStringVar1, 0) > 120)
+            gStringVar1[--length] = EOS;
+        if (first + row == sCatchLogIndex)
+            AddTextPrinterParameterized(sCatchLogWindowId, FONT_NORMAL, COMPOUND_STRING(">"), 8, 24 + row * 16, TEXT_SKIP_DRAW, NULL);
+        AddTextPrinterParameterized(sCatchLogWindowId, FONT_NORMAL, gStringVar1, 20, 24 + row * 16, TEXT_SKIP_DRAW, NULL);
+        AddTextPrinterParameterized(sCatchLogWindowId, FONT_NORMAL,
+            ForkIsKantoCatchLogAreaSpent(area) ? sText_CatchLogUsed : sText_CatchLogOpen,
+            150, 24 + row * 16, TEXT_SKIP_DRAW, NULL);
+    }
+    ConvertIntToDecimalStringN(gStringVar1, ForkCountUsedKantoCatchLogAreas(), STR_CONV_MODE_LEFT_ALIGN, 2);
+    ConvertIntToDecimalStringN(gStringVar2, ARRAY_COUNT(sKantoCatchLogAreas), STR_CONV_MODE_LEFT_ALIGN, 2);
+    StringExpandPlaceholders(gStringVar4, sText_CatchLogTotal);
+    AddTextPrinterParameterized(sCatchLogWindowId, FONT_SMALL, gStringVar4, 16, 122, TEXT_SKIP_DRAW, NULL);
+    CopyWindowToVram(sCatchLogWindowId, COPYWIN_GFX);
+}
+
+static bool8 StartMenuCatchLogCallback(void)
+{
+    mapsec_u8_t current = GetCurrentRegionMapSectionId();
+    ClearStdWindowAndFrame(GetStartMenuWindowId(), TRUE);
+    RemoveStartMenuWindow();
+    sCatchLogWindowId = AddWindow(&sCatchLogWindowTemplate);
+    PutWindowTilemap(sCatchLogWindowId);
+    sCatchLogIndex = 0;
+    for (u32 i = 0; i < ARRAY_COUNT(sKantoCatchLogAreas); i++)
+        if (sKantoCatchLogAreas[i] == current)
+            sCatchLogIndex = i;
+    DrawCatchLog();
+    gMenuCallback = HandleCatchLogInput;
+    return FALSE;
+}
+
+static bool8 HandleCatchLogInput(void)
+{
+    u8 old = sCatchLogIndex;
+    if (JOY_NEW(B_BUTTON))
+    {
+        ClearStdWindowAndFrame(sCatchLogWindowId, TRUE);
+        RemoveWindow(sCatchLogWindowId);
+        InitStartMenu();
+        gMenuCallback = HandleStartMenuInput;
+        return FALSE;
+    }
+    if (JOY_NEW(DPAD_UP) && sCatchLogIndex > 0)
+        sCatchLogIndex--;
+    if (JOY_NEW(DPAD_DOWN) && sCatchLogIndex + 1 < ARRAY_COUNT(sKantoCatchLogAreas))
+        sCatchLogIndex++;
+    if (JOY_NEW(DPAD_LEFT))
+        sCatchLogIndex = sCatchLogIndex > 6 ? sCatchLogIndex - 6 : 0;
+    if (JOY_NEW(DPAD_RIGHT))
+    {
+        sCatchLogIndex += 6;
+        if (sCatchLogIndex >= ARRAY_COUNT(sKantoCatchLogAreas))
+            sCatchLogIndex = ARRAY_COUNT(sKantoCatchLogAreas) - 1;
+    }
+    if (old != sCatchLogIndex)
+    {
+        PlaySE(SE_SELECT);
+        DrawCatchLog();
+    }
+    return FALSE;
+}
+#endif
 
 static bool8 StartMenuPlayerNameCallback(void)
 {

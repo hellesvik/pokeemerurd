@@ -650,3 +650,7 @@ gSpecials::
 	def_special StickerManGetBragFlags
 	def_special CheckAddCoins
 	def_special GetForkKantoStarterSpecies
+#if IS_FRLG
+	def_special CollectorTrade
+	def_special CollectorNextReceiptItem
+#endif

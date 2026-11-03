@@ -1,4 +1,5 @@
 #include "global.h"
+#include "coins.h"
 #include "item_ball.h"
 #include "event_data.h"
 #include "item.h"
@@ -777,6 +778,105 @@ void GetItemBallIdAndAmountFromTemplate(void)
     gSpecialVar_Result = ResolveForkRandomizedItemBall(GetItemBallIdFromTemplate(itemBallId), GetForkItemBallSourceId(itemBallId));
     gSpecialVar_0x8009 = GetItemBallAmountFromTemplate(itemBallId);
 }
+
+#if IS_FRLG
+static const struct { enum Item item; u16 flag; } sCollectorItems[] = {
+#include "data/fork_collector_kanto.h"
+};
+static EWRAM_DATA struct { enum Item item; u16 count; } sCollectorReceipt[ARRAY_COUNT(sCollectorItems)];
+static EWRAM_DATA u16 sCollectorReceiptCount;
+static EWRAM_DATA u16 sCollectorReceiptIndex;
+
+void CollectorNextReceiptItem(void)
+{
+    gSpecialVar_Result = sCollectorReceiptIndex < sCollectorReceiptCount;
+    if (!gSpecialVar_Result)
+        return;
+    CopyItemName(sCollectorReceipt[sCollectorReceiptIndex].item, gStringVar1);
+    ConvertIntToDecimalStringN(gStringVar2, sCollectorReceipt[sCollectorReceiptIndex].count, STR_CONV_MODE_LEFT_ALIGN, 3);
+    sCollectorReceiptIndex++;
+}
+
+void CollectorTrade(void)
+{
+    struct SaveBlock1 *before1;
+    struct SaveBlock3 *before3;
+    bool32 remaining = FALSE;
+
+    sCollectorReceiptCount = sCollectorReceiptIndex = 0;
+    gSpecialVar_Result = 4;
+    if (FlagGet(FLAG_COLLECTOR_TRADE_COMPLETE))
+        return;
+    for (u32 i = 0; i < ARRAY_COUNT(sCollectorItems); i++)
+        remaining |= !FlagGet(sCollectorItems[i].flag);
+    if (!remaining)
+    {
+        gSpecialVar_Result = 3;
+        return;
+    }
+    if (GetCoins() < 4000)
+    {
+        gSpecialVar_Result = 1;
+        return;
+    }
+
+    before1 = Alloc(sizeof(*before1));
+    before3 = Alloc(sizeof(*before3));
+    if (before1 == NULL || before3 == NULL)
+    {
+        Free(before1);
+        Free(before3);
+        gSpecialVar_Result = 2;
+        return;
+    }
+    *before1 = *gSaveBlock1Ptr;
+    *before3 = *gSaveBlock3Ptr;
+    for (u32 i = 0; i < ARRAY_COUNT(sCollectorItems); i++)
+    {
+        enum Item item;
+        u16 flag = sCollectorItems[i].flag;
+        u16 source = flag >= FIRST_ITEM_BALL_FLAG && flag <= LAST_ITEM_BALL_FLAG
+            ? flag - FIRST_ITEM_BALL_FLAG : FORK_ITEM_RANDOMIZER_SOURCE_COUNT - 1;
+        if (FlagGet(flag))
+            continue;
+        item = ResolveForkRandomizedItem(sCollectorItems[i].item, source);
+        if (!AddBagItem(item, 1))
+        {
+            *gSaveBlock1Ptr = *before1;
+            *gSaveBlock3Ptr = *before3;
+            Free(before1);
+            Free(before3);
+            sCollectorReceiptCount = 0;
+            gSpecialVar_Result = 2;
+            return;
+        }
+        sCollectorReceipt[sCollectorReceiptCount].item = item;
+        sCollectorReceipt[sCollectorReceiptCount++].count = 1;
+        FlagSet(flag);
+    }
+    RemoveCoins(4000);
+    FlagSet(FLAG_COLLECTOR_TRADE_COMPLETE);
+    Free(before1);
+    Free(before3);
+    gSpecialVar_Result = 0;
+}
+
+#if TESTING
+void Test_CollectorLeaveOnlyPotion(void)
+{
+    for (u32 i = 0; i < ARRAY_COUNT(sCollectorItems); i++)
+        FlagSet(sCollectorItems[i].flag);
+    FlagClear(FLAG_HIDE_VIRIDIAN_FOREST_POTION);
+}
+
+void Test_CollectorLeaveOnlyEarlyBall(void)
+{
+    for (u32 i = 0; i < ARRAY_COUNT(sCollectorItems); i++)
+        FlagSet(sCollectorItems[i].flag);
+    FlagClear(FLAG_HIDE_VIRIDIAN_FOREST_POKE_BALL);
+}
+#endif
+#endif
 
 void ResolveForkKantoItemBall(void)
 {

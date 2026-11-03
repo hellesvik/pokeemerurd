@@ -68,6 +68,57 @@ IndigoPlateau_PokemonCenter_1F_EventScript_Nurse::
 	release
 	end
 
+IndigoPlateau_PokemonCenter_1F_EventScript_Collector::
+	lock
+	faceplayer
+	goto_if_set FLAG_COLLECTOR_TRADE_COMPLETE, IndigoPlateau_Collector_Done
+	msgbox IndigoPlateau_Collector_Offer, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, IndigoPlateau_Collector_End
+	special CollectorTrade
+	goto_if_eq VAR_RESULT, 1, IndigoPlateau_Collector_NoCoins
+	goto_if_eq VAR_RESULT, 2, IndigoPlateau_Collector_NoSpace
+	goto_if_eq VAR_RESULT, 3, IndigoPlateau_Collector_Empty
+	goto_if_eq VAR_RESULT, 4, IndigoPlateau_Collector_Done
+	msgbox IndigoPlateau_Collector_Success, MSGBOX_DEFAULT
+IndigoPlateau_Collector_ReceiptLoop::
+	special CollectorNextReceiptItem
+	goto_if_eq VAR_RESULT, 0, IndigoPlateau_Collector_End
+	msgbox IndigoPlateau_Collector_Receipt, MSGBOX_DEFAULT
+	goto IndigoPlateau_Collector_ReceiptLoop
+IndigoPlateau_Collector_NoCoins::
+	msgbox IndigoPlateau_Collector_CoinsText, MSGBOX_DEFAULT
+	goto IndigoPlateau_Collector_End
+IndigoPlateau_Collector_NoSpace::
+	msgbox IndigoPlateau_Collector_SpaceText, MSGBOX_DEFAULT
+	goto IndigoPlateau_Collector_End
+IndigoPlateau_Collector_Empty::
+	msgbox IndigoPlateau_Collector_EmptyText, MSGBOX_DEFAULT
+	goto IndigoPlateau_Collector_End
+IndigoPlateau_Collector_Done::
+	msgbox IndigoPlateau_Collector_DoneText, MSGBOX_DEFAULT
+IndigoPlateau_Collector_End::
+	release
+	end
+
+IndigoPlateau_Collector_Offer::
+	.string "COLLECTOR: For 4,000 COINS, I'll\n"
+	.string "gather your missed Kanto items.\p"
+	.string "Only visible item balls from\n"
+	.string "before the LEAGUE. Deal?$"
+IndigoPlateau_Collector_CoinsText::
+	.string "You need 4,000 COINS.$"
+IndigoPlateau_Collector_SpaceText::
+	.string "Make room in every BAG pocket,\n"
+	.string "including TMs, then come back.$"
+IndigoPlateau_Collector_EmptyText::
+	.string "You've found every item I collect.$"
+IndigoPlateau_Collector_DoneText::
+	.string "Our trade is complete!$"
+IndigoPlateau_Collector_Success::
+	.string "Deal! Here's your collection.$"
+IndigoPlateau_Collector_Receipt::
+	.string "{STR_VAR_2} × {STR_VAR_1}!$"
+
 IndigoPlateau_PokemonCenter_1F_Text_GymGuyAdvice::
 	.string "Yo!\n"
 	.string "Champ in the making!\p"

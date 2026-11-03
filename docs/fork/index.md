@@ -37,6 +37,11 @@ documented in the [reference index](./reference/index.md).
 
 ## Fork changelog
 
+### 2026-11-02
+
+- FRLG now has a Start menu Catch Log for pre-League Kanto areas and an Indigo
+  Plateau collector for missed visible Kanto item balls.
+
 ### 2026-10-11
 
 - King's Rock and other held evolution items can now be used from the Bag to
